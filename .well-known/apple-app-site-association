@@ -1,0 +1,16 @@
+{
+  "webcredentials": {
+    "apps": [
+      "VWR39LZW5M.DNZ.ShowSourcing"
+    ]
+  },
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "VWR39LZW5M.DNZ.ShowSourcing",
+        "paths": ["*"]
+      }
+    ]
+  }
+}
