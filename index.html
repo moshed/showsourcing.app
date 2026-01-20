@@ -267,6 +267,28 @@
             opacity: 0.6;
         }
 
+        .footer-links {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            z-index: 10;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-secondary);
+        }
+
         /* Responsive */
         @media (max-width: 480px) {
             .card {
@@ -324,6 +346,11 @@
                 <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="badge-google">
             </div>
         </div>
+    </div>
+
+    <div class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
     </div>
 
     <div class="footer-line"></div>
