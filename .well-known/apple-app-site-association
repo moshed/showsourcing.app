@@ -1,14 +1,14 @@
 {
   "webcredentials": {
     "apps": [
-      "VWR39LZW5M.DNZ.ShowSourcing"
+      "VWR39LZW5M.com.DNZ.showsourcing"
     ]
   },
   "applinks": {
     "apps": [],
     "details": [
       {
-        "appID": "VWR39LZW5M.DNZ.ShowSourcing",
+        "appID": "VWR39LZW5M.com.DNZ.showsourcing",
         "paths": ["*"]
       }
     ]
