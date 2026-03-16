@@ -472,6 +472,25 @@
             transition: color 0.2s;
         }
         #header .header-links a:hover { color: var(--text); }
+        #header .signin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(249,115,22,0.12);
+            border: 1px solid rgba(249,115,22,0.25);
+            color: var(--accent);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        #header .signin-btn:hover {
+            background: rgba(249,115,22,0.2);
+            border-color: rgba(249,115,22,0.4);
+        }
     </style>
 </head>
 <body>
@@ -482,6 +501,7 @@
     <nav class="header-links">
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
+        <a href="https://app.showsourcing.app/login" class="signin-btn">Sign In <svg width="12" height="12" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l6 6-6 6"/></svg></a>
     </nav>
 </header>
 <nav id="nav"></nav>
