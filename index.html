@@ -3,10 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Sourcing — Feature Overview</title>
+    <title>Show Sourcing — Trade Show Product Catalog &amp; Vendor CRM for iOS</title>
+    <meta name="description" content="Catalog every product at Canton Fair, Global Sources, or any trade show in seconds. Scan business cards, calculate landed cost, and sync with your team — the iOS app built for importers, buyers, and sourcing pros.">
+    <meta name="keywords" content="trade show app, product sourcing app, vendor CRM, business card scanner, landed cost calculator, FOB tracker, Canton Fair app, Global Sources app, importer app, wholesale buyer app, sourcing catalog">
+    <meta name="author" content="DNZ">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#f97316">
+    <link rel="canonical" href="https://showsourcing.app/">
+
+    <!-- Open Graph (Facebook, LinkedIn, iMessage, WhatsApp, Slack) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Show Sourcing">
+    <meta property="og:url" content="https://showsourcing.app/">
+    <meta property="og:title" content="Show Sourcing — Trade Show Product Catalog &amp; Vendor CRM">
+    <meta property="og:description" content="Catalog every product at Canton Fair in seconds. Scan business cards, calculate landed cost, sync with your team. iOS app for importers and buyers.">
+    <meta property="og:image" content="https://showsourcing.app/app-icon.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:alt" content="Show Sourcing app icon">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Show Sourcing — Trade Show Product Catalog &amp; Vendor CRM">
+    <meta name="twitter:description" content="Catalog products at trade shows, scan business cards with AI, calculate landed cost, sync with your team. iOS app for importers and buyers.">
+    <meta name="twitter:image" content="https://showsourcing.app/app-icon.png">
+
     <link rel="icon" type="image/png" href="/app-icon.png">
     <link rel="apple-touch-icon" href="/app-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+    <!-- Structured data: SoftwareApplication + Organization + WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Show Sourcing",
+          "alternateName": "Show Sourcing: Trade Show Product Catalog",
+          "operatingSystem": "iOS 18.0 or later",
+          "applicationCategory": "BusinessApplication",
+          "applicationSubCategory": "Product Sourcing",
+          "description": "iOS app for trade show buyers, importers, and sourcing professionals. Catalog products, scan vendor business cards with AI, calculate landed cost with tariffs, and sync a whole team in real time. Built for Canton Fair, Global Sources, ASD, IHA, HKTDC and factory visits worldwide.",
+          "url": "https://showsourcing.app",
+          "downloadUrl": "https://apps.apple.com/app/id6758863749",
+          "installUrl": "https://apps.apple.com/app/id6758863749",
+          "image": "https://showsourcing.app/app-icon.png",
+          "screenshot": "https://showsourcing.app/app-icon.png",
+          "author": {"@type": "Organization", "name": "DNZ", "url": "https://showsourcing.app"},
+          "publisher": {"@type": "Organization", "name": "DNZ", "url": "https://showsourcing.app"},
+          "offers": {"@type": "Offer", "price": "60.00", "priceCurrency": "USD", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "60.00", "priceCurrency": "USD", "billingIncrement": 1, "billingDuration": "P6M", "unitText": "seat / 6 months"}},
+          "featureList": [
+            "Multi-shot product camera with markup",
+            "Business card scanner with AI-powered OCR",
+            "Vendor CRM with contacts, WeChat, email, phones",
+            "Landed cost calculator with country-specific tariff rules",
+            "Real-time team sync",
+            "Team Radar — see colleague locations on the venue map",
+            "Follow-up workflow (New → Quoted → Sampled → Ordered)",
+            "Email vendor from templates with product photos attached",
+            "Offline first, syncs when you're back on WiFi"
+          ]
+        },
+        {
+          "@type": "Organization",
+          "name": "DNZ",
+          "url": "https://showsourcing.app",
+          "logo": "https://showsourcing.app/app-icon.png",
+          "email": "support@showsourcing.app",
+          "sameAs": ["https://apps.apple.com/app/id6758863749"]
+        },
+        {
+          "@type": "WebSite",
+          "name": "Show Sourcing",
+          "url": "https://showsourcing.app"
+        }
+      ]
+    }
+    </script>
     <style>
         /* ==============================================
            THEME
@@ -406,6 +480,83 @@
         }
 
         /* ==============================================
+           FAQ SLIDE
+        =============================================== */
+        .slide-faq {
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+        .faq-wrap {
+            width: 100%;
+            max-width: min(90vw, 880px);
+            padding: clamp(4.5rem, 9vh, 6.5rem) var(--pad) clamp(2rem, 5vh, 4rem);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.9rem, 1.6vw, 1.4rem);
+            z-index: 1;
+        }
+        .faq-head {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(0.5rem, 1vw, 0.9rem);
+            text-align: center;
+            margin-bottom: clamp(0.5rem, 1vw, 1rem);
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.55rem, 0.9vw, 0.9rem);
+            list-style: none;
+        }
+        .faq-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: clamp(0.85rem, 1.4vw, 1.15rem) clamp(1rem, 1.6vw, 1.4rem);
+            transition: border-color 0.25s, background 0.25s;
+        }
+        .faq-item[open] {
+            border-color: rgba(249,115,22,0.35);
+            background: rgba(249,115,22,0.04);
+        }
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: clamp(0.88rem, 1.15vw, 1.02rem);
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.4;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '+';
+            color: var(--accent);
+            font-size: 1.4em;
+            font-weight: 400;
+            line-height: 1;
+            transition: transform 0.25s;
+            flex-shrink: 0;
+        }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-item p {
+            margin-top: clamp(0.5rem, 0.9vw, 0.8rem);
+            color: #b0bec5;
+            font-size: var(--body);
+            line-height: 1.6;
+        }
+        @media (max-height: 700px) {
+            .faq-wrap { padding-top: clamp(3.5rem, 7vh, 5rem); }
+            .faq-item { padding: 0.7rem 1rem; }
+        }
+
+        /* ==============================================
            RESPONSIVE
         =============================================== */
         @media (max-height: 700px) {
@@ -755,7 +906,94 @@
 </section>
 
 <!-- ================================================
-     SLIDE 11: CTA
+     SLIDE 11: FAQ
+================================================= -->
+<section id="faq" class="slide slide-faq bg-cool">
+    <div class="faq-wrap">
+        <div class="faq-head">
+            <span class="badge rev d1">FAQ</span>
+            <h2 class="rev d2">Frequently Asked Questions</h2>
+            <p class="tagline rev d3">Everything importers, buyers, and sourcing teams ask before they hit the show floor.</p>
+        </div>
+        <ul class="faq-list">
+            <li class="rev d3">
+                <details class="faq-item">
+                    <summary>Is Show Sourcing for iPhone or iPad?</summary>
+                    <p>Both. Optimized for one-handed iPhone use on the trade show floor, and adaptable on iPad for reviewing your catalog. iOS 18.0 or later.</p>
+                </details>
+            </li>
+            <li class="rev d3">
+                <details class="faq-item">
+                    <summary>Does it work offline?</summary>
+                    <p>Yes. Capture products, scan cards, take notes, and manage vendors offline — everything syncs when you're back on WiFi or cellular. Ideal for factory visits and expo halls with spotty signal.</p>
+                </details>
+            </li>
+            <li class="rev d4">
+                <details class="faq-item">
+                    <summary>What trade shows is it built for?</summary>
+                    <p>Canton Fair, Global Sources, ASD, IHA, Hong Kong Electronics Fair, HKTDC, Ambiente, IFA, CES — any expo where you're scanning vendors and cataloging products at speed. Also for factory visits (Shenzhen, Yiwu, Guangzhou, Vietnam, India).</p>
+                </details>
+            </li>
+            <li class="rev d4">
+                <details class="faq-item">
+                    <summary>How does the business card scanner work?</summary>
+                    <p>Point your camera at a card, tap capture. AI extracts the company name, contact person, email, phone, WeChat ID, and physical address in about half a second. Multi-card imports supported — scan a stack, get all the vendors back at once.</p>
+                </details>
+            </li>
+            <li class="rev d5">
+                <details class="faq-item">
+                    <summary>Can multiple people on my team share the same catalog?</summary>
+                    <p>Yes. Real-time team sync means everyone sees new products and vendor cards as they get scanned. Team Radar shows colleague locations on the venue map so you can meet up without calling.</p>
+                </details>
+            </li>
+            <li class="rev d5">
+                <details class="faq-item">
+                    <summary>How does landed cost calculation work?</summary>
+                    <p>Enter FOB, packaging cost, and container quantity. Show Sourcing applies country-specific tariff rules (auto-linked to the product's category and country of origin) plus your DDP discount and container cost, and gives you the LDP — the true per-unit landed cost you can use to price the item.</p>
+                </details>
+            </li>
+            <li class="rev d6">
+                <details class="faq-item">
+                    <summary>What does it cost?</summary>
+                    <p>$60 per seat per 6 months, or $102 per seat per year (15% annual discount). Volume discounts kick in at 10+ seats. Billed through the App Store.</p>
+                </details>
+            </li>
+            <li class="rev d6">
+                <details class="faq-item">
+                    <summary>How is my data stored?</summary>
+                    <p>Your catalog syncs to a private cloud backend (Supabase, hosted in Singapore for global reach). Team data stays within your team. See the <a href="/privacy.html" style="color:var(--accent2);text-decoration:none;">Privacy Policy</a> for details.</p>
+                </details>
+            </li>
+            <li class="rev d7">
+                <details class="faq-item">
+                    <summary>Is there an Android version?</summary>
+                    <p>Not yet — Android is on the roadmap. The iOS app is the focus.</p>
+                </details>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is Show Sourcing for iPhone or iPad?", "acceptedAnswer": {"@type": "Answer", "text": "Both. Optimized for one-handed iPhone use on the trade show floor, and adaptable on iPad for reviewing your catalog. iOS 18.0 or later."}},
+    {"@type": "Question", "name": "Does Show Sourcing work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Capture products, scan cards, take notes, and manage vendors offline — everything syncs when you're back on WiFi or cellular. Ideal for factory visits and expo halls with spotty signal."}},
+    {"@type": "Question", "name": "What trade shows is Show Sourcing built for?", "acceptedAnswer": {"@type": "Answer", "text": "Canton Fair, Global Sources, ASD, IHA, Hong Kong Electronics Fair, HKTDC, Ambiente, IFA, CES — any expo where you're scanning vendors and cataloging products at speed. Also for factory visits in Shenzhen, Yiwu, Guangzhou, Vietnam, and India."}},
+    {"@type": "Question", "name": "How does the business card scanner work?", "acceptedAnswer": {"@type": "Answer", "text": "Point your camera at a card, tap capture. AI extracts the company name, contact person, email, phone, WeChat ID, and physical address in about half a second. Multi-card imports supported — scan a stack, get all the vendors back at once."}},
+    {"@type": "Question", "name": "Can multiple people on my team share the same catalog?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Real-time team sync means everyone sees new products and vendor cards as they get scanned. Team Radar shows colleague locations on the venue map so you can meet up without calling."}},
+    {"@type": "Question", "name": "How does landed cost calculation work?", "acceptedAnswer": {"@type": "Answer", "text": "Enter FOB, packaging cost, and container quantity. Show Sourcing applies country-specific tariff rules (auto-linked to the product's category and country of origin) plus your DDP discount and container cost, and gives you the LDP — the true per-unit landed cost you can use to price the item."}},
+    {"@type": "Question", "name": "What does Show Sourcing cost?", "acceptedAnswer": {"@type": "Answer", "text": "$60 per seat per 6 months, or $102 per seat per year (15% annual discount). Volume discounts kick in at 10+ seats. Billed through the App Store."}},
+    {"@type": "Question", "name": "How is my data stored?", "acceptedAnswer": {"@type": "Answer", "text": "Your catalog syncs to a private cloud backend (Supabase, hosted in Singapore for global reach). Team data stays within your team. See the Privacy Policy for details."}},
+    {"@type": "Question", "name": "Is there an Android version of Show Sourcing?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet — Android is on the roadmap. The iOS app is the focus."}}
+  ]
+}
+</script>
+
+<!-- ================================================
+     SLIDE 12: CTA
 ================================================= -->
 <section class="slide slide-center bg-cta">
     <div class="center-content">
