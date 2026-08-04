@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business card OCR at trade shows: what actually works when you have 300 cards and 4 hours &mdash; Show Sourcing</title>
+    <meta name="description" content="You collect 300 business cards a day at Canton Fair. Here's what actually happens when you feed them to an OCR app, and what to look for in a scanner that doesn't lose WeChat IDs.">
+    <meta name="keywords" content="business card OCR, trade show card scanner, WeChat ID extraction, LLM OCR, GPT-4V card scanner, bulk business card import, Canton Fair card scanner, Chinese business card OCR">
+    <meta name="author" content="DNZ">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#f97316">
+    <link rel="canonical" href="https://showsourcing.app/blog/business-card-ocr-trade-show/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Show Sourcing">
+    <meta property="og:url" content="https://showsourcing.app/blog/business-card-ocr-trade-show/">
+    <meta property="og:title" content="Business card OCR at trade shows: what actually works when you have 300 cards and 4 hours">
+    <meta property="og:description" content="You collect 300 business cards a day at Canton Fair. Here's what actually happens when you feed them to an OCR app, and what to look for in a scanner that doesn't lose WeChat IDs.">
+    <meta property="og:image" content="https://showsourcing.app/app-icon.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:alt" content="Show Sourcing app icon">
+    <meta property="article:published_time" content="2026-08-04T11:00:00-04:00">
+    <meta property="article:modified_time" content="2026-08-04T11:00:00-04:00">
+    <meta property="article:author" content="DNZ">
+    <meta property="article:section" content="Tools">
+    <meta property="article:tag" content="OCR">
+    <meta property="article:tag" content="business cards">
+    <meta property="article:tag" content="LLM">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Business card OCR at trade shows: what actually works">
+    <meta name="twitter:description" content="Five languages, three script systems, gold foil, dark backgrounds. What LLM-backed OCR gets right that classical OCR still fumbles.">
+    <meta name="twitter:image" content="https://showsourcing.app/app-icon.png">
+
+    <link rel="icon" type="image/png" href="/app-icon.png">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Business card OCR at trade shows: what actually works when you have 300 cards and 4 hours",
+      "description": "You collect 300 business cards a day at Canton Fair. Here's what actually happens when you feed them to an OCR app, and what to look for in a scanner that doesn't lose WeChat IDs.",
+      "image": "https://showsourcing.app/app-icon.png",
+      "datePublished": "2026-08-04",
+      "dateModified": "2026-08-04",
+      "author": {"@type": "Organization", "name": "DNZ", "url": "https://showsourcing.app"},
+      "publisher": {
+        "@type": "Organization",
+        "name": "DNZ",
+        "logo": {"@type": "ImageObject", "url": "https://showsourcing.app/app-icon.png"}
+      },
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://showsourcing.app/blog/business-card-ocr-trade-show/"},
+      "articleSection": "Tools",
+      "keywords": "business card OCR, trade show, WeChat, LLM OCR, Groq, Llama, GPT-4V"
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg:      #060a18;
+            --accent:  #f97316;
+            --accent2: #38bdf8;
+            --text:    #f1f5f9;
+            --muted:   #64748b;
+            --dim:     #1e293b;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.65;
+            background-image:
+                radial-gradient(ellipse 80% 45% at 50% 0%, rgba(249,115,22,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 55% at 90% 100%, rgba(56,189,248,0.05) 0%, transparent 60%);
+            background-attachment: fixed;
+        }
+        header#site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px clamp(16px, 3vw, 40px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        header#site-header .logo {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+        header#site-header .header-links {
+            display: flex;
+            gap: clamp(12px, 2vw, 24px);
+            align-items: center;
+        }
+        header#site-header .header-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        header#site-header .header-links a:hover { color: var(--text); }
+        .live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 5px 13px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            text-decoration: none;
+        }
+        .pulse-dot {
+            width: 7px; height: 7px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.3; } }
+
+        article {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem) 3rem;
+        }
+        .article-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        article h1 {
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+        }
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.25rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 2.25rem;
+        }
+        .article-meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
+        .article-meta .dot { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
+
+        article p {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin-bottom: 1.25rem;
+        }
+        article h2 {
+            font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+            font-weight: 700;
+            color: var(--text);
+            margin: 2.5rem 0 1rem;
+            line-height: 1.25;
+        }
+        article h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.75rem 0 0.75rem;
+        }
+        article ul, article ol {
+            margin: 0 0 1.5rem 1.25rem;
+            color: #cbd5e1;
+        }
+        article ul li, article ol li {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+        article a { color: var(--accent2); text-decoration: none; border-bottom: 1px solid rgba(56,189,248,0.35); }
+        article a:hover { border-bottom-color: var(--accent2); }
+        article strong { color: var(--text); font-weight: 700; }
+        article code {
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            background: rgba(56,189,248,0.08);
+            border: 1px solid rgba(56,189,248,0.15);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #bae6fd;
+        }
+        article figure {
+            margin: 1.75rem 0;
+            padding: 1.25rem 1.5rem;
+            background: rgba(30, 41, 59, 0.55);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+        }
+        article figure pre, article figure code.block {
+            display: block;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 0.9rem;
+            color: #fbbf24;
+            background: none;
+            border: none;
+            padding: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.5;
+        }
+        article figcaption {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+        article blockquote {
+            margin: 1.75rem 0;
+            padding: 1rem 1.25rem;
+            border-left: 3px solid var(--accent);
+            background: rgba(249,115,22,0.05);
+            border-radius: 0 8px 8px 0;
+            color: #e2e8f0;
+            font-size: 1.05rem;
+        }
+        article blockquote p:last-child { margin-bottom: 0; }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .cost-table th, .cost-table td {
+            padding: 0.65rem 0.9rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .cost-table th {
+            background: rgba(255,255,255,0.03);
+            font-weight: 700;
+            color: var(--text);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .cost-table td { color: #cbd5e1; vertical-align: top; }
+        .cost-table tr:last-child td { border-bottom: none; }
+        .cost-table code { font-size: 0.82em; }
+        .table-wrap { overflow-x: auto; }
+
+        .card-example {
+            padding: 1rem 1.25rem;
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            border-radius: 10px;
+            margin: 1rem 0 1.5rem;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 0.88rem;
+            color: #e2e8f0;
+            line-height: 1.65;
+        }
+
+        aside.cta {
+            margin: 3rem 0 0;
+            padding: 1.75rem;
+            background: linear-gradient(135deg, rgba(249,115,22,0.09), rgba(56,189,248,0.05));
+            border: 1px solid rgba(249,115,22,0.22);
+            border-radius: 16px;
+        }
+        aside.cta h3 { margin-top: 0; color: var(--text); font-size: 1.1rem; }
+        aside.cta p { font-size: 0.98rem; color: #cbd5e1; margin-bottom: 1rem; }
+        aside.cta a.button {
+            display: inline-block;
+            padding: 0.65rem 1.15rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        aside.cta a.button:hover { background: #fb923c; transform: translateY(-1px); }
+
+        footer#site-footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem clamp(1.25rem, 4vw, 3rem);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+        footer#site-footer nav { display: flex; gap: 1.5rem; }
+        footer#site-footer a { color: var(--muted); text-decoration: none; }
+        footer#site-footer a:hover { color: var(--text); }
+    </style>
+</head>
+<body>
+
+<header id="site-header">
+    <a class="logo" href="/">Show Sourcing</a>
+    <nav class="header-links">
+        <a href="/blog/">Blog</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" class="live-pill">
+            <span class="pulse-dot"></span>Now on the App Store
+        </a>
+    </nav>
+</header>
+
+<article>
+    <span class="article-eyebrow">Tools</span>
+    <h1>Business card OCR at trade shows: what actually works when you have 300 cards and 4 hours</h1>
+    <div class="article-meta">
+        <span>Aug 4, 2026</span>
+        <span class="dot"></span>
+        <span>10 min read</span>
+        <span class="dot"></span>
+        <span>By DNZ</span>
+    </div>
+
+    <p>Business card OCR sounds like a solved problem. It is not.</p>
+
+    <p>The reason it's not solved is that "business cards" as a category on the trade show floor bears very little resemblance to the clean, uniform, single-language cards that OCR products were originally trained on. A Canton Fair vendor's card is a two-sided document, printed in gold ink on a dark background, with a company name in Simplified Chinese and English, a personal name in Pinyin and Chinese, an office address, a factory address, a WeChat ID, a WhatsApp number, a QQ number, an email, four different phone numbers, and a QR code with an embedded contact card that half the time doesn't match the printed text.</p>
+
+    <p>Feed that to a classical OCR pipeline and you get back a wall of text. Feed it to a well-designed LLM-backed pipeline and you get back a structured contact that can immediately go into a CRM. The difference is not incremental. It's the difference between the card being useful in a database and the card being a photo you'll have to re-type.</p>
+
+    <p>This post covers what actually goes wrong with OCR on real trade show cards, what "good" looks like, why LLM-based approaches beat classical OCR for this specific task, and what to look for in a scanner.</p>
+
+    <h2>The problem, concretely</h2>
+
+    <p>Sit down at your hotel after day 2 of Canton Fair and lay out the cards you collected. You will see, in some rough distribution:</p>
+
+    <ul>
+        <li>Cards in English and Chinese, with company name in both scripts</li>
+        <li>Cards in English + Simplified Chinese + Traditional Chinese</li>
+        <li>Cards in Korean, Japanese, Arabic, Turkish, Russian (a lot of Korean at HKTDC, Turkish at any electronics show, Russian at Global Sources)</li>
+        <li>Cards printed with gold or silver foil on black or navy, essentially unreadable to consumer OCR</li>
+        <li>Cards with WeChat IDs, WhatsApp numbers, and QQ numbers all treated as "just another phone number" by naive extractors</li>
+        <li>Cards where the person's name is printed in Chinese only, with the English "call me Sylvia" written in Sharpie on the back</li>
+        <li>Cards with a QR code that resolves to a WeChat contact card, and the printed text is subtly different (a nickname, an old phone number)</li>
+    </ul>
+
+    <p>Now try to build a vendor CRM out of that.</p>
+
+    <h2>A concrete example</h2>
+
+    <p>Here's a real-shape card (details anonymized):</p>
+
+    <div class="card-example">
+        Shenzhen Tianli Audio Technology Co., Ltd.<br>
+        &#28145;&#22323;&#22825;&#31435;&#38899;&#39057;&#31185;&#25216;&#26377;&#38480;&#20844;&#21496;<br>
+        <br>
+        Sylvia Yu &nbsp; &nbsp; &#20313;&#26195;&#38632;<br>
+        Sales Manager | Overseas Dept<br>
+        <br>
+        Mob/WeChat: +86 13923785487<br>
+        WhatsApp: +86 13923785487<br>
+        Tel: +86-755-2833-9928 ext.804<br>
+        Email: sylvia@tianli-audio.com<br>
+        <br>
+        Add: Building 5, No.128 Longcheng Ave, Longgang District,<br>
+        Shenzhen, Guangdong, China
+    </div>
+
+    <p>What a naive OCR pipeline returns:</p>
+
+    <figure>
+        <code class="block">{
+  "name": "Sylvia Yu",
+  "company": "Shenzhen Tianli Audio Technology Co., Ltd.",
+  "phone": "+86 13923785487 +86 13923785487 +86-755-2833-9928 ext.804",
+  "email": "sylvia@tianli-audio.com",
+  "address": "Building 5, No.128 Longcheng Ave, Longgang District, Shenzhen, Guangdong, China"
+}</code>
+        <figcaption>The output of a naive OCR + rule-based extractor. Three phone numbers concatenated, WeChat lost as a field, second Chinese company name discarded, title dropped, WhatsApp indistinguishable from mobile.</figcaption>
+    </figure>
+
+    <p>What a well-designed LLM-backed pipeline returns:</p>
+
+    <figure>
+        <code class="block">{
+  "company_name_en": "Shenzhen Tianli Audio Technology Co., Ltd.",
+  "company_name_zh": "&#28145;&#22323;&#22825;&#31435;&#38899;&#39057;&#31185;&#25216;&#26377;&#38480;&#20844;&#21496;",
+  "person_name_en": "Sylvia Yu",
+  "person_name_zh": "&#20313;&#26195;&#38632;",
+  "title": "Sales Manager",
+  "department": "Overseas Dept",
+  "mobile": "+8613923785487",
+  "wechat": "+8613923785487",
+  "whatsapp": "+8613923785487",
+  "office_phone": "+8675728339928",
+  "office_ext": "804",
+  "email": "sylvia@tianli-audio.com",
+  "address": {
+    "street": "Building 5, No.128 Longcheng Ave",
+    "district": "Longgang District",
+    "city": "Shenzhen",
+    "province": "Guangdong",
+    "country": "China"
+  }
+}</code>
+        <figcaption>The structured contact that a properly-prompted vision LLM produces. WeChat is its own field. WhatsApp is its own field. Chinese company name is preserved separately. Address is parsed into components.</figcaption>
+    </figure>
+
+    <p>The naive output requires 30&ndash;90 seconds of manual cleanup per card. Multiply that by 300 cards and you're spending five hours in the hotel un-scrambling a database. The structured output is ready to use.</p>
+
+    <h2>Why classical OCR still fumbles this</h2>
+
+    <p>Classical OCR pipelines (Tesseract, ABBYY, iOS Vision, older versions of most commercial scanners) do two things in sequence: they extract text from the image, and then they use rule-based extractors (regexes, layout heuristics, dictionaries) to guess which piece of text is a phone number, which is an email, which is a name.</p>
+
+    <p>The extraction step is fine. Modern OCR reads printed text well, even in Chinese, even in mixed scripts.</p>
+
+    <p>The classification step is where it falls apart. Classical rules can't tell that "Mob/WeChat:" preceding a phone number means the number is <em>both</em> a mobile <em>and</em> a WeChat ID. They can't tell that a name in Chinese characters immediately preceded by an English name is the same person's name in a different script. They can't distinguish "Add:" from "Address:" and drop the address field entirely. They can't decide whether "Sales Manager | Overseas Dept" is one job title or two fields.</p>
+
+    <p>You can hand-craft rules for all of this. Vendors of "smart business card apps" have been doing exactly that for fifteen years. The rules break constantly on the long tail of card designs. The category never got solved, it got tolerated.</p>
+
+    <h2>What LLM-backed OCR does differently</h2>
+
+    <p>A vision-capable large language model (Groq's Llama-4-Scout, GPT-4o, Claude's Sonnet vision, Gemini Flash) does the extraction and classification in a single pass. You send it the image plus a prompt like "extract this business card into structured JSON with these fields..." and it returns a filled-out JSON.</p>
+
+    <p>What matters is that the model understands the <em>semantics</em> of a business card. It knows what a WeChat ID looks like. It knows that Chinese company names and English company names can co-exist. It knows that "Mob/WeChat" is a shared field. It knows that a phone number with ext. is an office phone, not a mobile. All of this is baked in from the training data.</p>
+
+    <p>Speed matters too. A card image sent to a modern hosted vision LLM (Groq's LPU-hosted Llama-4-Scout is currently the fastest) round-trips in about 300&ndash;500 milliseconds. GPT-4o Vision is closer to 1.5&ndash;2.5 seconds. Anthropic's Sonnet 4 vision is around 1&ndash;2 seconds. For a scanner where you take a photo and want a filled-out contact card before you put your phone back in your pocket, sub-second is the target.</p>
+
+    <div class="table-wrap">
+    <table class="cost-table">
+        <thead>
+            <tr><th>Approach</th><th>Latency</th><th>Chinese script</th><th>WeChat field</th><th>Bilingual names</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Classical OCR + regex</td><td>~200ms</td><td>Weak</td><td>Missed</td><td>Confused</td></tr>
+            <tr><td>iOS Vision + heuristics</td><td>~150ms</td><td>OK</td><td>Missed</td><td>Confused</td></tr>
+            <tr><td>GPT-4o Vision</td><td>~1500ms</td><td>Excellent</td><td>Extracted</td><td>Preserved</td></tr>
+            <tr><td>Claude Sonnet Vision</td><td>~1200ms</td><td>Excellent</td><td>Extracted</td><td>Preserved</td></tr>
+            <tr><td>Groq Llama-4 Scout</td><td>~450ms</td><td>Excellent</td><td>Extracted</td><td>Preserved</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <blockquote>
+        <p>The reason LLM-backed OCR wins on business cards isn't the OCR. It's the classification. The model already knows what fields a business card has and doesn't need to be told, one regex at a time, how to guess.</p>
+    </blockquote>
+
+    <h2>Hard cases: what still breaks</h2>
+
+    <p>LLM OCR isn't magic. There are still card categories that trip it up:</p>
+
+    <ul>
+        <li><strong>Extremely low-contrast cards.</strong> Silver foil on white, black embossed on black. The camera has to catch it in the first place. Increasing exposure and shooting flat at good angle solves most of this.</li>
+        <li><strong>Cards where two people share one card.</strong> Common at family-run factories. The model has to decide who's the primary contact. Better implementations return a list of contacts rather than one.</li>
+        <li><strong>Cards printed only in Chinese with no romanized names.</strong> The model can transliterate, but transliteration is not the same as the person's actual English name. Sylvia might be "Yu Xiaoyu" via Pinyin but her actual English name of choice is "Sylvia" which appears nowhere on the card.</li>
+        <li><strong>QR-code-only cards.</strong> A rising number of Chinese vendors have essentially blank cards with a WeChat QR code. The scanner has to also decode the QR, then follow it to the WeChat contact.</li>
+        <li><strong>Handwritten additions.</strong> A vendor writes their personal WeChat on the back in Sharpie because the printed one is the company account. Vision LLMs read this fine if the pen is clear, badly if it's messy.</li>
+    </ul>
+
+    <h2>Deduplication</h2>
+
+    <p>The other thing your scanner needs to do is <em>not</em> duplicate. You will scan the same vendor twice. You will scan a card, forget you did, scan it again the next day at a different booth (Canton Fair vendors often have booths in multiple halls). A card scanner that just piles up records is not helping you.</p>
+
+    <p>Good deduplication matches on:</p>
+
+    <ul>
+        <li>Exact email match (highest confidence)</li>
+        <li>Exact WeChat ID / phone number match</li>
+        <li>Normalized company name match (strip Ltd., Co., etc.) + at least one shared contact detail</li>
+    </ul>
+
+    <p>When it matches, it should <em>merge</em>: keep both cards' unique contact points but preserve one vendor record. The second card's photo becomes an additional card photo on the vendor, not a whole new vendor.</p>
+
+    <h2>Bulk import: 30 cards at a time</h2>
+
+    <p>The other feature that matters at scale: bulk import. You get back to the hotel and dump 30 loose cards on the desk. You want to lay them out on the desk, take one photo of all 30, and get 30 vendors back. Not scan them one by one.</p>
+
+    <p>This is where the LLM approach has a compounding advantage. A vision model can process a multi-card image in a single pass, returning an array of contact objects. Card detection, per-card cropping, per-card extraction, all in one shot. A well-tuned pipeline handles a photo of 20&ndash;40 cards in about the same time as a single card.</p>
+
+    <p>Alternatively: pick up cards from the camera roll. Any camera roll photo that looks like a card gets processed. If you shot booth photos with cards visible in them, those get picked up too.</p>
+
+    <h2>Privacy: where does the card image go</h2>
+
+    <p>A card image is a photograph of someone's personal contact information. Where it goes matters.</p>
+
+    <p>Look for a scanner that:</p>
+
+    <ul>
+        <li>Sends the image only to your own account backend, not to third-party ad networks</li>
+        <li>Does not train future models on your images (or gives you an off switch)</li>
+        <li>Encrypts images in transit and at rest</li>
+        <li>Deletes the image on demand</li>
+    </ul>
+
+    <p>Also: check whether the OCR provider's terms of service allow you to send third-party PII (a person's business card belongs to them, not to the vendor company). Most B2B providers explicitly allow this; some do not.</p>
+
+    <h2>Putting it together</h2>
+
+    <p>The workflow that actually works, distilled:</p>
+
+    <ol>
+        <li>Take the card, thank the vendor</li>
+        <li>Scan it right there at the booth, one photo</li>
+        <li>Structured contact populated in under a second</li>
+        <li>Tag it immediately with the products you just discussed (photos already in your app)</li>
+        <li>Move on to next booth</li>
+    </ol>
+
+    <p>Skip step 3 or 4 and by day 4 you have a mess. Get all five in a five-second loop and by day 4 you have a clean vendor database you can start emailing that night. This is basically the whole game.</p>
+
+    <p>Show Sourcing runs a Groq-hosted Llama-4-Scout vision pipeline for card OCR, tuned specifically for the field shapes above (WeChat as a separate field, bilingual name preservation, address parsing, multi-card in one shot). Typical single-card parse time is around <strong>0.5 seconds</strong> from tap to filled-out vendor record. Multi-card imports process 20 cards in about 2 seconds. Cards are stored with the vendor record so you can always fall back to the original photo if a rare field extraction was wrong.</p>
+
+    <p>If you found this useful, the <a href="/blog/canton-fair-buyer-prep-checklist/">Canton Fair prep checklist</a> covers how this fits into a full show-floor workflow, and the <a href="/blog/landed-cost-fob-to-ldp/">landed-cost writeup</a> covers what to do with all these vendors once you have them.</p>
+
+    <aside class="cta">
+        <h3>OCR built for actual trade show cards</h3>
+        <p>Show Sourcing scans business cards in ~0.5 seconds using an LLM-backed pipeline that treats WeChat, WhatsApp, bilingual names, and multi-language addresses as first-class fields. Bulk import from a camera-roll photo of 20 cards at once. Automatic dedup against your vendor list. iOS, offline-tolerant.</p>
+        <a class="button" href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749">Get Show Sourcing &rarr;</a>
+    </aside>
+</article>
+
+<footer id="site-footer">
+    <div>&copy; 2026 DNZ. All rights reserved.</div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+    </nav>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landed cost: the FOB to LDP formula every importer should have memorized &mdash; Show Sourcing</title>
+    <meta name="description" content="Every importer eventually blows a deal by quoting FOB when they meant LDP. Here's the exact formula for landed cost, including tariffs, packaging, and container math.">
+    <meta name="keywords" content="landed cost formula, FOB LDP calculation, importer landed cost, container cost per unit, tariff calculation, DDP discount, Section 301, HTS code, import cost calculator">
+    <meta name="author" content="DNZ">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#f97316">
+    <link rel="canonical" href="https://showsourcing.app/blog/landed-cost-fob-to-ldp/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Show Sourcing">
+    <meta property="og:url" content="https://showsourcing.app/blog/landed-cost-fob-to-ldp/">
+    <meta property="og:title" content="Landed cost: the FOB to LDP formula every importer should have memorized">
+    <meta property="og:description" content="Every importer eventually blows a deal by quoting FOB when they meant LDP. Here's the exact formula for landed cost, including tariffs, packaging, and container math.">
+    <meta property="og:image" content="https://showsourcing.app/app-icon.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:alt" content="Show Sourcing app icon">
+    <meta property="article:published_time" content="2026-08-04T09:00:00-04:00">
+    <meta property="article:modified_time" content="2026-08-04T09:00:00-04:00">
+    <meta property="article:author" content="DNZ">
+    <meta property="article:section" content="Sourcing">
+    <meta property="article:tag" content="landed cost">
+    <meta property="article:tag" content="tariffs">
+    <meta property="article:tag" content="importing">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Landed cost: the FOB to LDP formula every importer should have memorized">
+    <meta name="twitter:description" content="Every importer eventually blows a deal by quoting FOB when they meant LDP. Here's the exact formula, walked through with a real Bluetooth speaker container.">
+    <meta name="twitter:image" content="https://showsourcing.app/app-icon.png">
+
+    <link rel="icon" type="image/png" href="/app-icon.png">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Landed cost: the FOB to LDP formula every importer should have memorized",
+      "description": "Every importer eventually blows a deal by quoting FOB when they meant LDP. Here's the exact formula for landed cost, including tariffs, packaging, and container math.",
+      "image": "https://showsourcing.app/app-icon.png",
+      "datePublished": "2026-08-04",
+      "dateModified": "2026-08-04",
+      "author": {"@type": "Organization", "name": "DNZ", "url": "https://showsourcing.app"},
+      "publisher": {
+        "@type": "Organization",
+        "name": "DNZ",
+        "logo": {"@type": "ImageObject", "url": "https://showsourcing.app/app-icon.png"}
+      },
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://showsourcing.app/blog/landed-cost-fob-to-ldp/"},
+      "articleSection": "Sourcing",
+      "keywords": "landed cost, FOB, LDP, tariffs, DDP, container cost, importing"
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg:      #060a18;
+            --accent:  #f97316;
+            --accent2: #38bdf8;
+            --text:    #f1f5f9;
+            --muted:   #64748b;
+            --dim:     #1e293b;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.65;
+            background-image:
+                radial-gradient(ellipse 80% 45% at 50% 0%, rgba(249,115,22,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 55% at 90% 100%, rgba(56,189,248,0.05) 0%, transparent 60%);
+            background-attachment: fixed;
+        }
+
+        header#site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px clamp(16px, 3vw, 40px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        header#site-header .logo {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+        header#site-header .header-links {
+            display: flex;
+            gap: clamp(12px, 2vw, 24px);
+            align-items: center;
+        }
+        header#site-header .header-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        header#site-header .header-links a:hover { color: var(--text); }
+        header#site-header .header-links a.active { color: var(--text); }
+
+        .live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 5px 13px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            text-decoration: none;
+        }
+        .pulse-dot {
+            width: 7px; height: 7px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.3; } }
+
+        article {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem) 3rem;
+        }
+
+        .article-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        article h1 {
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+        }
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.25rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 2.25rem;
+        }
+        .article-meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
+        .article-meta .dot { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
+
+        article p {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin-bottom: 1.25rem;
+        }
+        article h2 {
+            font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+            font-weight: 700;
+            color: var(--text);
+            margin: 2.5rem 0 1rem;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+        }
+        article h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.75rem 0 0.75rem;
+        }
+        article ul, article ol {
+            margin: 0 0 1.5rem 1.25rem;
+            color: #cbd5e1;
+        }
+        article ul li, article ol li {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+        article a { color: var(--accent2); text-decoration: none; border-bottom: 1px solid rgba(56,189,248,0.35); }
+        article a:hover { border-bottom-color: var(--accent2); }
+        article strong { color: var(--text); font-weight: 700; }
+        article code {
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            background: rgba(56,189,248,0.08);
+            border: 1px solid rgba(56,189,248,0.15);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #bae6fd;
+        }
+        article figure {
+            margin: 1.75rem 0;
+            padding: 1.25rem 1.5rem;
+            background: rgba(30, 41, 59, 0.55);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+        }
+        article figure code, article figure pre {
+            display: block;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 0.95rem;
+            color: #fbbf24;
+            background: none;
+            border: none;
+            padding: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        article figcaption {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+        article blockquote {
+            margin: 1.75rem 0;
+            padding: 1rem 1.25rem;
+            border-left: 3px solid var(--accent);
+            background: rgba(249,115,22,0.05);
+            border-radius: 0 8px 8px 0;
+            color: #e2e8f0;
+            font-size: 1.05rem;
+        }
+        article blockquote p:last-child { margin-bottom: 0; }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .cost-table th, .cost-table td {
+            padding: 0.65rem 0.9rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .cost-table th {
+            background: rgba(255,255,255,0.03);
+            font-weight: 700;
+            color: var(--text);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .cost-table td { color: #cbd5e1; }
+        .cost-table tr:last-child td { border-bottom: none; }
+        .cost-table td.num { font-family: 'JetBrains Mono', ui-monospace, monospace; text-align: right; color: #fbbf24; }
+        .table-wrap { overflow-x: auto; }
+
+        aside.cta {
+            margin: 3rem 0 0;
+            padding: 1.75rem;
+            background: linear-gradient(135deg, rgba(249,115,22,0.09), rgba(56,189,248,0.05));
+            border: 1px solid rgba(249,115,22,0.22);
+            border-radius: 16px;
+        }
+        aside.cta h3 {
+            margin-top: 0;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+        aside.cta p {
+            font-size: 0.98rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+        aside.cta a.button {
+            display: inline-block;
+            padding: 0.65rem 1.15rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: none;
+            transition: transform 0.2s, background 0.2s;
+        }
+        aside.cta a.button:hover { transform: translateY(-1px); background: #fb923c; }
+
+        footer#site-footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem clamp(1.25rem, 4vw, 3rem);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+        footer#site-footer nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        footer#site-footer a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+        footer#site-footer a:hover { color: var(--text); }
+    </style>
+</head>
+<body>
+
+<header id="site-header">
+    <a class="logo" href="/">Show Sourcing</a>
+    <nav class="header-links">
+        <a href="/blog/">Blog</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" class="live-pill">
+            <span class="pulse-dot"></span>Now on the App Store
+        </a>
+    </nav>
+</header>
+
+<article>
+    <span class="article-eyebrow">Sourcing 101</span>
+    <h1>Landed cost: the FOB to LDP formula every importer should have memorized</h1>
+    <div class="article-meta">
+        <span>Aug 4, 2026</span>
+        <span class="dot"></span>
+        <span>9 min read</span>
+        <span class="dot"></span>
+        <span>By DNZ</span>
+    </div>
+
+    <p>Every importer, at some point, quotes a customer a price based on <strong>FOB</strong>, wins the deal, then does the paperwork and realizes they just booked a loss. It happens to first-year buyers and it happens to twenty-year veterans on a category they haven't touched before. The mechanism is always the same: they treated the factory's invoice as if it were the actual cost of the goods.</p>
+
+    <p>It isn't. It's about 60&ndash;75% of the actual cost, depending on category and origin. This post covers exactly what the other 25&ndash;40% consists of, the formula for calculating it, a real example walked through end to end, and the specific ways this math bites buyers who forget one of the variables.</p>
+
+    <h2>Why FOB is a lie you tell yourself</h2>
+
+    <p>FOB (Free On Board) is the price the goods cost, packed, at the port of origin. When a Guangzhou factory quotes you <code>$3.20 FOB Shenzhen</code>, they mean: if you show up at Yantian port with a truck, we hand you the goods for $3.20 a unit. Nothing more.</p>
+
+    <p>What FOB does <em>not</em> include, and what your accounts payable department will absolutely spend money on:</p>
+
+    <ul>
+        <li>Ocean freight from Shenzhen to your destination port (Long Beach, Rotterdam, Felixstowe, wherever)</li>
+        <li>Customs duties (the tariff, based on the HTS code and country of origin)</li>
+        <li>Merchandise Processing Fee and Harbor Maintenance Fee (US specific, but every country has equivalents)</li>
+        <li>Customs brokerage</li>
+        <li>Inland freight from the destination port to your warehouse</li>
+        <li>Insurance, if you carry it separately</li>
+        <li>The freight forwarder's origin fees (documentation, terminal handling at Yantian, telex release)</li>
+    </ul>
+
+    <p>Add all of that up and divide by the number of units in the container and you get the <strong>LDP</strong> (Landed Duty Paid) cost. That's the number you need before you quote anything to a retail buyer, before you build a wholesale price list, before you decide whether the product is worth ordering in the first place.</p>
+
+    <blockquote>
+        <p>The single most common cost mistake in importing isn't over-estimating landed cost. It's forgetting one of the six or seven things that go into it, then re-discovering it two months later when the shipment clears customs.</p>
+    </blockquote>
+
+    <h2>The full formula</h2>
+
+    <p>Here is the formula, exactly as it should live in your head:</p>
+
+    <figure>
+        <code>LDP = (FOB + Package) &times; (1 + Tariff &times; (1 &minus; DDP discount)) + ContainerCost / ContainerQty</code>
+        <figcaption>Per-unit landed cost, in whatever currency your FOB is quoted in.</figcaption>
+    </figure>
+
+    <p>Let's take it apart.</p>
+
+    <h3>FOB</h3>
+    <p>The per-unit price the factory quoted you. If it was quoted EXW (Ex Works, from the factory door), add a small trucking cost to get to FOB. If it was quoted CIF (Cost Insurance Freight, delivered to your destination port), subtract the freight and treat it separately in the container cost.</p>
+
+    <h3>Package</h3>
+    <p>The per-unit cost of any packaging or gift box that isn't already baked into FOB. Master cartons are almost always included. Retail-ready boxes with your logo, blister packs, hangtags, and inserts frequently are not. Ask. If it's <code>$0.35</code> for a full-color retail box, that is <code>$0.35</code> per unit, not per SKU.</p>
+
+    <h3>Tariff</h3>
+    <p>Expressed as a decimal. A 25% Section 301 tariff plus a 3.9% MFN duty is <code>0.289</code>, not <code>28.9</code>. This is a per-unit percentage applied to the CIF or duty-basis value, which for our purposes is roughly (FOB + Package). Different countries and different HTS codes calculate the base slightly differently, but for a working number this is close enough.</p>
+
+    <h3>DDP discount</h3>
+    <p>The share of tariff your factory is willing to eat if you ship DDP through them. Zero if you're shipping FOB yourself. Somewhere between <code>0.2</code> and <code>0.6</code> if your factory has a friendly Hong Kong freight arm and is aggressive on volume. More on this below.</p>
+
+    <h3>ContainerCost</h3>
+    <p>Total freight + duty (aside from unit tariff) + brokerage + inland cost to your warehouse, as a lump sum. For a 40ft HQ from Yantian to Long Beach in a normal market this is around <code>$4,500</code> all in. In peak season 2021 it was <code>$18,000</code>. In a soft market it's <code>$2,800</code>. Ask your forwarder.</p>
+
+    <h3>ContainerQty</h3>
+    <p>How many units of the product fit in that container. This is where a lot of buyers get in trouble: they estimate on the master carton dimensions the factory gives them and forget to leave 4&ndash;5% dead space for uneven stacking. If the factory says <code>18,000 pcs per 40HQ</code>, budget for <code>17,000</code> until you have a real load plan.</p>
+
+    <h2>A real example: 40ft HQ of Bluetooth speakers</h2>
+
+    <p>Let's price a mid-range portable Bluetooth speaker out of Shenzhen. This is a category everyone reading this has probably sourced or considered sourcing.</p>
+
+    <div class="table-wrap">
+    <table class="cost-table">
+        <thead>
+            <tr><th>Variable</th><th>Value</th><th>Where it came from</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>FOB</td><td class="num">$3.20</td><td>Factory quote at Canton Fair, 5,000 pcs MOQ</td></tr>
+            <tr><td>Package (retail box)</td><td class="num">$0.35</td><td>4-color box + hangtag, factory add-on</td></tr>
+            <tr><td>Tariff (HTS 8518.22)</td><td class="num">4.9%</td><td>MFN duty, no Section 301 on this line</td></tr>
+            <tr><td>DDP discount</td><td class="num">0</td><td>Buying FOB, self-shipping</td></tr>
+            <tr><td>Container cost (40HQ to LA)</td><td class="num">$4,800</td><td>Freight + duty admin + brokerage + drayage</td></tr>
+            <tr><td>Container quantity</td><td class="num">14,400 pcs</td><td>Real load plan, not factory estimate</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <p>Running the formula:</p>
+
+    <figure>
+        <code>LDP = ($3.20 + $0.35) &times; (1 + 0.049 &times; (1 &minus; 0)) + $4,800 / 14,400</code><br>
+        <code>    = $3.55 &times; 1.049 + $0.333</code><br>
+        <code>    = $3.724 + $0.333</code><br>
+        <code>    = <strong>$4.057 per unit landed</strong></code>
+        <figcaption>Landed cost per Bluetooth speaker, delivered to a Los Angeles warehouse, duty paid.</figcaption>
+    </figure>
+
+    <p>So the "$3.20 speaker" is really a <strong>$4.06 speaker</strong>. That's <strong>27% more</strong> than the invoice number. If you were going to wholesale this at <code>$5.50</code> thinking you had a healthy margin off a $3.20 FOB, you actually have a 35% margin instead of the 72% you were mentally banking, and none of your operating overhead is in there yet.</p>
+
+    <p>Bump the container into a soft market (freight at <code>$3,200</code>) and LDP drops to <code>$3.94</code>. Bump it into a bad market (freight at <code>$9,500</code>) and LDP climbs to <code>$4.38</code>. This is why fixing your wholesale price 90 days before the container lands is dangerous.</p>
+
+    <h2>How US tariffs actually work (in one section)</h2>
+
+    <p>Three numbers matter:</p>
+
+    <ol>
+        <li>The <strong>HTS code</strong> for your product (10-digit for the US, 6-digit for the international HS code). Bluetooth speakers are 8518.22.0000. Toys are 9503. Bags are 4202. If you don't have one yet, the factory usually knows it, and a customs broker will confirm.</li>
+        <li>The <strong>MFN (Most Favored Nation) duty rate</strong> for that HTS. This is the baseline. You look it up in the <a href="https://hts.usitc.gov">USITC tariff schedule</a>. For most consumer electronics it's between 0% and 5%.</li>
+        <li>Any <strong>additional Section 301 tariff</strong> for goods of Chinese origin. This is the number that has moved the most in the last five years and is the one buyers most often forget. Depending on the HTS code and current administration, it can be 0%, 7.5%, 25%, or higher. Some codes are excluded entirely, and exclusions expire.</li>
+    </ol>
+
+    <p>Add MFN + Section 301 + any anti-dumping duty (rare, but check for steel, plywood, mattresses, and a handful of other categories) and that's your tariff. Convert to a decimal for the formula.</p>
+
+    <h2>The container-cost trap</h2>
+
+    <p>Here's a mistake even careful buyers make. They calculate landed cost for a full container and quote a customer based on that number. Then the customer asks for a half-container test order, and the buyer quotes the same LDP. That's wrong.</p>
+
+    <p>Per-unit freight is fixed cost divided by quantity, and quantity is the only variable that moves. Watch what happens to our Bluetooth speaker as order quantity drops:</p>
+
+    <div class="table-wrap">
+    <table class="cost-table">
+        <thead>
+            <tr><th>Order size</th><th>Container cost</th><th>Per-unit freight</th><th>LDP</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Full 40HQ (14,400 pcs)</td><td class="num">$4,800</td><td class="num">$0.33</td><td class="num">$4.06</td></tr>
+            <tr><td>Half container (7,200 pcs)</td><td class="num">$3,200 (LCL)</td><td class="num">$0.44</td><td class="num">$4.17</td></tr>
+            <tr><td>1,000 pcs (LCL)</td><td class="num">$1,100</td><td class="num">$1.10</td><td class="num">$4.83</td></tr>
+            <tr><td>200 pcs (air, urgent)</td><td class="num">$1,800</td><td class="num">$9.00</td><td class="num">$12.73</td></tr>
+        </tbody>
+    </table>
+    </div>
+
+    <p>An air-freighted sample order for 200 units of a "$3.20 speaker" lands at <strong>$12.73</strong>. If the customer thinks they're getting a wholesale deal on a small MOQ, you are eating that difference. The container cost per unit is the single most volatile number in the formula. Never quote LDP without specifying the quantity it's calculated on.</p>
+
+    <h2>DDP discount: what it actually is</h2>
+
+    <p>Chinese factories, especially the larger ones with a Hong Kong logistics arm, will often offer to ship your goods DDP (Delivered Duty Paid) to a US warehouse. They quote you a slightly higher unit price, they handle everything, and the goods show up at your door with no tariff invoice to your name.</p>
+
+    <p>Two things to understand about DDP from a factory:</p>
+
+    <ol>
+        <li><strong>They are almost certainly under-declaring value at customs.</strong> Not <em>always</em>, but almost always when the DDP price is meaningfully cheaper than doing it yourself. The tariff isn't discounted; the declared value is. This is customs fraud, and the importer of record (which under a real DDP arrangement is technically them, but in practice is frequently unclear) is liable. If you're big enough to be on CBP's radar, do not do this.</li>
+        <li><strong>The math still works out.</strong> If the DDP quote is <code>$0.30</code> more per unit than FOB, and you'd have paid <code>$0.60</code> in real tariff + brokerage + drayage, they've eaten half your import overhead. That's a 50% DDP discount. Model it in the formula as <code>DDP discount = 0.5</code>.</li>
+    </ol>
+
+    <p>Small orders through a factory-arranged DDP shipment via Hong Kong for under-<code>$800</code>-per-shipment de minimis loopholes were the norm for years. That loophole is closing or closed depending on your date of reading. Don't build a business model on it.</p>
+
+    <h2>Five mistakes I've watched buyers make</h2>
+
+    <ol>
+        <li><strong>Quoting off FOB.</strong> Already covered. It costs more people more money than every other item on this list combined.</li>
+        <li><strong>Forgetting Section 301.</strong> Every couple of years an HTS gets added to or removed from the Section 301 list. Buyers who calculated landed cost on a spreadsheet three years ago and haven't updated it are working with stale tariff numbers. Re-check every SKU every year.</li>
+        <li><strong>Confusing gift-box cost with master-carton cost.</strong> The factory quote for FOB includes shipping cartons. It usually does <em>not</em> include the retail packaging your buyer wants. Add it, per unit, into the Package variable. A <code>$0.40</code> box on a <code>$3.20</code> FOB item moves LDP by 12%.</li>
+        <li><strong>Using estimated container quantities.</strong> Factory-quoted "pieces per 40HQ" is almost always optimistic. Get a real load plan from the factory or your forwarder before you commit to price.</li>
+        <li><strong>Ignoring freight volatility.</strong> A price that is a healthy margin in a $4,800 freight market is a losing deal in a $12,000 freight market. Freight can double in six weeks. If you're pricing a customer contract for a year, either build in a freight surcharge clause or lock in a rate agreement with your forwarder.</li>
+    </ol>
+
+    <h2>Doing this in the field, without a spreadsheet</h2>
+
+    <p>The reason buyers make these mistakes is not that the math is hard. It's that the math never happens in the calm of an office. It happens at 4pm on the second day of Canton Fair, standing at a booth, staring at a factory rep who wants a decision now, with a phone in one hand and a business card in the other. The buyer estimates in their head, says a number, and moves on. And they're off by 20%.</p>
+
+    <p>This is exactly why the Show Sourcing app has the formula built in. You enter FOB and MOQ once, tag the country of origin and category, and the app applies the current tariff rules and your saved container costs automatically. LDP shows up next to FOB on every product card so the number you quote is the number you can defend. If you're headed to a show, it's worth the install. If you also want the deeper Canton Fair playbook, our <a href="/blog/canton-fair-buyer-prep-checklist/">Canton Fair prep checklist</a> covers everything else you'll want in your pocket. And if the OCR side of your workflow is a mess, <a href="/blog/business-card-ocr-trade-show/">our writeup on business card OCR</a> goes into what actually works when you have 300 cards and 4 hours.</p>
+
+    <aside class="cta">
+        <h3>Landed cost on every product, without the spreadsheet</h3>
+        <p>Show Sourcing calculates LDP on every product you catalog, using country-specific tariff rules and your team's saved container costs. FOB and LDP shown side by side so the number you quote is the number you can defend. iOS, offline-first, made for the show floor.</p>
+        <a class="button" href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749">Get Show Sourcing &rarr;</a>
+    </aside>
+</article>
+
+<footer id="site-footer">
+    <div>&copy; 2026 DNZ. All rights reserved.</div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+    </nav>
+</footer>
+
+</body>
+</html>
