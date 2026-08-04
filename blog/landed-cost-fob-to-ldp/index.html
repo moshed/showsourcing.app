@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landed cost: the FOB to LDP formula every importer should have memorized &mdash; Show Sourcing</title>
     <meta name="description" content="Every importer eventually blows a deal by quoting FOB when they meant LDP. Here's the exact formula for landed cost, including tariffs, packaging, and container math.">
-    <meta name="keywords" content="landed cost formula, FOB LDP calculation, importer landed cost, container cost per unit, tariff calculation, DDP discount, Section 301, HTS code, import cost calculator">
+    <meta name="keywords" content="landed cost formula, FOB LDP calculation, importer landed cost, container cost per unit, tariff calculation, Section 301, HTS code, import cost calculator">
     <meta name="author" content="DNZ">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#f97316">
@@ -54,7 +54,7 @@
       },
       "mainEntityOfPage": {"@type": "WebPage", "@id": "https://showsourcing.app/blog/landed-cost-fob-to-ldp/"},
       "articleSection": "Sourcing",
-      "keywords": "landed cost, FOB, LDP, tariffs, DDP, container cost, importing"
+      "keywords": "landed cost, FOB, LDP, tariffs, container cost, importing"
     }
     </script>
 
@@ -376,7 +376,7 @@
     <p>Here is the formula, exactly as it should live in your head:</p>
 
     <figure>
-        <code>LDP = (FOB + Package) &times; (1 + Tariff &times; (1 &minus; DDP discount)) + ContainerCost / ContainerQty</code>
+        <code>LDP = (FOB + Package) &times; (1 + Tariff) + ContainerCost / ContainerQty</code>
         <figcaption>Per-unit landed cost, in whatever currency your FOB is quoted in.</figcaption>
     </figure>
 
@@ -390,9 +390,6 @@
 
     <h3>Tariff</h3>
     <p>Expressed as a decimal. A 25% Section 301 tariff plus a 3.9% MFN duty is <code>0.289</code>, not <code>28.9</code>. This is a per-unit percentage applied to the CIF or duty-basis value, which for our purposes is roughly (FOB + Package). Different countries and different HTS codes calculate the base slightly differently, but for a working number this is close enough.</p>
-
-    <h3>DDP discount</h3>
-    <p>The share of tariff your factory is willing to eat if you ship DDP through them. Zero if you're shipping FOB yourself. Somewhere between <code>0.2</code> and <code>0.6</code> if your factory has a friendly Hong Kong freight arm and is aggressive on volume. More on this below.</p>
 
     <h3>ContainerCost</h3>
     <p>Total freight + duty (aside from unit tariff) + brokerage + inland cost to your warehouse, as a lump sum. For a 40ft HQ from Yantian to Long Beach in a normal market this is around <code>$4,500</code> all in. In peak season 2021 it was <code>$18,000</code>. In a soft market it's <code>$2,800</code>. Ask your forwarder.</p>
@@ -413,7 +410,6 @@
             <tr><td>FOB</td><td class="num">$3.20</td><td>Factory quote at Canton Fair, 5,000 pcs MOQ</td></tr>
             <tr><td>Package (retail box)</td><td class="num">$0.35</td><td>4-color box + hangtag, factory add-on</td></tr>
             <tr><td>Tariff (HTS 8518.22)</td><td class="num">4.9%</td><td>MFN duty, no Section 301 on this line</td></tr>
-            <tr><td>DDP discount</td><td class="num">0</td><td>Buying FOB, self-shipping</td></tr>
             <tr><td>Container cost (40HQ to LA)</td><td class="num">$4,800</td><td>Freight + duty admin + brokerage + drayage</td></tr>
             <tr><td>Container quantity</td><td class="num">14,400 pcs</td><td>Real load plan, not factory estimate</td></tr>
         </tbody>
@@ -467,19 +463,6 @@
     </div>
 
     <p>An air-freighted sample order for 200 units of a "$3.20 speaker" lands at <strong>$12.73</strong>. If the customer thinks they're getting a wholesale deal on a small MOQ, you are eating that difference. The container cost per unit is the single most volatile number in the formula. Never quote LDP without specifying the quantity it's calculated on.</p>
-
-    <h2>DDP discount: what it actually is</h2>
-
-    <p>Chinese factories, especially the larger ones with a Hong Kong logistics arm, will often offer to ship your goods DDP (Delivered Duty Paid) to a US warehouse. They quote you a slightly higher unit price, they handle everything, and the goods show up at your door with no tariff invoice to your name.</p>
-
-    <p>Two things to understand about DDP from a factory:</p>
-
-    <ol>
-        <li><strong>They are almost certainly under-declaring value at customs.</strong> Not <em>always</em>, but almost always when the DDP price is meaningfully cheaper than doing it yourself. The tariff isn't discounted; the declared value is. This is customs fraud, and the importer of record (which under a real DDP arrangement is technically them, but in practice is frequently unclear) is liable. If you're big enough to be on CBP's radar, do not do this.</li>
-        <li><strong>The math still works out.</strong> If the DDP quote is <code>$0.30</code> more per unit than FOB, and you'd have paid <code>$0.60</code> in real tariff + brokerage + drayage, they've eaten half your import overhead. That's a 50% DDP discount. Model it in the formula as <code>DDP discount = 0.5</code>.</li>
-    </ol>
-
-    <p>Small orders through a factory-arranged DDP shipment via Hong Kong for under-<code>$800</code>-per-shipment de minimis loopholes were the norm for years. That loophole is closing or closed depending on your date of reading. Don't build a business model on it.</p>
 
     <h2>Five mistakes I've watched buyers make</h2>
 
