@@ -9,7 +9,15 @@
     "details": [
       {
         "appID": "VWR39LZW5M.com.DNZ.showsourcing",
-        "paths": ["*"]
+        "paths": ["NOT /", "NOT /download*", "NOT /blog*", "NOT /privacy*", "NOT /terms*", "*"],
+        "components": [
+          { "/": "/", "exclude": true, "comment": "home page opens in Safari" },
+          { "/": "/download*", "exclude": true, "comment": "business-card QR code" },
+          { "/": "/blog*", "exclude": true },
+          { "/": "/privacy*", "exclude": true },
+          { "/": "/terms*", "exclude": true },
+          { "/": "*" }
+        ]
       }
     ]
   }
