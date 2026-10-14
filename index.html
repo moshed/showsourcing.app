@@ -631,10 +631,46 @@
             transition: color 0.2s;
         }
         #header .signin-btn:hover { color: var(--text); }
+
+        /* ==============================================
+           SHOW BANNER (Hong Kong shows, Oct 2026)
+        =============================================== */
+        :root { --bh: 40px; }
+        #showbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--bh);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5em;
+            padding: 0 16px;
+            background: var(--accent);
+            color: #fff;
+            font-size: clamp(0.72rem, 1.2vw, 0.9rem);
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.25;
+        }
+        #showbar a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+        #showbar .short { display: none; }
+        #header { top: var(--bh); }
+        #prog { top: var(--bh); }
+        @media (max-width: 640px) {
+            :root { --bh: 48px; }
+            #showbar .long { display: none; }
+            #showbar .short { display: inline; }
+        }
     </style>
 </head>
 <body>
 
+<div id="showbar">
+    <span class="long">&#x1F1ED;&#x1F1F0; I'm at the Hong Kong shows, Global Sources and HKTDC. Want an in-person demo?</span>
+    <span class="short">&#x1F1ED;&#x1F1F0; At Global Sources &amp; HKTDC in Hong Kong.</span>
+    <a href="mailto:support@showsourcing.app?subject=In-person%20demo%20in%20Hong%20Kong"><span class="long">Email support@showsourcing.app</span><span class="short">Email me for a demo</span></a>
+</div>
 <div id="prog"></div>
 <header id="header">
     <a class="logo" href="https://showsourcing.app" target="_blank">Show Sourcing</a>
