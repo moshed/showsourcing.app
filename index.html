@@ -654,22 +654,19 @@
             line-height: 1.25;
         }
         #showbar a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
-        #showbar .short { display: none; }
         #header { top: var(--bh); }
         #prog { top: var(--bh); }
         @media (max-width: 640px) {
-            :root { --bh: 48px; }
-            #showbar .long { display: none; }
-            #showbar .short { display: inline; }
+            :root { --bh: 72px; }
+            #showbar { flex-direction: column; gap: 3px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
 <div id="showbar">
-    <span class="long">&#x1F1ED;&#x1F1F0; I'm at the Hong Kong shows, Global Sources and HKTDC. Want an in-person demo?</span>
-    <span class="short">&#x1F1ED;&#x1F1F0; At Global Sources &amp; HKTDC in Hong Kong.</span>
-    <a href="mailto:support@showsourcing.app?subject=In-person%20demo%20in%20Hong%20Kong"><span class="long">Email support@showsourcing.app</span><span class="short">Email me for a demo</span></a>
+    <span>I'm at the Hong Kong shows, Global Sources and HKTDC. Want an in-person demo?</span>
+    <a href="mailto:support@showsourcing.app?subject=In-person%20demo%20in%20Hong%20Kong">Email support@showsourcing.app</a>
 </div>
 <div id="prog"></div>
 <header id="header">
