@@ -1,0 +1,178 @@
+# Show Sourcing
+
+> Show Sourcing is a CRM for buyers who source products at trade shows. On iPhone, iPad and Mac, buyers photograph products, add vendors from business cards, record FOB prices, price breaks and MOQ, and see landed cost (LDP) with US tariffs. Teams share every product live. Every plan starts with a 30-day free trial.
+
+## Who it is for
+
+- Buyers, importers and sourcing agents at trade shows such as Canton Fair, Global Sources and the Hong Kong fairs, and on factory visits
+- Small teams that work a show together and need one shared catalog
+- Anyone who now uses a spreadsheet, the notes app and a stack of business cards
+
+## New in version 1.1
+
+- Custom fields for anything your team tracks, in search and filters
+- Price breaks (a price per quantity) and price terms FOB, CIF, EXW or DDP
+- Excel export of products and vendors with photos in the cells and live landed-cost formulas (paid plans)
+- Mac and iPad: list and details side by side, keyboard shortcuts
+- AI Connection: connect Claude or ChatGPT to your catalog
+- US shipping records on vendor pages
+- Searchable Help & FAQ and a What's New list in the app
+- Redesigned Team Map, AI photo descriptions, a faster camera, numbers in your region's format
+
+## Key features
+
+- Product capture: photos, video, voice notes (transcribed on the device), markup on photos; works offline
+- Vendors: business card scan (name, company, phones, emails, WeChat, website, address), duplicate check, vendor pages with all their products, factory on a map, US shipping records
+- Prices: FOB, CIF, EXW or DDP; any currency converted to USD with daily rates; price breaks per quantity; MOQ, packaging, units per container
+- Landed cost (LDP): price + packaging + US tariff (HTS with Section 301) + freight share per unit; tariff codes linked to categories
+- Search: vendor, category, tags, notes, venue, status, custom fields, words printed in photos (on-device OCR), photo descriptions
+- Filters and sorting by FOB, LDP, MOQ, status, show, teammate, category groups
+- Follow up: statuses (e.g. Sample Requested), vendor email templates
+- Teams: live sync, comments and @mentions, team statuses, Team Map at the show, export permissions
+- Export to Excel: products and vendors, photos in the cells, every field and custom field, live LDP formulas, emailed as a link (paid plans)
+- Custom fields (text, number, currency, toggle); Siri and Spotlight search
+- AI Connection: connect ChatGPT or Claude (MCP) to ask questions about your catalog
+- Show detection: knows which trade show you are at (by location) and tags products with it
+- Hide Vendor Names: blur vendors so you can show products and prices to anyone
+- Vendor tools: merge duplicate vendors, find duplicate photos, vendor email templates
+- Quick selections: your own lists for categories, tags, packaging, venues, MOQ, country of origin, statuses
+- Tariff codes: HTS codes with nicknames, linked to categories
+- Data: JSON backup and export, sync across iPhone, iPad, Mac and the web portal; sign in with Apple or email
+- Mac and iPad: two-pane layout (list and details side by side), keyboard shortcuts
+- Numbers and prices in your region's format
+- In-app Help with search, and a What's New list
+
+## Complete feature list
+
+Generated from the app's own Help, one line per topic. Details: https://showsourcing.app/llms-full.txt
+
+### Getting Started
+- What is Show Sourcing? Show Sourcing records the products you find at trade shows.
+- Which devices can I use? iPhone, iPad and Mac (the same app from the App Store).
+- How do I make an account? Open the app and tap Get Started. Enter your name, email and a password.
+- Does the app work without internet? Yes. You can create and edit products offline.
+- Why does the app ask me to update? Some versions have a problem that an update fixes.
+- What keyboard shortcuts are there (Mac and iPad)? On a Mac, or an iPad with a keyboard: ⌘1 to ⌘6 open Create, Products, Vendors, Team Map, Alerts and Settings.
+
+### Capturing Products
+- How do I add a product? Open the Create tab. Take photos, then fill in the vendor, FOB price and the other fields.
+- How do I take photos and videos? Tap the camera button. Tap the shutter for a photo.
+- Can I add photos from my photo library? Yes. On Create and Edit, use the photo menu and choose photos from your library.
+- Can the app also save my photos to the Camera Roll? Yes. Turn on Settings > General > Save to Camera Roll.
+- Can I record a voice note? Yes. On a product, use Voice Notes and tap Record.
+- Can I draw on a photo? Yes. Open a photo and tap the markup button.
+- What are the chips above the fields? They are Quick Selections: your common vendors, categories, tags, venues, MOQs and more.
+- Does the app suggest values while I type? Yes. When you type in a field such as Vendor or Category, a list of matching values shows.
+- Where do I write notes about a product? Use the Notes field on Create or Edit. It grows as you type new lines.
+- How does the app know which show I am at? The app knows the places of the big trade shows.
+
+### Prices and Landed Cost
+- What is LDP and how does the app calculate it? LDP (landed duty paid) is the cost of one unit at your door.
+- How does the container cost change LDP? Set the cost of one container in Settings > LDP Calculation.
+- What is the DDP discount? It is a percent that the app takes off the duty part of LDP.
+- What are FOB, CIF, EXW and DDP? They tell the app what the vendor's price includes.
+- Why does a product show a dash for LDP? The product has no price. Without a price the app cannot calculate LDP, so it shows a dash and leaves the product out of LDP filters.
+- Can I enter prices in other currencies? Yes. Pick the currency on the product.
+- How do I enter a lower price for a bigger order? Turn on Settings > Quick Selections > Price Breaks.
+- Which price break does the app use for LDP? Settings > Quick Selections > Price Breaks > Display Cost.
+- Can I change the quantities a new ladder starts with? Yes. In Settings > Quick Selections > Price Breaks, edit Starting Quantities.
+- I do not import into the United States. Is LDP still right? Set your country in Settings > LDP Calculation > Destination.
+- Where do the tariff rates come from? From the official US tariff schedule (HTS), with Section 301 for China and the country rates.
+- How do I find the right tariff code? In Tariff Codes, type what the product is, for example "led bulb".
+
+### Finding Products
+- What does search look at? Vendor, category, tags, notes, venue, status, custom fields, the text printed in your photos and the photo descriptions.
+- Can I search for words printed on the box? Yes. The app reads the text in your photos on the phone (free and offline).
+- What is "Written from the photo"? Apple Intelligence writes one sentence about each photo, for example color, shape and material.
+- How do I filter products? Tap the filter button in Products. Filter by vendor, category, category group, tags, status, venue, team member, date, FOB, LDP, MOQ, comments and custom fields.
+- How do I sort products? Use the sort menu in Products. Sort by date created, LDP, FOB, vendor, MOQ or status.
+- Can I see products as a grid? Yes. Use the Layout menu in Products to change between a list and a grid, and to change the photo size.
+- Can I change many products at once? Yes. Select products in the list, then tap Edit.
+- How do I move to the next product? On a product page, use the arrows to go to the next or previous product in your list.
+- What are Category Groups? A group holds many categories, for example "Audio" holds Speakers and Headphones.
+- How do I rename or merge a category? In Settings > Quick Selections > Categories, swipe or hold a category and pick Rename or Merge.
+- Can I show products to a customer without the vendor names? Yes. Turn on Settings > General > Hide Vendor Names.
+
+### Vendors and Business Cards
+- How do I add a vendor from a business card? In Vendors, tap + and choose Scan Cards.
+- Can I add cards from photos I already took? Yes. In Vendors, tap + and choose Choose Card Photos.
+- What if I scan a card I already saved? The app compares it with your saved vendors.
+- How do I add a vendor by hand? In Vendors, tap + and choose Add Manually.
+- Does the app know mobile, office and fax numbers? Yes. Scanned phone numbers save as Mobile, Office or Fax from the words on the card.
+- What is on a vendor page? The contacts, phones, emails, WeChat, addresses, the card photo and all products from that vendor.
+- What are US shipping records on a vendor? For US importers, the vendor page can show the vendor's shipments into the United States from public customs data.
+- How do I filter and sort vendors? In Vendors, tap the filter button. Filter by show, category, number of products, country, who added it, date, and what it has (email, phone, WeChat, card photo, US customs data).
+- How do I merge two vendors that are the same? Use Settings > Data > Merge Vendors. The app shows likely matches.
+
+### Working as a Team
+- How do I make a team? Open Settings and tap your account. Tap Create Team and enter a name.
+- How do I invite people to my team? In your account screen, tap Invite Member and enter their email.
+- Who sees my products? Everyone on your team. Products sync to all team phones in a few seconds.
+- Who can edit a product? The person who made it. The team owner can also edit team products when "Owner can edit team items" is on in Settings > Team Permissions.
+- How do I comment and mention a teammate? Open a product and write in the comments.
+- What is the Alerts tab? Mentions, comments on your products and team invites.
+- What is the Team Map? At a show, the Team Map shows where your teammates are, with the direction and the floor.
+- How do I stop sharing my location? Turn off location sharing in Settings > General > Team Radar.
+- How do I see who added a product? The product page shows Created By with the person's photo and name.
+
+### Fields and Settings
+- How do I change the order of fields or hide some? Settings > General > Fields. Drag to change the order.
+- Can I add my own fields? Yes. In Settings > General > Fields, tap +.
+- Can I search and filter by custom fields? Yes. Search finds custom field values, and the filter sheet has a row for each custom field.
+- Why do numbers use commas or dots differently? The app uses your phone's region. For example 1,20 in Italy and 1.20 in the United States.
+- Can I change the app color? Yes. Settings > General > App Tint.
+
+### Follow Up
+- How do I mark where a product stands? Set a Status on the product, for example Sample Requested.
+- Can the app jump to the next product after I pick a status? Yes. Turn on Auto Advance After Flagging in Settings > Follow Up > Status.
+- How do I email a vendor about a product? On the product page, tap the envelope button.
+- How do I change the follow-up email? Settings > Follow Up > Email Template. Edit the subject and body.
+
+### Siri and Spotlight
+- Can I ask Siri to find a product? Yes. Say "Find a product in Show Sourcing" and then say what to look for.
+- Can I find products from the Home Screen search? Yes. Swipe down on the Home Screen and type a vendor or product.
+
+### AI Connection (ChatGPT, Claude)
+- Can I ask ChatGPT or Claude about my products? Yes. Settings > General > AI Connection makes a private link.
+- How do I stop an AI app from reading my data? In AI Connection, find the token by its name and tap Revoke.
+- Does the AI see my photos? Yes. When the AI opens a product, it gets up to 4 of its photos.
+- Does the AI Connection cost extra? No. You use your own ChatGPT or Claude account.
+
+### Data and Backup
+- How do I export my products? Settings > Backup & Import > Export Products (JSON).
+- Can I move my settings to a new phone? Yes. Use Export Settings on the old phone and Import Settings on the new one, in Settings > Backup & Import.
+- How do I remove duplicate photos? Settings > Data > Photo Cleanup finds photos that are the same and lets you remove the extra copies.
+- Something looks wrong. How do I reload everything? Settings > Data > Clear Local Data. It deletes the copy on this phone only.
+
+### Plans and Billing
+- How much does Show Sourcing cost? You pay per seat (one seat for each person).
+- How do I add or remove seats? The team owner opens Settings > account > Team Billing.
+- What happens if my card payment fails? Stripe, our payment provider, charges your card.
+
+### Help and Support
+- How do I contact support? Settings > Support > Email Support. The app attaches its log, which helps us find the problem.
+- How do I try new features first? Join the beta on TestFlight. Use the Join the Beta button on showsourcing.app/help.
+
+## Pricing
+
+- Per seat (one seat per person); 30-day free trial on every plan
+- 6 months: $10 a seat a month ($60 a seat per 6 months)
+- Yearly: $8.50 a seat a month ($102 a seat per year)
+- Team discounts: 5% at 10 seats, 10% at 15, 15% at 20
+
+## Platforms
+
+- iPhone, iPad and Mac (App Store), plus a web portal at app.showsourcing.app
+
+## Links
+
+- Home: https://showsourcing.app/
+- Trade show sourcing app: https://showsourcing.app/trade-show-sourcing-app/
+- Track vendor prices and price breaks: https://showsourcing.app/vendor-price-tracking/
+- Compare with spreadsheets and CRMs: https://showsourcing.app/compare/
+- Pricing: https://showsourcing.app/pricing
+- Help and FAQ: https://showsourcing.app/help
+- Full FAQ as text: https://showsourcing.app/llms-full.txt
+- App Store: https://apps.apple.com/us/app/show-sourcing-manager/id6758863749
+- Beta (TestFlight): https://testflight.apple.com/join/Sy1eYzcp
+- Support: general@showsourcing.app

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/theme.css">
+    <title>Help &amp; FAQ — Show Sourcing</title>
+    <meta name="description" content="Show Sourcing help: how to capture products at trade shows, scan business cards, calculate landed cost, work as a team, and what changed in each version.">
+    <meta name="theme-color" content="#060a18" data-dark="#060a18" data-light="#f6f7fb">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://showsourcing.app/help">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060a18;
+            --accent: #f97316;
+            --accent2: #38bdf8;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --dim: #64748b;
+            --border: rgba(255,255,255,0.07);
+            --card: rgba(255,255,255,0.025);
+            --mark: rgba(56,189,248,0.22);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px clamp(20px, 4vw, 40px);
+            background: rgba(6,10,24,0.88);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+        header .logo { font-weight: 800; font-size: 0.95rem; color: var(--text); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+        header nav { display: flex; gap: clamp(14px, 2.5vw, 24px); align-items: center; }
+        header nav a { color: var(--dim); text-decoration: none; font-size: 0.8rem; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
+        header nav a:hover, header nav a.active { color: var(--text); }
+
+        .page { max-width: 820px; margin: 0 auto; padding: 110px 24px 80px; }
+        .back { display: inline-flex; align-items: center; gap: 6px; color: var(--dim); text-decoration: none; font-size: 0.8rem; font-weight: 500; margin-bottom: 36px; }
+        .back:hover { color: var(--accent2); }
+        h1 {
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--text), var(--accent2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .meta { color: var(--dim); font-size: 0.85rem; margin-bottom: 24px; }
+        .bar { width: 40px; height: 3px; border-radius: 2px; margin-bottom: 28px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+        .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.88rem; padding: 11px 18px; border-radius: 12px; text-decoration: none; border: 1px solid var(--border); color: var(--text); background: var(--card); }
+        .btn:hover { border-color: var(--accent2); text-decoration: none; }
+        .btn.primary { background: var(--accent); color: #111; border-color: transparent; }
+        .btn svg { width: 16px; height: 16px; }
+
+        .search { position: sticky; top: 64px; z-index: 50; padding: 10px 0 14px; background: var(--bg); }
+        .search label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+        .search input {
+            width: 100%; font: inherit; font-size: 1rem; color: var(--text);
+            background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+            padding: 14px 16px 14px 44px; outline: none;
+        }
+        .search input:focus { border-color: var(--accent2); }
+        .search svg { position: absolute; left: 15px; top: 25px; width: 18px; height: 18px; color: var(--dim); }
+        .count { color: var(--dim); font-size: 0.8rem; margin-top: 8px; min-height: 1em; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 24px; }
+        .chips a { font-size: 0.78rem; font-weight: 600; color: var(--muted); padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; text-decoration: none; }
+        .chips a:hover { color: var(--text); border-color: var(--accent2); }
+
+        h2 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 34px 0 12px; scroll-margin-top: 150px; }
+        details { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 8px; scroll-margin-top: 150px; }
+        summary { cursor: pointer; list-style: none; padding: 15px 44px 15px 18px; font-weight: 600; font-size: 0.95rem; position: relative; line-height: 1.45; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: "+"; position: absolute; right: 18px; top: 13px; color: var(--accent2); font-size: 1.2rem; font-weight: 500; }
+        details[open] summary::after { content: "–"; }
+        .answer { padding: 0 18px 16px; color: var(--muted); line-height: 1.7; font-size: 0.92rem; }
+        .since { display: inline-block; margin-left: 8px; font-size: 0.7rem; font-weight: 700; color: var(--accent2); border: 1px solid var(--accent2); border-radius: 999px; padding: 1px 7px; vertical-align: 2px; opacity: 0.8; }
+        mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
+        .empty { color: var(--muted); padding: 24px 4px; display: none; }
+        .empty a { color: var(--accent2); }
+
+        .route { margin: 18px 0 8px; }
+        .route-out { margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+        .route-out a { display: inline-block; margin: 6px 8px 0 0; font-weight: 600; padding: 7px 12px; border: 1px solid var(--accent2); border-radius: 999px; }
+        h2.pointed { color: var(--accent2); }
+        h2.pointed + details, h2.pointed ~ details.pointed { border-color: var(--accent2); }
+        details.pointed { border-color: var(--accent2); }
+        .current { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0 0 22px; font-weight: 700; font-size: 0.95rem; }
+        .tag { display: inline-block; font-size: 0.68rem; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; vertical-align: 2px; margin-right: 4px; }
+        .tag.store { background: #16a34a; color: #fff; }
+        .tag.beta { color: var(--accent2); border: 1px solid var(--accent2); }
+        .rel.store::before { background: #16a34a; }
+        .log { border-left: 2px solid var(--border); margin-left: 6px; padding-left: 20px; }
+        .rel { position: relative; margin-bottom: 22px; }
+        .rel::before { content: ""; position: absolute; left: -26px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+        .rel h3 { font-size: 0.98rem; font-weight: 700; }
+        .rel h3 span { color: var(--dim); font-weight: 500; font-size: 0.82rem; margin-left: 8px; }
+        .rel ul { color: var(--muted); line-height: 1.65; padding-left: 18px; margin-top: 6px; font-size: 0.9rem; }
+        .rel li { margin-bottom: 4px; }
+        .rel li::marker { color: var(--accent2); }
+        .more { font: inherit; font-weight: 700; font-size: 0.85rem; color: var(--accent2); background: none; border: 0; cursor: pointer; padding: 4px 0; }
+
+        a { color: var(--accent2); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .foot { position: fixed; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--accent2) 70%, transparent); opacity: 0.45; }
+        @media (max-width: 600px) {
+            header { padding: 14px 16px; }
+            header nav { gap: 12px; }
+            header nav a.hide-sm { display: none; }
+            .page { padding: 96px 16px 64px; }
+            .search { top: 56px; }
+        }
+
+        html.light { --bg: #f6f7fb; --accent2: #0369a1; --text: #0f172a; --muted: #475569; --dim: #5b6779; --border: rgba(15,23,42,0.10); --card: #fff; --mark: rgba(3,105,161,0.16); }
+        html.light header { background: rgba(246,247,251,0.88); }
+        html.light details, html.light .search input, html.light .btn:not(.primary) { box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04); }
+        html.light h2 { color: #c2410c; }
+        html.light .btn.primary { background: #ea580c; color: #fff; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a class="logo" href="/">Show Sourcing</a>
+    <nav>
+        <a href="/pricing">Pricing</a>
+        <a href="/help" class="active">Help</a>
+        <a href="/blog/" class="hide-sm">Blog</a>
+        <a href="https://app.showsourcing.app/login" class="hide-sm">Web Portal</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    </nav>
+</header>
+
+<main class="page">
+    <a href="/" class="back">&larr; Back</a>
+    <h1>Help &amp; FAQ</h1>
+    <p class="meta" id="meta">Everything Show Sourcing can do, and what changed in each version.</p>
+    <div class="bar"></div>
+
+    <div class="actions">
+        <!-- TestFlight public link of the "External" beta group (App Store Connect, 2026-10-17). -->
+        <a class="btn primary" href="https://testflight.apple.com/join/Sy1eYzcp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v7.31M14 9.3V2M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>
+            Join the Beta
+        </a>
+        <a class="btn" href="#changelog">What's New</a>
+        <a class="btn" href="mailto:support@showsourcing.app">Email Support</a>
+    </div>
+
+    <div class="search">
+        <label for="q">Search help</label>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search, for example: price breaks, business card, LDP" autocomplete="off" spellcheck="false">
+        <div class="count" id="count" aria-live="polite"></div>
+    </div>
+
+    <div class="chips" id="chips"></div>
+    <div id="faq"></div>
+    <p class="empty" id="empty">No answer matches. Try fewer words, or write to <a href="mailto:support@showsourcing.app">support@showsourcing.app</a>.</p>
+    <div class="route" id="route" hidden>
+        <button class="btn" id="routeBtn" type="button">Can't find it? Point me to the right section</button>
+        <div id="routeOut" class="route-out" aria-live="polite"></div>
+    </div>
+
+    <h2 id="changelog">What's New</h2>
+    <div class="current" id="current"></div>
+    <div class="log" id="log"></div>
+    <button class="more" id="more" type="button" hidden>Show older versions</button>
+</main>
+<div class="foot"></div>
+
+<script src="/help/search.js"></script>
+<script>
+// help.json and changelog.json are copies of the app's own files
+// (Show Sourcing/Resources/Help). Website/build_help.sh copies them here.
+// Ranking: search.js (stopwords, stemming, synonyms, hand-written phrasings).
+(function () {
+    var faqEl = document.getElementById("faq"), chipsEl = document.getElementById("chips");
+    var q = document.getElementById("q"), countEl = document.getElementById("count"), emptyEl = document.getElementById("empty");
+    var sections = [], engine = null;
+
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function mark(text, words) {
+        var out = esc(text);
+        words.forEach(function (w) {
+            if (w.length < 2) return;
+            var stem = HelpSearch.stem(w);
+            out = out.replace(new RegExp("\\b(" + stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\w*)", "ig"), "<mark>$1</mark>");
+        });
+        return out;
+    }
+    function entry(e, words, open) {
+        return '<details id="' + e.id + '"' + (open ? " open" : "") + "><summary>" + mark(e.question, words) +
+            (e.since ? '<span class="since">' + esc(e.since) + "</span>" : "") +
+            '</summary><div class="answer">' + mark(e.answer, words) + "</div></details>";
+    }
+
+    function render() {
+        var query = q.value.trim(), html = "", shown = 0;
+        if (!query) {
+            sections.forEach(function (s) {
+                html += '<h2 id="' + s.id + '">' + esc(s.title) + "</h2>";
+                s.entries.forEach(function (e) { html += entry(e, [], false); });
+                shown += s.entries.length;
+            });
+            countEl.textContent = "";
+            chipsEl.style.display = "";
+        } else {
+            var words = engine.words(query), hits = engine.search(query);
+            hits.forEach(function (h, i) { html += entry(h.entry, words, i < 3); });
+            shown = hits.length;
+            countEl.textContent = shown + (shown === 1 ? " answer" : " answers");
+            chipsEl.style.display = "none";
+        }
+        faqEl.innerHTML = html;
+        emptyEl.style.display = shown ? "none" : "block";
+        // The Jev "point me" button (help-route) stays hidden: the word search
+        // finds the test questions without it (2026-10-17). See notes/help-faq.md.
+    }
+
+    fetch("/help/help.json").then(function (r) { return r.json(); }).then(function (d) {
+        document.getElementById("meta").textContent = "Everything Show Sourcing " + d.version + " can do, and what changed in each version.";
+        sections = d.sections;
+        engine = HelpSearch.build(d);
+        sections.forEach(function (s) { chipsEl.insertAdjacentHTML("beforeend", '<a href="#' + s.id + '">' + esc(s.title) + "</a>"); });
+        var p = new URLSearchParams(location.search).get("q");
+        if (p) q.value = p;
+        render();
+        if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) { if (t.tagName === "DETAILS") t.open = true; t.scrollIntoView(); } }
+    });
+
+    var timer;
+    q.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(render, 80); });
+
+    fetch("/help/changelog.json").then(function (r) { return r.json(); }).then(function (d) {
+        var log = document.getElementById("log"), more = document.getElementById("more"), cur = document.getElementById("current");
+        var parts = [];
+        if (d.appStore) parts.push('<div><span class="tag store">App Store</span> ' + esc(d.appStore.version) + "</div>");
+        if (d.beta) parts.push('<div><span class="tag beta">Beta (TestFlight)</span> ' + esc(d.beta.version) + " (" + esc(d.beta.build) + ")</div>");
+        cur.innerHTML = parts.join("");
+        var rows = d.builds.map(function (b, i) {
+            var store = b.channel === "appStore";
+            var date = b.date ? new Date(b.date + "T12:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }) : "";
+            return '<div class="rel' + (store ? " store" : "") + '"' + (i >= 8 ? " hidden" : "") + "><h3>" + esc(b.version) + (store ? "" : " (" + esc(b.build) + ")") +
+                ' <span class="tag ' + (store ? "store" : "beta") + '">' + (store ? "App Store" : "Beta") + "</span><span>" + esc(date) + "</span></h3><ul>" +
+                b.notes.map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul></div>";
+        });
+        log.innerHTML = rows.join("");
+        if (d.builds.length > 8) {
+            more.hidden = false;
+            more.addEventListener("click", function () { log.querySelectorAll(".rel[hidden]").forEach(function (e) { e.hidden = false; }); more.hidden = true; });
+        }
+    });
+})();
+</script>
+</body>
+</html>

@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/theme.css">
     <title>The Canton Fair buyer prep checklist &mdash; Show Sourcing</title>
     <meta name="description" content="A veteran buyer's practical checklist for Canton Fair: what to pack, what to install on your phone, how to schedule the three phases, and how to not lose vendor cards on day 4.">
     <meta name="keywords" content="Canton Fair prep, Canton Fair checklist, Canton Fair phases, Canton Fair app, Guangzhou trade show, sourcing trip planning, China buying trip, trade show packing list">
     <meta name="author" content="DNZ">
     <meta name="robots" content="index,follow,max-image-preview:large">
-    <meta name="theme-color" content="#f97316">
+    <meta name="theme-color" content="#060a18" data-dark="#060a18" data-light="#f6f7fb">
     <link rel="canonical" href="https://showsourcing.app/blog/canton-fair-buyer-prep-checklist/">
 
     <meta property="og:type" content="article">
@@ -33,7 +35,7 @@
     <meta name="twitter:description" content="What to pack, what to install on your phone, how to walk the halls, and how not to lose 400 vendor cards. Practical playbook from a veteran buyer.">
     <meta name="twitter:image" content="https://showsourcing.app/app-icon.png">
 
-    <link rel="icon" type="image/png" href="/app-icon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/app-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
@@ -287,6 +289,59 @@
         footer#site-footer nav { display: flex; gap: 1.5rem; }
         footer#site-footer a { color: var(--muted); text-decoration: none; }
         footer#site-footer a:hover { color: var(--text); }
+            /* header fit with the theme toggle */
+        header#site-header .logo, header#site-header .live-pill { white-space: nowrap; }
+        @media (max-width: 600px) {
+            header#site-header .header-links { gap: 10px; }
+            header#site-header .live-pill { padding: 5px 10px; }
+            header#site-header .pill-long { display: none; }
+        }
+        /* ---- light mode (html.light is set by /theme.js) ---- */
+        html.light {
+            --bg:      #f6f7fb;
+            --accent2: #0369a1;
+            --text:    #0f172a;
+            --muted:   #556070;
+            --dim:     #e2e8f0;
+        }
+        html.light body {
+            background-image:
+                radial-gradient(ellipse 80% 45% at 50% 0%, rgba(249,115,22,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 55% at 90% 100%, rgba(56,189,248,0.08) 0%, transparent 60%);
+        }
+        html.light header#site-header,
+        html.light footer#site-footer { border-color: rgba(15,23,42,0.08); }
+        html.light .live-pill { background: #fff; border-color: rgba(15,23,42,0.10); color: #475569; }
+        html.light .page-head .eyebrow,
+        html.light .article-eyebrow,
+        html.light .post-card .read-more { color: #c2410c; }
+        html.light .page-head h1 .grad { background: linear-gradient(135deg, #ea580c 20%, #d97706 80%); -webkit-background-clip: text; background-clip: text; }
+        html.light .page-head p.lede { color: #475569; }
+        html.light .post-card {
+            background: #fff;
+            border-color: rgba(15,23,42,0.08);
+            box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.05);
+        }
+        html.light .post-card:hover { background: #fff; border-color: rgba(234,88,12,0.40); }
+        html.light .post-card p { color: #475569; }
+        html.light .article-meta { border-bottom-color: rgba(15,23,42,0.10); }
+        html.light article p,
+        html.light article ul,
+        html.light article ol { color: #334155; }
+        html.light article a { border-bottom-color: rgba(3,105,161,0.35); }
+        html.light article code { background: rgba(3,105,161,0.07); border-color: rgba(3,105,161,0.18); color: #075985; }
+        html.light article figure { background: #fff; border-color: rgba(15,23,42,0.08); }
+        html.light article figure pre,
+        html.light article figure code { color: #b45309; background: none; border: none; }
+        html.light article blockquote { background: #fff7ed; color: #1e293b; }
+        html.light .cost-table { background: #fff; border-color: rgba(15,23,42,0.10); }
+        html.light .cost-table th, html.light .cost-table td { border-bottom-color: rgba(15,23,42,0.08); }
+        html.light .cost-table th { background: #f1f5f9; }
+        html.light .cost-table td { color: #334155; }
+        html.light .cost-table td.num { color: #b45309; }
+        html.light .card-example { background: rgba(3,105,161,0.05); border-color: rgba(3,105,161,0.20); color: #1e293b; }
+        html.light aside.cta { background: linear-gradient(135deg, rgba(249,115,22,0.10), rgba(56,189,248,0.08)); border-color: rgba(234,88,12,0.28); }
+        html.light aside.cta p { color: #334155; }
     </style>
 </head>
 <body>
@@ -297,8 +352,9 @@
         <a href="/blog/">Blog</a>
         <a href="/#faq">FAQ</a>
         <a href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" class="live-pill">
-            <span class="pulse-dot"></span>Now on the App Store
+            <span class="pulse-dot"></span><span class="pill-long">Now on the&nbsp;</span>App Store
         </a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
     </nav>
 </header>
 

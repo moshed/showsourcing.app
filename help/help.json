@@ -1,0 +1,1811 @@
+{
+  "version": "1.0.7",
+  "updated": "2026-10-17",
+  "sections": [
+    {
+      "id": "start",
+      "title": "Getting Started",
+      "icon": "flag.checkered",
+      "entries": [
+        {
+          "id": "what-is",
+          "question": "What is Show Sourcing?",
+          "answer": "Show Sourcing records the products you find at trade shows. You take photos, add the vendor and the price, and the app calculates the landed cost. Your team sees every product on their own phones.",
+          "keywords": [
+            "about",
+            "overview",
+            "trade show",
+            "sourcing",
+            "buyer"
+          ],
+          "asks": [
+            "what does this app do",
+            "what is this app for",
+            "explain show sourcing"
+          ]
+        },
+        {
+          "id": "devices",
+          "question": "Which devices can I use?",
+          "answer": "iPhone, iPad and Mac (the same app from the App Store). You can also sign in to the web portal at app.showsourcing.app to see your team's products and vendors in a browser.",
+          "keywords": [
+            "ipad",
+            "mac",
+            "web",
+            "browser",
+            "portal",
+            "computer",
+            "desktop"
+          ],
+          "asks": [
+            "can i use it on my computer",
+            "does it work on ipad",
+            "is there a mac version",
+            "can i see products in a browser"
+          ]
+        },
+        {
+          "id": "account",
+          "question": "How do I make an account?",
+          "answer": "Open the app and tap Get Started. Enter your name, email and a password. If you mistype a common email domain (for example gmial.com), the app shows a suggestion. It never blocks a company domain.",
+          "keywords": [
+            "sign up",
+            "register",
+            "login",
+            "sign in",
+            "email"
+          ],
+          "asks": [
+            "how do i sign up",
+            "create a login",
+            "register a new user",
+            "i can't log in"
+          ]
+        },
+        {
+          "id": "offline",
+          "question": "Does the app work without internet?",
+          "answer": "Yes. You can create and edit products offline. The app saves them on the phone and uploads them when you are online again. Settings > Data > Sync Queue shows what is still waiting to upload.",
+          "keywords": [
+            "offline",
+            "no signal",
+            "wifi",
+            "sync",
+            "upload",
+            "pending"
+          ],
+          "asks": [
+            "does it work without wifi",
+            "no signal at the show",
+            "will my products upload later",
+            "what if i lose connection"
+          ]
+        },
+        {
+          "id": "update-required",
+          "question": "Why does the app ask me to update?",
+          "answer": "Some versions have a problem that an update fixes. Then the app shows a message with an Update button. Install the newest version from the App Store or TestFlight to continue.",
+          "keywords": [
+            "update",
+            "old version",
+            "blocked",
+            "testflight",
+            "upgrade"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "app says i must update",
+            "blocked by an update screen",
+            "why can't i open the app without updating"
+          ]
+        },
+        {
+          "id": "keyboard-shortcuts",
+          "question": "What keyboard shortcuts are there (Mac and iPad)?",
+          "answer": "On a Mac, or an iPad with a keyboard: ⌘1 to ⌘6 open Create, Products, Vendors, Team Map, Alerts and Settings. ⌘N starts a new product. ⌘, opens Settings. ⌘F searches the Products or Vendors list. On a product, ⌘← and ⌘→ go to the previous or next product, and ⌘E edits it. On a vendor, ⌘↑ and ⌘↓ go to the previous or next vendor. In photos, ← and → go to the previous or next photo, and Esc closes the viewer. ⌘S opens the status list (arrow keys and Return pick), ⌥⌘C opens comments and ⇧⌘E emails the vendor. On iPad, hold ⌘ to see the list. Arrow keys do not change pages while you type in a field.",
+          "keywords": [
+            "keyboard",
+            "shortcut",
+            "shortcuts",
+            "mac",
+            "ipad",
+            "command",
+            "hotkey",
+            "arrow"
+          ],
+          "asks": [
+            "keyboard shortcuts",
+            "how do I use the keyboard on Mac",
+            "next product shortcut",
+            "switch tabs with keyboard"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "title": "Capturing Products",
+      "icon": "camera",
+      "entries": [
+        {
+          "id": "create-tab",
+          "question": "How do I add a product?",
+          "answer": "Open the Create tab. Take photos, then fill in the vendor, FOB price and the other fields. Tap the check mark to save. The product goes to the Products tab and to your team.",
+          "keywords": [
+            "new product",
+            "add",
+            "create",
+            "save",
+            "capture"
+          ],
+          "asks": [
+            "how do i add a new item",
+            "save a new product",
+            "start a new product",
+            "enter a product from a booth"
+          ]
+        },
+        {
+          "id": "camera",
+          "question": "How do I take photos and videos?",
+          "answer": "Tap the camera button. Tap the shutter for a photo. Hold the shutter to record a video. Use the zoom dial to zoom. The thumbnails show at the bottom. Tap a thumbnail to crop or delete it.",
+          "keywords": [
+            "photo",
+            "video",
+            "record",
+            "zoom",
+            "shutter",
+            "picture"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "how do i record a video",
+            "take a picture of the product",
+            "zoom the camera",
+            "delete a photo i took"
+          ]
+        },
+        {
+          "id": "library-photos",
+          "question": "Can I add photos from my photo library?",
+          "answer": "Yes. On Create and Edit, use the photo menu and choose photos from your library.",
+          "keywords": [
+            "library",
+            "camera roll",
+            "import photo",
+            "gallery"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "use pictures i already took",
+            "add photos from my gallery",
+            "import photos from camera roll"
+          ]
+        },
+        {
+          "id": "camera-roll",
+          "question": "Can the app also save my photos to the Camera Roll?",
+          "answer": "Yes. Turn on Settings > General > Save to Camera Roll.",
+          "keywords": [
+            "camera roll",
+            "save photos",
+            "photos app",
+            "backup"
+          ],
+          "asks": [
+            "save pictures to my phone",
+            "keep a copy of photos in the photos app"
+          ]
+        },
+        {
+          "id": "voice-notes",
+          "question": "Can I record a voice note?",
+          "answer": "Yes. On a product, use Voice Notes and tap Record. The phone writes the words as text on the device, so it works offline and the audio never leaves the phone for the transcript.",
+          "keywords": [
+            "voice",
+            "audio",
+            "dictate",
+            "transcribe",
+            "speech",
+            "memo"
+          ],
+          "asks": [
+            "record audio about a product",
+            "dictate notes",
+            "voice memo",
+            "speech to text"
+          ]
+        },
+        {
+          "id": "markup",
+          "question": "Can I draw on a photo?",
+          "answer": "Yes. Open a photo and tap the markup button. Draw with your finger, change the color and the line width, and use the eraser. Your team sees the marks too.",
+          "keywords": [
+            "draw",
+            "markup",
+            "annotate",
+            "highlight",
+            "pen"
+          ],
+          "asks": [
+            "draw on a picture",
+            "circle something on a photo",
+            "annotate an image"
+          ]
+        },
+        {
+          "id": "quick-selections",
+          "question": "What are the chips above the fields?",
+          "answer": "They are Quick Selections: your common vendors, categories, tags, venues, MOQs and more. Tap a chip to fill the field. Change the lists in Settings > Quick Selections. You can sort them by manual order, A to Z, most used or last used.",
+          "keywords": [
+            "chips",
+            "quick pick",
+            "shortcut",
+            "defaults",
+            "presets"
+          ],
+          "asks": [
+            "what are the buttons above the fields",
+            "set my common vendors",
+            "preset values for fields",
+            "change the chips"
+          ]
+        },
+        {
+          "id": "type-ahead",
+          "question": "Does the app suggest values while I type?",
+          "answer": "Yes. When you type in a field such as Vendor or Category, a list of matching values shows. Tap one to use it.",
+          "keywords": [
+            "autocomplete",
+            "suggest",
+            "type ahead"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "autocomplete vendor name",
+            "suggestions while typing"
+          ]
+        },
+        {
+          "id": "notes-field",
+          "question": "Where do I write notes about a product?",
+          "answer": "Use the Notes field on Create or Edit. It grows as you type new lines.",
+          "keywords": [
+            "notes",
+            "specs",
+            "description",
+            "comments"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "where do i write specs",
+            "add a description to a product"
+          ]
+        },
+        {
+          "id": "venue",
+          "question": "How does the app know which show I am at?",
+          "answer": "The app knows the places of the big trade shows. When you are at one, it fills the Venue for new products. You can change the venue at any time.",
+          "keywords": [
+            "venue",
+            "show",
+            "location",
+            "canton fair",
+            "global sources",
+            "hktdc",
+            "geofence"
+          ],
+          "asks": [
+            "how does it know which fair i am at",
+            "set the trade show name",
+            "change the show for a product"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "title": "Prices and Landed Cost",
+      "icon": "dollarsign.circle",
+      "entries": [
+        {
+          "id": "ldp",
+          "question": "What is LDP and how does the app calculate it?",
+          "answer": "LDP (landed duty paid) is the cost of one unit at your door. The app adds the price, packaging, the tariff and the freight share of one unit. Settings > LDP Calculation > How LDP Works shows the full formula with your numbers.",
+          "keywords": [
+            "ldp",
+            "landed cost",
+            "duty",
+            "formula",
+            "calculate",
+            "freight"
+          ],
+          "asks": [
+            "how is landed cost calculated",
+            "what does ldp mean",
+            "what is in the landed price",
+            "explain the cost formula"
+          ]
+        },
+        {
+          "id": "container-cost",
+          "question": "How does the container cost change LDP?",
+          "answer": "Set the cost of one container in Settings > LDP Calculation. The app divides it by the Container Qty (units per container) to get the freight for one unit.",
+          "keywords": [
+            "container",
+            "freight",
+            "shipping cost",
+            "ctnr qty",
+            "units per container"
+          ],
+          "asks": [
+            "freight cost per container",
+            "how much is shipping per unit",
+            "set container price"
+          ]
+        },
+        {
+          "id": "ddp-discount",
+          "question": "What is the DDP discount?",
+          "answer": "It is a percent that the app takes off the duty part of LDP. Set it in Settings > LDP Calculation.",
+          "keywords": [
+            "ddp",
+            "discount",
+            "duty"
+          ],
+          "asks": [
+            "what does ddp discount do",
+            "lower the duty"
+          ]
+        },
+        {
+          "id": "price-terms",
+          "question": "What are FOB, CIF, EXW and DDP?",
+          "answer": "They tell the app what the vendor's price includes. FOB: the goods are on the ship. CIF: freight is in the price, so LDP leaves freight out. EXW: the price is at the factory, so the app adds an EXW cost per container. DDP: the vendor pays the duty too. Pick a term on each product. Set the default in Settings > LDP Calculation > Default Price Term.",
+          "keywords": [
+            "fob",
+            "cif",
+            "exw",
+            "ddp",
+            "incoterm",
+            "price term",
+            "ex works"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "price already includes shipping",
+            "what is fob",
+            "factory price ex works",
+            "the vendor quoted cif",
+            "change the default price term"
+          ]
+        },
+        {
+          "id": "no-fob",
+          "question": "Why does a product show a dash for LDP?",
+          "answer": "The product has no price. Without a price the app cannot calculate LDP, so it shows a dash and leaves the product out of LDP filters.",
+          "keywords": [
+            "dash",
+            "no ldp",
+            "missing price",
+            "empty"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "why is there no ldp",
+            "ldp shows a dash",
+            "landed cost is empty"
+          ]
+        },
+        {
+          "id": "currency",
+          "question": "Can I enter prices in other currencies?",
+          "answer": "Yes. Pick the currency on the product. The app changes it to US dollars for LDP with daily rates. Choose your common currencies in Settings > Quick Selections > Currency.",
+          "keywords": [
+            "currency",
+            "rmb",
+            "cny",
+            "euro",
+            "exchange rate",
+            "convert"
+          ],
+          "asks": [
+            "enter price in rmb",
+            "change currency",
+            "convert yuan to dollars",
+            "quote in euros"
+          ]
+        },
+        {
+          "id": "price-breaks",
+          "question": "How do I enter a lower price for a bigger order?",
+          "answer": "Turn on Settings > Quick Selections > Price Breaks. Then tap Add Price Breaks under FOB on a product. Enter a quantity and a price on each row. The red minus deletes a row. The smallest quantity's price is the FOB.",
+          "keywords": [
+            "price break",
+            "ladder",
+            "tier",
+            "volume price",
+            "quantity price",
+            "moq price",
+            "qty",
+            "pcs",
+            "per quantity",
+            "specific quantity"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "can i set a different price for each quantity",
+            "price depends on order quantity",
+            "lower price for bigger orders",
+            "add volume pricing tiers",
+            "price for 1000 5000 and 10000 pieces"
+          ]
+        },
+        {
+          "id": "display-cost",
+          "question": "Which price break does the app use for LDP?",
+          "answer": "Settings > Quick Selections > Price Breaks > Display Cost. Lowest Qty uses the first row. Highest Qty uses the last row. The choice changes the price and LDP on the product page, in the list and in sorting.",
+          "keywords": [
+            "display cost",
+            "lowest qty",
+            "highest qty",
+            "price break ldp"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "which tier is used for ldp",
+            "use the highest quantity price",
+            "which price shows in the list"
+          ]
+        },
+        {
+          "id": "starting-quantities",
+          "question": "Can I change the quantities a new ladder starts with?",
+          "answer": "Yes. In Settings > Quick Selections > Price Breaks, edit Starting Quantities. Tap a row to change it, drag to reorder, swipe to delete. Each product can still change its own rows.",
+          "keywords": [
+            "starting quantities",
+            "default quantities",
+            "price break rows"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "change default quantities for price breaks",
+            "set the break quantities"
+          ]
+        },
+        {
+          "id": "destination",
+          "question": "I do not import into the United States. Is LDP still right?",
+          "answer": "Set your country in Settings > LDP Calculation > Destination. The app has tariff rates for the United States only. For other countries it hides the tariff rows and LDP has no duty.",
+          "keywords": [
+            "destination",
+            "europe",
+            "uk",
+            "canada",
+            "import country",
+            "eu"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "i do not import into the usa",
+            "we import to europe",
+            "tariffs for another country"
+          ]
+        },
+        {
+          "id": "tariffs",
+          "question": "Where do the tariff rates come from?",
+          "answer": "From the official US tariff schedule (HTS), with Section 301 for China and the country rates. The team owner links each category to a tariff code in Settings > LDP Calculation > Tariff Codes. Then every product in that category gets that rate.",
+          "keywords": [
+            "tariff",
+            "hts",
+            "duty rate",
+            "section 301",
+            "customs code",
+            "tariff code"
+          ],
+          "asks": [
+            "where do duty rates come from",
+            "set the hts code for a category",
+            "tariff code for my products",
+            "section 301 china tariff"
+          ]
+        },
+        {
+          "id": "tariff-search",
+          "question": "How do I find the right tariff code?",
+          "answer": "In Tariff Codes, type what the product is, for example \"led bulb\". The app finds codes by meaning, not only by exact words.",
+          "keywords": [
+            "find hts",
+            "search tariff",
+            "nickname"
+          ],
+          "asks": [
+            "find the right hts code",
+            "look up a tariff number"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "products",
+      "title": "Finding Products",
+      "icon": "book",
+      "entries": [
+        {
+          "id": "search",
+          "question": "What does search look at?",
+          "answer": "Vendor, category, tags, notes, venue, status, custom fields, the text printed in your photos and the photo descriptions. Spaces and capital letters do not matter, so \"Heng Tian\" finds \"HengTian\".",
+          "keywords": [
+            "search",
+            "find",
+            "look up",
+            "query"
+          ],
+          "asks": [
+            "how do i find a product",
+            "search is not finding my item",
+            "what can i search for"
+          ]
+        },
+        {
+          "id": "photo-text",
+          "question": "Can I search for words printed on the box?",
+          "answer": "Yes. The app reads the text in your photos on the phone (free and offline). Type a word from the label and the product shows. Chinese text gets an English translation too.",
+          "keywords": [
+            "ocr",
+            "photo text",
+            "label",
+            "packaging text",
+            "chinese",
+            "translate"
+          ],
+          "asks": [
+            "search words on the packaging",
+            "find a product by its label",
+            "search the brand printed on the box",
+            "chinese text in photos"
+          ]
+        },
+        {
+          "id": "photo-descriptions",
+          "question": "What is \"Written from the photo\"?",
+          "answer": "Apple Intelligence writes one sentence about each photo, for example color, shape and material. It helps search. It can be wrong, so the app never puts it into your own fields. Tap Redo on the product page to write it again. Settings > Data > Describe Photos runs it for all photos.",
+          "keywords": [
+            "ai description",
+            "apple intelligence",
+            "caption",
+            "describe photos"
+          ],
+          "asks": [
+            "what is written from the photo",
+            "ai description of my photo",
+            "the description is wrong"
+          ]
+        },
+        {
+          "id": "filters",
+          "question": "How do I filter products?",
+          "answer": "Tap the filter button in Products. Filter by vendor, category, category group, tags, status, venue, team member, date, FOB, LDP, MOQ, comments and custom fields. Hold the filter button to clear all filters.",
+          "keywords": [
+            "filter",
+            "narrow",
+            "clear filters",
+            "range"
+          ],
+          "asks": [
+            "filter by price",
+            "only show products from one vendor",
+            "show products from one show",
+            "clear all filters"
+          ]
+        },
+        {
+          "id": "sort",
+          "question": "How do I sort products?",
+          "answer": "Use the sort menu in Products. Sort by date created, LDP, FOB, vendor, MOQ or status. Pick the same field again to reverse the order.",
+          "keywords": [
+            "sort",
+            "order",
+            "newest",
+            "cheapest"
+          ],
+          "asks": [
+            "sort cheapest first",
+            "newest products first",
+            "order by vendor name"
+          ]
+        },
+        {
+          "id": "layout",
+          "question": "Can I see products as a grid?",
+          "answer": "Yes. Use the Layout menu in Products to change between a list and a grid, and to change the photo size.",
+          "keywords": [
+            "grid",
+            "list",
+            "layout",
+            "view",
+            "thumbnail size"
+          ],
+          "asks": [
+            "show products as tiles",
+            "make photos bigger in the list",
+            "switch to list view"
+          ]
+        },
+        {
+          "id": "mass-edit",
+          "question": "Can I change many products at once?",
+          "answer": "Yes. Select products in the list, then tap Edit. Fields that are the same on all of them show the value. Fields that differ show \"Mixed\". You can also delete the selected products.",
+          "keywords": [
+            "bulk edit",
+            "mass edit",
+            "select",
+            "multiple",
+            "batch"
+          ],
+          "asks": [
+            "edit lots of products at once",
+            "change the category of many products",
+            "select several products",
+            "delete many products"
+          ]
+        },
+        {
+          "id": "arrows",
+          "question": "How do I move to the next product?",
+          "answer": "On a product page, use the arrows to go to the next or previous product in your list.",
+          "keywords": [
+            "next",
+            "previous",
+            "arrows",
+            "swipe products"
+          ],
+          "asks": [
+            "go to the next product",
+            "move between products"
+          ]
+        },
+        {
+          "id": "category-groups",
+          "question": "What are Category Groups?",
+          "answer": "A group holds many categories, for example \"Audio\" holds Speakers and Headphones. Then you filter Products by the whole group. Groups can hold other groups. Make them in Settings > Follow Up > Category Groups. Your team shares them.",
+          "keywords": [
+            "category group",
+            "group",
+            "audio",
+            "nested"
+          ],
+          "asks": [
+            "group categories together",
+            "make a group of categories",
+            "filter by a group"
+          ]
+        },
+        {
+          "id": "rename-category",
+          "question": "How do I rename or merge a category?",
+          "answer": "In Settings > Quick Selections > Categories, swipe or hold a category and pick Rename or Merge. The change applies to every product on your team.",
+          "keywords": [
+            "rename category",
+            "merge category",
+            "fix typo"
+          ],
+          "asks": [
+            "rename a category",
+            "merge two categories",
+            "fix a misspelled category"
+          ]
+        },
+        {
+          "id": "hide-vendors",
+          "question": "Can I show products to a customer without the vendor names?",
+          "answer": "Yes. Turn on Settings > General > Hide Vendor Names. The app blurs every vendor name and keeps prices and photos.",
+          "keywords": [
+            "hide vendor",
+            "mask",
+            "blur",
+            "customer",
+            "show buyer",
+            "privacy"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "hide supplier names from my customer",
+            "show products to a buyer without vendors",
+            "blur the factory name"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vendors",
+      "title": "Vendors and Business Cards",
+      "icon": "building.2",
+      "entries": [
+        {
+          "id": "scan-card",
+          "question": "How do I add a vendor from a business card?",
+          "answer": "In Vendors, tap + and choose Scan Cards. Take a photo of each card. Tap Save. The app reads the name, company, phones, emails, WeChat, website and address in the background.",
+          "keywords": [
+            "business card",
+            "scan",
+            "card",
+            "contact",
+            "ocr"
+          ],
+          "asks": [
+            "scan a business card",
+            "add a supplier from a card",
+            "read a name card"
+          ]
+        },
+        {
+          "id": "card-photos",
+          "question": "Can I add cards from photos I already took?",
+          "answer": "Yes. In Vendors, tap + and choose Choose Card Photos. Pick the photos, check them, and tap Save.",
+          "keywords": [
+            "import cards",
+            "card photos",
+            "library",
+            "mass import"
+          ],
+          "asks": [
+            "import cards from my photos",
+            "add many cards at once"
+          ]
+        },
+        {
+          "id": "duplicate-card",
+          "question": "What if I scan a card I already saved?",
+          "answer": "The app compares it with your saved vendors. If it finds a match, it shows \"Already saved?\" so you can add the card to the existing vendor and not make a copy.",
+          "keywords": [
+            "duplicate",
+            "same card",
+            "already saved",
+            "copy"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "scanned the same card again",
+            "card already saved",
+            "avoid duplicate vendors when scanning"
+          ]
+        },
+        {
+          "id": "add-vendor",
+          "question": "How do I add a vendor by hand?",
+          "answer": "In Vendors, tap + and choose Add Manually.",
+          "keywords": [
+            "new vendor",
+            "manual",
+            "add vendor"
+          ],
+          "asks": [
+            "add a supplier without a card",
+            "create a vendor by hand"
+          ]
+        },
+        {
+          "id": "phone-types",
+          "question": "Does the app know mobile, office and fax numbers?",
+          "answer": "Yes. Scanned phone numbers save as Mobile, Office or Fax from the words on the card.",
+          "keywords": [
+            "phone",
+            "mobile",
+            "fax",
+            "office",
+            "tel"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "mobile or office number",
+            "fax number on the card"
+          ]
+        },
+        {
+          "id": "vendor-page",
+          "question": "What is on a vendor page?",
+          "answer": "The contacts, phones, emails, WeChat, addresses, the card photo and all products from that vendor. Tap an email to write, a phone to call, or an address to open Maps.",
+          "keywords": [
+            "vendor details",
+            "contacts",
+            "call",
+            "email vendor"
+          ],
+          "asks": [
+            "see a supplier's details",
+            "call the vendor",
+            "all products from one vendor"
+          ]
+        },
+        {
+          "id": "customs",
+          "question": "What are US shipping records on a vendor?",
+          "answer": "For US importers, the vendor page can show the vendor's shipments into the United States from public customs data. You can filter vendors by \"US Customs data\".",
+          "keywords": [
+            "customs",
+            "import records",
+            "bill of lading",
+            "shipments",
+            "importyeti"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "what are us shipping records",
+            "does this factory export to the us",
+            "import records for a supplier"
+          ]
+        },
+        {
+          "id": "vendor-filters",
+          "question": "How do I filter and sort vendors?",
+          "answer": "In Vendors, tap the filter button. Filter by show, category, number of products, country, who added it, date, and what it has (email, phone, WeChat, card photo, US customs data). Sort by name, date created, number of products, or by US shipments, containers and last shipment date.",
+          "keywords": [
+            "vendor filter",
+            "vendor sort",
+            "country",
+            "wechat"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "filter suppliers by country",
+            "sort vendors by number of products",
+            "vendors with wechat"
+          ]
+        },
+        {
+          "id": "merge-vendors",
+          "question": "How do I merge two vendors that are the same?",
+          "answer": "Use Settings > Data > Merge Vendors. The app shows likely matches. Pick the vendor to keep. Its products, contacts and cards move into it.",
+          "keywords": [
+            "merge",
+            "duplicate vendor",
+            "combine",
+            "same vendor"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "same vendor saved twice",
+            "combine two suppliers",
+            "remove duplicate vendors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "team",
+      "title": "Working as a Team",
+      "icon": "person.3",
+      "entries": [
+        {
+          "id": "create-team",
+          "question": "How do I make a team?",
+          "answer": "Open Settings and tap your account. Tap Create Team and enter a name. You are the owner.",
+          "keywords": [
+            "team",
+            "create team",
+            "owner",
+            "company"
+          ],
+          "asks": [
+            "start a team",
+            "set up my company"
+          ]
+        },
+        {
+          "id": "invite",
+          "question": "How do I invite people to my team?",
+          "answer": "In your account screen, tap Invite Member and enter their email. They get an email and an invite in the app. Each person uses one seat.",
+          "keywords": [
+            "invite",
+            "add member",
+            "teammate",
+            "seat",
+            "join team"
+          ],
+          "asks": [
+            "add a teammate",
+            "invite a coworker",
+            "how does my colleague join"
+          ]
+        },
+        {
+          "id": "team-products",
+          "question": "Who sees my products?",
+          "answer": "Everyone on your team. Products sync to all team phones in a few seconds. People outside your team never see them.",
+          "keywords": [
+            "share",
+            "visible",
+            "privacy",
+            "team products",
+            "sync"
+          ],
+          "asks": [
+            "can my team see my products",
+            "who can see what i add",
+            "is my data private"
+          ]
+        },
+        {
+          "id": "permissions",
+          "question": "Who can edit a product?",
+          "answer": "The person who made it. The team owner can also edit team products when \"Owner can edit team items\" is on in Settings > Team Permissions. The owner also picks who can export.",
+          "keywords": [
+            "permissions",
+            "edit",
+            "owner",
+            "export permission",
+            "access"
+          ],
+          "asks": [
+            "who can edit a product",
+            "stop people exporting",
+            "let the owner edit"
+          ]
+        },
+        {
+          "id": "comments",
+          "question": "How do I comment and mention a teammate?",
+          "answer": "Open a product and write in the comments. Type @ and a name to mention a teammate. They get a notification in Alerts.",
+          "keywords": [
+            "comment",
+            "mention",
+            "@",
+            "chat",
+            "notes for team"
+          ],
+          "asks": [
+            "tag someone in a comment",
+            "leave a note for my team",
+            "mention a coworker"
+          ]
+        },
+        {
+          "id": "alerts",
+          "question": "What is the Alerts tab?",
+          "answer": "Mentions, comments on your products and team invites. Tap one to open the product. Choose which alerts you get in Settings > General > Notifications.",
+          "keywords": [
+            "alerts",
+            "notifications",
+            "inbox",
+            "push"
+          ],
+          "asks": [
+            "where are my notifications",
+            "turn off notifications"
+          ]
+        },
+        {
+          "id": "team-map",
+          "question": "What is the Team Map?",
+          "answer": "At a show, the Team Map shows where your teammates are, with the direction and the floor. It shares your place only while the app is open and stops when you leave the show.",
+          "keywords": [
+            "team map",
+            "radar",
+            "location",
+            "where is",
+            "find teammate",
+            "floor"
+          ],
+          "asks": [
+            "where are my coworkers at the fair",
+            "find my team at the show",
+            "see teammates on a map"
+          ]
+        },
+        {
+          "id": "ghost-mode",
+          "question": "How do I stop sharing my location?",
+          "answer": "Turn off location sharing in Settings > General > Team Radar. Then you do not show on the map and you do not see others.",
+          "keywords": [
+            "ghost mode",
+            "hide location",
+            "privacy",
+            "stop sharing"
+          ],
+          "asks": [
+            "stop sharing my location",
+            "hide me from the team map",
+            "turn off location"
+          ]
+        },
+        {
+          "id": "created-by",
+          "question": "How do I see who added a product?",
+          "answer": "The product page shows Created By with the person's photo and name. You can also filter Products by team member.",
+          "keywords": [
+            "created by",
+            "who",
+            "author",
+            "added by"
+          ],
+          "asks": [
+            "who added this product",
+            "see who made an item"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fields",
+      "title": "Fields and Settings",
+      "icon": "list.bullet.rectangle",
+      "entries": [
+        {
+          "id": "fields-screen",
+          "question": "How do I change the order of fields or hide some?",
+          "answer": "Settings > General > Fields. Drag to change the order. Turn a field off to hide it on Create and Edit. Vendor and FOB always show.",
+          "keywords": [
+            "field order",
+            "hide field",
+            "show field",
+            "reorder",
+            "layout"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "hide the moq field",
+            "change the order of fields",
+            "remove fields i do not use"
+          ]
+        },
+        {
+          "id": "custom-fields",
+          "question": "Can I add my own fields?",
+          "answer": "Yes. In Settings > General > Fields, tap +. Pick a type (Text, Number, Currency or Toggle), a name and an icon. Tap a custom field to edit it. Your whole team gets the same custom fields.",
+          "keywords": [
+            "custom field",
+            "own field",
+            "extra field",
+            "toggle",
+            "checkbox",
+            "dropdown"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "add my own field",
+            "create a yes no field",
+            "add a field for certification"
+          ]
+        },
+        {
+          "id": "custom-field-search",
+          "question": "Can I search and filter by custom fields?",
+          "answer": "Yes. Search finds custom field values, and the filter sheet has a row for each custom field.",
+          "keywords": [
+            "custom field filter",
+            "custom field search"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "search my custom field",
+            "filter by a custom field"
+          ]
+        },
+        {
+          "id": "number-format",
+          "question": "Why do numbers use commas or dots differently?",
+          "answer": "The app uses your phone's region. For example 1,20 in Italy and 1.20 in the United States.",
+          "keywords": [
+            "decimal",
+            "comma",
+            "region",
+            "number format",
+            "locale"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "comma instead of a dot",
+            "decimal separator is wrong"
+          ]
+        },
+        {
+          "id": "tint",
+          "question": "Can I change the app color?",
+          "answer": "Yes. Settings > General > App Tint.",
+          "keywords": [
+            "color",
+            "tint",
+            "theme",
+            "accent"
+          ],
+          "asks": [
+            "change app colour",
+            "change the theme color"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "followup",
+      "title": "Follow Up",
+      "icon": "flag",
+      "entries": [
+        {
+          "id": "status",
+          "question": "How do I mark where a product stands?",
+          "answer": "Set a Status on the product, for example Sample Requested. Edit the status list in Settings > Follow Up > Status. Your team shares the statuses.",
+          "keywords": [
+            "status",
+            "flag",
+            "sample",
+            "progress",
+            "stage"
+          ],
+          "asks": [
+            "mark a sample as requested",
+            "set the stage of a product",
+            "edit status list"
+          ]
+        },
+        {
+          "id": "auto-advance",
+          "question": "Can the app jump to the next product after I pick a status?",
+          "answer": "Yes. Turn on Auto Advance After Flagging in Settings > Follow Up > Status.",
+          "keywords": [
+            "auto advance",
+            "next product",
+            "review fast"
+          ],
+          "asks": [
+            "go to the next product after setting status",
+            "jump to next item when flagged"
+          ]
+        },
+        {
+          "id": "email-vendor",
+          "question": "How do I email a vendor about a product?",
+          "answer": "On the product page, tap the envelope button. The app fills in your email template with the product details. You can send it from your mail app, or use Send Directly to send it from Show Sourcing.",
+          "keywords": [
+            "email",
+            "follow up",
+            "send",
+            "contact vendor",
+            "quote request"
+          ],
+          "asks": [
+            "email the factory about this item",
+            "ask the vendor for a quote",
+            "send a follow up email"
+          ]
+        },
+        {
+          "id": "email-template",
+          "question": "How do I change the follow-up email?",
+          "answer": "Settings > Follow Up > Email Template. Edit the subject and body. Tap a chip to insert a field, such as the vendor name or the price. Pick your preferred mail client there too.",
+          "keywords": [
+            "template",
+            "email text",
+            "subject",
+            "tokens",
+            "mail client"
+          ],
+          "asks": [
+            "change the email text",
+            "edit the follow up message",
+            "put the price in the email"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "siri",
+      "title": "Siri and Spotlight",
+      "icon": "mic",
+      "entries": [
+        {
+          "id": "siri-find",
+          "question": "Can I ask Siri to find a product?",
+          "answer": "Yes. Say \"Find a product in Show Sourcing\" and then say what to look for. Or say \"Open <words> in Show Sourcing\". The phrase must name the app.",
+          "keywords": [
+            "siri",
+            "voice",
+            "shortcuts",
+            "hey siri"
+          ],
+          "asks": [
+            "ask siri for a product",
+            "voice search a product",
+            "hey siri open a product"
+          ]
+        },
+        {
+          "id": "spotlight",
+          "question": "Can I find products from the Home Screen search?",
+          "answer": "Yes. Swipe down on the Home Screen and type a vendor or product. Tap a result to open it in the app. If results are missing, use Settings > Data > Rebuild Spotlight Index.",
+          "keywords": [
+            "spotlight",
+            "home screen search",
+            "system search"
+          ],
+          "asks": [
+            "find products from the home screen",
+            "search outside the app"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "AI Connection (ChatGPT, Claude)",
+      "icon": "sparkles",
+      "entries": [
+        {
+          "id": "ai-connection",
+          "question": "Can I ask ChatGPT or Claude about my products?",
+          "answer": "Yes. Settings > General > AI Connection makes a private link. Paste it into Claude, ChatGPT or another app that supports MCP connectors. Then ask, for example, \"show me all speakers under $5\". The AI can read your products and vendors. It cannot change them.",
+          "keywords": [
+            "chatgpt",
+            "claude",
+            "ai",
+            "mcp",
+            "connector",
+            "assistant",
+            "llm"
+          ],
+          "asks": [
+            "connect chatgpt",
+            "use claude with my products",
+            "ask ai about my catalog"
+          ]
+        },
+        {
+          "id": "ai-tokens",
+          "question": "How do I stop an AI app from reading my data?",
+          "answer": "In AI Connection, find the token by its name and tap Revoke. The link stops working at once. Each token shows its first and last characters so you can tell them apart.",
+          "keywords": [
+            "revoke",
+            "token",
+            "disconnect",
+            "security"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "disconnect chatgpt",
+            "revoke ai access",
+            "remove an ai token"
+          ]
+        },
+        {
+          "id": "ai-photos",
+          "question": "Does the AI see my photos?",
+          "answer": "Yes. When the AI opens a product, it gets up to 4 of its photos. In ChatGPT, products show as a grid with photos.",
+          "keywords": [
+            "ai photos",
+            "images",
+            "chatgpt photos"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "can chatgpt see my photos",
+            "ai shows pictures"
+          ]
+        },
+        {
+          "id": "ai-cost",
+          "question": "Does the AI Connection cost extra?",
+          "answer": "No. You use your own ChatGPT or Claude account. Show Sourcing does not store your AI key.",
+          "keywords": [
+            "cost",
+            "price",
+            "api key",
+            "free"
+          ],
+          "asks": [
+            "does chatgpt cost extra",
+            "do i need an api key"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Data and Backup",
+      "icon": "externaldrive",
+      "entries": [
+        {
+          "id": "export",
+          "question": "How do I export my products?",
+          "answer": "Settings > Backup & Import > Export Products (JSON). The file has every field and links to every photo. It is not available during the free trial, and the team owner can limit it.",
+          "keywords": [
+            "export",
+            "json",
+            "download",
+            "backup",
+            "spreadsheet"
+          ],
+          "asks": [
+            "export to excel",
+            "download all my products",
+            "get my data out",
+            "backup my catalog"
+          ]
+        },
+        {
+          "id": "settings-backup",
+          "question": "Can I move my settings to a new phone?",
+          "answer": "Yes. Use Export Settings on the old phone and Import Settings on the new one, in Settings > Backup & Import.",
+          "keywords": [
+            "settings export",
+            "settings import",
+            "new phone",
+            "transfer"
+          ],
+          "asks": [
+            "move to a new phone",
+            "copy my settings"
+          ]
+        },
+        {
+          "id": "duplicate-photos",
+          "question": "How do I remove duplicate photos?",
+          "answer": "Settings > Data > Photo Cleanup finds photos that are the same and lets you remove the extra copies. It also finds photos that are sideways or upside down and turns them.",
+          "keywords": [
+            "duplicate photo",
+            "same photo",
+            "clean up"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "remove the same photo twice",
+            "clean up duplicate pictures"
+          ]
+        },
+        {
+          "id": "clear-local",
+          "question": "Something looks wrong. How do I reload everything?",
+          "answer": "Settings > Data > Clear Local Data. It deletes the copy on this phone only. Nothing is deleted from the server. Everything downloads again and you stay signed in. First check that the Sync Queue is empty.",
+          "keywords": [
+            "reset",
+            "reload",
+            "clear cache",
+            "fix",
+            "missing products",
+            "missing"
+          ],
+          "asks": [
+            "my products disappeared how do i reload",
+            "products are missing",
+            "app shows old data",
+            "start fresh"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "billing",
+      "title": "Plans and Billing",
+      "icon": "creditcard",
+      "entries": [
+        {
+          "id": "price",
+          "question": "How much does Show Sourcing cost?",
+          "answer": "You pay per seat (one seat for each person). Yearly is $8.50 a seat a month. 6 months is $10 a seat a month. Teams of 10 or more get a discount. Every plan starts with a 30-day free trial. See showsourcing.app/pricing.",
+          "keywords": [
+            "price",
+            "cost",
+            "plan",
+            "subscription",
+            "seat",
+            "trial"
+          ],
+          "asks": [
+            "how much does it cost",
+            "is there a free trial",
+            "what are the plans",
+            "price per user"
+          ]
+        },
+        {
+          "id": "seats",
+          "question": "How do I add or remove seats?",
+          "answer": "The team owner opens Settings > account > Team Billing. New seats cost a share of the rest of the period. Removed seats give a credit on the next renewal.",
+          "keywords": [
+            "seats",
+            "add seats",
+            "remove seats",
+            "billing",
+            "team billing"
+          ],
+          "since": "1.0.7",
+          "asks": [
+            "add more seats",
+            "add users to my plan",
+            "remove a seat"
+          ]
+        },
+        {
+          "id": "payment-failed",
+          "question": "What happens if my card payment fails?",
+          "answer": "Stripe, our payment provider, charges your card. If a payment fails, update your card from the Stripe email, or write to support@showsourcing.app. You are charged only once.",
+          "keywords": [
+            "payment failed",
+            "card declined",
+            "renewal",
+            "update card",
+            "stripe"
+          ],
+          "asks": [
+            "my card got declined",
+            "renewal failed",
+            "update my credit card"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "help",
+      "title": "Help and Support",
+      "icon": "questionmark.circle",
+      "entries": [
+        {
+          "id": "contact",
+          "question": "How do I contact support?",
+          "answer": "Settings > Support > Email Support. The app attaches its log, which helps us find the problem. Or write to support@showsourcing.app.",
+          "keywords": [
+            "support",
+            "help",
+            "contact",
+            "bug",
+            "problem",
+            "logs"
+          ],
+          "asks": [
+            "talk to support",
+            "report a bug",
+            "send logs"
+          ]
+        },
+        {
+          "id": "beta",
+          "question": "How do I try new features first?",
+          "answer": "Join the beta on TestFlight. Use the Join the Beta button on showsourcing.app/help. Beta builds can have bugs. Please tell us about them.",
+          "keywords": [
+            "beta",
+            "testflight",
+            "early access",
+            "new features",
+            "preview"
+          ],
+          "asks": [
+            "join beta testflight",
+            "try new features early",
+            "get the test version"
+          ]
+        }
+      ]
+    }
+  ],
+  "synonyms": {
+    "qty": [
+      "quantity"
+    ],
+    "quantities": [
+      "quantity"
+    ],
+    "pcs": [
+      "quantity",
+      "pieces"
+    ],
+    "pieces": [
+      "quantity"
+    ],
+    "units": [
+      "quantity"
+    ],
+    "moq": [
+      "quantity",
+      "minimum"
+    ],
+    "price": [
+      "cost",
+      "fob"
+    ],
+    "cost": [
+      "price"
+    ],
+    "pricing": [
+      "price"
+    ],
+    "cheaper": [
+      "lower",
+      "price"
+    ],
+    "discount": [
+      "lower",
+      "price"
+    ],
+    "tier": [
+      "break"
+    ],
+    "tiers": [
+      "break"
+    ],
+    "volume": [
+      "quantity",
+      "bigger"
+    ],
+    "supplier": [
+      "vendor"
+    ],
+    "suppliers": [
+      "vendor"
+    ],
+    "factory": [
+      "vendor"
+    ],
+    "manufacturer": [
+      "vendor"
+    ],
+    "seller": [
+      "vendor"
+    ],
+    "item": [
+      "product"
+    ],
+    "items": [
+      "product"
+    ],
+    "sku": [
+      "product"
+    ],
+    "pic": [
+      "photo"
+    ],
+    "pics": [
+      "photo"
+    ],
+    "picture": [
+      "photo"
+    ],
+    "pictures": [
+      "photo"
+    ],
+    "image": [
+      "photo"
+    ],
+    "images": [
+      "photo"
+    ],
+    "gallery": [
+      "library"
+    ],
+    "coworker": [
+      "teammate",
+      "team"
+    ],
+    "colleague": [
+      "teammate",
+      "team"
+    ],
+    "coworkers": [
+      "teammate",
+      "team"
+    ],
+    "staff": [
+      "team"
+    ],
+    "employee": [
+      "teammate"
+    ],
+    "user": [
+      "seat",
+      "member"
+    ],
+    "users": [
+      "seat",
+      "member"
+    ],
+    "fair": [
+      "show"
+    ],
+    "expo": [
+      "show"
+    ],
+    "booth": [
+      "show"
+    ],
+    "exhibition": [
+      "show"
+    ],
+    "shipping": [
+      "freight"
+    ],
+    "freight": [
+      "shipping"
+    ],
+    "duty": [
+      "tariff"
+    ],
+    "duties": [
+      "tariff"
+    ],
+    "hts": [
+      "tariff"
+    ],
+    "customs": [
+      "tariff",
+      "customs"
+    ],
+    "landed": [
+      "ldp"
+    ],
+    "ldp": [
+      "landed"
+    ],
+    "excel": [
+      "export",
+      "spreadsheet"
+    ],
+    "csv": [
+      "export"
+    ],
+    "spreadsheet": [
+      "export"
+    ],
+    "download": [
+      "export"
+    ],
+    "rmb": [
+      "currency",
+      "yuan"
+    ],
+    "yuan": [
+      "currency"
+    ],
+    "euro": [
+      "currency"
+    ],
+    "euros": [
+      "currency"
+    ],
+    "dollar": [
+      "currency"
+    ],
+    "colour": [
+      "color"
+    ],
+    "theme": [
+      "color"
+    ],
+    "wifi": [
+      "internet",
+      "offline"
+    ],
+    "signal": [
+      "internet",
+      "offline"
+    ],
+    "offline": [
+      "internet"
+    ],
+    "chatgpt": [
+      "ai"
+    ],
+    "claude": [
+      "ai"
+    ],
+    "gpt": [
+      "ai"
+    ],
+    "declined": [
+      "failed",
+      "payment"
+    ],
+    "card": [
+      "card"
+    ],
+    "credit": [
+      "card",
+      "payment"
+    ],
+    "testflight": [
+      "beta"
+    ],
+    "beta": [
+      "testflight"
+    ],
+    "tag": [
+      "mention"
+    ],
+    "mention": [
+      "tag"
+    ],
+    "delete": [
+      "remove"
+    ],
+    "remove": [
+      "delete"
+    ],
+    "namecard": [
+      "card"
+    ],
+    "add": [
+      "create",
+      "new"
+    ],
+    "make": [
+      "create"
+    ],
+    "set": [
+      "enter"
+    ],
+    "gone": [
+      "missing"
+    ],
+    "disappeared": [
+      "missing"
+    ],
+    "vanished": [
+      "missing"
+    ],
+    "lost": [
+      "missing"
+    ]
+  },
+  "stopwords": [
+    "a",
+    "an",
+    "the",
+    "i",
+    "i'm",
+    "im",
+    "me",
+    "my",
+    "we",
+    "our",
+    "you",
+    "your",
+    "is",
+    "are",
+    "am",
+    "be",
+    "do",
+    "does",
+    "did",
+    "can",
+    "could",
+    "would",
+    "should",
+    "will",
+    "how",
+    "what",
+    "when",
+    "where",
+    "why",
+    "which",
+    "to",
+    "of",
+    "in",
+    "on",
+    "at",
+    "for",
+    "with",
+    "and",
+    "or",
+    "it",
+    "its",
+    "this",
+    "that",
+    "these",
+    "those",
+    "there",
+    "here",
+    "it's",
+    "please",
+    "just",
+    "some",
+    "any",
+    "get",
+    "got",
+    "have",
+    "has",
+    "want",
+    "need",
+    "way",
+    "able",
+    "possible",
+    "specific"
+  ]
+}
