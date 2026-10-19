@@ -9,14 +9,82 @@
     "details": [
       {
         "appID": "VWR39LZW5M.com.DNZ.showsourcing",
-        "paths": ["NOT /", "NOT /download*", "NOT /blog*", "NOT /privacy*", "NOT /terms*", "*"],
+        "paths": [
+          "NOT /",
+          "NOT /download*",
+          "NOT /blog*",
+          "NOT /privacy*",
+          "NOT /terms*",
+          "NOT /checkout*",
+          "NOT /payment-*",
+          "NOT /pricing*",
+          "NOT /help*",
+          "NOT /compare*",
+          "NOT /trade-show-sourcing-app*",
+          "NOT /vendor-price-tracking*",
+          "*"
+        ],
         "components": [
-          { "/": "/", "exclude": true, "comment": "home page opens in Safari" },
-          { "/": "/download*", "exclude": true, "comment": "business-card QR code" },
-          { "/": "/blog*", "exclude": true },
-          { "/": "/privacy*", "exclude": true },
-          { "/": "/terms*", "exclude": true },
-          { "/": "*" }
+          {
+            "/": "/",
+            "exclude": true,
+            "comment": "home page opens in Safari"
+          },
+          {
+            "/": "/download*",
+            "exclude": true,
+            "comment": "business-card QR code"
+          },
+          {
+            "/": "/blog*",
+            "exclude": true
+          },
+          {
+            "/": "/privacy*",
+            "exclude": true
+          },
+          {
+            "/": "/terms*",
+            "exclude": true
+          },
+          {
+            "/": "/checkout*",
+            "exclude": true,
+            "comment": "opens in Safari (web checkout, 2026-10-19)"
+          },
+          {
+            "/": "/payment-*",
+            "exclude": true,
+            "comment": "opens in Safari (web checkout, 2026-10-19)"
+          },
+          {
+            "/": "/pricing*",
+            "exclude": true,
+            "comment": "opens in Safari (web checkout, 2026-10-19)"
+          },
+          {
+            "/": "/help*",
+            "exclude": true,
+            "comment": "opens in Safari (web checkout, 2026-10-19)"
+          },
+          {
+            "/": "/compare*",
+            "exclude": true,
+            "comment": "opens in Safari (web checkout, 2026-10-19)"
+          },
+          {
+            "/": "/trade-show-sourcing-app*",
+            "exclude": true,
+            "comment": "opens in Safari (web checkout, 2026-10-19)"
+          },
+          {
+            "/": "/vendor-price-tracking*",
+            "exclude": true,
+            "comment": "opens in Safari (web checkout, 2026-10-19)"
+          },
+          {
+            "/": "*"
+          }
         ]
       }
     ]

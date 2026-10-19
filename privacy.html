@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/theme.css">
     <title>Privacy Policy — Show Sourcing</title>
     <meta name="description" content="How Show Sourcing collects, uses, and protects your data — account, product, vendor, and location information for the iOS trade show sourcing app.">
+    <meta name="theme-color" content="#060a18" data-dark="#060a18" data-light="#f6f7fb">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://showsourcing.app/privacy.html">
-    <link rel="icon" type="image/png" href="/app-icon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/app-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -87,6 +90,36 @@
             opacity: 0.45;
         }
         @media (max-width: 600px) { header { padding: 14px 16px; } .card { border-radius: 14px; } }
+        /* pricing-nav-fix: 3 header links on phones */
+        @media (max-width: 600px) { header nav { gap: 12px; } header nav a { font-size: 0.8rem; } }
+            /* header fit with the theme toggle */
+        header nav { align-items: center; }
+        header .logo, header nav a { white-space: nowrap; }
+        @media (max-width: 600px) { header nav { gap: 12px; } }
+        @media (max-width: 600px) { header nav a[href="/terms.html"] { display: none; } }
+        /* ---- light mode (html.light is set by /theme.js) ---- */
+        html.light {
+            --bg: #f6f7fb;
+            --accent2: #0369a1;
+            --text: #0f172a;
+            --muted: #475569;
+            --dim: #5b6779;
+            --border: rgba(15,23,42,0.10);
+        }
+        html.light header { background: rgba(246,247,251,0.88); }
+        html.light .card, html.light .panel, html.light .plan {
+            background: #fff;
+            box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.05);
+        }
+        html.light .plan.best { background: #fff7ed; border-color: rgba(234,88,12,0.50); }
+        html.light h2, html.light .label { color: #c2410c; }
+        html.light ul.incl li::before { color: #ea580c; }
+        html.light .foot { opacity: 0.6; }
+        html.light .row.disc span:last-child { color: #15803d; }
+        html.light .promo input { background: #fff; border-color: rgba(15,23,42,0.16); }
+        html.light .promo input::placeholder { color: #64748b; }
+        html.light .promo button, html.light .ghost { background: #f1f5f9; border-color: rgba(15,23,42,0.14); }
+        html.light .promo-msg.err, html.light #pay-msg { color: #b91c1c; }
     </style>
 </head>
 <body>
@@ -94,15 +127,17 @@
 <header>
     <a class="logo" href="/">Show Sourcing</a>
     <nav>
+        <a href="/pricing">Pricing</a>
         <a href="/privacy.html" class="active">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
     </nav>
 </header>
 
 <main class="page">
     <a href="/" class="back">&larr; Back</a>
     <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: January 20, 2026</p>
+    <p class="meta">Last updated: October 19, 2026</p>
     <div class="bar"></div>
 
     <div class="card">
@@ -134,12 +169,28 @@
         <p>Your data is stored securely using Supabase infrastructure with encryption at rest and in transit. We implement industry-standard security measures to protect your information. Photos and media are stored in secure cloud storage with access controls.</p>
 
         <h2>Data Sharing</h2>
-        <p>We do not sell your personal information. We may share data only:</p>
+        <p>We do not sell your personal information, and we do not share it for advertising. We may share data only:</p>
         <ul>
             <li>With team members you explicitly invite to collaborate</li>
-            <li>With service providers who assist in operating our services (cloud hosting, analytics)</li>
+            <li>With the service providers listed below, only the data listed, and only to run the feature named</li>
             <li>When required by law or to protect our rights</li>
         </ul>
+
+        <h2>AI and Outside Services</h2>
+        <p>Much of the app's intelligence runs on your own device, using Apple's on-device features. These never leave your phone or Mac: reading the words on photos and business cards, describing product photos, and turning voice notes into text.</p>
+        <p>Some features send a small amount of text to an outside service, to get a result back for you. Your photos are not sent to any AI service.</p>
+        <ul>
+            <li><strong>Business card scanning:</strong> the text read from the card (names, company, phone numbers, emails, addresses) goes to TypeSafe, an AI service, which says which line is which field. If TypeSafe is unavailable, the same text goes to a backup AI model through OpenRouter.</li>
+            <li><strong>Autofill:</strong> the text of your voice notes and the words read from your product photos, with your team's category, tag and venue names, go to TypeSafe.</li>
+            <li><strong>Tariff search:</strong> the words you search for go to TypeSafe.</li>
+            <li><strong>Category group suggestions:</strong> your category names go to TypeSafe.</li>
+            <li><strong>Vendor map:</strong> a vendor's address goes to Google Maps to find it on the map.</li>
+            <li><strong>US shipping records:</strong> a vendor's company name goes to ImportYeti (through Apify) to look up its public US import records.</li>
+            <li><strong>Push notifications:</strong> the notification text and product photo go through Apple's push notification service.</li>
+            <li><strong>Payments:</strong> handled by Stripe. We never see your card number.</li>
+            <li><strong>AI Connection:</strong> only if you connect your own AI assistant (such as ChatGPT or Claude). That assistant then receives the catalog data you ask it about, under its own privacy terms.</li>
+        </ul>
+        <p>App versions 1.1.2 and earlier send the text of voice notes through OpenRouter to fill in product fields. Newer versions use TypeSafe instead.</p>
 
         <h2>Location Data</h2>
         <p>The Team Radar feature uses your location only while the app is in the foreground and you have enabled location sharing. You can disable location sharing at any time through Ghost Mode or device settings. We do not track your location when the app is closed.</p>

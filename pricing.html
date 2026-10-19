@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/theme.css">
+    <title>Pricing — Show Sourcing</title>
+    <meta name="description" content="Show Sourcing pricing: per-seat plans for sourcing teams, from $7.23 per seat per month with team discounts. Every plan starts with a 30-day free trial.">
+    <meta name="theme-color" content="#060a18" data-dark="#060a18" data-light="#f6f7fb">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://showsourcing.app/pricing">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060a18;
+            --accent: #f97316;
+            --accent2: #38bdf8;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --dim: #64748b;
+            --border: rgba(255,255,255,0.07);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px clamp(20px, 4vw, 40px);
+            background: rgba(6,10,24,0.88);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+        header .logo {
+            font-weight: 800; font-size: 0.95rem; color: var(--text);
+            text-decoration: none; letter-spacing: -0.01em;
+        }
+        header nav { display: flex; gap: clamp(14px, 2.5vw, 24px); }
+        header nav a {
+            color: var(--dim); text-decoration: none;
+            font-size: 0.8rem; font-weight: 500; transition: color 0.2s;
+        }
+        header nav a:hover, header nav a.active { color: var(--text); }
+
+        .page { max-width: 740px; margin: 0 auto; padding: 110px 24px 80px; }
+
+        .back { display: inline-flex; align-items: center; gap: 6px;
+            color: var(--dim); text-decoration: none; font-size: 0.8rem;
+            font-weight: 500; margin-bottom: 36px; transition: color 0.2s; }
+        .back:hover { color: var(--accent2); }
+
+        h1 {
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem); font-weight: 800;
+            letter-spacing: -0.02em; margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--text), var(--accent2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .meta { color: var(--dim); font-size: 0.8rem; margin-bottom: 32px; }
+        .bar { width: 40px; height: 3px; border-radius: 2px; margin-bottom: 40px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+        .card {
+            background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+            border-radius: 20px; padding: clamp(24px, 4vw, 44px);
+        }
+        h2 {
+            font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--accent);
+            margin-top: 36px; margin-bottom: 12px;
+        }
+        h2:first-child { margin-top: 0; }
+        p { color: var(--muted); line-height: 1.75; margin-bottom: 14px; font-size: 0.9rem; }
+        ul { color: var(--muted); line-height: 1.75; margin-bottom: 14px; padding-left: 20px; font-size: 0.9rem; }
+        li { margin-bottom: 6px; }
+        li::marker { color: var(--accent2); }
+        strong { color: var(--text); font-weight: 600; }
+        a { color: var(--accent2); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .foot {
+            position: fixed; bottom: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--accent2) 70%, transparent);
+            opacity: 0.45;
+        }
+        @media (max-width: 600px) { header { padding: 14px 16px; } .card { border-radius: 14px; } }
+
+        /* ---- pricing ---- */
+        .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 8px 0 28px; }
+        .plan { position: relative; border: 1px solid var(--border); border-radius: 18px; padding: 24px; background: rgba(255,255,255,0.03); }
+        .plan.best { border-color: rgba(249,115,22,0.55); background: rgba(249,115,22,0.06); }
+        .plan .tag { position: absolute; top: -11px; left: 20px; background: var(--accent); color: #111; font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; letter-spacing: .02em; }
+        .plan h3 { font-size: 1rem; font-weight: 700; color: var(--muted); margin-bottom: 10px; }
+        .plan .amount { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.02em; }
+        .plan .amount small { font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+        .plan .billed { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+        table.tiers { width: 100%; border-collapse: collapse; margin: 8px 0 6px; font-size: 0.95rem; }
+        table.tiers th, table.tiers td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); }
+        table.tiers th { color: var(--muted); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: .04em; }
+        table.tiers td.num, table.tiers th.num { text-align: right; font-variant-numeric: tabular-nums; }
+        ul.incl { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px 20px; margin-top: 8px; }
+        ul.incl li { padding-left: 24px; position: relative; color: var(--text); }
+        ul.incl li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+        .cta { display: inline-block; margin-top: 18px; background: var(--accent); color: #111; font-weight: 800; padding: 12px 22px; border-radius: 12px; text-decoration: none; }
+        .note { color: var(--muted); font-size: 0.88rem; margin-top: 10px; }
+        @media (max-width: 600px) {
+            header nav a[href="/privacy.html"], header nav a[href="/terms.html"] { display: none; }
+            table.tiers { font-size: 0.88rem; }
+            table.tiers th, table.tiers td { padding: 9px 4px; }
+            table.tiers .six { display: none; }
+        }
+            /* header fit with the theme toggle */
+        header nav { align-items: center; }
+        header .logo, header nav a { white-space: nowrap; }
+        @media (max-width: 600px) { header nav { gap: 12px; } }
+        /* ---- light mode (html.light is set by /theme.js) ---- */
+        html.light {
+            --bg: #f6f7fb;
+            --accent2: #0369a1;
+            --text: #0f172a;
+            --muted: #475569;
+            --dim: #5b6779;
+            --border: rgba(15,23,42,0.10);
+        }
+        html.light header { background: rgba(246,247,251,0.88); }
+        html.light .card, html.light .panel, html.light .plan {
+            background: #fff;
+            box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.05);
+        }
+        html.light .plan.best { background: #fff7ed; border-color: rgba(234,88,12,0.50); }
+        html.light h2, html.light .label { color: #c2410c; }
+        html.light ul.incl li::before { color: #ea580c; }
+        html.light .foot { opacity: 0.6; }
+        html.light .row.disc span:last-child { color: #15803d; }
+        html.light .promo input { background: #fff; border-color: rgba(15,23,42,0.16); }
+        html.light .promo input::placeholder { color: #64748b; }
+        html.light .promo button, html.light .ghost { background: #f1f5f9; border-color: rgba(15,23,42,0.14); }
+        html.light .promo-msg.err, html.light #pay-msg { color: #b91c1c; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a class="logo" href="/">Show Sourcing</a>
+    <nav>
+        <a href="/pricing" class="active">Pricing</a>
+        <a href="/help">Help</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    </nav>
+</header>
+
+<main class="page">
+    <a href="/" class="back">&larr; Back</a>
+    <h1>Pricing</h1>
+    <p class="meta">One price per team member. Every plan starts with a 30-day free trial. Cancel anytime.</p>
+    <div class="bar"></div>
+
+    <div class="plans">
+        <div class="plan best">
+            <span class="tag">SAVE 15%</span>
+            <h3>Yearly</h3>
+            <div class="amount">$8.50 <small>/ seat / month</small></div>
+            <div class="billed">Billed $102 per seat each year</div>
+        </div>
+        <div class="plan">
+            <h3>6 months</h3>
+            <div class="amount">$10 <small>/ seat / month</small></div>
+            <div class="billed">Billed $60 per seat every 6 months</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Team discounts</h2>
+        <p>Bigger teams pay less per seat. The discount applies to every seat on the plan.</p>
+        <table class="tiers">
+            <tr><th>Seats</th><th class="num">Discount</th><th class="num">Yearly, per seat / month</th><th class="num six">6 months, per seat</th></tr>
+            <tr><td>1&ndash;9</td><td class="num">&mdash;</td><td class="num">$8.50</td><td class="num six">$60.00</td></tr>
+            <tr><td>10&ndash;14</td><td class="num">5%</td><td class="num">$8.08</td><td class="num six">$57.00</td></tr>
+            <tr><td>15&ndash;19</td><td class="num">10%</td><td class="num">$7.65</td><td class="num six">$54.00</td></tr>
+            <tr><td>20+</td><td class="num">15%</td><td class="num">$7.23</td><td class="num six">$51.00</td></tr>
+        </table>
+        <p class="note">Prices in US dollars. Add seats any time: the new seats are charged pro-rated for the rest of the period. Remove seats and the difference is credited to your next renewal.</p>
+
+        <h2>Every plan includes</h2>
+        <ul class="incl">
+            <li>Products with photos, video and voice notes</li>
+            <li>Business card scanning into vendor contacts</li>
+            <li>FOB, MOQ, packaging and tariff in seconds</li>
+            <li>Landed cost (LDP) with country tariff rules</li>
+            <li>Team sync and the live Team Map at shows</li>
+            <li>Search and filters by vendor, category, price and more</li>
+            <li>Follow-up emails with product details filled in</li>
+            <li>iPhone, iPad, Mac and the web app</li>
+        </ul>
+
+        <h2>Questions</h2>
+        <p><strong>What is a seat?</strong> One person on your team. The person who pays uses a seat too.</p>
+        <p><strong>What happens after the trial?</strong> Your plan starts automatically unless you cancel before the 30 days end.</p>
+        <p><strong>Need more than 20 seats, or a custom plan?</strong> Write to <a href="mailto:general@showsourcing.app">general@showsourcing.app</a>.</p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;">
+            <a class="cta" style="margin-top:0;" href="https://app.showsourcing.app/subscribe">Start free trial on the web</a>
+            <a class="cta" style="margin-top:0;background:transparent;color:inherit;border:1px solid var(--border, rgba(127,127,127,.35));" href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" target="_blank" rel="noopener">Download the app</a>
+        </div>
+    </div>
+</main>
+
+<div class="foot"></div>
+</body>
+</html>
