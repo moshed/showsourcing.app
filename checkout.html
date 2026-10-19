@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/theme.css">
+    <title>Checkout — Show Sourcing</title>
+    <meta name="theme-color" content="#060a18" data-dark="#060a18" data-light="#f6f7fb">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060a18;
+            --accent: #f97316;
+            --accent2: #38bdf8;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --dim: #64748b;
+            --border: rgba(255,255,255,0.07);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px clamp(20px, 4vw, 40px);
+            background: rgba(6,10,24,0.88);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+        header .logo {
+            font-weight: 800; font-size: 0.95rem; color: var(--text);
+            text-decoration: none; letter-spacing: -0.01em;
+        }
+        header nav { display: flex; gap: clamp(14px, 2.5vw, 24px); }
+        header nav a {
+            color: var(--dim); text-decoration: none;
+            font-size: 0.8rem; font-weight: 500; transition: color 0.2s;
+        }
+        header nav a:hover, header nav a.active { color: var(--text); }
+
+        .page { max-width: 740px; margin: 0 auto; padding: 110px 24px 80px; }
+
+        h1 {
+            font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 800;
+            letter-spacing: -0.02em; margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--text), var(--accent2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .meta { color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+        .bar { width: 40px; height: 3px; border-radius: 2px; margin: 18px 0 28px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+        .msg { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+        .msg a { color: var(--accent2); }
+        .cta { display: inline-block; margin-top: 22px; padding: 13px 26px; border-radius: 12px;
+            background: var(--accent); color: #111; font-weight: 700; text-decoration: none; }
+        .trust { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px;
+            color: var(--dim); font-size: 0.8rem; }
+        .page { max-width: 980px; }
+        .grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 28px; align-items: start; }
+        .panel { border: 1px solid var(--border); border-radius: 18px; padding: 26px;
+            background: rgba(255,255,255,0.025); }
+        .sum-name { color: var(--muted); font-size: 0.9rem; font-weight: 600; }
+        .sum-big { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.02em; margin: 6px 0 4px; }
+        .sum-then { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+        .sum-then b { color: var(--text); }
+        .rows { margin-top: 22px; border-top: 1px solid var(--border); }
+        .row { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0;
+            border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); }
+        .row span:last-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+        .row.today span { color: var(--text); font-weight: 800; }
+        .row.disc span:last-child { color: #4ade80; }
+        [hidden] { display: none !important; }
+        .promo { display: flex; gap: 8px; margin-top: 18px; }
+        .promo input { flex: 1; min-width: 0; padding: 11px 12px; border-radius: 10px; font: inherit; font-size: 0.9rem;
+            background: #0e1426; color: var(--text); border: 1px solid rgba(255,255,255,0.10); }
+        .promo button, .ghost { padding: 11px 16px; border-radius: 10px; font: inherit; font-size: 0.85rem; font-weight: 700;
+            background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid rgba(255,255,255,0.10); cursor: pointer; }
+        .promo-msg { font-size: 0.82rem; margin-top: 8px; min-height: 1em; color: var(--muted); }
+        .promo-msg.err { color: #f87171; }
+        .label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--accent); margin: 0 0 12px; }
+        #contact { margin-bottom: 22px; }
+        #pay { width: 100%; margin-top: 22px; padding: 15px; border: 0; border-radius: 12px; cursor: pointer;
+            background: var(--accent); color: #111; font: inherit; font-size: 1rem; font-weight: 800; }
+        #pay:disabled { opacity: 0.45; cursor: default; }
+        #pay-msg { color: #f87171; font-size: 0.88rem; margin-top: 12px; min-height: 1em; }
+        .fine { color: var(--dim); font-size: 0.78rem; line-height: 1.6; margin-top: 14px; }
+        .skeleton { color: var(--dim); font-size: 0.9rem; padding: 30px 0; }
+        @media (max-width: 760px) {
+            .grid { grid-template-columns: 1fr; gap: 16px; }
+            .page { padding-left: 14px; padding-right: 14px; padding-top: 92px; }
+            .panel { padding: 20px 16px; }
+        }
+            /* header fit with the theme toggle */
+        header nav { align-items: center; }
+        header .logo, header nav a { white-space: nowrap; }
+        @media (max-width: 600px) { header nav { gap: 12px; } }
+        /* ---- light mode (html.light is set by /theme.js) ---- */
+        html.light {
+            --bg: #f6f7fb;
+            --accent2: #0369a1;
+            --text: #0f172a;
+            --muted: #475569;
+            --dim: #5b6779;
+            --border: rgba(15,23,42,0.10);
+        }
+        html.light header { background: rgba(246,247,251,0.88); }
+        html.light .card, html.light .panel, html.light .plan {
+            background: #fff;
+            box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.05);
+        }
+        html.light .plan.best { background: #fff7ed; border-color: rgba(234,88,12,0.50); }
+        html.light h2, html.light .label { color: #c2410c; }
+        html.light ul.incl li::before { color: #ea580c; }
+        html.light .foot { opacity: 0.6; }
+        html.light .row.disc span:last-child { color: #15803d; }
+        html.light .promo input { background: #fff; border-color: rgba(15,23,42,0.16); }
+        html.light .promo input::placeholder { color: #64748b; }
+        html.light .promo button, html.light .ghost { background: #f1f5f9; border-color: rgba(15,23,42,0.14); }
+        html.light .promo-msg.err, html.light #pay-msg { color: #b91c1c; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a class="logo" href="/">Show Sourcing</a>
+    <nav>
+        <a href="/pricing">Pricing</a>
+        <a href="https://app.showsourcing.app/login">Web Portal</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    </nav>
+</header>
+
+<main class="page">
+    <h1>Start your team plan</h1>
+    <p class="meta">30 days free. You pay nothing today. Cancel anytime before the trial ends.</p>
+    <div class="bar"></div>
+
+    <div id="error" class="msg" hidden>
+        This checkout link is not valid or it expired.
+        Go back to the Show Sourcing app and tap Subscribe again.
+        Need help? Write to <a href="mailto:general@showsourcing.app">general@showsourcing.app</a>.
+    </div>
+
+    <div class="grid" id="grid">
+        <section class="panel" id="summary">
+            <div class="sum-name" id="s-name">Show Sourcing Team</div>
+            <div class="sum-big" id="s-big">30 days free</div>
+            <div class="sum-then" id="s-then">Loading your plan…</div>
+            <div class="rows">
+                <div class="row"><span id="s-seats">Seats</span><span id="s-unit">—</span></div>
+                <div class="row disc" id="s-disc-row" hidden><span>Promo code</span><span id="s-disc">—</span></div>
+                <div class="row"><span id="s-next-label">After the trial</span><span id="s-next">—</span></div>
+                <div class="row today"><span>Due today</span><span id="s-today">$0.00</span></div>
+            </div>
+            <form class="promo" id="promo-form">
+                <input id="promo" placeholder="Promo code" autocomplete="off" autocapitalize="characters">
+                <button type="submit" id="promo-btn">Apply</button>
+            </form>
+            <div class="promo-msg" id="promo-msg"></div>
+        </section>
+
+        <section class="panel">
+            <form id="pay-form">
+                <div id="contact"></div>
+                <p class="label">Payment</p>
+                <div id="payment"><div class="skeleton">Loading secure payment form…</div></div>
+                <button id="pay" type="submit" disabled>Start free trial</button>
+                <div id="pay-msg"></div>
+                <p class="fine">🔒 Card details go straight to Stripe. We never see them.
+                    <a href="/terms.html" style="color:var(--dim)">Terms</a></p>
+            </form>
+        </section>
+    </div>
+</main>
+<script src="https://js.stripe.com/endive/stripe.js"></script>
+<script>
+(function () {
+    // The app opens /checkout#cs=<client secret>&m=t|l. The fragment never reaches a server.
+    var p = new URLSearchParams(location.hash.slice(1));
+    var secret = p.get("cs");
+    var key = p.get("m") === "l"
+        ? "pk_live_51IpoksLgm9VDovUEg4LIa67kwxNuyT7UltbZxdCEA6PhwmpueQwAEnhcD3EUBvEdm1KS2XNeA05B5D2kl9e5cRa300SACwCHWU"
+        : "pk_test_51IpoksLgm9VDovUEWfGQ1SSHlUBYCdHKqjm58rCfx50HExJVtT0iTqUuLlZXK21NoZ1NlUg2SoXibqQWQeSo4dN500AVTa7GdN";
+    var $ = function (id) { return document.getElementById(id); };
+    function fail(e) {
+        if (e) console.error(e);
+        $("grid").hidden = true;
+        $("error").hidden = false;
+    }
+    if (!secret || !window.Stripe) return fail("no secret or Stripe.js");
+
+    // Stripe Elements follow the site theme (/theme.js sets html.light).
+    function buildAppearance() {
+        var light = document.documentElement.classList.contains("light");
+        var shared = {
+            colorPrimary: "#f97316",
+            fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+            borderRadius: "10px",
+            spacingUnit: "4px"
+        };
+        function vars(extra) { var v = {}, k; for (k in shared) v[k] = shared[k]; for (k in extra) v[k] = extra[k]; return v; }
+        if (light) return {
+            theme: "stripe",
+            variables: vars({
+                colorBackground: "#ffffff",
+                colorText: "#0f172a",
+                colorTextSecondary: "#475569",
+                colorTextPlaceholder: "#64748b",
+                colorDanger: "#b91c1c"
+            }),
+            rules: {
+                ".Input": { border: "1px solid rgba(15,23,42,0.16)", boxShadow: "none" },
+                ".Input:focus": { border: "1px solid #f97316", boxShadow: "0 0 0 3px rgba(249,115,22,0.18)" },
+                ".Tab": { border: "1px solid rgba(15,23,42,0.14)", backgroundColor: "#ffffff" },
+                ".Tab--selected": { border: "1px solid #f97316" },
+                ".Label": { color: "#475569", fontWeight: "500" }
+            }
+        };
+        return {
+            theme: "night",
+            variables: vars({
+                colorBackground: "#0e1426",
+                colorText: "#f1f5f9",
+                colorTextSecondary: "#94a3b8",
+                colorTextPlaceholder: "#64748b",
+                colorDanger: "#f87171"
+            }),
+            rules: {
+                ".Input": { border: "1px solid rgba(255,255,255,0.10)", boxShadow: "none" },
+                ".Input:focus": { border: "1px solid #f97316", boxShadow: "0 0 0 3px rgba(249,115,22,0.18)" },
+                ".Tab": { border: "1px solid rgba(255,255,255,0.10)", backgroundColor: "#0e1426" },
+                ".Tab--selected": { border: "1px solid #f97316" },
+                ".Label": { color: "#94a3b8", fontWeight: "500" }
+            }
+        };
+    }
+    var appearance = buildAppearance();
+
+    var checkout, actions;
+    try {
+        checkout = Stripe(key).initCheckoutElementsSdk({
+            clientSecret: Promise.resolve(secret),
+            elementsOptions: {
+                appearance: appearance,
+                fonts: [{ cssSrc: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" }]
+            }
+        });
+    } catch (e) { return fail(e); }
+
+    function every(rec) {
+        if (!rec) return "";
+        var n = rec.intervalCount || 1, u = rec.interval;
+        if (u === "year" && n === 1) return "per year";
+        if (u === "month" && n === 6) return "every 6 months";
+        return "every " + n + " " + u + (n > 1 ? "s" : "");
+    }
+    function render(s) {
+        var li = (s.lineItems || [])[0] || {};
+        var rec = s.recurring || {};
+        var next = rec.dueNext || {};
+        var trial = rec.trial;
+        $("s-name").textContent = li.name || "Show Sourcing Team";
+        $("s-big").textContent = trial ? (trial.trialPeriodDays + " days free") : (s.total.total.amount);
+        var nextTotal = next.total ? next.total.amount : "";
+        var when = trial && trial.trialEnd
+            ? new Date(trial.trialEnd * 1000).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })
+            : "";
+        $("s-then").innerHTML = "";
+        $("s-then").append("Then ");
+        var b = document.createElement("b"); b.textContent = nextTotal + " " + every(rec); $("s-then").append(b);
+        if (when) $("s-then").append(", starting " + when + ".");
+        var q = li.quantity || 1;
+        $("s-seats").textContent = q + " seat" + (q > 1 ? "s" : "") + " × " + (li.unitAmount ? li.unitAmount.amount : "");
+        $("s-unit").textContent = next.subtotal ? next.subtotal.amount : "";
+        var disc = next.discount && next.discount.minorUnitsAmount > 0;
+        $("s-disc-row").hidden = !disc;
+        if (disc) $("s-disc").textContent = "−" + next.discount.amount;
+        $("s-next-label").textContent = when ? "From " + when : "After the trial";
+        $("s-next").textContent = nextTotal;
+        $("s-today").textContent = s.total.total.amount;
+        $("pay").disabled = !s.canConfirm;
+    }
+    checkout.on("change", render);
+
+    document.addEventListener("ss-theme", function () {
+        if (checkout && typeof checkout.changeAppearance === "function") {
+            try { checkout.changeAppearance(buildAppearance()); } catch (e) { console.error(e); }
+        }
+    });
+
+    try {
+        checkout.createContactDetailsElement().mount("#contact");
+        $("payment").innerHTML = "";
+        checkout.createPaymentElement({ layout: { type: "accordion", defaultCollapsed: false, radios: "never", spacedAccordionItems: true } }).mount("#payment");
+    } catch (e) { return fail(e); }
+
+    checkout.loadActions().then(function (r) {
+        if (r.type !== "success") return fail(r.error);
+        actions = r.actions;
+        render(actions.getSession());
+    }).catch(fail);
+
+    $("promo-form").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        var code = $("promo").value.trim();
+        if (!code || !actions) return;
+        $("promo-btn").disabled = true;
+        var r = await actions.applyPromotionCode(code);
+        $("promo-btn").disabled = false;
+        var m = $("promo-msg");
+        if (r.type === "error") { m.textContent = r.error.message; m.className = "promo-msg err"; }
+        else { m.textContent = "Code applied."; m.className = "promo-msg"; }
+    });
+
+    $("pay-form").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        if (!actions) return;
+        $("pay").disabled = true;
+        $("pay").textContent = "Starting…";
+        $("pay-msg").textContent = "";
+        // On success Stripe sends the browser to /checkout-done.
+        var r = await actions.confirm();
+        if (r.type === "error") $("pay-msg").textContent = r.error.message;
+        $("pay").textContent = "Start free trial";
+        $("pay").disabled = false;
+    });
+})();
+</script>
+</body>
+</html>

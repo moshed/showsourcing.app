@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/theme.css">
+    <title>Payment complete — Show Sourcing</title>
+    <meta name="theme-color" content="#060a18" data-dark="#060a18" data-light="#f6f7fb">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060a18;
+            --accent: #f97316;
+            --accent2: #38bdf8;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --dim: #64748b;
+            --border: rgba(255,255,255,0.07);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px clamp(20px, 4vw, 40px);
+            background: rgba(6,10,24,0.88);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+        header .logo {
+            font-weight: 800; font-size: 0.95rem; color: var(--text);
+            text-decoration: none; letter-spacing: -0.01em;
+        }
+        header nav { display: flex; gap: clamp(14px, 2.5vw, 24px); }
+        header nav a {
+            color: var(--dim); text-decoration: none;
+            font-size: 0.8rem; font-weight: 500; transition: color 0.2s;
+        }
+        header nav a:hover, header nav a.active { color: var(--text); }
+
+        .page { max-width: 740px; margin: 0 auto; padding: 110px 24px 80px; }
+
+        h1 {
+            font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 800;
+            letter-spacing: -0.02em; margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--text), var(--accent2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .meta { color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+        .bar { width: 40px; height: 3px; border-radius: 2px; margin: 18px 0 28px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+        .msg { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+        .msg a { color: var(--accent2); }
+        .cta { display: inline-block; margin-top: 22px; padding: 13px 26px; border-radius: 12px;
+            background: var(--accent); color: #111; font-weight: 700; text-decoration: none; }
+        .trust { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px;
+            color: var(--dim); font-size: 0.8rem; }
+            /* header fit with the theme toggle */
+        header nav { align-items: center; }
+        header .logo, header nav a { white-space: nowrap; }
+        @media (max-width: 600px) { header nav { gap: 12px; } }
+        /* ---- light mode (html.light is set by /theme.js) ---- */
+        html.light {
+            --bg: #f6f7fb;
+            --accent2: #0369a1;
+            --text: #0f172a;
+            --muted: #475569;
+            --dim: #5b6779;
+            --border: rgba(15,23,42,0.10);
+        }
+        html.light header { background: rgba(246,247,251,0.88); }
+        html.light .card, html.light .panel, html.light .plan {
+            background: #fff;
+            box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.05);
+        }
+        html.light .plan.best { background: #fff7ed; border-color: rgba(234,88,12,0.50); }
+        html.light h2, html.light .label { color: #c2410c; }
+        html.light ul.incl li::before { color: #ea580c; }
+        html.light .foot { opacity: 0.6; }
+        html.light .row.disc span:last-child { color: #15803d; }
+        html.light .promo input { background: #fff; border-color: rgba(15,23,42,0.16); }
+        html.light .promo input::placeholder { color: #64748b; }
+        html.light .promo button, html.light .ghost { background: #f1f5f9; border-color: rgba(15,23,42,0.14); }
+        html.light .promo-msg.err, html.light #pay-msg { color: #b91c1c; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a class="logo" href="/">Show Sourcing</a>
+    <nav>
+        <a href="/pricing">Pricing</a>
+        <a href="https://app.showsourcing.app/login">Web Portal</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    </nav>
+</header>
+
+<main class="page">
+    <h1>You're all set</h1>
+    <p class="meta">Your team plan is active. Your 30-day free trial starts today.</p>
+    <div class="bar"></div>
+    <p class="msg">Go back to the Show Sourcing app. Your team and seats update in a few seconds.</p>
+    <a class="cta" id="back" href="showsourcing://payment-success">Back to Show Sourcing</a>
+    <p class="msg" style="margin-top:22px">On a computer? Open the <a href="https://app.showsourcing.app/login">Web Portal</a> to see your team's products and vendors.</p>
+</main>
+<script>
+// On a phone with the app, try to hand straight back to it once.
+var sid = new URLSearchParams(location.search).get("session_id") || "";
+var back = "showsourcing://payment-success" + (sid ? "?session_id=" + encodeURIComponent(sid) : "");
+document.getElementById("back").href = back;
+if (/iPhone|iPad|iPod/.test(navigator.userAgent)) setTimeout(function () { location.href = back; }, 600);
+</script>
+</body>
+</html>

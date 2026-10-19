@@ -1,0 +1,34 @@
+/* Light/dark toggle button. The page's own <style> holds the light colors (html.light ...). */
+.theme-toggle {
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: #cbd5e1;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.theme-toggle:hover { background: rgba(255,255,255,0.10); color: #fff; }
+.theme-toggle:focus-visible { outline: 2px solid #f97316; outline-offset: 2px; }
+.theme-toggle svg { width: 16px; height: 16px; display: block; }
+.theme-toggle .icon-moon { display: none; }
+
+html.light .theme-toggle {
+    border-color: rgba(15,23,42,0.14);
+    background: #fff;
+    color: #334155;
+}
+html.light .theme-toggle:hover { background: #f1f5f9; color: #0f172a; }
+html.light .theme-toggle .icon-sun { display: none; }
+html.light .theme-toggle .icon-moon { display: block; }
