@@ -10,7 +10,8 @@ Writes (from help/help.json + the facts below):
 
 Run by build_help.sh on every deploy, so the FAQ text never drifts from the app.
 Facts only: prices and features come from the app and help.json. No ratings,
-user counts or testimonials. No competitor names (Moshe, 2026-10-17).
+user counts or testimonials. No competitor names on THIS page (Moshe, 2026-10-17). Named, sourced
+"Show Sourcing vs X" pages live in content/ (build_blog.py, Moshe 2026-10-20).
 """
 import html
 import json
@@ -42,7 +43,7 @@ def software_ld(page_url: str) -> dict:
         "description": (
             "A CRM for buyers who source products at trade shows. Capture products with photos, "
             "vendors from business cards, FOB prices and price breaks, and see landed cost (LDP) "
-            "with US tariffs. Teams share everything live. Every plan starts with a 30-day free trial."
+            "with US tariffs. Teams share everything live. Every plan starts with a 7-day free trial."
         ),
         "downloadUrl": APPSTORE,
         "image": f"{SITE}/app-icon.png",
@@ -222,7 +223,7 @@ def shell(slug: str, title: str, description: str, body: str, faq_ids: list[str]
 def cta() -> str:
     return f"""<section class="cta">
     <h2>Try it at your next show</h2>
-    <p class="muted">Every plan starts with a 30-day free trial. Then $10 a seat a month on the 6-month plan, or $8.50 a seat a month billed yearly. Teams of 10, 15 and 20 seats get 5%, 10% and 15% off.</p>
+    <p class="muted">Every plan starts with a 7-day free trial. Then $10 a seat a month on the 6-month plan, or $8.50 a seat a month billed yearly. Teams of 10, 15 and 20 seats get 5%, 10% and 15% off.</p>
     <div class="actions">
         <a class="btn primary" href="{APPSTORE}" target="_blank" rel="noopener">Download on the App Store</a>
         <a class="btn" href="/pricing">See pricing</a>
@@ -252,7 +253,7 @@ def page_trade_show() -> str:
 <p class="lead">Show Sourcing is a CRM built for the booth. At Canton Fair, Global Sources, the Hong Kong fairs or a factory visit, you photograph a product, add the vendor and the price, and the app works out the landed cost. Your team sees it on their phones a few seconds later.</p>
 <div class="bar"></div>
 <div class="actions">
-    <a class="btn primary" href="{APPSTORE}" target="_blank" rel="noopener">Start the 30-day free trial</a>
+    <a class="btn primary" href="{APPSTORE}" target="_blank" rel="noopener">Start the 7-day free trial</a>
     <a class="btn" href="/help">How it works</a>
 </div>
 
@@ -282,7 +283,7 @@ def page_trade_show() -> str:
 """
     return shell("trade-show-sourcing-app",
                  "Trade show sourcing app: record vendors, products and prices | Show Sourcing",
-                 "An iPhone, iPad and Mac app for buyers at trade shows: photograph products, scan vendor business cards, record FOB prices and price breaks, and see landed cost with US tariffs. 30-day free trial.",
+                 "An iPhone, iPad and Mac app for buyers at trade shows: photograph products, scan vendor business cards, record FOB prices and price breaks, and see landed cost with US tariffs. 7-day free trial.",
                  body, faq)
 
 
@@ -353,6 +354,9 @@ def page_compare() -> str:
 </div>
 <p class="fine">"With work" means you can get there with your own columns, formulas, folders or add-ons.</p>
 
+<h2>Show Sourcing vs other tools, one by one</h2>
+<ul class="muted"><!-- AUTO:vs --><!-- /AUTO:vs --></ul>
+
 <h2>When a spreadsheet is enough</h2>
 <p class="muted">If you visit a handful of booths, buy alone, and only need a price list, a spreadsheet is fine and free. Show Sourcing earns its place when photos, vendors, price breaks and landed cost all need to stay together, and when a team works the same show.</p>
 
@@ -389,7 +393,7 @@ def llms_txt() -> str:
     FEATURES = complete_features()
     return f"""# Show Sourcing
 
-> Show Sourcing is a CRM for buyers who source products at trade shows. On iPhone, iPad and Mac, buyers photograph products, add vendors from business cards, record FOB prices, price breaks and MOQ, and see landed cost (LDP) with US tariffs. Teams share every product live. Every plan starts with a 30-day free trial.
+> Show Sourcing is a CRM for buyers who source products at trade shows. On iPhone, iPad and Mac, buyers photograph products, add vendors from business cards, record FOB prices, price breaks and MOQ, and see landed cost (LDP) with US tariffs. Teams share every product live. Every plan starts with a 7-day free trial.
 
 ## Who it is for
 
@@ -439,7 +443,7 @@ Generated from the app's own Help, one line per topic. Details: {SITE}/llms-full
 
 ## Pricing
 
-- Per seat (one seat per person); 30-day free trial on every plan
+- Per seat (one seat per person); 7-day free trial on every plan
 - 6 months: $10 a seat a month ($60 a seat per 6 months)
 - Yearly: $8.50 a seat a month ($102 a seat per year)
 - Team discounts: 5% at 10 seats, 10% at 15, 15% at 20

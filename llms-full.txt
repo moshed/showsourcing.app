@@ -162,7 +162,7 @@ Use Settings > Data > Merge Vendors. The app shows likely matches. Pick the vend
 Open Settings and tap your account. Tap Create Team and enter a name. You are the owner.
 
 ### How do I invite people to my team?
-In your account screen, tap Invite Member and enter their email. They get an email and an invite in the app. Each person uses one seat.
+Only the team owner can invite. In your account screen, tap Invite Member and enter their email. They get an email and an invite in the app. Each person uses one seat. If you are not the owner, ask your team owner to invite them.
 
 ### Who sees my products?
 Everyone on your team. Products sync to all team phones in a few seconds. People outside your team never see them.
@@ -255,7 +255,7 @@ Settings > Data > Clear Local Data. It deletes the copy on this phone only. Noth
 ## Plans and Billing
 
 ### How much does Show Sourcing cost?
-You pay per seat (one seat for each person). Yearly is $8.50 a seat a month. 6 months is $10 a seat a month. Teams of 10 or more get a discount. Every plan starts with a 30-day free trial. See showsourcing.app/pricing.
+You pay per seat (one seat for each person). Yearly is $8.50 a seat a month. 6 months is $10 a seat a month. Teams of 10 or more get a discount. Every plan starts with a 7-day free trial. See showsourcing.app/pricing.
 
 ### How do I add or remove seats?
 The team owner opens Settings > account > Team Billing. New seats cost a share of the rest of the period. Removed seats give a credit on the next renewal.
@@ -270,3 +270,22 @@ Settings > Support > Email Support. The app attaches its log, which helps us fin
 
 ### How do I try new features first?
 Join the beta on TestFlight. Use the Join the Beta button on showsourcing.app/help. Beta builds can have bugs. Please tell us about them.
+
+<!-- AUTO:content -->
+## Guides and comparisons
+
+- [How to source products at a trade show: the complete buyer's guide](https://showsourcing.app/blog/how-to-source-products-at-trade-shows/): A step-by-step guide to sourcing products at trade shows like Canton Fair, Global Sources and the Hong Kong fairs: planning, what to record at each booth, comparing quotes and following up.
+- [The trade show sourcing toolkit: what to bring and which apps you need](https://showsourcing.app/blog/trade-show-sourcing-tools/): A practical packing list and app list for buyers going to sourcing shows: power, cards, payment, connectivity, translation, and how to record products and vendors.
+- [25 questions to ask suppliers at a trade show](https://showsourcing.app/blog/questions-to-ask-suppliers-at-trade-shows/): The questions buyers should ask at every booth, grouped by price, MOQ, product, factory, samples and shipping, with what each answer tells you.
+- [How to follow up with suppliers after a trade show (with templates)](https://showsourcing.app/blog/follow-up-with-suppliers-after-trade-show/): When and how to follow up with suppliers after Canton Fair, Global Sources or any sourcing show, with email and WeChat templates and a simple process for hundreds of contacts.
+- [How to compare supplier quotes: FOB, MOQ, price breaks and landed cost](https://showsourcing.app/blog/compare-supplier-quotes/): A worked example of comparing quotes from several suppliers for the same product, using price terms, price breaks, MOQ and landed cost per unit.
+- [Global Sources and HKTDC Hong Kong shows: a buyer's guide](https://showsourcing.app/blog/hong-kong-sourcing-shows-guide/): How buyers can plan the Hong Kong sourcing shows held each April and October, Global Sources at AsiaWorld-Expo and the HKTDC fairs in Wan Chai, plus how they fit with Canton Fair.
+- [Show Sourcing vs CamCard for trade show business cards](https://showsourcing.app/compare/show-sourcing-vs-camcard/): CamCard is a dedicated business card scanner. Show Sourcing scans cards too, and links each vendor to the products, prices and landed cost from their booth.
+- [Show Sourcing vs Evernote for trade show notes](https://showsourcing.app/compare/show-sourcing-vs-evernote/): Evernote captures notes, photos and scans. Show Sourcing captures products, vendors and prices you can compare. A comparison for buyers at sourcing shows.
+- [Show Sourcing vs Airtable for product sourcing](https://showsourcing.app/compare/show-sourcing-vs-airtable/): Airtable can be built into a sourcing database. Show Sourcing comes ready for trade shows. A comparison of setup, card scanning, landed cost, offline use and price per seat.
+- [Show Sourcing vs the official Canton Fair and HKTDC apps](https://showsourcing.app/compare/show-sourcing-vs-official-show-apps/): The official show apps help you find exhibitors and get in. Show Sourcing records what you found and what it costs. Why buyers use both at Canton Fair and the Hong Kong fairs.
+- [Show Sourcing vs Notion for trade show notes](https://showsourcing.app/compare/show-sourcing-vs-notion/): Notion is a great workspace for notes and docs. Show Sourcing is built for recording products, vendors and prices at trade shows. Here is how they compare for buyers.
+- [Show Sourcing vs Excel and Google Sheets for trade show sourcing](https://showsourcing.app/compare/show-sourcing-vs-excel-google-sheets/): When a spreadsheet is enough for recording products at a trade show, and when a sourcing app like Show Sourcing saves time: photos, business cards, price breaks, landed cost and team edits.
+- [Show Sourcing vs HubSpot CRM for buyers and importers](https://showsourcing.app/compare/show-sourcing-vs-hubspot-crm/): HubSpot is a sales CRM built around contacts and deals. Show Sourcing is a sourcing CRM built around products, quotes and landed cost. A comparison for buyers at trade shows.
+- [Show Sourcing vs CardFlow Expo](https://showsourcing.app/compare/show-sourcing-vs-cardflow-expo/): An honest comparison of Show Sourcing and CardFlow Expo for buyers at trade shows: platforms, card scanning, products and prices, landed cost, teams and pricing.
+<!-- /AUTO:content -->

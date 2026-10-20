@@ -1,8 +1,8 @@
 {
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "appStore": {
-    "version": "1.1.1",
-    "build": "5"
+    "version": "1.1.2",
+    "build": "16"
   },
   "beta": {
     "version": "1.1.3",
@@ -29,113 +29,16 @@
       "version": "1.1.2",
       "build": "16",
       "date": "2026-10-18",
-      "channel": "beta",
+      "channel": "appStore",
       "notes": [
-        "Use Show Sourcing free: add up to 10 products and 5 vendors before starting a trial",
-        "Scan a stack of cards: cards from the same company are grouped, and you confirm before anything is saved",
-        "Vendor notes: write your own notes on any vendor; they sync and are searchable",
-        "Prices in any currency: type ¥32.50 and see ≈ $4.86; tap Convert to switch",
-        "LDP shows as many decimals as your prices",
-        "Select and copy text right off a business card photo",
-        "Category groups suggest which categories belong",
-        "Smarter card reading: job titles, office and factory addresses, English names first"
-      ]
-    },
-    {
-      "version": "1.1.2",
-      "build": "8",
-      "date": "2026-10-18",
-      "channel": "beta",
-      "notes": [
-        "1.1.2 (8)",
-        "Free plan: use the app without a plan for up to 10 products and 5 vendors, then start the free trial.",
-        "The words on every photo are read in the background, newest first. Opening a product reads it right away, and a new photo is read again.",
-        "Edits send only the fields you changed, so a teammate's change to another field is not undone.",
-        "Edits made with no signal upload when you are back online. Before, they could get stuck after 3 tries.",
-        "Business cards: English first for the company, contact name and address."
-      ]
-    },
-    {
-      "version": "1.1.2",
-      "build": "6",
-      "date": "2026-10-18",
-      "channel": "beta",
-      "notes": [
-        "1.1.2 (6) - internal test",
-        "Spec tables on product photos: open a product with a spec sheet photo (e.g. a KY product), tap Redo on Text on the photos, and the specs show as a table.",
-        "Everything from 1.1.2 (5)."
-      ]
-    },
-    {
-      "version": "1.1.2",
-      "build": "5",
-      "date": "2026-10-18",
-      "channel": "beta",
-      "notes": [
-        "1.1.2 (5)",
-        "Card scan: vendor names drop the city (DongGuan jinghongxin Technology -> Jinghongxin), and an English company name wins over a Chinese one only when it looks like a real name.",
-        "Product page: Text on the photos, with Redo.",
-        "Everything from earlier 1.1.2 builds: Create lists scroll, Text from the card on vendors, the lag fix."
-      ]
-    },
-    {
-      "version": "1.1.2",
-      "build": "4",
-      "date": "2026-10-18",
-      "channel": "beta",
-      "notes": [
-        "1.1.2 (4)",
-        "Product page: Text on the photos, its own card with Redo (re-reads the words on every photo).",
-        "Everything from 1.1.2 (3): Create lists scroll, English company names win over Chinese on cards, Text from the card on vendors, the lag fix."
-      ]
-    },
-    {
-      "version": "1.1.2",
-      "build": "3",
-      "date": "2026-10-18",
-      "channel": "beta",
-      "notes": [
-        "1.1.2 (3)",
-        "Create: long vendor, category and tag match lists scroll now (the keyboard stays up).",
-        "Card scan: a Chinese name never becomes the vendor name when the card prints an English company name.",
-        "Vendor page: Text from the card, with Redo.",
-        "The app is smooth again (lag fix)."
-      ]
-    },
-    {
-      "version": "1.1.2",
-      "build": "2",
-      "date": "2026-10-17",
-      "channel": "beta",
-      "notes": [
-        "1.1.2 (2)",
-        "Vendor page: Text from the card shows what the card reader read, with Redo to read the card again.",
-        "Also in 1.1.2: the lag fix (the app is smooth again), smoother Filters, colored status flag, custom fields per category, Choice fields, QR codes from cards."
-      ]
-    },
-    {
-      "version": "1.1.2",
-      "build": "1",
-      "date": "2026-10-17",
-      "channel": "beta",
-      "notes": [
-        "1.1.2 (1): the same as 1.1.1, now in App Store review, with the lag fix (a settings loop kept the app at 100% CPU).",
-        "Custom fields can show only for chosen categories (Settings > Fields > Show For).",
-        "New field type: Choice. Fill in the options; pick one with a chip.",
-        "Card scan reads QR codes: vCard, WhatsApp, website, email and phone fill empty fields.",
-        "WeChat and WhatsApp QR codes show on the vendor page. Tap to show full screen; hold to save to Photos.",
-        "Fast scroll: drag the right edge of Products or Vendors to jump through the list.",
-        "Card names: a card with English and Chinese names keeps the English name.",
-        "Small text on cards (like emails) reads better.",
-        "Card scan never adds a phone, email or WeChat that is not on the card.",
-        "Product grid: vendor gets the full line; narrow tiles show just the price.",
-        "Vendor pages open faster; smoother scrolling with large catalogs.",
-        "Spotlight and Siri search include custom field values and full vendor addresses.",
-        "Clear Local Data warns when items are not on the server yet.",
-        "Mac: status list from the flag (Cmd-S, arrow keys), comments pane on the right (Opt-Cmd-C), email (Shift-Cmd-E).",
-        "Deleting several card photos in a row removes the right card each time.",
-        "Merging vendors no longer leaves the old vendor behind.",
-        "Card photos no longer show twice."
+        "Smarter card scan: job titles, office and factory addresses, and English names first",
+        "Multiple cards: swipe between a vendor's cards, newest first",
+        "Select text: copy any text right off a card photo",
+        "Scan a stack of cards at once: cards from the same company are grouped into one vendor",
+        "Vendor notes: write down what you remember about each vendor",
+        "Price in RMB: see the USD amount as you type, and convert with one tap",
+        "Photo text: search the words printed on your product photos",
+        "Faster, more reliable sync, even offline"
       ]
     },
     {

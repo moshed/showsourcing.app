@@ -7,3 +7,4 @@ SRC="../Show Sourcing/Resources/Help"
 cp "$SRC/help.json" "$SRC/changelog.json" help/
 echo "Copied help.json and changelog.json into Website/help/"
 python3 build_pages.py
+python3 build_blog.py

@@ -896,7 +896,7 @@
         {
           "id": "invite",
           "question": "How do I invite people to my team?",
-          "answer": "In your account screen, tap Invite Member and enter their email. They get an email and an invite in the app. Each person uses one seat.",
+          "answer": "Only the team owner can invite. In your account screen, tap Invite Member and enter their email. They get an email and an invite in the app. Each person uses one seat. If you are not the owner, ask your team owner to invite them.",
           "keywords": [
             "invite",
             "add member",
@@ -1381,7 +1381,7 @@
         {
           "id": "price",
           "question": "How much does Show Sourcing cost?",
-          "answer": "You pay per seat (one seat for each person). Yearly is $8.50 a seat a month. 6 months is $10 a seat a month. Teams of 10 or more get a discount. Every plan starts with a 30-day free trial. See showsourcing.app/pricing.",
+          "answer": "You pay per seat (one seat for each person). Yearly is $8.50 a seat a month. 6 months is $10 a seat a month. Teams of 10 or more get a discount. Every plan starts with a 7-day free trial. See showsourcing.app/pricing.",
           "keywords": [
             "price",
             "cost",

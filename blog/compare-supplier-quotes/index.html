@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/theme.css">
+    <title>How to compare supplier quotes: FOB, MOQ, price breaks and landed cost &mdash; Show Sourcing</title>
+    <meta name="description" content="A worked example of comparing quotes from several suppliers for the same product, using price terms, price breaks, MOQ and landed cost per unit.">
+    <meta name="author" content="DNZ">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#060a18" data-dark="#060a18" data-light="#f6f7fb">
+    <link rel="canonical" href="https://showsourcing.app/blog/compare-supplier-quotes/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Show Sourcing">
+    <meta property="og:url" content="https://showsourcing.app/blog/compare-supplier-quotes/">
+    <meta property="og:title" content="How to compare supplier quotes: FOB, MOQ, price breaks and landed cost">
+    <meta property="og:description" content="A worked example of comparing quotes from several suppliers for the same product, using price terms, price breaks, MOQ and landed cost per unit.">
+    <meta property="og:image" content="https://showsourcing.app/app-icon.png">
+    <meta property="article:published_time" content="2026-10-20">
+    <meta property="article:modified_time" content="2026-10-20">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to compare supplier quotes: FOB, MOQ, price breaks and landed cost">
+    <meta name="twitter:description" content="A worked example of comparing quotes from several suppliers for the same product, using price terms, price breaks, MOQ and landed cost per unit.">
+    <meta name="twitter:image" content="https://showsourcing.app/app-icon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/app-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "How to compare supplier quotes: FOB, MOQ, price breaks and landed cost",
+      "description": "A worked example of comparing quotes from several suppliers for the same product, using price terms, price breaks, MOQ and landed cost per unit.",
+      "image": "https://showsourcing.app/app-icon.png",
+      "datePublished": "2026-10-20",
+      "dateModified": "2026-10-20",
+      "author": {
+        "@type": "Organization",
+        "name": "DNZ",
+        "url": "https://showsourcing.app"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "DNZ",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://showsourcing.app/app-icon.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://showsourcing.app/blog/compare-supplier-quotes/"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Show Sourcing",
+        "url": "https://showsourcing.app",
+        "operatingSystem": "iOS, iPadOS, macOS",
+        "applicationCategory": "BusinessApplication"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://showsourcing.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://showsourcing.app/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to compare supplier quotes: FOB, MOQ, price breaks and landed cost",
+          "item": "https://showsourcing.app/blog/compare-supplier-quotes/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I compare supplier quotes with different price terms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Convert every quote to one term, usually FOB. Add the costs an EXW quote does not include (trucking to the port, export clearance). Remove the freight and insurance a CIF quote includes. Then add your own freight and duty to get landed cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I choose the supplier with the lowest FOB price?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not on FOB alone. Check the MOQ against your order quantity, use the price break at your quantity, and compare landed cost per unit, which includes packaging, freight per unit and duty."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between FOB and EXW?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "EXW (Ex Works) means you take the goods at the factory and pay to move them to the port. FOB (Free On Board) means the supplier delivers the goods onto the ship at the named port. An EXW price is usually lower because it includes less."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is landed cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Landed cost is the full cost of a product delivered to your warehouse: the product price plus packaging, freight, insurance, import duty and fees, divided per unit."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <style>
+        :root {
+            --bg:      #060a18;
+            --accent:  #f97316;
+            --accent2: #38bdf8;
+            --text:    #f1f5f9;
+            --muted:   #64748b;
+            --dim:     #1e293b;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.65;
+            background-image:
+                radial-gradient(ellipse 80% 45% at 50% 0%, rgba(249,115,22,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 55% at 90% 100%, rgba(56,189,248,0.05) 0%, transparent 60%);
+            background-attachment: fixed;
+        }
+
+        header#site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px clamp(16px, 3vw, 40px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        header#site-header .logo {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+        header#site-header .header-links {
+            display: flex;
+            gap: clamp(12px, 2vw, 24px);
+            align-items: center;
+        }
+        header#site-header .header-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        header#site-header .header-links a:hover { color: var(--text); }
+        header#site-header .header-links a.active { color: var(--text); }
+
+        .live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 5px 13px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            text-decoration: none;
+        }
+        .pulse-dot {
+            width: 7px; height: 7px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.3; } }
+
+        article {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem) 3rem;
+        }
+
+        .article-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        article h1 {
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+        }
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.25rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 2.25rem;
+        }
+        .article-meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
+        .article-meta .dot { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
+
+        article p {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin-bottom: 1.25rem;
+        }
+        article h2 {
+            font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+            font-weight: 700;
+            color: var(--text);
+            margin: 2.5rem 0 1rem;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+        }
+        article h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.75rem 0 0.75rem;
+        }
+        article ul, article ol {
+            margin: 0 0 1.5rem 1.25rem;
+            color: #cbd5e1;
+        }
+        article ul li, article ol li {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+        article a { color: var(--accent2); text-decoration: none; border-bottom: 1px solid rgba(56,189,248,0.35); }
+        article a:hover { border-bottom-color: var(--accent2); }
+        article strong { color: var(--text); font-weight: 700; }
+        article code {
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            background: rgba(56,189,248,0.08);
+            border: 1px solid rgba(56,189,248,0.15);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #bae6fd;
+        }
+        article figure {
+            margin: 1.75rem 0;
+            padding: 1.25rem 1.5rem;
+            background: rgba(30, 41, 59, 0.55);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+        }
+        article figure code, article figure pre {
+            display: block;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 0.95rem;
+            color: #fbbf24;
+            background: none;
+            border: none;
+            padding: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        article figcaption {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+        article blockquote {
+            margin: 1.75rem 0;
+            padding: 1rem 1.25rem;
+            border-left: 3px solid var(--accent);
+            background: rgba(249,115,22,0.05);
+            border-radius: 0 8px 8px 0;
+            color: #e2e8f0;
+            font-size: 1.05rem;
+        }
+        article blockquote p:last-child { margin-bottom: 0; }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .cost-table th, .cost-table td {
+            padding: 0.65rem 0.9rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .cost-table th {
+            background: rgba(255,255,255,0.03);
+            font-weight: 700;
+            color: var(--text);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .cost-table td { color: #cbd5e1; }
+        .cost-table tr:last-child td { border-bottom: none; }
+        .cost-table td.num { font-family: 'JetBrains Mono', ui-monospace, monospace; text-align: right; color: #fbbf24; }
+        .table-wrap { overflow-x: auto; }
+
+        aside.cta {
+            margin: 3rem 0 0;
+            padding: 1.75rem;
+            background: linear-gradient(135deg, rgba(249,115,22,0.09), rgba(56,189,248,0.05));
+            border: 1px solid rgba(249,115,22,0.22);
+            border-radius: 16px;
+        }
+        aside.cta h3 {
+            margin-top: 0;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+        aside.cta p {
+            font-size: 0.98rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+        aside.cta a.button {
+            display: inline-block;
+            padding: 0.65rem 1.15rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: none;
+            transition: transform 0.2s, background 0.2s;
+        }
+        aside.cta a.button:hover { transform: translateY(-1px); background: #fb923c; }
+
+        footer#site-footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem clamp(1.25rem, 4vw, 3rem);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+        footer#site-footer nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        footer#site-footer a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+        footer#site-footer a:hover { color: var(--text); }
+            /* header fit with the theme toggle */
+        header#site-header .logo, header#site-header .live-pill { white-space: nowrap; }
+        @media (max-width: 600px) {
+            header#site-header .header-links { gap: 10px; }
+            header#site-header .live-pill { padding: 5px 10px; }
+            header#site-header .pill-long { display: none; }
+        }
+        /* ---- light mode (html.light is set by /theme.js) ---- */
+        html.light {
+            --bg:      #f6f7fb;
+            --accent2: #0369a1;
+            --text:    #0f172a;
+            --muted:   #556070;
+            --dim:     #e2e8f0;
+        }
+        html.light body {
+            background-image:
+                radial-gradient(ellipse 80% 45% at 50% 0%, rgba(249,115,22,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 55% at 90% 100%, rgba(56,189,248,0.08) 0%, transparent 60%);
+        }
+        html.light header#site-header,
+        html.light footer#site-footer { border-color: rgba(15,23,42,0.08); }
+        html.light .live-pill { background: #fff; border-color: rgba(15,23,42,0.10); color: #475569; }
+        html.light .page-head .eyebrow,
+        html.light .article-eyebrow,
+        html.light .post-card .read-more { color: #c2410c; }
+        html.light .page-head h1 .grad { background: linear-gradient(135deg, #ea580c 20%, #d97706 80%); -webkit-background-clip: text; background-clip: text; }
+        html.light .page-head p.lede { color: #475569; }
+        html.light .post-card {
+            background: #fff;
+            border-color: rgba(15,23,42,0.08);
+            box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.05);
+        }
+        html.light .post-card:hover { background: #fff; border-color: rgba(234,88,12,0.40); }
+        html.light .post-card p { color: #475569; }
+        html.light .article-meta { border-bottom-color: rgba(15,23,42,0.10); }
+        html.light article p,
+        html.light article ul,
+        html.light article ol { color: #334155; }
+        html.light article a { border-bottom-color: rgba(3,105,161,0.35); }
+        html.light article code { background: rgba(3,105,161,0.07); border-color: rgba(3,105,161,0.18); color: #075985; }
+        html.light article figure { background: #fff; border-color: rgba(15,23,42,0.08); }
+        html.light article figure pre,
+        html.light article figure code { color: #b45309; background: none; border: none; }
+        html.light article blockquote { background: #fff7ed; color: #1e293b; }
+        html.light .cost-table { background: #fff; border-color: rgba(15,23,42,0.10); }
+        html.light .cost-table th, html.light .cost-table td { border-bottom-color: rgba(15,23,42,0.08); }
+        html.light .cost-table th { background: #f1f5f9; }
+        html.light .cost-table td { color: #334155; }
+        html.light .cost-table td.num { color: #b45309; }
+        html.light .card-example { background: rgba(3,105,161,0.05); border-color: rgba(3,105,161,0.20); color: #1e293b; }
+        html.light aside.cta { background: linear-gradient(135deg, rgba(249,115,22,0.10), rgba(56,189,248,0.08)); border-color: rgba(234,88,12,0.28); }
+        html.light aside.cta p { color: #334155; }
+    
+        .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        article h3 { margin-top: 1.6em; }
+    </style>
+</head>
+<body>
+
+<header id="site-header">
+    <a class="logo" href="/">Show Sourcing</a>
+    <nav class="header-links">
+        <a href="/blog/">Blog</a>
+        <a href="/compare/">Compare</a>
+        <a href="/#faq">FAQ</a>
+        <a href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" class="live-pill">
+            <span class="pulse-dot"></span><span class="pill-long">Now on the&nbsp;</span>App Store
+        </a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    </nav>
+</header>
+
+<article>
+    <span class="article-eyebrow">Sourcing 101</span>
+    <h1>How to compare supplier quotes: FOB, MOQ, price breaks and landed cost</h1>
+    <div class="article-meta">
+        <span>Oct 20, 2026</span>
+        <span class="dot"></span>
+        <span>3 min read</span>
+        <span class="dot"></span>
+        <span>By DNZ</span>
+    </div>
+
+    <p>You have three quotes for the same product. One is the cheapest on paper. It is often not the cheapest in your warehouse.</p>
+
+    <h2 id="the-short-answer">The short answer</h2>
+
+    <p>To compare supplier quotes fairly:</p>
+
+    <ol><li>Put every quote in <strong>one currency</strong>.</li><li>Put every quote on <strong>one price term</strong> (for example FOB).</li><li>Use the <strong>price break at the quantity you will buy</strong>, not the headline price.</li><li>Check that the <strong>MOQ</strong> fits your order.</li><li>Add packaging, freight per unit and duty to get the <strong>landed cost per unit</strong>, and compare that.</li></ol>
+
+    <h2 id="a-worked-example">A worked example</h2>
+
+    <p>Three suppliers quote a Bluetooth speaker. You plan to buy 3,000 units. The numbers below are an example, not market prices.</p>
+
+    <div class="table-wrap"><table class="cost-table"><thead><tr><th></th><th>Supplier A</th><th>Supplier B</th><th>Supplier C</th></tr></thead><tbody><tr><td>Quote</td><td>$6.20 FOB Shenzhen</td><td>¥42.00 EXW</td><td>$6.90 FOB Ningbo</td></tr><tr><td>Price at 3,000 units</td><td>$6.20 (one price)</td><td>¥40.00</td><td>$6.50</td></tr><tr><td>MOQ</td><td>5,000</td><td>1,000</td><td>2,000</td></tr><tr><td>Units per carton</td><td>20</td><td>40</td><td>40</td></tr></tbody></table></div>
+
+    <h3 id="step-1-the-moq-rules-one-out">Step 1: The MOQ rules one out</h3>
+
+    <p>Supplier A's MOQ is 5,000 units. You need 3,000. Supplier A's price is not real for your order unless they accept a lower MOQ. Ask, but do not compare on $6.20.</p>
+
+    <h3 id="step-2-one-currency-one-term">Step 2: One currency, one term</h3>
+
+    <p>Supplier B quotes in RMB and EXW (at the factory). At an example rate of 7.1 RMB to the dollar, ¥40.00 is about $5.63. EXW does not include getting the goods to the port. If trucking and export clearance add about $0.25 per unit, B's FOB-equivalent is about $5.88.</p>
+
+    <p>Supplier C quotes $6.50 at your quantity, FOB.</p>
+
+    <h3 id="step-3-freight-per-unit-depends-on-the-carton">Step 3: Freight per unit depends on the carton</h3>
+
+    <p>Freight is paid by volume. Both B and C pack 40 units per carton, so freight per unit is about the same. If one supplier packed 20 per carton in the same carton size, its freight per unit would double. This is why you ask for carton size and units per carton at the booth.</p>
+
+    <h3 id="step-4-landed-cost">Step 4: Landed cost</h3>
+
+    <p>Add freight per unit and import duty to each FOB-equivalent price. With the same freight and duty rate for both, B stays cheaper than C here. With a different HTS code, packaging or carton count, the order can flip. Our <a href="/blog/landed-cost-fob-to-ldp/">landed cost guide</a> shows the full formula.</p>
+
+    <h2 id="what-the-headline-price-hides">What the headline price hides</h2>
+
+    <ul><li><strong>Price term.</strong> EXW looks cheaper than FOB because it includes less.</li><li><strong>MOQ per color.</strong> A 1,000 MOQ "per color" in 3 colors is 3,000 units.</li><li><strong>Packaging.</strong> Gift boxes, inserts and printing are often extra.</li><li><strong>Price validity.</strong> A quote valid for 30 days may not hold when you order in 90.</li><li><strong>Tooling.</strong> Custom molds are a one-time cost to spread across your units.</li></ul>
+
+    <h2 id="do-it-at-the-booth-not-in-the-hotel">Do it at the booth, not in the hotel</h2>
+
+    <p>Comparisons go wrong when the details are missing. Record the term, the price breaks, the MOQ and the carton details at the booth, next to the product photo. Our list of <a href="/blog/questions-to-ask-suppliers-at-trade-shows/">questions to ask suppliers</a> covers what to ask.</p>
+
+    <h2 id="frequently-asked-questions">Frequently asked questions</h2>
+
+    <h3 id="how-do-i-compare-supplier-quotes-with-different-price-terms">How do I compare supplier quotes with different price terms?</h3>
+
+    <p>Convert every quote to one term, usually FOB. Add the costs an EXW quote does not include (trucking to the port, export clearance). Remove the freight and insurance a CIF quote includes. Then add your own freight and duty to get landed cost.</p>
+
+    <h3 id="should-i-choose-the-supplier-with-the-lowest-fob-price">Should I choose the supplier with the lowest FOB price?</h3>
+
+    <p>Not on FOB alone. Check the MOQ against your order quantity, use the price break at your quantity, and compare landed cost per unit, which includes packaging, freight per unit and duty.</p>
+
+    <h3 id="what-is-the-difference-between-fob-and-exw">What is the difference between FOB and EXW?</h3>
+
+    <p>EXW (Ex Works) means you take the goods at the factory and pay to move them to the port. FOB (Free On Board) means the supplier delivers the goods onto the ship at the named port. An EXW price is usually lower because it includes less.</p>
+
+    <h3 id="what-is-landed-cost">What is landed cost?</h3>
+
+    <p>Landed cost is the full cost of a product delivered to your warehouse: the product price plus packaging, freight, insurance, import duty and fees, divided per unit.</p>
+
+    <aside class="cta">
+        <h3>Landed cost next to every quote</h3>
+        <p>Show Sourcing converts currencies, keeps price breaks and shows landed cost (LDP) with US tariffs for every product, so you compare like for like. Free for 7 days.</p>
+        <a class="button" href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749">Try it free for 7 days &rarr;</a>
+    </aside>
+</article>
+
+<footer id="site-footer">
+    <div>&copy; 2026 DNZ. All rights reserved.</div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+    </nav>
+</footer>
+
+</body>
+</html>
