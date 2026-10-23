@@ -78,6 +78,16 @@
       </div>
     </section>
 
+    <section class="card" id="sheetCard">
+      <h2>Many items?</h2>
+      <p class="note" style="margin:0 0 12px">Download the Excel template, fill in one row per item (pictures in or over the Photo cells), then upload it here. You can check every item before sending.</p>
+      <div class="grid">
+        <button type="button" class="btn secondary" id="dlSheet">Download Excel template</button>
+        <label class="btn secondary" style="text-align:center">Upload filled template<input type="file" id="upSheet" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden></label>
+      </div>
+      <p class="note hidden" id="sheetMsg" style="margin:10px 0 0"></p>
+    </section>
+
     <div id="items"></div>
     <button type="button" class="btn secondary" id="addItem">+ Add another item</button>
     <p class="error hidden" id="error"></p>
@@ -145,6 +155,10 @@ function fieldHTML(f, item, i) {
     case "category":
       // A search box with the team's categories as suggestions: a big team has
       // 100+ categories, and chips made a wall (2026-10-23).
+      // A short list (the form owner picked a few) as chips; a long one as a search box.
+      if ((form.categories || []).length && form.categories.length <= 15)
+        return `<div style="grid-column:1/-1">${lab}<div class="chips">${form.categories.map((c) =>
+          `<button type="button" class="chip ${item.category === c ? "on" : ""}" data-cat="${esc(c)}" data-i="${i}">${esc(c)}</button>`).join("")}</div></div>`;
       return `<div style="grid-column:1/-1">${lab}<input type="text" list="cats" placeholder="Start typing, e.g. Speaker" ${data} data-catinput value="${esc(item.category)}" autocomplete="off"></div>`;
     case "toggle":
       return `<div>${lab}<div class="chips">${["Yes", "No"].map((o) =>
@@ -235,6 +249,36 @@ function shrink(file) {
 }
 
 $("addItem").onclick = addItem;
+
+// Excel template (sheet.js loads only when needed).
+function sheetLib() {
+  return window.QuoteSheet ? Promise.resolve() : new Promise((ok, bad) => {
+    const s = document.createElement("script"); s.src = "/quote-sheet.js"; s.onload = ok; s.onerror = bad; document.head.appendChild(s);
+  });
+}
+function sheetMsg(t, err) { const m = $("sheetMsg"); m.textContent = t; m.style.color = err ? "var(--err)" : ""; m.classList.remove("hidden"); }
+$("dlSheet").onclick = async () => {
+  sheetMsg("Making the template…");
+  try { await sheetLib(); await QuoteSheet.download(form); sheetMsg("Template downloaded. Fill it in, then upload it here."); }
+  catch { sheetMsg("Could not make the template. Try again.", true); }
+};
+$("upSheet").onchange = async (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  sheetMsg("Reading your file…");
+  try {
+    await sheetLib();
+    const rows = await QuoteSheet.read(file, form);
+    if (!rows.length) return sheetMsg("No items found in that file. Use the template, one row per item.", true);
+    // Replace an untouched first item; otherwise add after the others.
+    if (items.length === 1 && !Object.values(items[0].fields).some(Boolean) && !items[0].photos.length) items.length = 0;
+    items.push(...rows);
+    render();
+    const pics = rows.reduce((n, r) => n + r.photos.length, 0);
+    sheetMsg(`Added ${rows.length} item${rows.length === 1 ? "" : "s"} and ${pics} photo${pics === 1 ? "" : "s"}. Check them below, then press Send quote.`);
+    $("items").scrollIntoView({ behavior: "smooth" });
+  } catch (x) { console.error("sheet read", x); sheetMsg("Could not read that file. Save it as .xlsx and try again.", true); }
+  e.target.value = "";
+};
 $("send").onclick = async (e) => {
   e.preventDefault();
   const err = $("error");
