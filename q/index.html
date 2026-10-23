@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Send a Quote · Show Sourcing</title>
+<link rel="icon" href="/favicon.png">
+<style>
+  /* Vendor quote form (2026-10-23). Every /q/<code> link lands here (_redirects).
+     It reads the form from the quote-form function and posts back to it. It holds
+     no keys and can only submit. Plan: app repo .claude/notes/quote-sheet-plan.md */
+  :root { --bg:#f4f5f7; --card:#fff; --text:#14161a; --sub:#5d6470; --line:#e3e6ea; --accent:#f97316; --accent-ink:#fff; --err:#d92d20; --chip:#eef0f3; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0d0f13; --card:#171a20; --text:#f2f3f5; --sub:#9aa1ac; --line:#2a2f37; --chip:#232831; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:720px; margin:0 auto; padding:24px 16px 120px; }
+  header .team { color:var(--sub); font-weight:600; font-size:14px; letter-spacing:.02em; text-transform:uppercase; }
+  h1 { font-size:28px; margin:4px 0 8px; line-height:1.2; }
+  .brief { white-space:pre-wrap; color:var(--text); margin:0 0 6px; }
+  .targets { color:var(--sub); font-size:14px; display:flex; gap:14px; flex-wrap:wrap; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; margin:16px 0; }
+  .card h2 { font-size:18px; margin:0 0 12px; display:flex; justify-content:space-between; align-items:center; }
+  label { display:block; font-size:13px; font-weight:600; color:var(--sub); margin:12px 0 4px; }
+  label .req { color:var(--err); }
+  input[type=text], input[type=email], input[type=tel], input[type=number], textarea, select {
+    width:100%; font:inherit; color:var(--text); background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:11px 12px; }
+  textarea { min-height:84px; resize:vertical; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:0 12px; }
+  @media (max-width:520px) { .grid { grid-template-columns:1fr; } }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { border:1px solid var(--line); background:var(--chip); color:var(--text); border-radius:999px; padding:7px 12px; font:inherit; font-size:14px; cursor:pointer; }
+  .chip.on { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+  .photos { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .photos img { width:72px; height:72px; object-fit:cover; border-radius:10px; border:1px solid var(--line); }
+  .addphoto { width:72px; height:72px; border-radius:10px; border:1.5px dashed var(--line); display:flex; align-items:center; justify-content:center; color:var(--sub); font-size:28px; cursor:pointer; }
+  .link { background:none; border:none; color:var(--accent); font:inherit; font-weight:600; cursor:pointer; padding:0; }
+  .remove { color:var(--err); }
+  .btn { display:block; width:100%; border:none; border-radius:14px; padding:15px; font:inherit; font-weight:700; font-size:17px; cursor:pointer; }
+  .btn.primary { background:var(--accent); color:var(--accent-ink); }
+  .btn.secondary { background:var(--card); color:var(--text); border:1px solid var(--line); }
+  .btn:disabled { opacity:.5; cursor:default; }
+  .bar { position:fixed; left:0; right:0; bottom:0; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(10px); padding:12px 16px calc(12px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); }
+  .bar .in { max-width:720px; margin:0 auto; }
+  .error { color:var(--err); font-weight:600; margin:10px 0; }
+  .note { color:var(--sub); font-size:13px; }
+  .center { text-align:center; padding:60px 10px; }
+  .hidden { display:none !important; }
+  footer { text-align:center; color:var(--sub); font-size:13px; margin-top:30px; }
+  footer a { color:var(--sub); }
+</style>
+</head>
+<body>
+<main>
+  <div id="state" class="center">Loading…</div>
+
+  <form id="form" class="hidden" novalidate>
+    <header>
+      <div class="team" id="team"></div>
+      <h1 id="title"></h1>
+      <p class="brief" id="brief"></p>
+      <div class="targets" id="targets"></div>
+    </header>
+
+    <section class="card">
+      <h2>Your company</h2>
+      <div class="grid">
+        <div><label>Company name <span class="req">*</span></label><input type="text" name="name" autocomplete="organization" required></div>
+        <div><label>Contact person</label><input type="text" name="contact" autocomplete="name"></div>
+        <div><label>Job title</label><input type="text" name="title" autocomplete="organization-title"></div>
+        <div><label>Email</label><input type="email" name="email" autocomplete="email"></div>
+        <div><label>Phone</label><input type="tel" name="phone" autocomplete="tel"></div>
+        <div><label>WeChat</label><input type="text" name="wechat"></div>
+        <div><label>WhatsApp</label><input type="tel" name="whatsapp"></div>
+        <div><label>Website</label><input type="text" name="website" inputmode="url"></div>
+        <div><label>Country</label><input type="text" name="country" autocomplete="country-name"></div>
+        <div style="grid-column:1/-1"><label>Address</label><textarea name="address" autocomplete="street-address" style="min-height:64px"></textarea></div>
+      </div>
+    </section>
+
+    <div id="items"></div>
+    <button type="button" class="btn secondary" id="addItem">+ Add another item</button>
+    <p class="error hidden" id="error"></p>
+    <footer>Sent with <a href="https://showsourcing.app" target="_blank" rel="noopener">Show Sourcing</a></footer>
+  </form>
+</main>
+<div class="bar hidden" id="bar"><div class="in"><button class="btn primary" id="send">Send quote</button></div></div>
+
+<script>
+const API = "https://api.showsourcing.app/functions/v1/quote-form";
+const slug = decodeURIComponent((location.pathname.split("/q/")[1] || new URLSearchParams(location.search).get("s") || "").replace(/\/$/, ""));
+let form = null;
+const items = [];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+
+function show(msg) { $("state").textContent = msg; $("state").classList.remove("hidden"); }
+
+async function load() {
+  if (!slug) return show("This link is not complete.");
+  try {
+    const r = await fetch(`${API}?slug=${encodeURIComponent(slug)}`);
+    const d = await r.json();
+    if (!r.ok) return show(d.error || "This link does not work.");
+    if (d.closed) return show("This request is closed. Thank you for your interest.");
+    form = d;
+    $("team").textContent = d.team || "";
+    $("title").textContent = d.rfq?.name || d.title || "Send us your products";
+    $("brief").textContent = d.rfq?.brief || d.intro || "Add each product you would like to offer. Photos help a lot.";
+    const t = [];
+    if (d.rfq?.target_price) t.push(`Target price: ${d.currency} ${d.rfq.target_price}`);
+    if (d.rfq?.target_qty) t.push(`Quantity: ${Number(d.rfq.target_qty).toLocaleString()}`);
+    if (d.rfq?.due_date) t.push(`Reply by: ${d.rfq.due_date}`);
+    const dl = document.createElement("datalist"); dl.id = "cats";
+    dl.innerHTML = (d.categories || []).map((c) => `<option value="${esc(c)}">`).join("");
+    document.body.appendChild(dl);
+    $("targets").innerHTML = t.map((x) => `<span>${esc(x)}</span>`).join("");
+    document.title = `${$("title").textContent} · ${d.team || "Show Sourcing"}`;
+    addItem();
+    $("state").classList.add("hidden");
+    $("form").classList.remove("hidden");
+    $("bar").classList.remove("hidden");
+  } catch { show("Could not load the form. Check your connection and try again."); }
+}
+
+function addItem() {
+  const item = { fields: {}, photos: [], category: "" };
+  items.push(item);
+  render();
+}
+
+// A custom field set for some categories shows only when the item has one of them.
+function applies(f, item) {
+  if (!f.categories || !f.categories.length) return true;
+  const c = (item.category || "").trim().toLowerCase();
+  return !!c && f.categories.some((x) => x.trim().toLowerCase() === c);
+}
+
+function fieldHTML(f, item, i) {
+  const v = item.fields[f.key] ?? "";
+  const req = f.required ? ' <span class="req">*</span>' : "";
+  const lab = `<label>${esc(f.label)}${req}</label>`;
+  const data = `data-i="${i}" data-k="${esc(f.key)}"`;
+  switch (f.kind) {
+    case "category":
+      // A search box with the team's categories as suggestions: a big team has
+      // 100+ categories, and chips made a wall (2026-10-23).
+      return `<div style="grid-column:1/-1">${lab}<input type="text" list="cats" placeholder="Start typing, e.g. Speaker" ${data} data-catinput value="${esc(item.category)}" autocomplete="off"></div>`;
+    case "toggle":
+      return `<div>${lab}<div class="chips">${["Yes", "No"].map((o) =>
+        `<button type="button" class="chip ${v === o ? "on" : ""}" data-opt="${o}" ${data}>${o}</button>`).join("")}</div></div>`;
+    case "choice":
+      return `<div>${lab}<div class="chips">${(f.options || []).map((o) =>
+        `<button type="button" class="chip ${v === o ? "on" : ""}" data-opt="${esc(o)}" ${data}>${esc(o)}</button>`).join("")}</div></div>`;
+    case "longtext":
+      return `<div style="grid-column:1/-1">${lab}<textarea ${data}>${esc(v)}</textarea></div>`;
+    case "number":
+      return `<div>${lab}<input type="text" inputmode="decimal" ${data} value="${esc(v)}"></div>`;
+    case "currency":
+      return `<div>${lab}<input type="text" inputmode="decimal" placeholder="${esc(form.currency)}" ${data} value="${esc(v)}"></div>`;
+    default:
+      return `<div>${lab}<input type="text" ${data} value="${esc(v)}"></div>`;
+  }
+}
+
+function render() {
+  $("items").innerHTML = items.map((item, i) => {
+    const fields = form.fields.filter((f) => applies(f, item));
+    const hasCategory = form.fields.some((f) => f.kind === "category");
+    // Without a Category field on the form, conditional fields still need one: offer it.
+    const extra = !hasCategory && form.fields.some((f) => f.categories && f.categories.length)
+      ? [{ key: "category", label: "Category", kind: "category", required: false }] : [];
+    return `<section class="card">
+      <h2>Item ${i + 1}${items.length > 1 ? `<button type="button" class="link remove" data-remove="${i}">Remove</button>` : ""}</h2>
+      <label>Photos</label>
+      <div class="photos">${item.photos.map((p, n) => `<img src="${p}" alt="Photo ${n + 1}" data-rmphoto="${i}:${n}" title="Tap to remove">`).join("")}
+        ${item.photos.length < 6 ? `<label class="addphoto" title="Add photos">+<input type="file" accept="image/*" multiple hidden data-photo="${i}"></label>` : ""}</div>
+      <div class="grid">${[...extra, ...fields].map((f) => fieldHTML(f, item, i)).join("")}</div>
+    </section>`;
+  }).join("");
+}
+
+document.addEventListener("input", (e) => {
+  const el = e.target, i = el.dataset.i;
+  if (i === undefined) return;
+  if (el.hasAttribute("data-catinput")) { items[i].category = el.value.trim(); items[i].fields.category = items[i].category; return; }
+  items[i].fields[el.dataset.k] = el.value;
+});
+document.addEventListener("change", (e) => {
+  const el = e.target;
+  if (el.dataset.catinput !== undefined) render();
+  if (el.dataset.photo !== undefined) addPhotos(+el.dataset.photo, el.files);
+});
+document.addEventListener("click", (e) => {
+  const el = e.target.closest("[data-cat],[data-opt],[data-remove],[data-rmphoto]");
+  if (!el) return;
+  if (el.dataset.cat !== undefined) {
+    const it = items[el.dataset.i];
+    it.category = it.category === el.dataset.cat ? "" : el.dataset.cat;
+    it.fields.category = it.category;
+    render();
+  } else if (el.dataset.opt !== undefined) {
+    const it = items[el.dataset.i], k = el.dataset.k;
+    it.fields[k] = it.fields[k] === el.dataset.opt ? "" : el.dataset.opt;
+    render();
+  } else if (el.dataset.remove !== undefined) {
+    items.splice(+el.dataset.remove, 1); render();
+  } else if (el.dataset.rmphoto !== undefined) {
+    const [i, n] = el.dataset.rmphoto.split(":").map(Number);
+    items[i].photos.splice(n, 1); render();
+  }
+});
+
+// Photos are shrunk on the vendor's phone: 1600 px, JPEG.
+async function addPhotos(i, files) {
+  for (const file of [...files].slice(0, 6 - items[i].photos.length)) {
+    try { items[i].photos.push(await shrink(file)); } catch {}
+  }
+  render();
+}
+function shrink(file) {
+  return new Promise((ok, bad) => {
+    const img = new Image();
+    img.onload = () => {
+      const s = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(img.src);
+      ok(c.toDataURL("image/jpeg", 0.82));
+    };
+    img.onerror = bad;
+    img.src = URL.createObjectURL(file);
+  });
+}
+
+$("addItem").onclick = addItem;
+$("send").onclick = async (e) => {
+  e.preventDefault();
+  const err = $("error");
+  err.classList.add("hidden");
+  const fd = new FormData($("form"));
+  const company = Object.fromEntries(["name", "contact", "title", "email", "phone", "wechat", "whatsapp", "website", "country", "address"].map((k) => [k, (fd.get(k) || "").toString().trim()]));
+  const fail = (m) => { err.textContent = m; err.classList.remove("hidden"); err.scrollIntoView({ behavior: "smooth", block: "center" }); };
+  if (!company.name) return fail("Please enter your company name.");
+  for (const [n, it] of items.entries()) {
+    for (const f of form.fields.filter((f) => f.required && applies(f, it))) {
+      const v = f.kind === "category" ? it.category : it.fields[f.key];
+      if (!String(v ?? "").trim()) return fail(`Item ${n + 1}: please fill in “${f.label}”.`);
+    }
+  }
+  const btn = $("send");
+  btn.disabled = true; btn.textContent = "Sending…";
+  try {
+    const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug, company, items: items.map((it) => ({ fields: it.fields, photos: it.photos })) }) });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || "Could not send.");
+    $("form").classList.add("hidden"); $("bar").classList.add("hidden");
+    show(`Thank you! We received ${d.items} item${d.items === 1 ? "" : "s"}. ${form.team || "The team"} will be in touch.`);
+    window.scrollTo(0, 0);
+  } catch (x) {
+    btn.disabled = false; btn.textContent = "Send quote";
+    fail(x.message || "Could not send. Please try again.");
+  }
+};
+load();
+</script>
+</body>
+</html>
