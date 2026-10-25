@@ -19,6 +19,25 @@
   h1 { font-size:28px; margin:4px 0 8px; line-height:1.2; }
   .brief { white-space:pre-wrap; color:var(--text); margin:0 0 6px; }
   .targets { color:var(--sub); font-size:14px; display:flex; gap:14px; flex-wrap:wrap; }
+  /* The buyer's reference photos: what they are looking for. */
+  .wants-wrap { position:relative; margin:10px 0 4px; }
+  .wants { display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding-bottom:2px; }
+  .wants::-webkit-scrollbar { display:none; }
+  .wants button { flex:0 0 auto; scroll-snap-align:start; padding:0; border:0; background:none; cursor:zoom-in; border-radius:14px; }
+  .wants img { height:190px; width:auto; max-width:300px; object-fit:cover; border-radius:14px; display:block; background:var(--line); }
+  .wants.single img { height:auto; max-height:380px; width:100%; max-width:100%; object-fit:contain; background:var(--card); border:1px solid var(--line); }
+  .wants.single button { flex:1 1 auto; }
+  .wants-label { color:var(--sub); font-size:13px; font-weight:600; margin:14px 0 0; display:flex; justify-content:space-between; }
+  .wants-nav { position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%; border:1px solid var(--line);
+    background:var(--card); color:var(--text); font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.12); display:none; }
+  .wants-nav.prev { left:-12px; } .wants-nav.next { right:-12px; }
+  @media (min-width:700px) and (hover:hover) { .wants-wrap.many .wants-nav { display:block; } .wants img { height:230px; max-width:340px; } }
+  /* Full-size view of a reference photo. */
+  .lb { position:fixed; inset:0; background:rgba(0,0,0,.88); display:flex; align-items:center; justify-content:center; z-index:50; }
+  .lb img { max-width:92vw; max-height:86vh; border-radius:10px; object-fit:contain; }
+  .lb button { position:absolute; background:rgba(255,255,255,.15); color:#fff; border:0; width:44px; height:44px; border-radius:50%; font-size:22px; cursor:pointer; }
+  .lb .x { top:16px; right:16px; } .lb .p { left:16px; top:50%; transform:translateY(-50%); } .lb .n { right:16px; top:50%; transform:translateY(-50%); }
+  .lb .c { position:absolute; bottom:18px; left:0; right:0; text-align:center; color:#ddd; font-size:14px; }
   .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; margin:16px 0; }
   .card h2 { font-size:18px; margin:0 0 12px; display:flex; justify-content:space-between; align-items:center; }
   label { display:block; font-size:13px; font-weight:600; color:var(--sub); margin:12px 0 4px; }
@@ -60,10 +79,22 @@
       <h1 id="title"></h1>
       <p class="brief" id="brief"></p>
       <div class="targets" id="targets"></div>
+      <p class="wants-label hidden" id="wantsLabel"><span>What we are looking for</span><span id="wantsCount"></span></p>
+      <div class="wants-wrap hidden" id="wantsWrap">
+        <button type="button" class="wants-nav prev" aria-label="Previous photos">&#8249;</button>
+        <div class="wants" id="wants"></div>
+        <button type="button" class="wants-nav next" aria-label="More photos">&#8250;</button>
+      </div>
     </header>
 
     <section class="card">
       <h2>Your company</h2>
+      <label class="btn secondary" style="text-align:center;margin-bottom:6px">Scan business card
+        <input type="file" id="cardInput" accept="image/*" capture="environment" hidden></label>
+      <div id="cardStatus" class="note hidden" style="display:flex;gap:10px;align-items:center;margin:6px 0 4px">
+        <img id="cardThumb" alt="" style="width:64px;height:40px;object-fit:cover;border-radius:6px;border:1px solid var(--line)">
+        <span id="cardMsg"></span>
+      </div>
       <div class="grid">
         <div><label>Company name <span class="req">*</span></label><input type="text" name="name" autocomplete="organization" required></div>
         <div><label>Contact person</label><input type="text" name="contact" autocomplete="name"></div>
@@ -125,12 +156,45 @@ async function load() {
     dl.innerHTML = (d.categories || []).map((c) => `<option value="${esc(c)}">`).join("");
     document.body.appendChild(dl);
     $("targets").innerHTML = t.map((x) => `<span>${esc(x)}</span>`).join("");
+    showWants((d.photos || []).filter((u) => /^https:\/\//.test(u)));
     document.title = `${$("title").textContent} · ${d.team || "Show Sourcing"}`;
     addItem();
     $("state").classList.add("hidden");
     $("form").classList.remove("hidden");
     $("bar").classList.remove("hidden");
   } catch { show("Could not load the form. Check your connection and try again."); }
+}
+
+// The buyer's reference photos: one big photo, or a strip with arrows; tap opens full size.
+function showWants(shots) {
+  if (!shots.length) return;
+  const w = $("wants"), wrap = $("wantsWrap");
+  w.classList.toggle("single", shots.length === 1);
+  wrap.classList.toggle("many", shots.length > 1);
+  w.innerHTML = shots.map((u, i) => `<button type="button" data-shot="${i}" aria-label="Open photo ${i + 1}"><img src="${esc(u)}" alt="Reference photo ${i + 1}" loading="lazy"></button>`).join("");
+  $("wantsCount").textContent = shots.length > 1 ? `${shots.length} photos` : "";
+  wrap.classList.remove("hidden"); $("wantsLabel").classList.remove("hidden");
+  const step = () => Math.max(200, w.clientWidth * 0.8);
+  wrap.querySelector(".prev").onclick = () => w.scrollBy({ left: -step(), behavior: "smooth" });
+  wrap.querySelector(".next").onclick = () => w.scrollBy({ left: step(), behavior: "smooth" });
+  w.onclick = (e) => { const b = e.target.closest("[data-shot]"); if (b) openShot(shots, +b.dataset.shot); };
+}
+
+function openShot(shots, i) {
+  const lb = document.createElement("div"); lb.className = "lb";
+  const draw = () => {
+    lb.innerHTML = `<img src="${esc(shots[i])}" alt="Reference photo ${i + 1}"><button class="x" aria-label="Close">&#215;</button>` +
+      (shots.length > 1 ? `<button class="p" aria-label="Previous">&#8249;</button><button class="n" aria-label="Next">&#8250;</button><div class="c">${i + 1} / ${shots.length}</div>` : "");
+  };
+  const go = (d) => { i = (i + d + shots.length) % shots.length; draw(); };
+  const close = () => { lb.remove(); document.removeEventListener("keydown", key); };
+  const key = (e) => { if (e.key === "Escape") close(); if (e.key === "ArrowLeft") go(-1); if (e.key === "ArrowRight") go(1); };
+  lb.onclick = (e) => {
+    if (e.target.classList.contains("p")) go(-1); else if (e.target.classList.contains("n")) go(1);
+    else if (e.target.tagName !== "IMG") close();
+  };
+  document.addEventListener("keydown", key);
+  draw(); document.body.appendChild(lb);
 }
 
 function addItem() {
@@ -250,6 +314,50 @@ function shrink(file) {
 
 $("addItem").onclick = addItem;
 
+// Business card: the browser reads the text (Tesseract.js, free, on this
+// device), then our card reader (the app's own) sorts it into fields.
+let cardPhoto = null;
+function loadScript(src) {
+  return new Promise((ok, bad) => {
+    if ([...document.scripts].some((x) => x.src === src)) return ok();
+    const t = document.createElement("script"); t.src = src; t.onload = ok; t.onerror = bad; document.head.appendChild(t);
+  });
+}
+function cardMsg(t, err) {
+  $("cardStatus").classList.remove("hidden");
+  $("cardMsg").textContent = t; $("cardMsg").style.color = err ? "var(--err)" : "";
+}
+$("cardInput").onchange = async (e) => {
+  const file = e.target.files[0]; e.target.value = ""; if (!file) return;
+  try {
+    cardPhoto = await shrink(file);
+    $("cardThumb").src = cardPhoto;
+    cardMsg("Reading the card… (the first time takes a little longer)");
+    // Served from showsourcing.app itself: outside file hosts can be slow or
+    // blocked for vendors in China. The reading runs on the vendor's device.
+    await loadScript("/ocr/tesseract.min.js");
+    const worker = await Tesseract.createWorker(["eng", "chi_sim"], 1, {
+      workerPath: "/ocr/worker.min.js", corePath: "/ocr", langPath: "/ocr/lang", gzip: true,
+      logger: (m) => { if (m.status === "recognizing text") cardMsg(`Reading the card… ${Math.round(m.progress * 100)}%`); },
+    });
+    const { data } = await worker.recognize(cardPhoto);
+    await worker.terminate();
+    cardMsg("Filling in your details…");
+    const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug, card_text: data.text }) });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || "Could not read the card.");
+    const c = d.company || {}; let filled = 0;
+    for (const k of ["name", "contact", "title", "email", "phone", "wechat", "website", "address"]) {
+      const el = document.querySelector(`[name=${k}]`);
+      if (el && c[k] && !el.value.trim()) { el.value = c[k]; filled++; }
+    }
+    cardMsg(filled ? `Filled ${filled} field${filled === 1 ? "" : "s"} from the card. Please check them.` : "Could not find details on the card. Please type them.", !filled);
+  } catch (x) {
+    cardMsg(x.message || "Could not read the card. Please type the details.", true);
+  }
+};
+
 // Excel template (sheet.js loads only when needed).
 function sheetLib() {
   return window.QuoteSheet ? Promise.resolve() : new Promise((ok, bad) => {
@@ -297,7 +405,7 @@ $("send").onclick = async (e) => {
   btn.disabled = true; btn.textContent = "Sending…";
   try {
     const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ slug, company, items: items.map((it) => ({ fields: it.fields, photos: it.photos })) }) });
+      body: JSON.stringify({ slug, company, card_photo: cardPhoto, items: items.map((it) => ({ fields: it.fields, photos: it.photos })) }) });
     const d = await r.json();
     if (!r.ok) throw new Error(d.error || "Could not send.");
     $("form").classList.add("hidden"); $("bar").classList.add("hidden");
