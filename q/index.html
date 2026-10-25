@@ -15,6 +15,8 @@
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--text); font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   main { max-width:720px; margin:0 auto; padding:24px 16px 120px; }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .brand img { width:52px; height:52px; border-radius:12px; object-fit:cover; border:1px solid var(--line); background:var(--card); }
   header .team { color:var(--sub); font-weight:600; font-size:14px; letter-spacing:.02em; text-transform:uppercase; }
   h1 { font-size:28px; margin:4px 0 8px; line-height:1.2; }
   .brief { white-space:pre-wrap; color:var(--text); margin:0 0 6px; }
@@ -55,6 +57,13 @@
   .addphoto { width:72px; height:72px; border-radius:10px; border:1.5px dashed var(--line); display:flex; align-items:center; justify-content:center; color:var(--sub); font-size:28px; cursor:pointer; }
   .link { background:none; border:none; color:var(--accent); font:inherit; font-weight:600; cursor:pointer; padding:0; }
   .remove { color:var(--err); }
+  .ladder { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) 32px; gap:8px 10px; align-items:center; }
+  .ladder .head { font-size:12px; font-weight:600; color:var(--sub); }
+  .ladder .unit { position:relative; }
+  .ladder .unit span { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--sub); font-size:14px; pointer-events:none; }
+  .ladder .unit input { padding-right:44px; }
+  .ladder .x { width:32px; height:32px; border:none; border-radius:50%; background:var(--chip); color:var(--sub); font-size:16px; cursor:pointer; }
+  .ladder .add { grid-column:1/-1; justify-self:start; margin-top:2px; }
   .btn { display:block; width:100%; border:none; border-radius:14px; padding:15px; font:inherit; font-weight:700; font-size:17px; cursor:pointer; }
   .btn.primary { background:var(--accent); color:var(--accent-ink); }
   .btn.secondary { background:var(--card); color:var(--text); border:1px solid var(--line); }
@@ -75,7 +84,7 @@
 
   <form id="form" class="hidden" novalidate>
     <header>
-      <div class="team" id="team"></div>
+      <div class="brand"><img id="logo" class="hidden" alt=""><div class="team" id="team"></div></div>
       <h1 id="title"></h1>
       <p class="brief" id="brief"></p>
       <div class="targets" id="targets"></div>
@@ -146,6 +155,9 @@ async function load() {
     if (d.closed) return show("This request is closed. Thank you for your interest.");
     form = d;
     $("team").textContent = d.team || "";
+    // The team's logo next to its name; none set = the name alone.
+    if (d.logo) { $("logo").src = d.logo; $("logo").alt = `${d.team || "Team"} logo`; $("logo").classList.remove("hidden"); }
+    $("logo").onerror = () => $("logo").classList.add("hidden");
     $("title").textContent = d.rfq?.name || d.title || "Send us your products";
     $("brief").textContent = d.rfq?.brief || d.intro || "Add each product you would like to offer. Photos help a lot.";
     const t = [];
@@ -197,6 +209,18 @@ function openShot(shots, i) {
   draw(); document.body.appendChild(lb);
 }
 
+// Price by quantity: the buyer's quantities, one price each. The vendor can
+// change a quantity, add one or remove one (Moshe, 2026-10-25).
+const ladderField = () => form.fields.find((f) => f.kind === "ladder");
+function breaksOf(item) {
+  // No quantities from the buyer: the vendor sets their own, starting with one empty row.
+  const qtys = ladderField()?.qtys || [];
+  if (!item.breaks) item.breaks = qtys.length ? qtys.map((q) => ({ qty: Number(q).toLocaleString("en-US"), price: "" })) : [{ qty: "", price: "" }];
+  return item.breaks;
+}
+const fullBreaks = (item) => breaksOf(item).filter((b) => num(b.qty) > 0 && num(b.price) > 0);
+const num = (t) => parseFloat(String(t).replace(/[^\d.]/g, "")) || 0;
+
 function addItem() {
   const item = { fields: {}, photos: [], category: "" };
   items.push(item);
@@ -230,12 +254,27 @@ function fieldHTML(f, item, i) {
     case "choice":
       return `<div>${lab}<div class="chips">${(f.options || []).map((o) =>
         `<button type="button" class="chip ${v === o ? "on" : ""}" data-opt="${esc(o)}" ${data}>${esc(o)}</button>`).join("")}</div></div>`;
+    case "ladder": {
+      const rows = breaksOf(item).map((b, r) => {
+        const d = `data-bi="${i}" data-br="${r}"`;
+        return `<div class="unit"><input type="text" inputmode="numeric" aria-label="Quantity" placeholder="e.g. 1,000" ${d} data-bf="qty" value="${esc(b.qty)}"><span>pcs</span></div>
+          <div class="unit"><input type="text" inputmode="decimal" aria-label="Price for this quantity" ${d} data-bf="price" value="${esc(b.price)}"><span>${esc(form.currency)}</span></div>
+          <button type="button" class="x" title="Remove this quantity" aria-label="Remove this quantity" data-rmbreak="${i}:${r}">×</button>`;
+      }).join("");
+      const own = !(f.qtys || []).length ? `<div class="note" style="margin:-2px 0 8px">Enter your own quantities, each with a unit price.</div>` : "";
+      return `<div style="grid-column:1/-1">${lab}${own}<div class="ladder">
+        ${breaksOf(item).length ? `<div class="head">Quantity</div><div class="head">Unit price</div><div></div>` : ""}
+        ${rows}<button type="button" class="link add" data-addbreak="${i}">+ Add quantity</button></div></div>`;
+    }
     case "longtext":
       return `<div style="grid-column:1/-1">${lab}<textarea ${data}>${esc(v)}</textarea></div>`;
     case "number":
       return `<div>${lab}<input type="text" inputmode="decimal" ${data} value="${esc(v)}"></div>`;
-    case "currency":
-      return `<div>${lab}<input type="text" inputmode="decimal" placeholder="${esc(form.currency)}" ${data} value="${esc(v)}"></div>`;
+    case "currency": {
+      // With a price by quantity on the form, one price is not needed.
+      const hint = f.key === "fob" && ladderField() ? ` (or by quantity below)` : "";
+      return `<div>${lab}<input type="text" inputmode="decimal" placeholder="${esc(form.currency)}${hint}" ${data} value="${esc(v)}"></div>`;
+    }
     default:
       return `<div>${lab}<input type="text" ${data} value="${esc(v)}"></div>`;
   }
@@ -260,6 +299,7 @@ function render() {
 
 document.addEventListener("input", (e) => {
   const el = e.target, i = el.dataset.i;
+  if (el.dataset.bi !== undefined) { breaksOf(items[el.dataset.bi])[el.dataset.br][el.dataset.bf] = el.value; return; }
   if (i === undefined) return;
   if (el.hasAttribute("data-catinput")) { items[i].category = el.value.trim(); items[i].fields.category = items[i].category; return; }
   items[i].fields[el.dataset.k] = el.value;
@@ -270,9 +310,16 @@ document.addEventListener("change", (e) => {
   if (el.dataset.photo !== undefined) addPhotos(+el.dataset.photo, el.files);
 });
 document.addEventListener("click", (e) => {
-  const el = e.target.closest("[data-cat],[data-opt],[data-remove],[data-rmphoto]");
+  const el = e.target.closest("[data-cat],[data-opt],[data-remove],[data-rmphoto],[data-addbreak],[data-rmbreak]");
   if (!el) return;
-  if (el.dataset.cat !== undefined) {
+  if (el.dataset.addbreak !== undefined) {
+    const list = breaksOf(items[el.dataset.addbreak]);
+    list.push({ qty: "", price: "" }); render();
+    document.querySelector(`[data-bi="${el.dataset.addbreak}"][data-br="${list.length - 1}"][data-bf="qty"]`)?.focus();
+  } else if (el.dataset.rmbreak !== undefined) {
+    const [i, r] = el.dataset.rmbreak.split(":").map(Number);
+    breaksOf(items[i]).splice(r, 1); render();
+  } else if (el.dataset.cat !== undefined) {
     const it = items[el.dataset.i];
     it.category = it.category === el.dataset.cat ? "" : el.dataset.cat;
     it.fields.category = it.category;
@@ -397,6 +444,9 @@ $("send").onclick = async (e) => {
   if (!company.name) return fail("Please enter your company name.");
   for (const [n, it] of items.entries()) {
     for (const f of form.fields.filter((f) => f.required && applies(f, it))) {
+      // A price by quantity also answers Price.
+      if ((f.kind === "ladder" || f.key === "fob") && fullBreaks(it).length) continue;
+      if (f.kind === "ladder") return fail(`Item ${n + 1}: please enter a price for at least one quantity.`);
       const v = f.kind === "category" ? it.category : it.fields[f.key];
       if (!String(v ?? "").trim()) return fail(`Item ${n + 1}: please fill in “${f.label}”.`);
     }
@@ -405,7 +455,7 @@ $("send").onclick = async (e) => {
   btn.disabled = true; btn.textContent = "Sending…";
   try {
     const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ slug, company, card_photo: cardPhoto, items: items.map((it) => ({ fields: it.fields, photos: it.photos })) }) });
+      body: JSON.stringify({ slug, company, card_photo: cardPhoto, items: items.map((it) => ({ fields: it.fields, photos: it.photos, price_breaks: fullBreaks(it) })) }) });
     const d = await r.json();
     if (!r.ok) throw new Error(d.error || "Could not send.");
     $("form").classList.add("hidden"); $("bar").classList.add("hidden");

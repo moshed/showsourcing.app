@@ -7,8 +7,8 @@
 //   3. WPS Office in-cell pictures (=DISPIMG("ID_..."), xl/cellimages.xml).
 (function () {
   const LIBS = [
-    "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js",
+    "/lib/jszip.min.js",
+    "/lib/exceljs.min.js",
   ];
   const PHOTO_COLS = 3;
   const FIRST_DATA_ROW = 3; // row 1 = field keys (hidden), row 2 = labels
@@ -30,6 +30,19 @@
     return s;
   }
 
+  // Price by quantity: one price column per quantity ("pb:1000").
+  // The vendor sets the quantities: one text column, "1000: 4.20; 5000: 3.95".
+  function sheetFields(form) {
+    return form.fields.flatMap((f) => f.kind !== "ladder" ? [f]
+      : !(f.qtys || []).length ? [{ key: "pb:text", label: "Price by quantity (e.g. 1000: 4.20; 5000: 3.95)", kind: "longtext" }]
+      : f.qtys.map((q) => ({ key: `pb:${q}`, label: `Price for ${Number(q).toLocaleString("en-US")} pcs`, kind: "currency" })));
+  }
+  function pairs(text) { // "1,000 pcs: 4.20; 5k = 3.95" -> [{qty, price}]
+    const out = [];
+    for (const m of String(text).matchAll(/([\d][\d,.]*\s*[kK]?)\s*(?:pcs|pc|units?)?\s*[:=@]\s*[^\d;\n]*([\d][\d,.]*)/g)) out.push({ qty: m[1].trim(), price: m[2] });
+    return out;
+  }
+
   // ---------- Template ----------
   async function download(form) {
     await libs();
@@ -39,7 +52,7 @@
     const lists = wb.addWorksheet("Lists", { state: "hidden" });
     const how = wb.addWorksheet("How to fill in");
 
-    const fields = form.fields;
+    const fields = sheetFields(form);
     const keys = [...fields.map((f) => f.key), ...Array.from({ length: PHOTO_COLS }, (_, i) => `photo${i + 1}`)];
     const labels = [...fields.map((f) => f.label + (f.required ? " *" : "")), ...Array.from({ length: PHOTO_COLS }, (_, i) => `Photo ${i + 1}`)];
     ws.addRow(keys);
@@ -246,9 +259,10 @@
     const sheetXML = parseXML(await zip.file(sheetPath).async("string"));
     const grid = await cells(zip, sheetXML);
 
-    const known = new Set(form.fields.map((f) => f.key));
+    const fields = sheetFields(form);
+    const known = new Set(fields.map((f) => f.key));
     const norm = (t) => t.toLowerCase().replace(/\s*\*$/, "").trim();
-    const labelToKey = Object.fromEntries(form.fields.map((f) => [norm(f.label), f.key]));
+    const labelToKey = Object.fromEntries(fields.map((f) => [norm(f.label), f.key]));
 
     // Header: our hidden keys row, else a row of labels. The best match wins.
     let headerRow = 1, colKey = {};
@@ -272,7 +286,17 @@
         const t = grid.get(r)?.get(+c) ?? "";
         if (t) { fields[k] = t; any = true; }
       }
-      if (any) byRow.set(r, { fields, category: fields.category || "", photos: [] });
+      if (!any) continue;
+      // The price columns become the item's price by quantity.
+      const breaks = Object.keys(fields).filter((k) => k.startsWith("pb:")).flatMap((k) => {
+        const v = fields[k]; delete fields[k];
+        return k === "pb:text" ? pairs(v) : [{ qty: k.slice(3), price: v }];
+      });
+      const qtys = (form.fields.find((f) => f.kind === "ladder")?.qtys || []).map(String);
+      for (const q of qtys) if (!breaks.some((b) => b.qty === q)) breaks.push({ qty: q, price: "" });
+      breaks.sort((a, b) => qtys.indexOf(a.qty) - qtys.indexOf(b.qty));
+      const ladder = form.fields.some((f) => f.kind === "ladder");
+      byRow.set(r, { fields, category: fields.category || "", photos: [], ...(ladder && (qtys.length || breaks.length) ? { breaks } : {}) });
     }
 
     for (const p of await pictures(zip, sheetPath, sheetXML)) {
