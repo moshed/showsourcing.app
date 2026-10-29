@@ -52,6 +52,11 @@
   .chips { display:flex; flex-wrap:wrap; gap:8px; }
   .chip { border:1px solid var(--line); background:var(--chip); color:var(--text); border-radius:999px; padding:7px 12px; font:inherit; font-size:14px; cursor:pointer; }
   .chip.on { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+  .combo { position:relative; }
+  .sugg { position:absolute; left:0; right:0; top:100%; z-index:20; margin-top:4px; background:var(--card, #fff); border:1px solid var(--line); border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,.15); max-height:260px; overflow-y:auto; }
+  .sugg button { display:block; width:100%; text-align:left; border:0; background:none; color:var(--text); font:inherit; font-size:16px; padding:11px 14px; cursor:pointer; }
+  .sugg button + button { border-top:1px solid var(--line); }
+  .sugg button:hover, .sugg button:focus { background:var(--chip); }
   .photos { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
   .photos img { width:72px; height:72px; object-fit:cover; border-radius:10px; border:1px solid var(--line); }
   .addphoto { width:72px; height:72px; border-radius:10px; border:1.5px dashed var(--line); display:flex; align-items:center; justify-content:center; color:var(--sub); font-size:28px; cursor:pointer; }
@@ -137,7 +142,8 @@
 <div class="bar hidden" id="bar"><div class="in"><button class="btn primary" id="send">Send quote</button></div></div>
 
 <script>
-const API = "https://api.showsourcing.app/functions/v1/quote-form";
+// Run the server in Singapore, next to the database: 1 s instead of 2-3 s (2026-10-28).
+const API = "https://api.showsourcing.app/functions/v1/quote-form?forceFunctionRegion=ap-southeast-1";
 const slug = decodeURIComponent((location.pathname.split("/q/")[1] || new URLSearchParams(location.search).get("s") || "").replace(/\/$/, ""));
 let form = null;
 const items = [];
@@ -149,7 +155,7 @@ function show(msg) { $("state").textContent = msg; $("state").classList.remove("
 async function load() {
   if (!slug) return show("This link is not complete.");
   try {
-    const r = await fetch(`${API}?slug=${encodeURIComponent(slug)}`);
+    const r = await fetch(`${API}&slug=${encodeURIComponent(slug)}`);
     const d = await r.json();
     if (!r.ok) return show(d.error || "This link does not work.");
     if (d.closed) return show("This request is closed. Thank you for your interest.");
@@ -164,9 +170,6 @@ async function load() {
     if (d.rfq?.target_price) t.push(`Target price: ${d.currency} ${d.rfq.target_price}`);
     if (d.rfq?.target_qty) t.push(`Quantity: ${Number(d.rfq.target_qty).toLocaleString()}`);
     if (d.rfq?.due_date) t.push(`Reply by: ${d.rfq.due_date}`);
-    const dl = document.createElement("datalist"); dl.id = "cats";
-    dl.innerHTML = (d.categories || []).map((c) => `<option value="${esc(c)}">`).join("");
-    document.body.appendChild(dl);
     $("targets").innerHTML = t.map((x) => `<span>${esc(x)}</span>`).join("");
     showWants((d.photos || []).filter((u) => /^https:\/\//.test(u)));
     document.title = `${$("title").textContent} · ${d.team || "Show Sourcing"}`;
@@ -227,6 +230,13 @@ function addItem() {
   render();
 }
 
+// Only the fields this item shows: an answer typed before the category changed
+// must not reach the team under a category it does not belong to.
+function sentFields(it) {
+  const hidden = new Set(form.fields.filter((f) => !applies(f, it)).map((f) => f.key));
+  return Object.fromEntries(Object.entries(it.fields).filter(([k]) => !hidden.has(k)));
+}
+
 // A custom field set for some categories shows only when the item has one of them.
 function applies(f, item) {
   if (!f.categories || !f.categories.length) return true;
@@ -239,7 +249,9 @@ function fieldHTML(f, item, i) {
   const req = f.required ? ' <span class="req">*</span>' : "";
   const lab = `<label>${esc(f.label)}${req}</label>`;
   const data = `data-i="${i}" data-k="${esc(f.key)}"`;
-  switch (f.kind) {
+  // A text field with preset options (Waterproof: IPX5, IP68...) works like a choice.
+  const kind = f.kind === "text" && (f.options || []).length ? "choice" : f.kind;
+  switch (kind) {
     case "category":
       // A search box with the team's categories as suggestions: a big team has
       // 100+ categories, and chips made a wall (2026-10-23).
@@ -247,13 +259,20 @@ function fieldHTML(f, item, i) {
       if ((form.categories || []).length && form.categories.length <= 15)
         return `<div style="grid-column:1/-1">${lab}<div class="chips">${form.categories.map((c) =>
           `<button type="button" class="chip ${item.category === c ? "on" : ""}" data-cat="${esc(c)}" data-i="${i}">${esc(c)}</button>`).join("")}</div></div>`;
-      return `<div style="grid-column:1/-1">${lab}<input type="text" list="cats" placeholder="Start typing, e.g. Speaker" ${data} data-catinput value="${esc(item.category)}" autocomplete="off"></div>`;
+      // Our own list, not a <datalist>: phones showed no list (2026-10-28).
+      return `<div style="grid-column:1/-1">${lab}<div class="combo"><input type="text" placeholder="Tap to pick, or type, e.g. Speaker" ${data} data-catinput value="${esc(item.category)}" autocomplete="off"><div class="sugg hidden" data-sugg="${i}"></div></div></div>`;
     case "toggle":
       return `<div>${lab}<div class="chips">${["Yes", "No"].map((o) =>
         `<button type="button" class="chip ${v === o ? "on" : ""}" data-opt="${o}" ${data}>${o}</button>`).join("")}</div></div>`;
-    case "choice":
-      return `<div>${lab}<div class="chips">${(f.options || []).map((o) =>
-        `<button type="button" class="chip ${v === o ? "on" : ""}" data-opt="${esc(o)}" ${data}>${esc(o)}</button>`).join("")}</div></div>`;
+    case "choice": {
+      // The team's options as chips, and a box for the vendor's own answer
+      // (Moshe, 2026-10-28: "with the prebuilt option if they have and allow typing their own").
+      const opts = f.options || [];
+      const own = opts.includes(v) ? "" : v;
+      return `<div>${lab}${opts.length ? `<div class="chips">${opts.map((o) =>
+        `<button type="button" class="chip ${v === o ? "on" : ""}" data-opt="${esc(o)}" ${data}>${esc(o)}</button>`).join("")}</div>` : ""}
+        <input type="text" ${data} data-own placeholder="${opts.length ? "Or type your own" : ""}" value="${esc(own)}" style="margin-top:6px"></div>`;
+    }
     case "ladder": {
       const rows = breaksOf(item).map((b, r) => {
         const d = `data-bi="${i}" data-br="${r}"`;
@@ -280,7 +299,15 @@ function fieldHTML(f, item, i) {
   }
 }
 
+// Replacing the focused box fires its blur and change, which call render() again
+// in the middle of this one ("node to be removed is no longer a child").
+let rendering = false;
 function render() {
+  if (rendering) return;
+  rendering = true;
+  try { draw(); } finally { rendering = false; }
+}
+function draw() {
   $("items").innerHTML = items.map((item, i) => {
     const fields = form.fields.filter((f) => applies(f, item));
     const hasCategory = form.fields.some((f) => f.kind === "category");
@@ -297,16 +324,60 @@ function render() {
   }).join("");
 }
 
+// The category list under the box: names that start with the typed text
+// first, then names that contain it. All of them when the box is empty.
+function showSugg(box) {
+  const list = document.querySelector(`[data-sugg="${box.dataset.i}"]`);
+  if (!list) return;
+  const q = box.value.trim().toLowerCase();
+  const all = form.categories || [];
+  const hits = q ? [...all.filter((c) => c.toLowerCase().startsWith(q)),
+                    ...all.filter((c) => !c.toLowerCase().startsWith(q) && c.toLowerCase().includes(q))] : all;
+  const exact = hits.length === 1 && hits[0].toLowerCase() === q;
+  list.innerHTML = hits.slice(0, 50).map((c) => `<button type="button" data-pick="${esc(c)}">${esc(c)}</button>`).join("");
+  list.classList.toggle("hidden", !hits.length || exact);
+}
+document.addEventListener("focusin", (e) => { if (e.target.hasAttribute?.("data-catinput")) showSugg(e.target); });
+document.addEventListener("focusout", (e) => {
+  if (!e.target.hasAttribute?.("data-catinput")) return;
+  const list = document.querySelector(`[data-sugg="${e.target.dataset.i}"]`);
+  // Later, so a tap on a name lands before the list goes.
+  setTimeout(() => list?.classList.add("hidden"), 300);
+});
+// A tap, not a touch: a finger that scrolls the list must not pick a name.
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-pick]");
+  if (!b) return;
+  const i = b.closest("[data-sugg]").dataset.sugg;
+  items[i].category = b.dataset.pick; items[i].fields.category = b.dataset.pick;
+  render();
+});
+
 document.addEventListener("input", (e) => {
   const el = e.target, i = el.dataset.i;
   if (el.dataset.bi !== undefined) { breaksOf(items[el.dataset.bi])[el.dataset.br][el.dataset.bf] = el.value; return; }
   if (i === undefined) return;
-  if (el.hasAttribute("data-catinput")) { items[i].category = el.value.trim(); items[i].fields.category = items[i].category; return; }
+  if (el.hasAttribute("data-catinput")) {
+    const before = items[i].category;
+    items[i].category = el.value.trim(); items[i].fields.category = items[i].category;
+    // A known category picked or typed in full: show its fields now, not on blur.
+    const known = (form.categories || []).some((c) => c.toLowerCase() === items[i].category.toLowerCase());
+    if (known && before.toLowerCase() !== items[i].category.toLowerCase()) {
+      render();
+      const box = document.querySelector(`[data-catinput][data-i="${i}"]`);
+      if (box) { box.focus(); box.setSelectionRange(box.value.length, box.value.length); }
+    }
+    showSugg(document.querySelector(`[data-catinput][data-i="${i}"]`) || el);
+    return;
+  }
   items[i].fields[el.dataset.k] = el.value;
+  // Typing your own answer clears the picked chip.
+  if (el.hasAttribute("data-own")) el.closest("div")?.querySelectorAll(".chip.on").forEach((c) => c.classList.remove("on"));
 });
 document.addEventListener("change", (e) => {
   const el = e.target;
-  if (el.dataset.catinput !== undefined) render();
+  // Later, so a tap on a name in the list lands before the redraw removes it.
+  if (el.dataset.catinput !== undefined) setTimeout(render, 350);
   if (el.dataset.photo !== undefined) addPhotos(+el.dataset.photo, el.files);
 });
 document.addEventListener("click", (e) => {
@@ -455,7 +526,7 @@ $("send").onclick = async (e) => {
   btn.disabled = true; btn.textContent = "Sending…";
   try {
     const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ slug, company, card_photo: cardPhoto, items: items.map((it) => ({ fields: it.fields, photos: it.photos, price_breaks: fullBreaks(it) })) }) });
+      body: JSON.stringify({ slug, company, card_photo: cardPhoto, items: items.map((it) => ({ fields: sentFields(it), photos: it.photos, price_breaks: fullBreaks(it) })) }) });
     const d = await r.json();
     if (!r.ok) throw new Error(d.error || "Could not send.");
     $("form").classList.add("hidden"); $("bar").classList.add("hidden");
