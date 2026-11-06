@@ -55,10 +55,10 @@
           "installUrl": "https://apps.apple.com/app/id6758863749",
           "image": "https://showsourcing.app/app-icon.png",
           "screenshot": [
-            "https://showsourcing.app/images/ss-products-grid.webp",
-            "https://showsourcing.app/images/ss-product.webp",
-            "https://showsourcing.app/images/ss-vendor-card.webp",
-            "https://showsourcing.app/images/ss-team-map.webp"
+            "https://showsourcing.app/images/as-01-products.webp",
+            "https://showsourcing.app/images/as-05-product.webp",
+            "https://showsourcing.app/images/as-04-vendor_text.webp",
+            "https://showsourcing.app/images/as-06-status.webp"
           ],
           "author": {"@type": "Organization", "name": "DNZ", "url": "https://showsourcing.app"},
           "publisher": {"@type": "Organization", "name": "DNZ", "url": "https://showsourcing.app"},
@@ -127,7 +127,7 @@
             --wrap: 1160px;
             --gut:  clamp(16px, 4vw, 40px);
             --ease: cubic-bezier(0.16, 1, 0.3, 1);
-            --bh:   40px;   /* banner height */
+            --bh:   0px;    /* show banner height (banner removed 2026-10-22; set again if a banner comes back) */
             --hh:   52px;   /* header height */
         }
         html.light {
@@ -154,7 +154,7 @@
            BASE
         =============================================== */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bh) + var(--hh) + 12px); }
+        html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bh) + var(--hh) + 58px); }
         body {
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             background: var(--bg);
@@ -168,33 +168,6 @@
         a { color: inherit; }
         .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
         @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-        /* ==============================================
-           SHOW BANNER (Hong Kong shows, Oct 2026)
-        =============================================== */
-        #showbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: var(--bh);
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5em;
-            padding: 0 16px;
-            /* Blue, so the show banner never looks like the orange trial button. */
-            background: linear-gradient(90deg, #075985, #0284c7);
-            color: #fff;
-            font-size: clamp(0.72rem, 1.2vw, 0.9rem);
-            font-weight: 500;
-            text-align: center;
-            line-height: 1.25;
-        }
-        #showbar a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
-        @media (max-width: 640px) {
-            :root { --bh: 56px; }
-            #showbar { flex-direction: column; gap: 2px; font-size: 0.76rem; }
-        }
 
         /* ==============================================
            HEADER
@@ -241,6 +214,11 @@
             transition: color 0.2s;
             white-space: nowrap;
         }
+        #header .header-links a { display: inline-flex; align-items: center; gap: 5px; }
+        #header .nav-icon { width: 15px; height: 15px; flex: none; }
+        #header .menu-panel a { display: flex; align-items: center; gap: 10px; }
+        /* Tablets: the full row has no room for icons. The phone menu keeps them. */
+        @media (max-width: 1000px) { #header .header-links .nav-icon { display: none; } }
         #header .header-links a:hover { color: var(--text); }
         #header .header-links a.nav-cta {
             color: #fff;
@@ -254,12 +232,38 @@
             #header .header-links a[href="/privacy.html"],
             #header .header-links a[href="/terms.html"] { display: none; }
         }
+        /* Phones: logo, Download, theme and a hamburger menu that holds every other link. */
+        #header .menu-btn { display: none; }
+        @media (max-width: 760px) {
+            #header .header-links > a:not(.nav-cta) { display: none !important; }
+            #header .menu-btn {
+                display: inline-flex; flex-direction: column; justify-content: center; gap: 4px;
+                width: 36px; height: 36px; padding: 0 9px; border-radius: 10px; cursor: pointer;
+                background: transparent; border: 1px solid var(--border); pointer-events: auto;
+            }
+            #header .menu-btn span { display: block; height: 2px; border-radius: 2px; background: var(--text); transition: transform .2s, opacity .2s; }
+            #header.open .menu-btn span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+            #header.open .menu-btn span:nth-child(2) { opacity: 0; }
+            #header.open .menu-btn span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+            #header .menu-panel {
+                position: absolute; top: 100%; left: 0; right: 0; pointer-events: auto;
+                display: flex; flex-direction: column; padding: 8px 16px 14px;
+                background: var(--bg); border-bottom: 1px solid var(--border); box-shadow: 0 14px 30px rgba(15,23,42,.12);
+            }
+            #header .menu-panel[hidden] { display: none; }
+            #header .menu-panel a { padding: 13px 4px; color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--border); }
+            #header .menu-panel a:last-child { border-bottom: 0; }
+        }
         @media (max-width: 420px) {
             :root { --hh: 48px; }
             #header .logo span { font-size: 0.92rem; }
-            #header .header-links { gap: 11px; }
-            #header .header-links a { font-size: 0.78rem; }
-            #header .header-links a.nav-cta { display: none; }
+            #header .header-links { gap: 12px; }
+            #header .header-links a { font-size: 0.82rem; }
+            #header .header-links a.nav-cta { padding: 6px 12px; }
+        }
+        @media (max-width: 380px) {
+            #header .logo span { font-size: 0.86rem; }
+            #header .header-links { gap: 10px; margin-left: 12px; }
         }
 
         /* ==============================================
@@ -408,6 +412,7 @@
         .quote blockquote { margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text); }
         .quote blockquote::before { content: "\201C"; display: block; font-size: 2.6rem; line-height: 0.8; color: var(--accent); margin-bottom: 6px; font-weight: 800; }
         .quote figcaption { margin-top: 14px; font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+        .quote-note { margin: 16px 0 0; font-size: 0.78rem; color: var(--muted); }
 
         /* Hero: a pile of phones. Swipe (or flick, tap, arrow keys) the top one away; the next
            comes up and the swiped one slides back to the bottom of the pile. Endless loop. */
@@ -425,7 +430,7 @@
             position: absolute; top: 8px; left: 50%;
             width: var(--w); margin-left: calc(var(--w) / -2);
             transform-origin: 50% 90%;
-            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s, opacity 0.35s;
             will-change: transform;
             cursor: grab;
             filter: brightness(var(--dim, 1)) drop-shadow(0 18px 28px rgba(15,23,42,0.22)) drop-shadow(0 4px 8px rgba(15,23,42,0.12));
@@ -486,7 +491,136 @@
         .sd-row.on span::after { content: "\2713"; color: #34c759; font-weight: 700; margin-left: 1.2cqw; }
         @media (prefers-reduced-motion: reduce) { .sd-row em { opacity: 1; transform: none; } .scan-demo .sd-beam { display: none; } }
 
-        #vendors .shots figure:first-child { position: relative; z-index: 3; }
+        #vendors .shots figure:first-child, #capture .shots figure:first-child, #photo-descriptions .shots figure:first-child { position: relative; z-index: 3; }
+        .sheet-fig { align-self: center; }
+        .sheet-img { display: block; width: clamp(260px, 30vw, 400px); height: auto; border-radius: 14px; border: 1px solid var(--border);
+            box-shadow: 0 18px 40px rgba(15,23,42,.18); transform: rotate(3deg) translate(-2%, 46px); background: #fff; }
+        @media (max-width: 760px) { .sheet-img { width: min(56vw, 260px); transform: rotate(4deg) translate(-8%, 20px); } }
+        /* Title under the deck: fades to the top card's title on every swipe. */
+        .deck-cap { text-align: center; margin: 4px auto 0; min-height: 3.4em; transition: opacity .25s ease, transform .25s ease; }
+        .deck-cap.fade { opacity: 0; transform: translateY(6px); }
+        .deck-cap strong { display: block; font-size: clamp(1.15rem, 2.2vw, 1.45rem); font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
+        .deck-cap span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.92rem; }
+        /* AI demo: two chat windows that play a question, a Show Sourcing tool call and the answer. */
+        .ai-demo { padding: clamp(56px, 8vw, 104px) 0; text-align: center; }
+        .ai-demo .lede { margin-left: auto; margin-right: auto; max-width: 640px; }
+        .ai-chats { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2.5vw, 28px); margin: 36px auto 0; max-width: 1040px; text-align: left; }
+        @media (max-width: 820px) { .ai-chats { grid-template-columns: 1fr; } .chat { min-height: 330px; } }
+        .chat { border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 44px rgba(15,23,42,.14); min-height: 380px; display: flex; flex-direction: column; }
+        .chat.gpt { background: #ffffff; color: #0d0d0d; }
+        .chat.claude { background: #faf9f5; color: #1f1e1d; font-family: Georgia, "Times New Roman", serif; }
+        .chat-top { display: flex; align-items: center; gap: 9px; padding: 13px 16px; border-bottom: 1px solid rgba(0,0,0,.08); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: .92rem; }
+        .chat-top em { margin-left: auto; font-style: normal; font-size: .74rem; color: #16a34a; font-weight: 600; }
+        .chat-top em::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #16a34a; margin-right: 6px; vertical-align: 1px; }
+        .chat-ic { width: 22px; height: 22px; border-radius: 6px; }
+        .chat-body { padding: 18px 16px 20px; display: flex; flex-direction: column; gap: 12px; font-size: .95rem; line-height: 1.55; }
+        .msg { opacity: 0; transform: translateY(8px); transition: opacity .35s, transform .35s; white-space: pre-line; }
+        .msg.user { align-self: flex-end; max-width: 86%; padding: 10px 14px; border-radius: 18px; background: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .claude .msg.user { background: #ece9df; }
+        .msg .row { display: block; margin: 4px 0; }
+        .tool { opacity: 0; transition: opacity .3s; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; font: 500 .8rem -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #555; background: rgba(0,0,0,.045); border-radius: 999px; padding: 6px 12px; }
+        .tool i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #f97316; border-right-color: transparent; animation: spin .8s linear infinite; }
+        .tool.ok i { border: 0; animation: none; background: #16a34a; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' stroke='black' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' stroke='black' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .chat .show { opacity: 1; transform: none; }
+        .ai-note { margin: 22px auto 0; max-width: 620px; color: var(--muted); font-size: .85rem; }
+        @media (prefers-reduced-motion: reduce) { .msg, .tool { opacity: 1; transform: none; } .tool i { animation: none; } }
+        /* Chip-tapping demo: a finger taps the one-tap chips and each value fills in. */
+        .chip-demo { position: relative; height: 100%; overflow: hidden; background: #f2f2f7; color: #111; container-type: inline-size;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; }
+        .cd-in { padding: 15cqw 4cqw 0; }
+        .cd-top { display: flex; align-items: center; gap: 2cqw; margin-bottom: 3cqw; }
+        .cd-btn { width: 9cqw; height: 9cqw; border-radius: 50%; background: #fff; display: grid; place-items: center; font-size: 3.6cqw; box-shadow: 0 .5cqw 2cqw rgba(0,0,0,.08); }
+        .cd-title { flex: 1; text-align: center; font-weight: 600; font-size: 4cqw; }
+        .cd-ok { color: #007aff; transition: background .2s, color .2s; }
+        .chip-demo.saved .cd-ok { background: #007aff; color: #fff; }
+        .cd-photo { height: 20cqw; border-radius: 3cqw; overflow: hidden; margin-bottom: 3cqw; }
+        .cd-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+        .cd-thumbs { display: flex; gap: 1.8cqw; margin-top: 2.2cqw; align-items: center; }
+        .cd-thumbs img { width: 12cqw; height: 12cqw; border-radius: 2cqw; object-fit: cover; }
+        .cd-cam { width: 12cqw; height: 12cqw; border-radius: 2cqw; background: #e9f1ff; color: #007aff; display: grid; place-items: center; font-size: 4.6cqw; }
+        .cd-f { background: #fff; border-radius: 3.4cqw; padding: 3cqw 3.4cqw; margin-bottom: 2.4cqw; }
+        .cd-h { display: flex; align-items: center; gap: 2.4cqw; font-size: 3.7cqw; }
+        .cd-i { color: #007aff; width: 4cqw; text-align: center; }
+        .cd-l { font-weight: 600; }
+        .cd-v { margin-left: auto; font-weight: 600; color: #c7c7cc; transition: color .2s, transform .2s; }
+        .cd-f.set .cd-v, .cd-v.cd-static { color: #111; }
+        .cd-toggle { margin-left: auto; width: 10cqw; height: 6cqw; border-radius: 99cqw; background: #34c759; position: relative; }
+        .cd-toggle::after { content: ""; position: absolute; right: .5cqw; top: .5cqw; width: 5cqw; height: 5cqw; border-radius: 50%; background: #fff; box-shadow: 0 .3cqw .8cqw rgba(0,0,0,.2); }
+        .cd-v.pop { transform: scale(1.12); }
+        .cd-x { width: 4.4cqw; height: 4.4cqw; border-radius: 50%; background: #111; color: #fff; font-size: 3cqw; display: grid; place-items: center; opacity: 0; transition: opacity .2s; }
+        .cd-f.set .cd-x { opacity: 1; }
+        .cd-chips { display: flex; flex-wrap: nowrap; gap: 1.6cqw; margin-top: 2.4cqw; overflow: hidden; }
+        .cd-chips b { flex: none; font-weight: 500; font-size: 2.9cqw; padding: 1.2cqw 2.8cqw; border-radius: 99cqw; background: #e9f1ff; color: #007aff; transition: background .2s, color .2s, transform .15s; }
+        .cd-chips b.on { background: #007aff; color: #fff; }
+        .cd-chips b.press { transform: scale(.92); }
+        .cd-finger { position: absolute; width: 11cqw; height: 11cqw; margin: -5.5cqw 0 0 -5.5cqw; border-radius: 50%; background: rgba(0,0,0,.18);
+            border: .6cqw solid rgba(255,255,255,.9); box-shadow: 0 1cqw 3cqw rgba(0,0,0,.25); left: 70%; top: 110%; opacity: 0;
+            transition: left .55s cubic-bezier(.4,0,.2,1), top .55s cubic-bezier(.4,0,.2,1), opacity .3s, transform .12s; z-index: 3; pointer-events: none; }
+        .cd-finger.tap { transform: scale(.78); }
+        .cd-toast { position: absolute; left: 50%; bottom: 8cqw; transform: translate(-50%, 6cqw); opacity: 0; background: #34c759; color: #fff; font-weight: 600; font-size: 3.6cqw;
+            padding: 2cqw 5cqw; border-radius: 99cqw; transition: opacity .3s, transform .3s; }
+        .chip-demo.saved .cd-toast { opacity: 1; transform: translate(-50%, 0); }
+        @media (prefers-reduced-motion: reduce) { .cd-finger { display: none; } }
+        /* Jump bar: # links to every section. Sticks under the header; the current section lights up. */
+        .jump { position: sticky; top: calc(var(--bh) + var(--hh)); z-index: 120; background: var(--header-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+        .jump-in { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding: 8px var(--gut, 16px); max-width: 1200px; margin: 0 auto; justify-content: safe center; }
+        .jump-in::-webkit-scrollbar { display: none; }
+        .jump a { flex: none; font-size: 0.8rem; font-weight: 600; color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 999px; transition: background .2s, color .2s; }
+        .jump a:hover { color: var(--text); background: var(--surface2); }
+        .jump a.on { color: #fff; background: var(--accent); }
+        /* # link next to each section heading, to copy or share a link to it. */
+        .hash { margin-left: .35em; color: var(--accent); opacity: 0; text-decoration: none; font-weight: 700; transition: opacity .2s; }
+        h2:hover .hash, .hash:focus { opacity: .8; }
+        @media (hover: none) { .hash { opacity: .35; } }
+        /* Magic search demo: a query types itself and products appear, matched from their photos. */
+        .magic { position: relative; height: 100%; overflow: hidden; background: #f2f2f7; color: #111; container-type: inline-size;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; }
+        .ms-in { padding: 15cqw 4.5cqw 0; }
+        .ms-title { font-size: 8.4cqw; font-weight: 700; letter-spacing: -.02em; margin: 2cqw 0 3cqw; }
+        .ms-bar { display: flex; align-items: center; gap: 2cqw; height: 10cqw; padding: 0 3.4cqw; border-radius: 3cqw; background: #e3e3e8; font-size: 4.2cqw; }
+        .ms-bar svg { width: 4.6cqw; height: 4.6cqw; color: #8e8e93; flex: none; }
+        .ms-caret { width: .5cqw; height: 5cqw; background: #007aff; animation: msblink 1s steps(1) infinite; }
+        @keyframes msblink { 50% { opacity: 0; } }
+        .ms-count { font-size: 3.2cqw; color: #8e8e93; margin: 3cqw 1cqw 2cqw; min-height: 4cqw; }
+        .ms-row { display: flex; gap: 3cqw; align-items: center; background: #fff; border-radius: 3.4cqw; padding: 2.4cqw; margin-bottom: 2.2cqw;
+            opacity: 0; transform: translateY(3cqw); transition: opacity .35s, transform .35s; }
+        .ms-row.in { opacity: 1; transform: none; }
+        .ms-row img { width: 14cqw; height: 14cqw; border-radius: 2.4cqw; object-fit: cover; flex: none; }
+        .ms-row .t { flex: 1; min-width: 0; }
+        .ms-row b { display: block; font-size: 3.7cqw; }
+        .ms-row span { display: block; font-size: 3cqw; color: #555; line-height: 1.35; margin-top: .6cqw; }
+        .ms-row mark { background: #ffe58a; color: inherit; border-radius: .8cqw; padding: 0 .5cqw; }
+        .ms-row em { font-style: normal; font-size: 2.6cqw; font-weight: 600; color: #af52de; display: inline-flex; align-items: center; gap: 1cqw; margin-top: 1cqw; }
+        .ms-row em.box { color: #ff9500; }
+        .ms-row .p { font-weight: 700; font-size: 3.4cqw; flex: none; }
+        /* Multi-shot camera demo: shutter, flash, each shot drops into the strip, count goes up. */
+        .cam-demo { position: relative; height: 100%; overflow: hidden; background: #000; color: #fff; container-type: inline-size;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; }
+        .cm-view { position: absolute; left: 0; right: 0; top: 13%; height: 66%; overflow: hidden; }
+        .cm-view img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); transition: transform 1.2s ease, object-position 1.2s ease; }
+        .cm-top { position: absolute; top: 14cqw; left: 4cqw; right: 4cqw; display: flex; align-items: center; gap: 2.4cqw; }
+        .cm-b, .cm-zoom, .cm-done { height: 9cqw; min-width: 9cqw; border-radius: 99cqw; background: rgba(40,40,40,.75); display: grid; place-items: center; font-size: 3.6cqw; padding: 0 2cqw; }
+        .cm-zoom { margin-left: auto; color: #ffd60a; font-weight: 700; font-size: 3.4cqw; }
+        .cm-done { position: relative; background: #ffd60a; color: #000; font-weight: 800; }
+        .cm-n { position: absolute; top: -1.6cqw; right: -1.6cqw; min-width: 5cqw; height: 5cqw; border-radius: 99cqw; background: #ff3b30; color: #fff; font-size: 2.8cqw; font-style: normal; display: grid; place-items: center; padding: 0 1cqw; opacity: 0; transition: opacity .2s; }
+        .cm-n.on { opacity: 1; }
+        .cm-flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; transition: opacity .25s; }
+        .cm-flash.on { opacity: .85; transition: none; }
+        .cm-strip { position: absolute; left: 4cqw; right: 5cqw; bottom: 30cqw; height: 15cqw; display: flex; gap: 2cqw; justify-content: flex-end; }
+        .cm-strip img { width: 15cqw; height: 15cqw; border-radius: 2.2cqw; object-fit: cover; border: .5cqw solid #fff; transform: scale(.2) translateY(-30cqw); opacity: 0; transition: transform .45s cubic-bezier(.2,.9,.3,1.2), opacity .3s; }
+        .cm-strip img.in { transform: none; opacity: 1; }
+        .cm-shutter { position: absolute; left: 50%; bottom: 9cqw; width: 18cqw; height: 18cqw; margin-left: -9cqw; border-radius: 50%; border: 1.2cqw solid #fff; display: grid; place-items: center; }
+        .cm-shutter i { width: 13cqw; height: 13cqw; border-radius: 50%; background: #fff; transition: transform .12s; }
+        .cm-shutter.press i { transform: scale(.82); }
+        /* Filters demo: multi-select chips, the product count updates as you tap. */
+        .fd-f .cd-chips b i { display: inline-block; width: 1.8cqw; height: 1.8cqw; border-radius: 50%; margin-right: 1cqw; vertical-align: .2cqw; }
+        .fd-f .cd-chips b.on i { box-shadow: 0 0 0 .4cqw #fff; }
+        .fd-sel { margin-left: auto; font-size: 3cqw; font-weight: 700; color: #007aff; }
+        .fd-show { position: absolute; left: 6cqw; right: 6cqw; bottom: 9cqw; height: 12cqw; border-radius: 99cqw; background: #007aff; color: #fff;
+            display: flex; align-items: center; justify-content: center; gap: 1.2cqw; font-weight: 600; font-size: 4cqw; box-shadow: 0 2cqw 5cqw rgba(0,122,255,.35); }
+        .fd-show b { display: inline-block; transition: transform .2s; }
+        .fd-show b.pop { transform: scale(1.3); }
         /* Screenshot marquee (no longer in the hero) */
         .marquee {
             position: relative;
@@ -754,28 +888,42 @@
             #stickybar small { display: none; }
         }
         @media (prefers-reduced-motion: reduce) { #stickybar, #stickybar.show { transition: none; } }
-    </style>
+    
+        /* Google Play badge: matches the App Store badge */
+        .playbeta { display: inline-flex; align-items: center; gap: 9px; height: 48px; padding: 0 16px 0 13px;
+            border-radius: 10px; background: #000; color: #fff !important; text-decoration: none;
+            border: 1px solid #a6a6a6; box-sizing: border-box; }
+        .playbeta svg { width: 23px; height: 25px; flex: none; }
+        .playbeta span { display: grid; line-height: 1.05; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
+        .playbeta small { font-size: 10.5px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; opacity: 0.92; }
+        .playbeta:hover { text-decoration: none; filter: brightness(1.15); }
+        /* Live on Google Play 2026-11-06: badge links to the store; a small APK link sits under it. */
+        /* The APK link hangs under the badge without moving it, so both store badges line up. */
+        .playwrap { position: relative; display: inline-flex; }
+        .apk { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 5px; white-space: nowrap;
+            font-size: 12.5px; font-weight: 600; color: var(--dim, #8a94a6) !important; text-decoration: none; }
+        .cta-row:has(.playwrap) { row-gap: 30px; margin-bottom: 14px; }
+        .apk:hover { text-decoration: underline; }
+</style>
 </head>
 <body>
 
-<div id="showbar">
-    <span>I'm at the Hong Kong shows, Global Sources and HKTDC. Want an in-person demo?</span>
-    <a href="mailto:general@showsourcing.app?subject=In-person%20demo%20in%20Hong%20Kong">Email general@showsourcing.app</a>
-</div>
 <div id="prog"></div>
 <header id="header">
     <a class="logo" href="/"><img src="/app-icon.png" alt="" width="26" height="26"><span>Show Sourcing</span></a>
     <nav class="header-links">
-        <a href="/trade-show-sourcing-app/">Use cases</a>
-        <a href="/pricing">Pricing</a>
-        <a href="/help">Help</a>
-        <a href="/blog/">Blog</a>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-        <a href="https://app.showsourcing.app/login" class="signin-btn" title="Sign in to see your team's products and vendors on the web">Web Portal</a>
-        <a href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" class="nav-cta" target="_blank" rel="noopener">Download</a>
+        <a href="/trade-show-sourcing-app/"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Use cases</a>
+        <a href="/pricing"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>Pricing</a>
+        <a href="/help"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17h.01"/></svg>Help</a>
+        <a href="/blog/"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg>Blog</a>
+        <a href="/privacy.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Privacy Policy</a>
+        <a href="/terms.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h8"/></svg>Terms of Service</a>
+        <a href="https://app.showsourcing.app/login" class="signin-btn" title="Sign in to see your team's products and vendors on the web"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg>Web Portal</a>
+        <a href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" class="nav-cta" target="_blank" rel="noopener"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>Download</a>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menuPanel"><span></span><span></span><span></span></button>
     </nav>
+    <div class="menu-panel" id="menuPanel" hidden></div>
 </header>
 
 <main>
@@ -793,6 +941,7 @@
                 <a class="appstore" href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" target="_blank" rel="noopener">
                     <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" width="144" height="48">
                 </a>
+                <span class="playwrap"><a class="playbeta" href="https://play.google.com/store/apps/details?id=com.DNZ.showsourcing" target="_blank" rel="noopener" title="Get Show Sourcing on Google Play"><svg viewBox="0 0 24 26" aria-hidden="true"><path fill="#00d2ff" d="M1.1.4C.8.7.6 1.2.6 1.8v22.4c0 .6.2 1.1.5 1.4l.1.1L13.7 13.2v-.3L1.2.3z"/><path fill="#ffce00" d="M17.9 17.4l-4.2-4.2v-.3l4.2-4.2.1.1 5 2.8c1.4.8 1.4 2.1 0 2.9l-5 2.8z"/><path fill="#ff3a44" d="M18 17.3L13.7 13 1.1 25.6c.5.5 1.2.5 2.1.1L18 17.3"/><path fill="#00f076" d="M18 8.7L3.2.3C2.3-.2 1.6-.1 1.1.4L13.7 13z"/></svg><span><small>Get it on</small>Google Play</span></a><a class="apk" href="/android/download" title="Android APK for phones without Google Play">Download APK</a></span>
                 <a class="btn-ghost" href="/pricing">See pricing <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             </div>
             <div class="trust">
@@ -804,12 +953,19 @@
     </div>
 
     <div class="deck" id="deck" tabindex="0" role="region" aria-roledescription="carousel" aria-label="App screenshots. Swipe, tap or use the arrow keys to see the next one.">
-        <div class="phone"><div class="scr"><img src="/images/ss-products-grid.webp" width="600" height="1304" alt="Products catalog in a photo grid with landed cost" draggable="false"></div></div>
-        <div class="phone"><div class="scr"><img src="/images/ss-vendor-card.webp" width="600" height="1304" alt="Vendor page filled from a scanned business card" draggable="false"></div></div>
-        <div class="phone"><div class="scr"><img src="/images/ss-product.webp" width="600" height="1304" alt="Product page with FOB, MOQ, tariff and landed cost" draggable="false"></div></div>
-        <div class="phone"><div class="scr"><img src="/images/ss-team-map.webp" width="600" height="1304" alt="Team Map at a trade show venue" loading="lazy" draggable="false"></div></div>
-        <div class="phone"><div class="scr"><img src="/images/ss-vendors.webp" width="600" height="1304" alt="Vendors shown by their business cards" loading="lazy" draggable="false"></div></div>
+        <div class="phone" data-title="Every find, in one place" data-sub="Photos, prices and status from the show floor"><div class="scr"><img src="/images/as-01-products.webp" width="600" height="1304" alt="Products catalog in a photo grid with landed cost" draggable="false"></div></div>
+        <div class="phone" data-title="Snap a product in seconds" data-sub="One-tap chips for the details you use most"><div class="scr"><img src="/images/as-02-edit_1.webp" width="600" height="1304" alt="Edit Product with one-tap chips for quantity, MOQ, origin and venue" draggable="false"></div></div>
+        <div class="phone" data-title="Fields that fit each product" data-sub="A speaker gets battery and color. A camera gets megapixels"><div class="scr"><img src="/images/as-03-speaker.webp" width="600" height="1304" alt="Custom fields: battery, waterproof and color for a speaker" draggable="false"></div></div>
+        <div class="phone" data-title="Snap a card. The vendor fills in" data-sub="Then select and copy any text right off the card"><div class="scr"><img src="/images/as-04-vendor_text.webp" width="600" height="1304" alt="Vendor filled in from a scanned business card" draggable="false"></div></div>
+        <div class="phone" data-title="Landed cost on the spot" data-sub="Duty and freight included, at every quantity"><div class="scr"><img src="/images/as-05-product.webp" width="600" height="1304" alt="Product page with FOB, tariff and landed cost" draggable="false"></div></div>
+        <div class="phone" data-title="Comment, flag, tag" data-sub="Mark what needs a sample"><div class="scr"><img src="/images/as-06-status.webp" width="600" height="1304" alt="Team statuses: sample requested, quoted, approved" draggable="false"></div></div>
+        <div class="phone" data-title="Loop in a teammate" data-sub="Comments and @mentions on every product"><div class="scr"><img src="/images/as-07-mention.webp" width="600" height="1304" alt="Comments with @mentions on a product" draggable="false"></div></div>
+        <div class="phone" data-title="Know every vendor" data-sub="Contacts, cards and US shipping records"><div class="scr"><img src="/images/as-08-vendor_1.webp" width="600" height="1304" alt="Vendor page with products and US shipping records" draggable="false"></div></div>
+        <div class="phone" data-title="Find anything" data-sub="Your notes, tags, specs and the words printed on the box"><div class="scr"><img src="/images/as-09-search_rows.webp" width="600" height="1304" alt="Search finds words in notes, tags and photo text" draggable="false"></div></div>
+        <div class="phone" data-title="Ask ChatGPT about your catalog" data-sub="It searches your products and answers with your landed prices"><div class="scr"><img src="/images/as-10-chatgpt.webp" width="600" height="1304" alt="ChatGPT answering from Show Sourcing: two products waiting on samples" draggable="false"></div></div>
+        <div class="phone" data-title="Or ask Claude" data-sub="Price breaks and the best landed price, from your own quotes"><div class="scr"><img src="/images/as-11-claude.webp" width="600" height="1304" alt="Claude answering from Show Sourcing: best landed price at 10,000 units" draggable="false"></div></div>
     </div>
+    <div class="deck-cap" aria-live="polite"><strong id="deckTitle">Every find, in one place</strong><span id="deckSub">Photos, prices and status from the show floor</span></div>
     <p class="deck-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a2 2 0 0 1 4 0v5m0-1a2 2 0 0 1 4 0v3a6 6 0 0 1-6 6h-.5a5 5 0 0 1-4.2-2.3L4 15.5a1.6 1.6 0 0 1 2.6-1.9L9 16"/></svg>Swipe the phones</p>
     <a class="scroll-hint" href="#capture">See how it works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
@@ -834,40 +990,61 @@
     </div>
 </section>
 
+<nav class="jump" id="jump" aria-label="Jump to a section"><div class="jump-in"><a href="#capture">Capture</a><a href="#vendors">Card scan</a><a href="#landed-cost">Landed cost</a><a href="#know-vendors">Vendors</a><a href="#team">Team</a><a href="#catalog">Search</a><a href="#filters">Filters</a><a href="#fields">Custom fields</a><a href="#photo-descriptions">Photo AI</a><a href="#export-ai">Export &amp; AI</a><a href="#ai-demo">ChatGPT &amp; Claude</a><a href="#follow-up">Follow-up</a><a href="#from-the-floor">Reviews</a><a href="#faq">FAQ</a></div></nav>
 <!-- 1. CAPTURE -->
 <section class="feature" id="capture">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Capture</span>
-            <h2 class="rv d2">Log a product in seconds, right at the booth</h2>
-            <p class="lede rv d2">One screen for everything you need. Tap the quick-pick chips instead of typing on a crowded show floor.</p>
+            <h2 class="rv d2">Snap a product in seconds, right at the booth<a class="hash" href="#capture" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">One screen for everything you need. Tap the one-tap chips for the details you use most instead of typing on a crowded show floor.</p>
             <ul class="points rv d3">
                 <li><span><strong>Fast multi-shot camera</strong> with instant thumbnails and a zoom dial, plus video and voice notes. Or choose from your library.</span></li>
-                <li><span><strong>FOB, MOQ, packaging, tariff, container qty, venue</strong> and country of origin — each with one-tap presets.</span></li>
-                <li><span><strong>Notes</strong> for materials, colors and options, and <strong>custom fields</strong> for anything your team tracks.</span></li>
+                <li><span><strong>FOB, MOQ, container qty, venue</strong> and country of origin, each with one-tap presets.</span></li>
+                <li><span><strong>Autofill</strong> fills in a product from its photo text and voice note. Review every suggestion on one screen.</span></li>
                 <li><span>Draw on a photo to mark the detail that matters.</span></li>
             </ul>
         </div>
-        <div class="shots single rv d2">
+        <div class="shots rv d2">
             <figure>
-                <div class="phone"><div class="scr"><img src="/images/ss-create.webp" width="600" height="1304" loading="lazy" alt="Product form with quick-pick chips for container qty, MOQ, country of origin and venue"></div></div>
-                <figcaption>Create: quick-pick chips on every field</figcaption>
+                <div class="phone"><div class="scr"><div class="chip-demo" id="chipDemo" role="img" aria-label="Animation: on the Create screen, tapping one-tap chips fills in container quantity, MOQ, country of origin and venue">
+                    <div class="cd-in">
+                    <div class="cd-top"><span class="cd-btn">▦</span><span class="cd-btn">✕</span><span class="cd-title">Create</span><span class="cd-btn cd-ok">✓</span></div>
+                    <div class="cd-f"><div class="cd-h"><span class="cd-i">▤</span><span class="cd-l">Vendor</span><span class="cd-v cd-static">Brightpeak Audio</span></div></div><div class="cd-f cd-media"><div class="cd-h"><span class="cd-i">▣</span><span class="cd-l">Media</span></div><div class="cd-thumbs"><img src="/images/ms/p23.webp" alt=""><img src="/images/ms/p23.webp" alt="" style="object-position:20% 40%"><img src="/images/ms/p23.webp" alt="" style="object-position:80% 70%"><span class="cd-cam">◉</span><span class="cd-cam">🎙</span></div></div>
+                    <div class="cd-f" data-k="qty"><div class="cd-h"><span class="cd-i">▦</span><span class="cd-l">Ctnr Qty</span><span class="cd-v">—</span><span class="cd-x">×</span></div><div class="cd-chips"><b data-v="8,000">8,000</b><b data-v="12,000">12,000</b><b data-v="20,000">20,000</b><b data-v="30,000">30,000</b></div></div><div class="cd-f" data-k="moq"><div class="cd-h"><span class="cd-i">#</span><span class="cd-l">MOQ</span><span class="cd-v">—</span><span class="cd-x">×</span></div><div class="cd-chips"><b data-v="500">500</b><b data-v="1,000">1,000</b><b data-v="2,000">2,000</b><b data-v="5,000">5,000</b></div></div><div class="cd-f" data-k="coo"><div class="cd-h"><span class="cd-i">◍</span><span class="cd-l">COO</span><span class="cd-v">—</span><span class="cd-x">×</span></div><div class="cd-chips"><b data-v="China">China</b><b data-v="Vietnam">Vietnam</b><b data-v="India">India</b><b data-v="Taiwan">Taiwan</b></div></div><div class="cd-f" data-k="venue"><div class="cd-h"><span class="cd-i">⌂</span><span class="cd-l">Venue</span><span class="cd-v">—</span><span class="cd-x">×</span></div><div class="cd-chips"><b data-v="Canton Fair 2026">Canton Fair 2026</b><b data-v="Global Sources HK">Global Sources HK</b><b data-v="HKTDC">HKTDC</b></div></div><div class="cd-f"><div class="cd-h"><span class="cd-i">$</span><span class="cd-l">Retail Price</span><span class="cd-v cd-static">15.99</span></div></div><div class="cd-f"><div class="cd-h"><span class="cd-i">◷</span><span class="cd-l">Lead Time (days)</span><span class="cd-v cd-static">35</span></div></div><div class="cd-f"><div class="cd-h"><span class="cd-i">▣</span><span class="cd-l">Packaging</span><span class="cd-v cd-static">Color box</span></div></div><div class="cd-f"><div class="cd-h"><span class="cd-i">✓</span><span class="cd-l">Factory Audit</span><span class="cd-toggle"></span></div></div>
+                    </div>
+                    <span class="cd-finger"></span>
+                    <div class="cd-toast">Saved</div>
+                </div></div></div>
+                <figcaption>One-tap chips on every field</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><div class="scr"><div class="cam-demo" id="camDemo" role="img" aria-label="Animation: the multi-shot camera takes three photos in a row, each one lands in the strip at the bottom">
+                    <div class="cm-view"><img src="/images/ms/p23-big.webp" alt=""></div>
+                    <div class="cm-top"><span class="cm-b">✕</span><span class="cm-b">▢</span><span class="cm-b cm-mode">◉</span><span class="cm-zoom">.5x</span><span class="cm-done">✓<i class="cm-n">0</i></span></div>
+                    <div class="cm-flash"></div>
+                    <div class="cm-strip"></div>
+                    <div class="cm-shutter"><i></i></div>
+                </div></div></div>
+                <figcaption>Multi-shot camera: keep shooting</figcaption>
             </figure>
         </div>
+        <p class="quote-note rv">Names changed for privacy.</p>
     </div>
 </section>
 
-<!-- 2. VENDORS + CARD SCAN -->
+<!-- 2. CARD SCAN -->
 <section class="feature flip" id="vendors">
     <div class="wrap feature-grid">
         <div class="feature-copy">
-            <span class="eyebrow rv">Business cards &amp; vendors</span>
-            <h2 class="rv d2">Snap a card. Get a vendor contact.</h2>
+            <span class="eyebrow rv">Business cards</span>
+            <h2 class="rv d2">Snap a card. The vendor fills in.<a class="hash" href="#vendors" aria-label="Link to this section">#</a></h2>
             <p class="lede rv d2">Take a photo of a business card in English or Chinese. Show Sourcing fills in the company, contact, title, email, phone, WeChat, website and address.</p>
             <ul class="points rv d3">
-                <li><span>Every vendor keeps its card, its contacts and <strong>all of its products</strong> in one place.</span></li>
-                <li><span><strong>Merge Vendors</strong> cleans up duplicates when two people scan the same booth.</span></li>
-                <li><span>Look up a vendor's <strong>US shipping records</strong> to see who they already sell to.</span></li>
+                <li><span><strong>Select and copy</strong> any text right off the card photo.</span></li>
+                <li><span><strong>Scan a stack of cards at once.</strong> Cards from the same company are grouped into one vendor.</span></li>
+                <li><span>A vendor can keep <strong>several cards</strong>. Swipe between them, newest first.</span></li>
+                <li><span><strong>Smart Card Reading</strong> can be switched off in Settings, to keep card scanning fully on your device.</span></li>
             </ul>
         </div>
         <div class="shots rv d2">
@@ -907,8 +1084,8 @@
                 <figcaption>Card in, contact out: in about half a second</figcaption>
             </figure>
             <figure>
-                <div class="phone"><div class="scr"><img src="/images/ss-vendor-map.webp" width="600" height="1304" loading="lazy" alt="Vendor page with the factory on a live map and the vendor's products"></div></div>
-                <figcaption>Factory on the map, plus every product from them</figcaption>
+                <div class="phone"><div class="scr"><img src="/images/as-04-vendor_text.webp" width="600" height="1304" loading="lazy" alt="Vendor page with the card photo and text selected on the card"></div></div>
+                <figcaption>Copy text right off the card</figcaption>
             </figure>
         </div>
     </div>
@@ -923,6 +1100,7 @@
             </div>
             <div class="cta-row">
                 <a class="appstore" href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" target="_blank" rel="noopener"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" width="144" height="48" loading="lazy"></a>
+                <span class="playwrap"><a class="playbeta" href="https://play.google.com/store/apps/details?id=com.DNZ.showsourcing" target="_blank" rel="noopener" title="Get Show Sourcing on Google Play"><svg viewBox="0 0 24 26" aria-hidden="true"><path fill="#00d2ff" d="M1.1.4C.8.7.6 1.2.6 1.8v22.4c0 .6.2 1.1.5 1.4l.1.1L13.7 13.2v-.3L1.2.3z"/><path fill="#ffce00" d="M17.9 17.4l-4.2-4.2v-.3l4.2-4.2.1.1 5 2.8c1.4.8 1.4 2.1 0 2.9l-5 2.8z"/><path fill="#ff3a44" d="M18 17.3L13.7 13 1.1 25.6c.5.5 1.2.5 2.1.1L18 17.3"/><path fill="#00f076" d="M18 8.7L3.2.3C2.3-.2 1.6-.1 1.1.4L13.7 13z"/></svg><span><small>Get it on</small>Google Play</span></a><a class="apk" href="/android/download" title="Android APK for phones without Google Play">Download APK</a></span>
                 <a class="btn-ghost" href="/pricing">See pricing</a>
             </div>
         </div>
@@ -934,45 +1112,76 @@
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Landed cost</span>
-            <h2 class="rv d2">Know the real price before you leave the booth</h2>
-            <p class="lede rv d2">Show Sourcing turns FOB into LDP — the landed, duty-paid cost per unit — so you can judge a price on the spot.</p>
+            <h2 class="rv d2">Landed cost on the spot<a class="hash" href="#landed-cost" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">Show Sourcing turns FOB into LDP, the landed, duty-paid cost per unit, with duty and freight included at every quantity.</p>
             <ul class="points rv d3">
-                <li><span><strong>Country tariff rules</strong> linked to each category, so duty fills in by itself.</span></li>
+                <li><span><strong>Price breaks:</strong> see the price and the LDP for each order quantity.</span></li>
+                <li><span><strong>Country tariff rules</strong> linked to each category, so duty fills in by itself. Tariff search shows each code's category path and duty rate.</span></li>
                 <li><span>Package cost and container cost are part of the math.</span></li>
-                <li><span><strong>Price terms FOB, CIF, EXW or DDP</strong>, and <strong>price breaks</strong> for each quantity.</span></li>
-                <li><span><strong>Prices in USD, EUR, GBP or CNY</strong>, with numbers in your region's format.</span></li>
+                <li><span><strong>Price terms FOB, CIF, EXW or DDP</strong>, and prices in USD, EUR, GBP or CNY.</span></li>
             </ul>
         </div>
-        <div class="shots single rv d2">
+        <div class="shots rv d2">
             <figure>
-                <div class="phone"><div class="scr"><img src="/images/ss-product.webp" width="600" height="1304" loading="lazy" alt="Product page showing FOB $4.74, tariff 10.1% and LDP $5.67"></div></div>
+                <div class="phone"><div class="scr"><img src="/images/as-05-product.webp" width="600" height="1304" loading="lazy" alt="Product page showing FOB $4.74, tariff 10.1% and LDP $5.67"></div></div>
                 <figcaption>FOB $4.74 becomes a $5.67 landed cost</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-x-05b_mid.webp" width="600" height="1304" loading="lazy" alt="Price breaks table with price and LDP at 2,000 to 30,000 units"></div></div>
+                <figcaption>Price breaks at every quantity</figcaption>
             </figure>
         </div>
     </div>
 </section>
 
-<!-- 4. TEAM -->
-<section class="feature flip" id="team">
+<!-- 4. KNOW EVERY VENDOR -->
+<section class="feature flip" id="know-vendors">
     <div class="wrap feature-grid">
         <div class="feature-copy">
-            <span class="eyebrow rv">Team</span>
-            <h2 class="rv d2">One live catalog for the whole team</h2>
-            <p class="lede rv d2">When a teammate adds a product, everyone sees it. Decide together on the product itself, not in a chat thread.</p>
+            <span class="eyebrow rv">Vendors</span>
+            <h2 class="rv d2">Know every vendor<a class="hash" href="#know-vendors" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">Contacts, cards and US shipping records for every supplier you meet, with all of their products in one place.</p>
             <ul class="points rv d3">
-                <li><span><strong>Comments and @mentions</strong> on every product.</span></li>
-                <li><span><strong>Team statuses</strong> — like Sample Requested, Quoted or Approved — stay in sync for everyone.</span></li>
-                <li><span>The redesigned <strong>Team Map</strong> shows who is at the same venue, so you can meet up without a call.</span></li>
+                <li><span>Every vendor keeps its cards, its contacts, its notes and <strong>all of its products</strong>.</span></li>
+                <li><span>Look up a vendor's <strong>US shipping records</strong>: who they ship to, what they ship and their recent shipments.</span></li>
+                <li><span>See the <strong>factory on a map</strong>.</span></li>
+                <li><span><strong>Merge Vendors</strong> cleans up duplicates when two people scan the same booth.</span></li>
             </ul>
         </div>
         <div class="shots rv d2">
             <figure>
-                <div class="phone"><div class="scr"><img src="/images/ss-comments.webp" width="600" height="1304" loading="lazy" alt="Comment thread between teammates on a product"></div></div>
-                <figcaption>Comments on the product</figcaption>
+                <div class="phone"><div class="scr"><img src="/images/as-08-vendor_1.webp" width="600" height="1304" loading="lazy" alt="Vendor page with its products and US shipping summary"></div></div>
+                <figcaption>Products and shipping records</figcaption>
             </figure>
             <figure>
-                <div class="phone"><div class="scr"><img src="/images/ss-team-map.webp" width="600" height="1304" loading="lazy" alt="Team Map with teammates at a Hong Kong venue"></div></div>
-                <figcaption>Team Map at the venue</figcaption>
+                <div class="phone"><div class="scr"><img src="/images/as-x-08_vendor_2.webp" width="600" height="1304" loading="lazy" alt="US shipping records: customers, what they ship and recent shipments"></div></div>
+                <figcaption>Who they already sell to</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- 5. TEAM -->
+<section class="feature" id="team">
+    <div class="wrap feature-grid">
+        <div class="feature-copy">
+            <span class="eyebrow rv">Team</span>
+            <h2 class="rv d2">Comment, flag, tag<a class="hash" href="#team" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">One live catalog for the whole team. When a teammate adds a product, everyone sees it. Mark what needs a sample and loop in a teammate.</p>
+            <ul class="points rv d3">
+                <li><span><strong>Team statuses</strong> like Sample Requested, Quoted or Approved stay in sync for everyone.</span></li>
+                <li><span><strong>Comments and @mentions</strong> on every product.</span></li>
+                <li><span>The <strong>Team Map</strong> shows who is at the same venue, so you can meet up without a call.</span></li>
+            </ul>
+        </div>
+        <div class="shots rv d2">
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-06-status.webp" width="600" height="1304" loading="lazy" alt="Status menu: Sample Requested, Quoted, Follow Up, Approved, Ordered, Rejected"></div></div>
+                <figcaption>Statuses the whole team sees</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-07-mention.webp" width="600" height="1304" loading="lazy" alt="Comments on a product with @mentions"></div></div>
+                <figcaption>Comments and @mentions</figcaption>
             </figure>
         </div>
     </div>
@@ -987,44 +1196,101 @@
             </div>
             <div class="cta-row">
                 <a class="appstore" href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" target="_blank" rel="noopener"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" width="144" height="48" loading="lazy"></a>
+                <span class="playwrap"><a class="playbeta" href="https://play.google.com/store/apps/details?id=com.DNZ.showsourcing" target="_blank" rel="noopener" title="Get Show Sourcing on Google Play"><svg viewBox="0 0 24 26" aria-hidden="true"><path fill="#00d2ff" d="M1.1.4C.8.7.6 1.2.6 1.8v22.4c0 .6.2 1.1.5 1.4l.1.1L13.7 13.2v-.3L1.2.3z"/><path fill="#ffce00" d="M17.9 17.4l-4.2-4.2v-.3l4.2-4.2.1.1 5 2.8c1.4.8 1.4 2.1 0 2.9l-5 2.8z"/><path fill="#ff3a44" d="M18 17.3L13.7 13 1.1 25.6c.5.5 1.2.5 2.1.1L18 17.3"/><path fill="#00f076" d="M18 8.7L3.2.3C2.3-.2 1.6-.1 1.1.4L13.7 13z"/></svg><span><small>Get it on</small>Google Play</span></a><a class="apk" href="/android/download" title="Android APK for phones without Google Play">Download APK</a></span>
                 <a class="btn-ghost" href="/pricing">See pricing</a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 5. CATALOG + SEARCH -->
-<section class="feature" id="catalog">
+<!-- 6. CATALOG + SEARCH -->
+<section class="feature flip" id="catalog">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Catalog &amp; search</span>
-            <h2 class="rv d2">Find any product from any show in seconds</h2>
-            <p class="lede rv d2">Hundreds of products stay easy to browse. Switch between a photo grid and a detailed list.</p>
+            <h2 class="rv d2">Find anything, from any show<a class="hash" href="#catalog" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">Every find in one place: photos, prices and status from the show floor. Search your notes, tags, specs, and even the words printed on the box.</p>
             <ul class="points rv d3">
                 <li><span><strong>Search</strong> by vendor, category, tags, notes and the text in your photos.</span></li>
-                <li><span><strong>Filter</strong> by category or category group, vendor, venue, tags, status, teammate, date range, price and your custom fields.</span></li>
-                <li><span>Sort by date, price and more. LDP and status show on every tile.</span></li>
+                <li><span><strong>Filter</strong> by category, vendor, venue, tags, status, teammate, date, price and your custom fields.</span></li>
+                <li><span>Switch between a <strong>photo grid</strong> and a detailed list. LDP and status show on every tile.</span></li>
             </ul>
         </div>
         <div class="shots rv d2">
             <figure>
-                <div class="phone"><div class="scr"><img src="/images/ss-products-grid.webp" width="600" height="1304" loading="lazy" alt="Products in a two-column photo grid with LDP and status dots"></div></div>
-                <figcaption>Photo grid with LDP and status</figcaption>
+                <div class="phone"><div class="scr"><img src="/images/as-01-products.webp" width="600" height="1304" loading="lazy" alt="Products in a two-column photo grid with LDP and status dots"></div></div>
+                <figcaption>Every find in one place</figcaption>
             </figure>
             <figure>
-                <div class="phone"><div class="scr"><img src="/images/ss-filters.webp" width="600" height="1304" loading="lazy" alt="Filters sheet with category group, vendor, venue, tags, status, user and date range"></div></div>
-                <figcaption>Filters for every field</figcaption>
+                <div class="phone"><div class="scr"><img src="/images/as-09-search_rows.webp" width="600" height="1304" loading="lazy" alt="Search for wireless finds matches in notes, tags and photo text"></div></div>
+                <figcaption>Search finds the words on the box</figcaption>
             </figure>
         </div>
     </div>
 </section>
 
-<!-- 6. PHOTO DESCRIPTIONS -->
-<section class="feature flip" id="photo-descriptions">
+<!-- 7. FILTERS -->
+<section class="feature" id="filters">
+    <div class="wrap feature-grid">
+        <div class="feature-copy">
+            <span class="eyebrow rv">Filters</span>
+            <h2 class="rv d2">Pick as many filters as you need<a class="hash" href="#filters" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">Tap two categories and two statuses at once. The list narrows as you tap, and the button tells you how many products are left.</p>
+            <ul class="points rv d3">
+                <li><span><strong>Select several values</strong> in one filter, like TWS and Headphone together.</span></li>
+                <li><span><strong>Combine filters</strong>: category, category group, vendor, venue, tags, status, teammate and date range.</span></li>
+                <li><span>Filter by your <strong>custom fields</strong> and by price too.</span></li>
+            </ul>
+        </div>
+        <div class="shots single rv d2">
+            <figure>
+                <div class="phone"><div class="scr"><div class="chip-demo filt-demo" id="filtDemo" role="img" aria-label="Animation: picking two categories and two statuses at once narrows 24 products to 3">
+                    <div class="cd-in">
+                    <div class="cd-top"><span class="cd-btn">⌫</span><span class="cd-title" style="text-align:left;font-size:7.4cqw;font-weight:700">Filters</span><span class="cd-btn cd-ok">✓</span></div>
+                    <div class="cd-f fd-f"><div class="cd-h"><span class="cd-i">▦</span><span class="cd-l">Category</span><span class="fd-sel" data-for="cat"></span></div><div class="cd-chips fd-chips"><b data-g="cat" data-v="TWS">TWS</b><b data-g="cat" data-v="Headphone">Headphone</b><b data-g="cat" data-v="Speaker">Speaker</b><b data-g="cat" data-v="Camera">Camera</b></div></div><div class="cd-f fd-f"><div class="cd-h"><span class="cd-i">⚑</span><span class="cd-l">Status</span><span class="fd-sel" data-for="st"></span></div><div class="cd-chips fd-chips"><b data-g="st" data-v="Sample Requested"><i style="background:#ff9500"></i>Sample Requested</b><b data-g="st" data-v="Quoted"><i style="background:#007aff"></i>Quoted</b><b data-g="st" data-v="Approved"><i style="background:#34c759"></i>Approved</b></div></div><div class="cd-f fd-f"><div class="cd-h"><span class="cd-i">⌂</span><span class="cd-l">Venue</span><span class="fd-sel" data-for="ven"></span></div><div class="cd-chips fd-chips"><b data-g="ven" data-v="Canton Fair 2026">Canton Fair 2026</b><b data-g="ven" data-v="Global Sources HK">Global Sources HK</b><b data-g="ven" data-v="HKTDC">HKTDC</b></div></div><div class="cd-f fd-f"><div class="cd-h"><span class="cd-i">◎</span><span class="cd-l">Vendor</span><span class="cd-v cd-static" style="color:#c7c7cc">Search…</span></div></div><div class="cd-f fd-f"><div class="cd-h"><span class="cd-i">◇</span><span class="cd-l">Category Group</span><span class="cd-v cd-static" style="color:#c7c7cc">Search…</span></div></div><div class="cd-f fd-f"><div class="cd-h"><span class="cd-i">⌗</span><span class="cd-l">Tags</span><span class="cd-v cd-static" style="color:#c7c7cc">Search…</span></div></div><div class="cd-f fd-f"><div class="cd-h"><span class="cd-i">◯</span><span class="cd-l">User</span><span class="cd-v cd-static" style="color:#c7c7cc">Search…</span></div></div><div class="cd-f fd-f"><div class="cd-h"><span class="cd-i">▥</span><span class="cd-l">Date Range</span><span class="cd-v cd-static" style="color:#8e8e93">Pick dates</span></div></div>
+                    </div>
+                    <div class="fd-show">Show <b>24</b> products</div>
+                    <span class="cd-finger"></span>
+                </div></div></div>
+                <figcaption>TWS + Headphone, Quoted + Approved: 3 products</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- 8. CUSTOM FIELDS -->
+<section class="feature flip" id="fields">
+    <div class="wrap feature-grid">
+        <div class="feature-copy">
+            <span class="eyebrow rv">Custom fields</span>
+            <h2 class="rv d2">Fields that fit each product<a class="hash" href="#fields" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">A speaker gets battery and color. A camera gets megapixels and lens. Add the fields your team tracks, and they show up on every product.</p>
+            <ul class="points rv d3">
+                <li><span>Numbers, <strong>yes/no switches</strong> and <strong>pick lists</strong> with one-tap choices.</span></li>
+                <li><span>Custom fields are <strong>shared with your team</strong>.</span></li>
+                <li><span>Put fields in <strong>your own order</strong> in Settings.</span></li>
+                <li><span>Search and filter by any custom field.</span></li>
+            </ul>
+        </div>
+        <div class="shots rv d2">
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-03-speaker.webp" width="600" height="1304" loading="lazy" alt="Speaker product with battery, waterproof and color fields"></div></div>
+                <figcaption>A speaker: battery, waterproof, color</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-x-03_camera.webp" width="600" height="1304" loading="lazy" alt="Camera product with megapixels and lens fields"></div></div>
+                <figcaption>A camera: megapixels and lens</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- 9. PHOTO DESCRIPTIONS -->
+<section class="feature" id="photo-descriptions">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Describe Photos</span>
-            <h2 class="rv d2">Your photos describe themselves</h2>
+            <h2 class="rv d2">Your photos describe themselves<a class="hash" href="#photo-descriptions" aria-label="Link to this section">#</a></h2>
             <p class="lede rv d2">Show Sourcing writes a short description of each product photo, on your device. Search for "black earbuds" and find them, even if nobody typed a word.</p>
             <ul class="points rv d3">
                 <li><span>Runs <strong>on the device</strong> — your photos stay private.</span></li>
@@ -1032,27 +1298,92 @@
                 <li><span>Run <strong>Describe Photos</strong> once to fill in your older products.</span></li>
             </ul>
         </div>
-        <div class="shots single rv d2">
+        <div class="shots rv d2">
             <figure>
-                <div class="phone"><div class="scr"><img src="/images/ss-photo-description.webp" width="600" height="1304" loading="lazy" alt="Product page with a description written from the photos"></div></div>
+                <div class="phone"><div class="scr"><div class="magic" id="magicSearch" role="img" aria-label="Animation: searching orange, pink and wireless keyboard finds products from what is in their photos and printed on the box">
+                    <div class="ms-in">
+                        <div class="ms-title">Products</div>
+                        <div class="ms-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="ms-q"></span><i class="ms-caret"></i></div>
+                        <div class="ms-count"></div>
+                        <div class="ms-list"></div>
+                    </div>
+                </div></div></div>
+                <figcaption>Search what is in the photo</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-x-05c_low.webp" width="600" height="1304" loading="lazy" alt="Product page with price breaks and a description written from the photos"></div></div>
                 <figcaption>"Written from the photos" under the product details</figcaption>
             </figure>
         </div>
     </div>
 </section>
 
-<!-- 7. FOLLOW-UP + EVERYWHERE -->
+<!-- 10. EXPORT + AI -->
+<section class="feature flip" id="export-ai">
+    <div class="wrap feature-grid">
+        <div class="feature-copy">
+            <span class="eyebrow rv">Export &amp; AI</span>
+            <h2 class="rv d2">Export, or ask your AI<a class="hash" href="#export-ai" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">Send the whole catalog to Excel with photos, or connect ChatGPT, Claude or Grok and ask questions about your products and vendors.</p>
+            <ul class="points rv d3">
+                <li><span><strong>Export to Excel</strong> with photos in the cells, every field, and Vendors and Assumptions sheets. LDP stays a live formula (paid plans).</span></li>
+                <li><span><strong>AI Connection:</strong> Claude, ChatGPT or any MCP app can read your products and vendors.</span></li>
+                <li><span>You use <strong>your own AI account</strong>, so there is no extra cost from Show Sourcing.</span></li>
+            </ul>
+        </div>
+        <div class="shots rv d2">
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-10-chatgpt.webp" width="600" height="1304" loading="lazy" alt="ChatGPT answering a question from the Show Sourcing catalog"></div></div>
+                <figcaption>ChatGPT, answering from your catalog</figcaption>
+            </figure>
+            <figure class="sheet-fig">
+                <img class="sheet-img" src="/images/excel-export.webp" width="1146" height="866" loading="lazy" alt="Excel export with product photos in the cells, vendor, price, term, LDP formula, retail price and lead time">
+                <figcaption>Excel with photos in the cells and live LDP formulas</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- AI DEMO: Show Sourcing's MCP tools answering in ChatGPT and Claude (demo catalog data) -->
+<section class="ai-demo" id="ai-demo">
+    <div class="wrap">
+        <span class="eyebrow rv">AI Connection</span>
+        <h2 class="rv d2">Ask ChatGPT or Claude about your catalog<a class="hash" href="#ai-demo" aria-label="Link to this section">#</a></h2>
+        <p class="lede rv d2">Connect your own AI once. Then ask in plain words. It reads your products and vendors from Show Sourcing and answers with your real prices.</p>
+        <div class="ai-chats rv d3">
+            <div class="chat gpt" data-chat>
+                <div class="chat-top"><img class="chat-ic" src="/images/icon-chatgpt.png" width="22" height="22" alt=""><b>ChatGPT</b><em>Connected: Show Sourcing</em></div>
+                <div class="chat-body">
+                    <div class="msg user">Which wireless products are still waiting on samples?</div>
+                    <div class="tool"><i></i><img src="/app-icon.png" width="16" height="16" alt="" style="border-radius:4px">Used <b>Show Sourcing</b> · search_products</div>
+                    <div class="msg ai" data-type>Two wireless products are still at <b>Sample Requested</b>:
+<span class="row">1. <b>Lumina Home</b> headphones: FOB $8.00, landed <b>$9.94</b></span><span class="row">2. <b>Northwind Gear</b> record player: FOB $26.25, landed <b>$30.80</b></span>Want me to draft a follow-up email to both vendors?</div>
+                </div>
+            </div>
+            <div class="chat claude" data-chat>
+                <div class="chat-top"><img class="chat-ic" src="/images/icon-claude.png" width="22" height="22" alt=""><b>Claude</b><em>Connected: Show Sourcing</em></div>
+                <div class="chat-body">
+                    <div class="msg user">What is the best landed price on the Brightpeak earbuds if we order 10,000?</div>
+                    <div class="tool"><i></i><img src="/app-icon.png" width="16" height="16" alt="" style="border-radius:4px">Used <b>Show Sourcing</b> · get_product</div>
+                    <div class="msg ai" data-type>At <b>10,000+</b> units, Brightpeak Audio quotes <b>$4.17 FOB</b>, which lands at <b>$5.04</b> per unit after the 10.1% tariff.
+<span class="row">That is $0.63 less per unit than the 2,000-unit price ($5.67 landed).</span>Lily Zhang is the contact: lily@brightpeak-audio.com.</div>
+                </div>
+            </div>
+        </div>
+        <p class="ai-note rv">Show Sourcing gives your AI read-only access with a token you create in the app. It works with ChatGPT, Claude, Grok and any MCP app. Example uses the demo catalog.</p>
+    </div>
+</section>
+
+<!-- 11. FOLLOW-UP + EVERYWHERE -->
 <section class="feature" id="follow-up">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Follow-up</span>
-            <h2 class="rv d2">Follow up fast, from any device</h2>
-            <p class="lede rv d2">Email a vendor from the product page. The template fills in the price, MOQ and details, and attaches the photos.</p>
+            <h2 class="rv d2">Follow up fast, from any device<a class="hash" href="#follow-up" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">Write your email template once, with fields like vendor, FOB price, MOQ and photos. Then email any vendor from the product page: the template fills itself in and attaches the photos.</p>
             <ul class="points rv d3">
                 <li><span>Send with <strong>Apple Mail</strong>, your default mail app, or <strong>directly from the app</strong>.</span></li>
-                <li><span><strong>Export to Excel</strong> with photos in the cells and every field, emailed to you as a link (paid plans).</span></li>
                 <li><span>Back at the office, review the catalog on a big screen. On <strong>Mac and iPad</strong>, list and details sit side by side, with keyboard shortcuts.</span></li>
-                <li><span><strong>AI Connection</strong> lets Claude or ChatGPT read your catalog and answer questions about it.</span></li>
             </ul>
             <div class="platforms rv d3">
                 <div class="platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><strong>iPhone</strong><span>On the show floor</span></div>
@@ -1061,10 +1392,14 @@
                 <div class="platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><strong>Web app</strong><span><a href="https://app.showsourcing.app/login" style="color:inherit;">app.showsourcing.app</a></span></div>
             </div>
         </div>
-        <div class="shots single rv d2">
+        <div class="shots rv d2">
             <figure>
-                <div class="phone"><div class="scr"><img src="/images/ss-products-list.webp" width="600" height="1304" loading="lazy" alt="Products in list view with vendor, status, LDP and FOB"></div></div>
-                <figcaption>List view: vendor, status, LDP and FOB</figcaption>
+                <div class="phone"><div class="scr"><img src="/images/as-x-email-template.webp" width="600" height="1304" loading="lazy" alt="Email Template editor with Vendor, FOB Price, MOQ and Product Photos fields as chips"></div></div>
+                <figcaption>Write your template once</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-x-email-sent.webp" width="600" height="1304" loading="lazy" alt="Follow-up email to Brightpeak Audio filled in with price, MOQ and the product photo"></div></div>
+                <figcaption>Every email fills itself in</figcaption>
             </figure>
         </div>
     </div>
@@ -1098,19 +1433,23 @@
     </div>
 </section>
 
-<!-- Paraphrased from a real user's messages (Oct 2026), not his words, no name. -->
+<!-- Real users, paraphrased. Names are made up for privacy (Moshe, 2026-10-22). The two "Daniel K." quotes are the same European importer (his messages, Oct 2026); keep ONE name for him. "Mike R." = a US user who told Moshe in person at the Hong Kong shows, Oct 2026. Never invent a quote. -->
 <section class="quotes" id="from-the-floor" aria-labelledby="quotes-title">
     <div class="quotes-in">
         <p class="eyebrow rv">From the show floor</p>
-        <h2 id="quotes-title" class="rv d1">What buyers say</h2>
+        <h2 id="quotes-title" class="rv d1">What buyers say<a class="hash" href="#from-the-floor" aria-label="Link to this section">#</a></h2>
         <div class="quote-grid">
             <figure class="quote rv d2">
+                <blockquote>This is the best app I have ever used. Recording the product info and following up is a breeze.</blockquote>
+                <figcaption>Mike R. · USA</figcaption>
+            </figure>
+            <figure class="quote rv d2">
                 <blockquote>I asked for a couple of changes and had them in the app within hours. You can tell the people behind it actually listen.</blockquote>
-                <figcaption>Importer from Europe · Hong Kong, 2026</figcaption>
+                <figcaption>Daniel K. · Importer, Europe</figcaption>
             </figure>
             <figure class="quote rv d3">
                 <blockquote>What I value most is the attitude: fast answers and a real willingness to keep making the app better.</blockquote>
-                <figcaption>Importer from Europe · Hong Kong, 2026</figcaption>
+                <figcaption>Daniel K. · Importer, Europe</figcaption>
             </figure>
         </div>
     </div>
@@ -1120,7 +1459,7 @@
     <div class="wrap">
         <div class="faq-head">
             <span class="eyebrow rv">FAQ</span>
-            <h2 class="rv d2">Frequently Asked Questions</h2>
+            <h2 class="rv d2">Frequently Asked Questions<a class="hash" href="#faq" aria-label="Link to this section">#</a></h2>
             <p class="lede rv d2">Everything importers, buyers, and sourcing teams ask before they hit the show floor.</p>
         </div>
         <ul class="faq-list">
@@ -1175,7 +1514,7 @@
             <li>
                 <details class="faq-item">
                     <summary>Is there an Android version?</summary>
-                    <p>Not yet — Android is on the roadmap. The iOS app is the focus.</p>
+                    <p>Yes. <a href="https://play.google.com/store/apps/details?id=com.DNZ.showsourcing" target="_blank" rel="noopener">Get Show Sourcing on Google Play</a>. Phones without Google Play, like Huawei, can <a href="/android/download">download the APK</a>.</p>
                 </details>
             </li>
         </ul>
@@ -1195,7 +1534,7 @@
     {"@type": "Question", "name": "How does landed cost calculation work?", "acceptedAnswer": {"@type": "Answer", "text": "Enter FOB, packaging cost, and container quantity. Show Sourcing applies country-specific tariff rules (auto-linked to the product's category and country of origin) plus your container cost, and gives you the LDP — the true per-unit landed cost you can use to price the item."}},
     {"@type": "Question", "name": "What does Show Sourcing cost?", "acceptedAnswer": {"@type": "Answer", "text": "$60 per seat per 6 months, or $102 per seat per year (15% annual discount). Volume discounts kick in at 10+ seats. Billed through the App Store."}},
     {"@type": "Question", "name": "How is my data stored?", "acceptedAnswer": {"@type": "Answer", "text": "Your catalog syncs to a private cloud backend (Supabase, hosted in Singapore for global reach). Team data stays within your team. See the Privacy Policy for details."}},
-    {"@type": "Question", "name": "Is there an Android version of Show Sourcing?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet — Android is on the roadmap. The iOS app is the focus."}}
+    {"@type": "Question", "name": "Is there an Android version of Show Sourcing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Get it on Google Play at https://play.google.com/store/apps/details?id=com.DNZ.showsourcing. Phones without Google Play, like Huawei, can download the APK at https://showsourcing.app/android/download."}}
   ]
 }
 </script>
@@ -1204,9 +1543,9 @@
 <section class="final" id="final-cta">
     <div class="wrap">
         <div class="final-phones rv" aria-hidden="true">
-            <div class="phone"><div class="scr"><img src="/images/ss-vendor-card-sm.webp" width="280" height="609" alt="" loading="lazy"></div></div>
-            <div class="phone"><div class="scr"><img src="/images/ss-products-grid-sm.webp" width="280" height="609" alt="" loading="lazy"></div></div>
-            <div class="phone"><div class="scr"><img src="/images/ss-product-sm.webp" width="280" height="609" alt="" loading="lazy"></div></div>
+            <div class="phone"><div class="scr"><img src="/images/as-sm-04_vendor_text.webp" width="280" height="609" alt="" loading="lazy"></div></div>
+            <div class="phone"><div class="scr"><img src="/images/as-sm-01_products.webp" width="280" height="609" alt="" loading="lazy"></div></div>
+            <div class="phone"><div class="scr"><img src="/images/as-sm-05_product.webp" width="280" height="609" alt="" loading="lazy"></div></div>
         </div>
         <span class="eyebrow rv">Start your next sourcing trip prepared</span>
         <h2 class="rv d2" style="font-size:var(--h1);">Try <span class="grad">Show Sourcing</span> free for 7 days</h2>
@@ -1324,14 +1663,21 @@
     var order = cards.slice();
     var REST = [ [0, 0, 0], [-15, 10, -5], [15, 18, 5], [-27, 26, -10], [27, 34, 10] ]; // x %, y px, rotate deg
     function place(card, i) {
-        var r = REST[Math.min(i, REST.length - 1)];
-        card.style.transform = 'translate(' + r[0] + '%,' + r[1] + 'px) rotate(' + r[2] + 'deg) scale(' + (1 - i * 0.045) + ')';
+        var k = Math.min(i, REST.length - 1), r = REST[k];   // cards past the 5th wait, hidden, behind the last one
+        card.style.transform = 'translate(' + r[0] + '%,' + r[1] + 'px) rotate(' + r[2] + 'deg) scale(' + (1 - k * 0.045) + ')';
         card.style.zIndex = 20 - i;
-        card.style.setProperty('--dim', 1 - i * 0.05);
+        card.style.opacity = i < REST.length ? 1 : 0;
+        card.style.setProperty('--dim', 1 - k * 0.05);
         card.classList.toggle('top', i === 0);
         card.setAttribute('aria-hidden', i ? 'true' : 'false');
     }
-    function layout() { order.forEach(place); }
+    var cap = document.querySelector('.deck-cap'), capT = document.getElementById('deckTitle'), capS = document.getElementById('deckSub'), capFor = null;
+    function caption() {
+        var top = order[0]; if (!cap || top === capFor) return; capFor = top;
+        cap.classList.add('fade');
+        setTimeout(function () { capT.textContent = top.dataset.title || ''; capS.textContent = top.dataset.sub || ''; cap.classList.remove('fade'); }, 220);
+    }
+    function layout() { order.forEach(place); caption(); }
     layout();
 
     var busy = false;
@@ -1343,6 +1689,7 @@
         top.style.transform = 'translate(' + (dir * 135) + '%,' + 20 + 'px) rotate(' + (dir * 22) + 'deg)';
         order.push(order.shift());
         order.slice(0, -1).forEach(place);
+        caption();
         setTimeout(function () {
             top.style.zIndex = 1;
             place(top, order.length - 1);
@@ -1395,6 +1742,18 @@
     }
     deck.addEventListener('pointerup', end);
     deck.addEventListener('pointercancel', cancel);
+    // Plays by itself every few seconds while on screen, until someone swipes, taps or uses the keys.
+    var auto = null, touched = false, seen = false, hover = false;
+    function stopAuto() { touched = true; clearInterval(auto); auto = null; }
+    function startAuto() {
+        if (touched || auto || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        auto = setInterval(function () { if (seen && !hover && !dragging && !document.hidden) next(-1); }, 3200);
+    }
+    new IntersectionObserver(function (es) { seen = es[0].isIntersecting; if (seen) startAuto(); }, { threshold: 0.4 }).observe(deck);
+    deck.addEventListener('pointerdown', stopAuto);
+    deck.addEventListener('keydown', stopAuto);
+    deck.addEventListener('mouseenter', function () { hover = true; });
+    deck.addEventListener('mouseleave', function () { hover = false; });
     deck.addEventListener('keydown', function (e) {
         if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); next(1); }
         else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
@@ -1441,6 +1800,215 @@
             else if (!e.isIntersecting && running) { running = false; reset(); }
         });
     }, { threshold: 0.35 }).observe(d);
+})();
+</script>
+<script>
+/* Phone menu: copy the header links (except Download) into the panel, toggle it. */
+(function () {
+    var h = document.getElementById('header'), btn = h && h.querySelector('.menu-btn'), panel = document.getElementById('menuPanel');
+    if (!btn || !panel) return;
+    h.querySelectorAll('.header-links > a:not(.nav-cta)').forEach(function (a) {
+        var c = a.cloneNode(true); c.removeAttribute('class'); c.removeAttribute('title'); panel.appendChild(c);
+    });
+    function set(open) { h.classList.toggle('open', open); panel.hidden = !open; btn.setAttribute('aria-expanded', open); }
+    btn.addEventListener('click', function (e) { e.stopPropagation(); set(panel.hidden); });
+    panel.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('click', function (e) { if (!h.contains(e.target)) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    addEventListener('resize', function () { if (innerWidth > 760) set(false); });
+})();
+</script>
+<script>
+/* AI demo: question, tool call, answer, then loop while on screen. Both chats run, the second a beat later. */
+(function () {
+    var chats = Array.prototype.slice.call(document.querySelectorAll('[data-chat]'));
+    if (!chats.length) return;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    chats.forEach(function (c, idx) {
+        var user = c.querySelector('.msg.user'), tool = c.querySelector('.tool'), ai = c.querySelector('.msg.ai'), timers = [], on = false;
+        if (reduce) { [user, tool, ai].forEach(function (e) { e.classList.add('show'); }); tool.classList.add('ok'); return; }
+        function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+        function reset() { timers.forEach(clearTimeout); timers = []; [user, tool, ai].forEach(function (e) { e.classList.remove('show'); }); tool.classList.remove('ok'); }
+        function run() {
+            reset(); var d = idx * 900;
+            at(d + 300, function () { user.classList.add('show'); });
+            at(d + 1300, function () { tool.classList.add('show'); });
+            at(d + 2600, function () { tool.classList.add('ok'); });
+            at(d + 3000, function () { ai.classList.add('show'); });
+            at(d + 11000, run);
+        }
+        new IntersectionObserver(function (es) {
+            es.forEach(function (e) { if (e.isIntersecting && !on) { on = true; run(); } else if (!e.isIntersecting && on) { on = false; reset(); } });
+        }, { threshold: 0.3 }).observe(c);
+    });
+})();
+</script>
+<script>
+/* Chip demo: the finger moves to a chip, taps it, the value fills in. Then Save. Loops while on screen. */
+(function () {
+    var d = document.getElementById('chipDemo'); if (!d) return;
+    var finger = d.querySelector('.cd-finger'), timers = [], on = false;
+    var steps = [['qty', '30,000'], ['moq', '2,000'], ['coo', 'China'], ['venue', 'Canton Fair 2026']];
+    function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+    // Aim from the untilted layout (offsets), not the screen box: the phone is rotated on the page.
+    function moveTo(el) {
+        var x = el.offsetWidth / 2, y = el.offsetHeight / 2, n = el;
+        while (n && n !== d) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+        finger.style.left = x + 'px'; finger.style.top = y + 'px';
+    }
+    function reset() {
+        timers.forEach(clearTimeout); timers = [];
+        d.classList.remove('saved'); finger.style.opacity = 0; finger.style.left = '70%'; finger.style.top = '110%';
+        d.querySelectorAll('.cd-f').forEach(function (f) { f.classList.remove('set'); var v = f.querySelector('.cd-v'); if (f.dataset.k) v.textContent = '—'; });
+        d.querySelectorAll('.cd-chips b').forEach(function (c) { c.classList.remove('on'); });
+    }
+    function tap(el, after) { moveTo(el); at(600, function () { finger.classList.add('tap'); el.classList.add('press'); }); at(760, function () { finger.classList.remove('tap'); el.classList.remove('press'); after(); }); }
+    function run() {
+        reset(); var t = 400;
+        at(t, function () { finger.style.opacity = 1; });
+        steps.forEach(function (st) {
+            at(t += 300, function () {
+                var f = d.querySelector('.cd-f[data-k="' + st[0] + '"]');
+                var chip = Array.prototype.find.call(f.querySelectorAll('.cd-chips b'), function (c) { return c.dataset.v === st[1]; }) || f.querySelector('.cd-chips b');
+                tap(chip, function () {
+                    chip.classList.add('on'); f.classList.add('set');
+                    var v = f.querySelector('.cd-v'); v.textContent = st[1]; v.classList.add('pop'); setTimeout(function () { v.classList.remove('pop'); }, 220);
+                });
+            });
+            t += 1000;
+        });
+        at(t += 200, function () { tap(d.querySelector('.cd-ok'), function () { d.classList.add('saved'); }); });
+        at(t += 1100, function () { finger.style.opacity = 0; });
+        at(t += 2400, run);
+    }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting && !on) { on = true; run(); } else if (!e.isIntersecting && on) { on = false; reset(); } });
+    }, { threshold: 0.35 }).observe(d);
+})();
+</script>
+<script>
+/* Jump bar: light up the section on screen and keep its link in view. */
+(function () {
+    var bar = document.getElementById('jump'); if (!bar) return;
+    var links = Array.prototype.slice.call(bar.querySelectorAll('a')), map = {};
+    links.forEach(function (a) { var el = document.getElementById(a.getAttribute('href').slice(1)); if (el) map[el.id] = a; });
+    var current = null;
+    var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var a = map[e.target.id]; if (!a || a === current) return;
+            if (current) current.classList.remove('on'); a.classList.add('on'); current = a;
+            var row = bar.firstElementChild, r = a.getBoundingClientRect(), br = row.getBoundingClientRect();
+            if (r.left < br.left || r.right > br.right) row.scrollBy({ left: r.left - br.left - br.width / 2 + r.width / 2, behavior: 'smooth' });
+        });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(map).forEach(function (id) { io.observe(document.getElementById(id)); });
+})();
+</script>
+<script>
+/* Magic search demo: type a query, show the products whose photos match. Loops while on screen. */
+(function () {
+    var d = document.getElementById('magicSearch'); if (!d) return;
+    var q = d.querySelector('.ms-q'), list = d.querySelector('.ms-list'), count = d.querySelector('.ms-count'), timers = [], on = false;
+    var P = '/images/ms/';
+    var searches = [
+        { q: 'orange', rows: [
+            ['p23', 'TWS earbuds', 'A pair of <mark>orange</mark> earbuds in an <mark>orange</mark> case.', 'photo', '$4.74'],
+            ['p10', 'Portable fan', 'A person holds an <mark>orange</mark> and white portable fan.', 'photo', '$3.35'] ] },
+        { q: 'pink', rows: [
+            ['p02', 'Kids camera', 'A <mark>pink</mark> and white camera on a red surface.', 'photo', '$10.10'],
+            ['p13', 'Keyboards', 'A collection of keyboards, some <mark>pink</mark> and some beige.', 'photo', '$7.91'],
+            ['p17', 'Smart watch', 'Two watches, one <mark>pink</mark> and one green.', 'photo', '$10.81'],
+            ['p24', 'Walkie talkie', 'A person holds a <mark>pink</mark> toy phone with a black screen.', 'photo', '$7.42'] ] },
+        { q: 'wireless keyboard', rows: [
+            ['p13', 'Keyboards', '"ERGONOMIC MIXCOLOR <mark>WIRELESS KEYBOARD</mark>"', 'box', '$7.91'] ] }
+    ];
+    function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+    function reset() { timers.forEach(clearTimeout); timers = []; q.textContent = ''; list.innerHTML = ''; count.textContent = ''; }
+    function show(sr) {
+        list.innerHTML = '';
+        count.textContent = sr.rows.length + (sr.rows.length === 1 ? ' product' : ' products') + ' · nobody typed these words';
+        sr.rows.forEach(function (r, i) {
+            var el = document.createElement('div'); el.className = 'ms-row';
+            el.innerHTML = '<img src="' + P + r[0] + '.webp" alt=""><div class="t"><b>' + r[1] + '</b><span>' + r[2] + '</span><em class="' + (r[3] === 'box' ? 'box' : '') + '">' +
+                (r[3] === 'box' ? 'Printed on the box' : 'Written from the photo') + '</em></div><div class="p">' + r[4] + '</div>';
+            list.appendChild(el); setTimeout(function () { el.classList.add('in'); }, 60 + i * 140);
+        });
+    }
+    function run() {
+        reset(); var t = 500;
+        searches.forEach(function (sr) {
+            at(t, function () { q.textContent = ''; list.innerHTML = ''; count.textContent = ''; });
+            sr.q.split('').forEach(function (ch, i) { at(t += 90, function () { q.textContent += ch; }); });
+            at(t += 350, function () { show(sr); });
+            t += 3200;
+        });
+        at(t, run);
+    }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { q.textContent = searches[0].q; show(searches[0]); return; }
+    new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting && !on) { on = true; run(); } else if (!e.isIntersecting && on) { on = false; reset(); } });
+    }, { threshold: 0.35 }).observe(d);
+})();
+</script>
+<script>
+/* Camera demo: three shots, each flashes and drops into the strip; the count on the checkmark goes up. */
+(function () {
+    var d = document.getElementById('camDemo'); if (!d) return;
+    var img = d.querySelector('.cm-view img'), flash = d.querySelector('.cm-flash'), strip = d.querySelector('.cm-strip'),
+        sh = d.querySelector('.cm-shutter'), n = d.querySelector('.cm-n'), timers = [], on = false;
+    var poses = [['50% 50%', 1.05], ['25% 35%', 1.35], ['75% 70%', 1.6]];
+    function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+    function reset() { timers.forEach(clearTimeout); timers = []; strip.innerHTML = ''; n.textContent = '0'; n.classList.remove('on'); img.style.objectPosition = poses[0][0]; img.style.transform = 'scale(' + poses[0][1] + ')'; }
+    function run() {
+        reset(); var t = 700;
+        poses.forEach(function (ps, k) {
+            at(t, function () { img.style.objectPosition = ps[0]; img.style.transform = 'scale(' + ps[1] + ')'; });
+            at(t += 1300, function () { sh.classList.add('press'); flash.classList.add('on'); });
+            at(t += 140, function () {
+                sh.classList.remove('press'); flash.classList.remove('on');
+                var th = document.createElement('img'); th.src = '/images/ms/p23.webp'; th.alt = ''; th.style.objectPosition = ps[0];
+                strip.appendChild(th); requestAnimationFrame(function () { requestAnimationFrame(function () { th.classList.add('in'); }); });
+                n.textContent = String(k + 1); n.classList.add('on');
+            });
+            t += 500;
+        });
+        at(t += 2600, run);
+    }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting && !on) { on = true; run(); } else if (!e.isIntersecting && on) { on = false; reset(); } });
+    }, { threshold: 0.35 }).observe(d);
+})();
+</script>
+<script>
+/* Filters demo: tap TWS, Headphone, Approved, Quoted. Counts come from the demo catalog. Loops while on screen. */
+(function () {
+    var d = document.getElementById('filtDemo'); if (!d) return;
+    var finger = d.querySelector('.cd-finger'), num = d.querySelector('.fd-show b'), timers = [], on = false;
+    var steps = [['cat', 'TWS', 2], ['cat', 'Headphone', 4], ['st', 'Approved', 2], ['st', 'Quoted', 3]];
+    function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+    function moveTo(el) { var x = el.offsetWidth / 2, y = el.offsetHeight / 2, n = el; while (n && n !== d) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; } finger.style.left = x + 'px'; finger.style.top = y + 'px'; }
+    function setCount(c) { num.textContent = c; num.classList.add('pop'); setTimeout(function () { num.classList.remove('pop'); }, 200); }
+    function reset() { timers.forEach(clearTimeout); timers = []; finger.style.opacity = 0; finger.style.left = '70%'; finger.style.top = '110%';
+        d.querySelectorAll('.fd-chips b').forEach(function (c) { c.classList.remove('on'); }); d.querySelectorAll('.fd-sel').forEach(function (x) { x.textContent = ''; }); num.textContent = '24'; }
+    function run() {
+        reset(); var t = 400; at(t, function () { finger.style.opacity = 1; });
+        steps.forEach(function (st) {
+            at(t += 300, function () {
+                var chip = d.querySelector('.fd-chips b[data-g="' + st[0] + '"][data-v="' + st[1] + '"]'); moveTo(chip);
+                at(600, function () { finger.classList.add('tap'); chip.classList.add('press'); });
+                at(760, function () { finger.classList.remove('tap'); chip.classList.remove('press'); chip.classList.add('on');
+                    var k = d.querySelectorAll('.fd-chips b.on[data-g="' + st[0] + '"]').length; d.querySelector('.fd-sel[data-for="' + st[0] + '"]').textContent = k + ' selected'; setCount(st[2]); });
+            });
+            t += 1000;
+        });
+        at(t += 300, function () { finger.style.opacity = 0; });
+        at(t += 2600, run);
+    }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && !on) { on = true; run(); } else if (!e.isIntersecting && on) { on = false; reset(); } }); }, { threshold: 0.35 }).observe(d);
 })();
 </script>
 </body>

@@ -91,7 +91,24 @@
             var top = hits[0].score;
             return hits.filter(function (h, i) { return i < 3 || (h.score >= top * 0.45 && h.coverage >= 0.5); }).slice(0, 12);
         }
-        return { search: search, words: function (q) { return words(q).filter(function (w) { return !stop[w]; }); } };
+        // Mix the word hits with EmbeddingGemma's (/api/help-search, Moshe 2026-11-01).
+        // Meaning leads; a word match adds up to 0.1 on top, so an exact feature name
+        // still lifts its answer. 0.1 is the middle of a flat best range (0.08-0.2) on
+        // scripts/help_eval: top1 46/48, 30/30, 17/20 vs words only 44, 25, 13.
+        // An answer only the words found gets the lowest meaning score plus its bonus.
+        var byId = {};
+        items.forEach(function (it) { byId[it.entry.id] = it; });
+        function fuse(wordHits, gemmaHits) {
+            if (!gemmaHits || !gemmaHits.length) return wordHits;
+            var m = {}, floor = gemmaHits[gemmaHits.length - 1].score, top = wordHits.length ? wordHits[0].score : 1;
+            gemmaHits.forEach(function (h) { if (byId[h.id]) m[h.id] = h.score; });
+            wordHits.forEach(function (h) { var id = h.entry.id; m[id] = (id in m ? m[id] : floor) + 0.1 * h.score / top; });
+            var best = 0, out = Object.keys(m).map(function (id) { best = Math.max(best, m[id]); return { entry: byId[id].entry, section: byId[id].section, score: m[id] }; });
+            out.sort(function (x, y) { return y.score - x.score; });
+            // the close ones only, never a long tail
+            return out.filter(function (h, i) { return i < 3 || h.score >= best - 0.12; }).slice(0, 12);
+        }
+        return { search: search, fuse: fuse, words: function (q) { return words(q).filter(function (w) { return !stop[w]; }); } };
     }
 
     var api = { build: build, fold: fold, stem: stem };

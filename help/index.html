@@ -128,10 +128,10 @@
 <header>
     <a class="logo" href="/">Show Sourcing</a>
     <nav>
-        <a href="/pricing">Pricing</a>
-        <a href="/help" class="active">Help</a>
-        <a href="/blog/" class="hide-sm">Blog</a>
-        <a href="https://app.showsourcing.app/login" class="hide-sm">Web Portal</a>
+        <a href="/pricing"><svg class="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:5px"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>Pricing</a>
+        <a href="/help" class="active"><svg class="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:5px"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17h.01"/></svg>Help</a>
+        <a href="/blog/" class="hide-sm"><svg class="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:5px"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg>Blog</a>
+        <a href="https://app.showsourcing.app/login" class="hide-sm"><svg class="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:5px"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg>Web Portal</a>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
     </nav>
 </header>
@@ -178,11 +178,27 @@
 <script>
 // help.json and changelog.json are copies of the app's own files
 // (Show Sourcing/Resources/Help). Website/build_help.sh copies them here.
-// Ranking: search.js (stopwords, stemming, synonyms, hand-written phrasings).
+// Ranking: search.js (stopwords, stemming, synonyms, hand-written phrasings), then
+// mixed with EmbeddingGemma from /api/help-search (functions/api/help-search.js) so a
+// question in plain words finds the answer even with none of its words. The word
+// results show at once; the mixed ones replace them when they arrive. Offline or on a
+// failed call the word results simply stay.
 (function () {
     var faqEl = document.getElementById("faq"), chipsEl = document.getElementById("chips");
     var q = document.getElementById("q"), countEl = document.getElementById("count"), emptyEl = document.getElementById("empty");
-    var sections = [], engine = null;
+    var sections = [], engine = null, gemma = {}, asked = 0;
+    function askGemma(query) {
+        if (query.length < 3 || gemma[query]) return;
+        var mine = ++asked;
+        fetch("/api/help-search?q=" + encodeURIComponent(query))
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (d) {
+                if (!d || !d.hits) return;
+                gemma[query] = d.hits;
+                if (mine === asked && q.value.trim() === query) render();
+            })
+            .catch(function () {});
+    }
 
     function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
     function mark(text, words) {
@@ -212,6 +228,7 @@
             chipsEl.style.display = "";
         } else {
             var words = engine.words(query), hits = engine.search(query);
+            if (gemma[query]) hits = engine.fuse(hits, gemma[query]);
             hits.forEach(function (h, i) { html += entry(h.entry, words, i < 3); });
             shown = hits.length;
             countEl.textContent = shown + (shown === 1 ? " answer" : " answers");
@@ -231,11 +248,16 @@
         var p = new URLSearchParams(location.search).get("q");
         if (p) q.value = p;
         render();
+        if (p) askGemma(p.trim());
         if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) { if (t.tagName === "DETAILS") t.open = true; t.scrollIntoView(); } }
     });
 
     var timer;
-    q.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(render, 80); });
+    var gemmaTimer;
+    q.addEventListener("input", function () {
+        clearTimeout(timer); timer = setTimeout(render, 80);
+        clearTimeout(gemmaTimer); gemmaTimer = setTimeout(function () { askGemma(q.value.trim()); }, 250);
+    });
 
     fetch("/help/changelog.json").then(function (r) { return r.json(); }).then(function (d) {
         var log = document.getElementById("log"), more = document.getElementById("more"), cur = document.getElementById("current");

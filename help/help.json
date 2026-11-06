@@ -1,6 +1,6 @@
 {
-  "version": "1.0.7",
-  "updated": "2026-10-17",
+  "version": "1.1.6",
+  "updated": "2026-11-01",
   "sections": [
     {
       "id": "start",
@@ -78,7 +78,9 @@
             "does it work without wifi",
             "no signal at the show",
             "will my products upload later",
-            "what if i lose connection"
+            "what if i lose connection",
+            "no signal in the exhibition hall",
+            "bad wifi at the trade fair, can I keep working"
           ]
         },
         {
@@ -119,6 +121,23 @@
             "next product shortcut",
             "switch tabs with keyboard"
           ]
+        },
+        {
+          "id": "settings-search",
+          "question": "How do I find a setting?",
+          "answer": "Type in the Search Settings box at the top of Settings.",
+          "keywords": [
+            "settings",
+            "search settings",
+            "find setting"
+          ],
+          "since": "1.1.4",
+          "asks": [
+            "where is the setting for",
+            "cannot find a setting",
+            "find a setting fast",
+            "too many settings to scroll through"
+          ]
         }
       ]
     },
@@ -142,7 +161,31 @@
             "how do i add a new item",
             "save a new product",
             "start a new product",
-            "enter a product from a booth"
+            "enter a product from a booth",
+            "add a product with photo and price",
+            "where do I enter a new item I found"
+          ]
+        },
+        {
+          "id": "keep-vendor",
+          "question": "Can the next product start with the same vendor or category?",
+          "answer": "Yes, in three ways. To keep the vendor after every save, turn on Settings > Quick Selections > Vendor > Keep last vendor after saving. To keep the category after every save, turn on Settings > Quick Selections > Category > Keep last category after saving. To keep them for one product only, press and hold the save check on Create, turn on Same vendor or Same category, then tap Save. A plain tap follows your Settings.",
+          "keywords": [
+            "same vendor",
+            "keep vendor",
+            "keep last vendor",
+            "same category",
+            "keep category",
+            "hold save",
+            "next product",
+            "repeat"
+          ],
+          "asks": [
+            "add many products from one booth",
+            "keep the vendor between products",
+            "stop picking the vendor every time",
+            "start a new product with the last vendor",
+            "next item same supplier"
           ]
         },
         {
@@ -194,7 +237,8 @@
           ],
           "asks": [
             "save pictures to my phone",
-            "keep a copy of photos in the photos app"
+            "keep a copy of photos in the photos app",
+            "also keep my shots in the phone gallery"
           ]
         },
         {
@@ -214,6 +258,25 @@
             "dictate notes",
             "voice memo",
             "speech to text"
+          ]
+        },
+        {
+          "id": "autofill",
+          "question": "Can the app fill in a product for me?",
+          "answer": "Yes. On the product page, tap Autofill (the text-in-a-frame button). The app reads the text in your photos and your voice note, then shows every suggestion on one screen. Keep the ones you want.",
+          "keywords": [
+            "autofill",
+            "fill in",
+            "auto fill",
+            "suggest fields"
+          ],
+          "since": "1.1.3",
+          "asks": [
+            "fill the fields from the photo",
+            "can it type the details for me",
+            "read the box and fill in the product",
+            "fill in fields from what's printed on the box",
+            "app suggests details from my photos and voice"
           ]
         },
         {
@@ -279,7 +342,8 @@
           "since": "1.0.7",
           "asks": [
             "where do i write specs",
-            "add a description to a product"
+            "add a description to a product",
+            "somewhere to type extra comments on a product"
           ]
         },
         {
@@ -299,6 +363,23 @@
             "how does it know which fair i am at",
             "set the trade show name",
             "change the show for a product"
+          ]
+        },
+        {
+          "id": "team-venues",
+          "question": "Does my team share the list of shows?",
+          "answer": "Yes. A venue that anyone adds, renames or removes reaches every phone on the team. Rename a venue in Settings > Venues. Products keep the venue they were saved with.",
+          "keywords": [
+            "venue",
+            "show list",
+            "rename venue",
+            "trade show"
+          ],
+          "since": "1.1.6",
+          "asks": [
+            "rename a show",
+            "my teammate sees a different show list",
+            "change the venue name"
           ]
         }
       ]
@@ -324,7 +405,9 @@
             "how is landed cost calculated",
             "what does ldp mean",
             "what is in the landed price",
-            "explain the cost formula"
+            "explain the cost formula",
+            "how is my total cost per piece calculated",
+            "cost per unit including freight and duty"
           ]
         },
         {
@@ -355,7 +438,8 @@
           ],
           "asks": [
             "what does ddp discount do",
-            "lower the duty"
+            "lower the duty",
+            "I pay less duty, lower my landed cost"
           ]
         },
         {
@@ -476,7 +560,7 @@
         {
           "id": "destination",
           "question": "I do not import into the United States. Is LDP still right?",
-          "answer": "Set your country in Settings > LDP Calculation > Destination. The app has tariff rates for the United States only. For other countries it hides the tariff rows and LDP has no duty.",
+          "answer": "Set your country in Settings > LDP Calculation > Destination. Choose the United States or the European Union, and the app uses that tariff schedule for duty. For any other country it hides the tariff rows and LDP has no duty.",
           "keywords": [
             "destination",
             "europe",
@@ -489,7 +573,9 @@
           "asks": [
             "i do not import into the usa",
             "we import to europe",
-            "tariffs for another country"
+            "tariffs for another country",
+            "eu import duty",
+            "landed cost for europe"
           ]
         },
         {
@@ -535,7 +621,7 @@
         {
           "id": "search",
           "question": "What does search look at?",
-          "answer": "Vendor, category, tags, notes, venue, status, custom fields, the text printed in your photos and the photo descriptions. Spaces and capital letters do not matter, so \"Heng Tian\" finds \"HengTian\".",
+          "answer": "Vendor, category, tags, notes, venue, status, custom fields, the text printed in your photos and the photo descriptions. Spaces and capital letters do not matter, so \"Heng Tian\" finds \"HengTian\". You can also search with a photo: tap the camera next to the search bar. Tap the empty search bar to run a recent search again.",
           "keywords": [
             "search",
             "find",
@@ -545,7 +631,46 @@
           "asks": [
             "how do i find a product",
             "search is not finding my item",
-            "what can i search for"
+            "what can i search for",
+            "search again for something i searched before",
+            "which fields does search look in",
+            "find a product by a word I remember"
+          ]
+        },
+        {
+          "id": "photo-search",
+          "question": "Can I search with a photo?",
+          "answer": "Yes. Tap the camera next to the Products search bar and take a photo. The app lists your products that look like it. Press and hold the camera button to pick from your library or paste a photo.",
+          "keywords": [
+            "photo search",
+            "image search",
+            "search by picture",
+            "look alike",
+            "camera search"
+          ],
+          "since": "1.1.5",
+          "asks": [
+            "find a product from a picture",
+            "do i already have this item",
+            "search with an image",
+            "check if I already have this item by photo"
+          ]
+        },
+        {
+          "id": "visually-similar",
+          "question": "What is Visually Similar on a product page?",
+          "answer": "It lists products whose photos look like this one, so you can compare vendors for the same item. Hold a match and pick Not Similar to hide it for your whole team.",
+          "keywords": [
+            "similar",
+            "look alike",
+            "duplicate item",
+            "compare vendors"
+          ],
+          "since": "1.1.5",
+          "asks": [
+            "find the same item from another vendor",
+            "products that look the same",
+            "hide a wrong similar match"
           ]
         },
         {
@@ -601,6 +726,22 @@
           ]
         },
         {
+          "id": "filter-count",
+          "question": "How many products does my search or filter show?",
+          "answer": "The count shows under the search bar while a search or filter is on, for example \"95 of 1,506 products\". On the product page, \"6/95\" tells you where you are in that list.",
+          "keywords": [
+            "count",
+            "how many",
+            "results",
+            "number of products"
+          ],
+          "since": "1.1.5",
+          "asks": [
+            "how many results did i get",
+            "where am i in the list"
+          ]
+        },
+        {
           "id": "sort",
           "question": "How do I sort products?",
           "answer": "Use the sort menu in Products. Sort by date created, LDP, FOB, vendor, MOQ or status. Pick the same field again to reverse the order.",
@@ -634,6 +775,23 @@
           ]
         },
         {
+          "id": "save-photos",
+          "question": "How do I save product photos to my photo library?",
+          "answer": "Select products, tap Share, then Save Photos. Photos that are already in your library are skipped, so you get no duplicates.",
+          "keywords": [
+            "save photos",
+            "camera roll",
+            "download photos",
+            "photo library"
+          ],
+          "since": "1.1.5",
+          "asks": [
+            "download all the pictures",
+            "save the photos of these products",
+            "put the photos on my phone"
+          ]
+        },
+        {
           "id": "mass-edit",
           "question": "Can I change many products at once?",
           "answer": "Yes. Select products in the list, then tap Edit. Fields that are the same on all of them show the value. Fields that differ show \"Mixed\". You can also delete the selected products.",
@@ -648,7 +806,9 @@
             "edit lots of products at once",
             "change the category of many products",
             "select several products",
-            "delete many products"
+            "delete many products",
+            "change many products at once",
+            "bulk change status"
           ]
         },
         {
@@ -741,6 +901,24 @@
           ]
         },
         {
+          "id": "card-privacy",
+          "question": "Does card scanning send my cards anywhere?",
+          "answer": "The card is read on your device. With Settings > Privacy > Smart Card Reading on, only the card's text, never the photo, goes to Jev (TypeSafe) to sort it into company, contact, email and phone. Turn it off to keep everything on your device; check names and numbers after a scan then. Cards scanned offline are read again when you are back online.",
+          "keywords": [
+            "privacy",
+            "smart card reading",
+            "on device",
+            "card text",
+            "offline"
+          ],
+          "since": "1.1.3",
+          "asks": [
+            "is the business card photo uploaded",
+            "keep card scans private",
+            "scan cards offline"
+          ]
+        },
+        {
           "id": "card-photos",
           "question": "Can I add cards from photos I already took?",
           "answer": "Yes. In Vendors, tap + and choose Choose Card Photos. Pick the photos, check them, and tap Save.",
@@ -770,6 +948,25 @@
             "scanned the same card again",
             "card already saved",
             "avoid duplicate vendors when scanning"
+          ]
+        },
+        {
+          "id": "email-check",
+          "question": "What do the green seal and red X next to a vendor email mean?",
+          "answer": "The app checks that the email's domain can get mail. A green seal means it can. A red X means it cannot, often from a misread card, and Change To offers the fix. An address at www.<domain> never gets mail, so the app offers it without the www.",
+          "keywords": [
+            "email check",
+            "bounce",
+            "wrong email",
+            "red x",
+            "green seal",
+            "www"
+          ],
+          "since": "1.1.6",
+          "asks": [
+            "is this email address real",
+            "my email to the vendor bounced",
+            "the card email is wrong"
           ]
         },
         {
@@ -816,7 +1013,8 @@
           "asks": [
             "see a supplier's details",
             "call the vendor",
-            "all products from one vendor"
+            "all products from one vendor",
+            "what shows on a supplier's page"
           ]
         },
         {
@@ -890,13 +1088,14 @@
           ],
           "asks": [
             "start a team",
-            "set up my company"
+            "set up my company",
+            "share one workspace with coworkers"
           ]
         },
         {
           "id": "invite",
           "question": "How do I invite people to my team?",
-          "answer": "Only the team owner can invite. In your account screen, tap Invite Member and enter their email. They get an email and an invite in the app. Each person uses one seat. If you are not the owner, ask your team owner to invite them.",
+          "answer": "Only the team owner can invite. In your account screen, tap Invite Member and enter their email. Inviting is free: the screen shows the seat price, and a seat is added and charged only when the person joins. They get an email and an invite in the app. If you are not the owner, ask your team owner to invite them.",
           "keywords": [
             "invite",
             "add member",
@@ -907,7 +1106,9 @@
           "asks": [
             "add a teammate",
             "invite a coworker",
-            "how does my colleague join"
+            "how does my colleague join",
+            "does inviting someone cost money",
+            "when am i charged for a new member"
           ]
         },
         {
@@ -924,7 +1125,8 @@
           "asks": [
             "can my team see my products",
             "who can see what i add",
-            "is my data private"
+            "is my data private",
+            "who can see my products"
           ]
         },
         {
@@ -1066,7 +1268,8 @@
           "asks": [
             "add my own field",
             "create a yes no field",
-            "add a field for certification"
+            "add a field for certification",
+            "add my own field like warranty"
           ]
         },
         {
@@ -1080,7 +1283,8 @@
           "since": "1.0.7",
           "asks": [
             "search my custom field",
-            "filter by a custom field"
+            "filter by a custom field",
+            "filter by a field I made myself"
           ]
         },
         {
@@ -1156,18 +1360,62 @@
         {
           "id": "email-vendor",
           "question": "How do I email a vendor about a product?",
-          "answer": "On the product page, tap the envelope button. The app fills in your email template with the product details. You can send it from your mail app, or use Send Directly to send it from Show Sourcing.",
+          "answer": "On the product page, tap the envelope button. The app fills in your email template with the product details and photos. Pick how it sends in Settings > Email Template > Send With: Mail App, Outlook, or Gmail when it is available. With Outlook or Gmail the email goes at once and the app confirms who got it. Add a CC there too; it syncs to your other devices.",
           "keywords": [
             "email",
             "follow up",
             "send",
             "contact vendor",
-            "quote request"
+            "quote request",
+            "outlook",
+            "gmail",
+            "cc",
+            "send with"
           ],
           "asks": [
             "email the factory about this item",
             "ask the vendor for a quote",
-            "send a follow up email"
+            "send a follow up email",
+            "send from my outlook account",
+            "send from gmail",
+            "cc my boss on vendor emails"
+          ]
+        },
+        {
+          "id": "email-many",
+          "question": "Can I email many vendors at once?",
+          "answer": "Yes. Select products, tap Share, then Email Vendors. After you confirm, the app sends one email to each vendor with that vendor's products and photos inline. This works with Outlook or Gmail in Settings > Email Template > Send With.",
+          "keywords": [
+            "bulk email",
+            "email vendors",
+            "many vendors",
+            "mass email"
+          ],
+          "since": "1.1.6",
+          "asks": [
+            "send a follow up to every vendor from the show",
+            "email all my vendors",
+            "one email per vendor"
+          ]
+        },
+        {
+          "id": "email-queue",
+          "question": "How do I know my emails went out?",
+          "answer": "Settings > Email Queue lists every email sent with Outlook or Gmail, with any error, and you can retry a failed one. Sent means your mail server accepted it. A wrong address sends a bounce notice to your inbox. Emails sent with the Mail app do not show there.",
+          "keywords": [
+            "email queue",
+            "sent",
+            "failed email",
+            "retry",
+            "bounce"
+          ],
+          "since": "1.1.6",
+          "asks": [
+            "did my email send",
+            "an email failed",
+            "see the emails i sent",
+            "did my email to the supplier send",
+            "check my sent supplier emails"
           ]
         },
         {
@@ -1190,6 +1438,98 @@
       ]
     },
     {
+      "id": "rfq",
+      "title": "RFQs (Quotes from Vendors)",
+      "icon": "tray.and.arrow.down",
+      "entries": [
+        {
+          "id": "rfq-what",
+          "question": "What is an RFQ?",
+          "answer": "A request for quotes. Make one in Settings > RFQs > New RFQ for each thing you are sourcing, with what you are looking for, up to 6 photos and target prices. Send vendors its link. They quote on a web form or an Excel sheet, with photos and a price for each quantity. What they send waits in the RFQs tab.",
+          "keywords": [
+            "rfq",
+            "request for quote",
+            "quote",
+            "sourcing request",
+            "vendor form"
+          ],
+          "since": "1.1.4",
+          "asks": [
+            "ask vendors to quote",
+            "send a quote request to many factories",
+            "let vendors send me products"
+          ]
+        },
+        {
+          "id": "rfq-review",
+          "question": "How do I accept a vendor's quote?",
+          "answer": "Open the RFQs tab. Each item waits in To Review with its photos, price by quantity and LDP. Tap Accept to add it to Products, or Decline. Select several to accept or decline them together.",
+          "keywords": [
+            "accept",
+            "decline",
+            "review",
+            "compare quotes",
+            "to review"
+          ],
+          "since": "1.1.4",
+          "asks": [
+            "compare vendor quotes",
+            "add a quoted item to my products",
+            "reject a quote"
+          ]
+        },
+        {
+          "id": "rfq-general",
+          "question": "What is the General Link?",
+          "answer": "One link that any vendor can use to send you products, without an RFQ. Find it in Settings > RFQs. Copy Link or Share sends it. Each item waits in the RFQs tab until someone accepts it.",
+          "keywords": [
+            "general link",
+            "vendor link",
+            "share link"
+          ],
+          "since": "1.1.4",
+          "asks": [
+            "one link for all my vendors",
+            "let any supplier send products"
+          ]
+        },
+        {
+          "id": "rfq-fields",
+          "question": "Can I choose what vendors fill in?",
+          "answer": "Yes. Edit the RFQ and open Form Fields. Switch a field on to show it, and tap the asterisk to make it required. A custom field's answer goes straight into that field on the product. You can also pick which categories vendors see and the quantities they price.",
+          "keywords": [
+            "form fields",
+            "required",
+            "custom field",
+            "categories",
+            "price by quantity"
+          ],
+          "since": "1.1.5",
+          "asks": [
+            "make the price required",
+            "add my own question to the form",
+            "which quantities do vendors quote",
+            "make a field required on the quote form"
+          ]
+        },
+        {
+          "id": "rfq-logo",
+          "question": "Can vendors see my company logo?",
+          "answer": "Yes. Your team logo shows on every RFQ form.",
+          "keywords": [
+            "logo",
+            "branding",
+            "company"
+          ],
+          "since": "1.1.4",
+          "asks": [
+            "put my logo on the quote form",
+            "put my company logo on the quote request"
+          ]
+        }
+      ]
+    },
+    {
       "id": "siri",
       "title": "Siri and Spotlight",
       "icon": "mic",
@@ -1207,7 +1547,8 @@
           "asks": [
             "ask siri for a product",
             "voice search a product",
-            "hey siri open a product"
+            "hey siri open a product",
+            "hands free, ask Siri for a product"
           ]
         },
         {
@@ -1279,7 +1620,8 @@
           "since": "1.0.7",
           "asks": [
             "can chatgpt see my photos",
-            "ai shows pictures"
+            "ai shows pictures",
+            "send product pictures to my AI chat"
           ]
         },
         {
@@ -1307,19 +1649,24 @@
         {
           "id": "export",
           "question": "How do I export my products?",
-          "answer": "Settings > Backup & Import > Export Products (JSON). The file has every field and links to every photo. It is not available during the free trial, and the team owner can limit it.",
+          "answer": "Select products, tap Share, then pick Excel, PDF or Save Photos. Settings > Backup & Import > Export Products (JSON) gives every field and a link to every photo. During the free trial and on the free plan, exports hold your first 10 products and 5 vendors, and the app tells you before it exports. The team owner can limit exports.",
           "keywords": [
             "export",
             "json",
             "download",
             "backup",
-            "spreadsheet"
+            "spreadsheet",
+            "excel",
+            "pdf",
+            "xlsx"
           ],
           "asks": [
             "export to excel",
             "download all my products",
             "get my data out",
-            "backup my catalog"
+            "backup my catalog",
+            "share products as a pdf",
+            "send my products as an excel file"
           ]
         },
         {
@@ -1335,6 +1682,23 @@
           "asks": [
             "move to a new phone",
             "copy my settings"
+          ]
+        },
+        {
+          "id": "settings-sync",
+          "question": "Do my settings follow me to my other devices?",
+          "answer": "Yes. Container cost, DDP discount, your defaults and your email CC sync between your devices. To move everything else to a new phone, see Can I move my settings to a new phone.",
+          "keywords": [
+            "sync settings",
+            "other devices",
+            "ipad",
+            "mac",
+            "container cost"
+          ],
+          "since": "1.1.5",
+          "asks": [
+            "my ipad has different settings",
+            "settings are not the same on my mac"
           ]
         },
         {
@@ -1381,7 +1745,7 @@
         {
           "id": "price",
           "question": "How much does Show Sourcing cost?",
-          "answer": "You pay per seat (one seat for each person). Yearly is $8.50 a seat a month. 6 months is $10 a seat a month. Teams of 10 or more get a discount. Every plan starts with a 7-day free trial. See showsourcing.app/pricing.",
+          "answer": "You pay per seat (one seat for each person). Yearly is $8.50 a seat a month. 6 months is $10 a seat a month. Teams of 10 or more get a discount. Every plan starts with a 7-day free trial. Without a plan you can keep up to 10 products and 5 vendors for free. See showsourcing.app/pricing.",
           "keywords": [
             "price",
             "cost",
@@ -1394,13 +1758,82 @@
             "how much does it cost",
             "is there a free trial",
             "what are the plans",
-            "price per user"
+            "price per user",
+            "is there a free version"
+          ]
+        },
+        {
+          "id": "free-plan",
+          "question": "What can I do without a plan?",
+          "answer": "You can keep up to 10 products and 5 vendors for free. When you need more, tap Start Free Trial at the top of the Create tab, or Profile > Subscribe.",
+          "keywords": [
+            "free plan",
+            "free",
+            "limit",
+            "10 products",
+            "5 vendors"
+          ],
+          "since": "1.1.3",
+          "asks": [
+            "is it free",
+            "how many products can i add for free",
+            "where do i start the trial"
+          ]
+        },
+        {
+          "id": "trial-ended",
+          "question": "What happens when my free trial ends?",
+          "answer": "If you do not pick a plan, your newest 10 products and 5 vendors stay open. The rest are greyed out and locked, not deleted. Subscribe to open them again.",
+          "keywords": [
+            "trial ended",
+            "locked",
+            "greyed out",
+            "expired"
+          ],
+          "since": "1.1.3",
+          "asks": [
+            "my products are locked",
+            "did i lose my data after the trial",
+            "why are products blurred"
+          ]
+        },
+        {
+          "id": "start-paid",
+          "question": "Can I start paying before my trial ends?",
+          "answer": "Yes, if you own the team. Open Settings > Team Billing > Start Paid Plan Now. You see the exact price and card before you pay. If the card is declined, your trial keeps running.",
+          "keywords": [
+            "start paid plan",
+            "end trial",
+            "pay now",
+            "upgrade"
+          ],
+          "since": "1.1.5",
+          "asks": [
+            "end my free trial early",
+            "start my subscription now",
+            "i want full exports now"
+          ]
+        },
+        {
+          "id": "trial-limits",
+          "question": "Why do exports and the AI Connection show only 10 products?",
+          "answer": "During the free trial and on the free plan, exports and the AI Connection use your first 10 products and 5 vendors. Start a paid plan for all of them.",
+          "keywords": [
+            "trial limit",
+            "10 products",
+            "export limit",
+            "ai limit"
+          ],
+          "since": "1.1.5",
+          "asks": [
+            "export only gave me 10 products",
+            "chatgpt only sees some products"
           ]
         },
         {
           "id": "seats",
           "question": "How do I add or remove seats?",
-          "answer": "The team owner opens Settings > account > Team Billing. New seats cost a share of the rest of the period. Removed seats give a credit on the next renewal.",
+          "answer": "The team owner opens Settings > account > Team Billing. The app shows the exact price and asks you to confirm before it charges for new seats. New seats cost a share of the rest of the period. Seats removed within 24 hours of buying them are refunded, unless the person on the seat added more than 10 products. Other removed seats give a credit on the next renewal.",
           "keywords": [
             "seats",
             "add seats",

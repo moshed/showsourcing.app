@@ -12,15 +12,20 @@ BRANCH=main
 [[ "$1" == "preview" ]] && BRANCH=preview
 STAGE=$(mktemp -d)
 git ls-files --cached --others --exclude-standard \
-  | grep -v -e '^CNAME$' -e '^\.nojekyll$' -e '^CLAUDE\.md$' -e '^deploy\.sh$' \
-  | rsync -a --files-from=- . "$STAGE/"
+  | grep -v -e '^CNAME$' -e '^\.nojekyll$' -e '^CLAUDE\.md$' -e '^deploy\.sh$' -e '^supabase/' \
+           -e '^functions/' -e '^wrangler\.toml$' \
+  | rsync -a --files-from=- . "$STAGE/site/"
+# Server code and its config sit BESIDE the site, never inside it, so neither is served.
+# functions/api/help-search.js = the Help search (EmbeddingGemma); wrangler.toml binds Workers AI.
+cp wrangler.toml "$STAGE/"
+rsync -a functions "$STAGE/"
 if [[ $BRANCH == preview ]]; then
   # Keep the test copy out of search engines.
-  find "$STAGE" -name "*.html" -exec perl -0pi -e 's|<head>|<head>\n<meta name="robots" content="noindex, nofollow">|' {} \;
-  printf '\n/*\n  X-Robots-Tag: noindex, nofollow\n' >> "$STAGE/_headers"
-  printf 'User-agent: *\nDisallow: /\n' > "$STAGE/robots.txt"
+  find "$STAGE/site" -name "*.html" -exec perl -0pi -e 's|<head>|<head>\n<meta name="robots" content="noindex, nofollow">|' {} \;
+  printf '\n/*\n  X-Robots-Tag: noindex, nofollow\n' >> "$STAGE/site/_headers"
+  printf 'User-agent: *\nDisallow: /\n' > "$STAGE/site/robots.txt"
 fi
 cd "$STAGE"
 CLOUDFLARE_API_TOKEN=$(security find-generic-password -s cloudflare_api_token -w) \
 CLOUDFLARE_ACCOUNT_ID=28b22d2560f6428a26cd8220fc5a4393 \
-  npx -y wrangler pages deploy . --project-name showsourcing-site --branch $BRANCH --commit-dirty=true
+  npx -y wrangler pages deploy site --project-name showsourcing-site --branch $BRANCH --commit-dirty=true

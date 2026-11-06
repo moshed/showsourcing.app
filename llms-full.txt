@@ -1,6 +1,6 @@
 # Show Sourcing: Help and FAQ
 
-> The full Help text from the app, as plain text. Source of truth: https://showsourcing.app/help. Updated 2026-10-17.
+> The full Help text from the app, as plain text. Source of truth: https://showsourcing.app/help. Updated 2026-11-01.
 
 ## Getting Started
 
@@ -22,10 +22,16 @@ Some versions have a problem that an update fixes. Then the app shows a message 
 ### What keyboard shortcuts are there (Mac and iPad)?
 On a Mac, or an iPad with a keyboard: ⌘1 to ⌘6 open Create, Products, Vendors, Team Map, Alerts and Settings. ⌘N starts a new product. ⌘, opens Settings. ⌘F searches the Products or Vendors list. On a product, ⌘← and ⌘→ go to the previous or next product, and ⌘E edits it. On a vendor, ⌘↑ and ⌘↓ go to the previous or next vendor. In photos, ← and → go to the previous or next photo, and Esc closes the viewer. ⌘S opens the status list (arrow keys and Return pick), ⌥⌘C opens comments and ⇧⌘E emails the vendor. On iPad, hold ⌘ to see the list. Arrow keys do not change pages while you type in a field.
 
+### How do I find a setting?
+Type in the Search Settings box at the top of Settings.
+
 ## Capturing Products
 
 ### How do I add a product?
 Open the Create tab. Take photos, then fill in the vendor, FOB price and the other fields. Tap the check mark to save. The product goes to the Products tab and to your team.
+
+### Can the next product start with the same vendor or category?
+Yes, in three ways. To keep the vendor after every save, turn on Settings > Quick Selections > Vendor > Keep last vendor after saving. To keep the category after every save, turn on Settings > Quick Selections > Category > Keep last category after saving. To keep them for one product only, press and hold the save check on Create, turn on Same vendor or Same category, then tap Save. A plain tap follows your Settings.
 
 ### How do I take photos and videos?
 Tap the camera button. Tap the shutter for a photo. Hold the shutter to record a video. Use the zoom dial to zoom. The thumbnails show at the bottom. Tap a thumbnail to crop or delete it.
@@ -38,6 +44,9 @@ Yes. Turn on Settings > General > Save to Camera Roll.
 
 ### Can I record a voice note?
 Yes. On a product, use Voice Notes and tap Record. The phone writes the words as text on the device, so it works offline and the audio never leaves the phone for the transcript.
+
+### Can the app fill in a product for me?
+Yes. On the product page, tap Autofill (the text-in-a-frame button). The app reads the text in your photos and your voice note, then shows every suggestion on one screen. Keep the ones you want.
 
 ### Can I draw on a photo?
 Yes. Open a photo and tap the markup button. Draw with your finger, change the color and the line width, and use the eraser. Your team sees the marks too.
@@ -53,6 +62,9 @@ Use the Notes field on Create or Edit. It grows as you type new lines.
 
 ### How does the app know which show I am at?
 The app knows the places of the big trade shows. When you are at one, it fills the Venue for new products. You can change the venue at any time.
+
+### Does my team share the list of shows?
+Yes. A venue that anyone adds, renames or removes reaches every phone on the team. Rename a venue in Settings > Venues. Products keep the venue they were saved with.
 
 ## Prices and Landed Cost
 
@@ -84,7 +96,7 @@ Settings > Quick Selections > Price Breaks > Display Cost. Lowest Qty uses the f
 Yes. In Settings > Quick Selections > Price Breaks, edit Starting Quantities. Tap a row to change it, drag to reorder, swipe to delete. Each product can still change its own rows.
 
 ### I do not import into the United States. Is LDP still right?
-Set your country in Settings > LDP Calculation > Destination. The app has tariff rates for the United States only. For other countries it hides the tariff rows and LDP has no duty.
+Set your country in Settings > LDP Calculation > Destination. Choose the United States or the European Union, and the app uses that tariff schedule for duty. For any other country it hides the tariff rows and LDP has no duty.
 
 ### Where do the tariff rates come from?
 From the official US tariff schedule (HTS), with Section 301 for China and the country rates. The team owner links each category to a tariff code in Settings > LDP Calculation > Tariff Codes. Then every product in that category gets that rate.
@@ -95,7 +107,13 @@ In Tariff Codes, type what the product is, for example "led bulb". The app finds
 ## Finding Products
 
 ### What does search look at?
-Vendor, category, tags, notes, venue, status, custom fields, the text printed in your photos and the photo descriptions. Spaces and capital letters do not matter, so "Heng Tian" finds "HengTian".
+Vendor, category, tags, notes, venue, status, custom fields, the text printed in your photos and the photo descriptions. Spaces and capital letters do not matter, so "Heng Tian" finds "HengTian". You can also search with a photo: tap the camera next to the search bar. Tap the empty search bar to run a recent search again.
+
+### Can I search with a photo?
+Yes. Tap the camera next to the Products search bar and take a photo. The app lists your products that look like it. Press and hold the camera button to pick from your library or paste a photo.
+
+### What is Visually Similar on a product page?
+It lists products whose photos look like this one, so you can compare vendors for the same item. Hold a match and pick Not Similar to hide it for your whole team.
 
 ### Can I search for words printed on the box?
 Yes. The app reads the text in your photos on the phone (free and offline). Type a word from the label and the product shows. Chinese text gets an English translation too.
@@ -106,11 +124,17 @@ Apple Intelligence writes one sentence about each photo, for example color, shap
 ### How do I filter products?
 Tap the filter button in Products. Filter by vendor, category, category group, tags, status, venue, team member, date, FOB, LDP, MOQ, comments and custom fields. Hold the filter button to clear all filters.
 
+### How many products does my search or filter show?
+The count shows under the search bar while a search or filter is on, for example "95 of 1,506 products". On the product page, "6/95" tells you where you are in that list.
+
 ### How do I sort products?
 Use the sort menu in Products. Sort by date created, LDP, FOB, vendor, MOQ or status. Pick the same field again to reverse the order.
 
 ### Can I see products as a grid?
 Yes. Use the Layout menu in Products to change between a list and a grid, and to change the photo size.
+
+### How do I save product photos to my photo library?
+Select products, tap Share, then Save Photos. Photos that are already in your library are skipped, so you get no duplicates.
 
 ### Can I change many products at once?
 Yes. Select products in the list, then tap Edit. Fields that are the same on all of them show the value. Fields that differ show "Mixed". You can also delete the selected products.
@@ -132,11 +156,17 @@ Yes. Turn on Settings > General > Hide Vendor Names. The app blurs every vendor 
 ### How do I add a vendor from a business card?
 In Vendors, tap + and choose Scan Cards. Take a photo of each card. Tap Save. The app reads the name, company, phones, emails, WeChat, website and address in the background.
 
+### Does card scanning send my cards anywhere?
+The card is read on your device. With Settings > Privacy > Smart Card Reading on, only the card's text, never the photo, goes to Jev (TypeSafe) to sort it into company, contact, email and phone. Turn it off to keep everything on your device; check names and numbers after a scan then. Cards scanned offline are read again when you are back online.
+
 ### Can I add cards from photos I already took?
 Yes. In Vendors, tap + and choose Choose Card Photos. Pick the photos, check them, and tap Save.
 
 ### What if I scan a card I already saved?
 The app compares it with your saved vendors. If it finds a match, it shows "Already saved?" so you can add the card to the existing vendor and not make a copy.
+
+### What do the green seal and red X next to a vendor email mean?
+The app checks that the email's domain can get mail. A green seal means it can. A red X means it cannot, often from a misread card, and Change To offers the fix. An address at www.<domain> never gets mail, so the app offers it without the www.
 
 ### How do I add a vendor by hand?
 In Vendors, tap + and choose Add Manually.
@@ -162,7 +192,7 @@ Use Settings > Data > Merge Vendors. The app shows likely matches. Pick the vend
 Open Settings and tap your account. Tap Create Team and enter a name. You are the owner.
 
 ### How do I invite people to my team?
-Only the team owner can invite. In your account screen, tap Invite Member and enter their email. They get an email and an invite in the app. Each person uses one seat. If you are not the owner, ask your team owner to invite them.
+Only the team owner can invite. In your account screen, tap Invite Member and enter their email. Inviting is free: the screen shows the seat price, and a seat is added and charged only when the person joins. They get an email and an invite in the app. If you are not the owner, ask your team owner to invite them.
 
 ### Who sees my products?
 Everyone on your team. Products sync to all team phones in a few seconds. People outside your team never see them.
@@ -211,10 +241,33 @@ Set a Status on the product, for example Sample Requested. Edit the status list 
 Yes. Turn on Auto Advance After Flagging in Settings > Follow Up > Status.
 
 ### How do I email a vendor about a product?
-On the product page, tap the envelope button. The app fills in your email template with the product details. You can send it from your mail app, or use Send Directly to send it from Show Sourcing.
+On the product page, tap the envelope button. The app fills in your email template with the product details and photos. Pick how it sends in Settings > Email Template > Send With: Mail App, Outlook, or Gmail when it is available. With Outlook or Gmail the email goes at once and the app confirms who got it. Add a CC there too; it syncs to your other devices.
+
+### Can I email many vendors at once?
+Yes. Select products, tap Share, then Email Vendors. After you confirm, the app sends one email to each vendor with that vendor's products and photos inline. This works with Outlook or Gmail in Settings > Email Template > Send With.
+
+### How do I know my emails went out?
+Settings > Email Queue lists every email sent with Outlook or Gmail, with any error, and you can retry a failed one. Sent means your mail server accepted it. A wrong address sends a bounce notice to your inbox. Emails sent with the Mail app do not show there.
 
 ### How do I change the follow-up email?
 Settings > Follow Up > Email Template. Edit the subject and body. Tap a chip to insert a field, such as the vendor name or the price. Pick your preferred mail client there too.
+
+## RFQs (Quotes from Vendors)
+
+### What is an RFQ?
+A request for quotes. Make one in Settings > RFQs > New RFQ for each thing you are sourcing, with what you are looking for, up to 6 photos and target prices. Send vendors its link. They quote on a web form or an Excel sheet, with photos and a price for each quantity. What they send waits in the RFQs tab.
+
+### How do I accept a vendor's quote?
+Open the RFQs tab. Each item waits in To Review with its photos, price by quantity and LDP. Tap Accept to add it to Products, or Decline. Select several to accept or decline them together.
+
+### What is the General Link?
+One link that any vendor can use to send you products, without an RFQ. Find it in Settings > RFQs. Copy Link or Share sends it. Each item waits in the RFQs tab until someone accepts it.
+
+### Can I choose what vendors fill in?
+Yes. Edit the RFQ and open Form Fields. Switch a field on to show it, and tap the asterisk to make it required. A custom field's answer goes straight into that field on the product. You can also pick which categories vendors see and the quantities they price.
+
+### Can vendors see my company logo?
+Yes. Your team logo shows on every RFQ form.
 
 ## Siri and Spotlight
 
@@ -241,10 +294,13 @@ No. You use your own ChatGPT or Claude account. Show Sourcing does not store you
 ## Data and Backup
 
 ### How do I export my products?
-Settings > Backup & Import > Export Products (JSON). The file has every field and links to every photo. It is not available during the free trial, and the team owner can limit it.
+Select products, tap Share, then pick Excel, PDF or Save Photos. Settings > Backup & Import > Export Products (JSON) gives every field and a link to every photo. During the free trial and on the free plan, exports hold your first 10 products and 5 vendors, and the app tells you before it exports. The team owner can limit exports.
 
 ### Can I move my settings to a new phone?
 Yes. Use Export Settings on the old phone and Import Settings on the new one, in Settings > Backup & Import.
+
+### Do my settings follow me to my other devices?
+Yes. Container cost, DDP discount, your defaults and your email CC sync between your devices. To move everything else to a new phone, see Can I move my settings to a new phone.
 
 ### How do I remove duplicate photos?
 Settings > Data > Photo Cleanup finds photos that are the same and lets you remove the extra copies. It also finds photos that are sideways or upside down and turns them.
@@ -255,10 +311,22 @@ Settings > Data > Clear Local Data. It deletes the copy on this phone only. Noth
 ## Plans and Billing
 
 ### How much does Show Sourcing cost?
-You pay per seat (one seat for each person). Yearly is $8.50 a seat a month. 6 months is $10 a seat a month. Teams of 10 or more get a discount. Every plan starts with a 7-day free trial. See showsourcing.app/pricing.
+You pay per seat (one seat for each person). Yearly is $8.50 a seat a month. 6 months is $10 a seat a month. Teams of 10 or more get a discount. Every plan starts with a 7-day free trial. Without a plan you can keep up to 10 products and 5 vendors for free. See showsourcing.app/pricing.
+
+### What can I do without a plan?
+You can keep up to 10 products and 5 vendors for free. When you need more, tap Start Free Trial at the top of the Create tab, or Profile > Subscribe.
+
+### What happens when my free trial ends?
+If you do not pick a plan, your newest 10 products and 5 vendors stay open. The rest are greyed out and locked, not deleted. Subscribe to open them again.
+
+### Can I start paying before my trial ends?
+Yes, if you own the team. Open Settings > Team Billing > Start Paid Plan Now. You see the exact price and card before you pay. If the card is declined, your trial keeps running.
+
+### Why do exports and the AI Connection show only 10 products?
+During the free trial and on the free plan, exports and the AI Connection use your first 10 products and 5 vendors. Start a paid plan for all of them.
 
 ### How do I add or remove seats?
-The team owner opens Settings > account > Team Billing. New seats cost a share of the rest of the period. Removed seats give a credit on the next renewal.
+The team owner opens Settings > account > Team Billing. The app shows the exact price and asks you to confirm before it charges for new seats. New seats cost a share of the rest of the period. Seats removed within 24 hours of buying them are refunded, unless the person on the seat added more than 10 products. Other removed seats give a credit on the next renewal.
 
 ### What happens if my card payment fails?
 Stripe, our payment provider, charges your card. If a payment fails, update your card from the Stripe email, or write to support@showsourcing.app. You are charged only once.

@@ -16,7 +16,7 @@
   body { margin:0; background:var(--bg); color:var(--text); font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   main { max-width:720px; margin:0 auto; padding:24px 16px 120px; }
   .brand { display:flex; align-items:center; gap:10px; }
-  .brand img { width:52px; height:52px; border-radius:12px; object-fit:cover; border:1px solid var(--line); background:var(--card); }
+  .brand img { height:52px; width:auto; max-width:180px; border-radius:12px; object-fit:contain; padding:4px; box-sizing:border-box; border:1px solid var(--line); background:#fff; }  /* any logo shape, never cut (2026-11-02) */
   header .team { color:var(--sub); font-weight:600; font-size:14px; letter-spacing:.02em; text-transform:uppercase; }
   h1 { font-size:28px; margin:4px 0 8px; line-height:1.2; }
   .brief { white-space:pre-wrap; color:var(--text); margin:0 0 6px; }

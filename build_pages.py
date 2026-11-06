@@ -393,13 +393,24 @@ def llms_txt() -> str:
     FEATURES = complete_features()
     return f"""# Show Sourcing
 
-> Show Sourcing is a CRM for buyers who source products at trade shows. On iPhone, iPad and Mac, buyers photograph products, add vendors from business cards, record FOB prices, price breaks and MOQ, and see landed cost (LDP) with US tariffs. Teams share every product live. Every plan starts with a 7-day free trial.
+> Show Sourcing is a CRM for buyers who source products at trade shows. On iPhone, iPad and Mac, buyers photograph products, add vendors from business cards, record FOB prices, price breaks and MOQ, and see landed cost (LDP) with US tariffs. Teams share every product live. Free for up to 10 products and 5 vendors; every paid plan starts with a 7-day free trial.
 
 ## Who it is for
 
 - Buyers, importers and sourcing agents at trade shows such as Canton Fair, Global Sources and the Hong Kong fairs, and on factory visits
 - Small teams that work a show together and need one shared catalog
 - Anyone who now uses a spreadsheet, the notes app and a stack of business cards
+
+## New since October 2026
+
+- RFQs: send vendors one link; they quote on a web form or an Excel sheet, with photos and a price per quantity; accept or decline each item
+- Search by photo, and Visually Similar products on every product page
+- Send vendor emails straight from Outlook (Gmail soon), with CC; email many vendors at once, one email each; an Email Queue
+- Vendor emails are checked: a green seal when the address can get mail, a red X with a fix when it cannot
+- Autofill a product from its photo text and voice note
+- Import duties for the EU as well as the US
+- Free plan (10 products, 5 vendors); invite teammates for free and pay for a seat only when they join
+- Help that understands plain questions (EmbeddingGemma search)
 
 ## New in version 1.1
 
@@ -418,9 +429,10 @@ def llms_txt() -> str:
 - Vendors: business card scan (name, company, phones, emails, WeChat, website, address), duplicate check, vendor pages with all their products, factory on a map, US shipping records
 - Prices: FOB, CIF, EXW or DDP; any currency converted to USD with daily rates; price breaks per quantity; MOQ, packaging, units per container
 - Landed cost (LDP): price + packaging + US tariff (HTS with Section 301) + freight share per unit; tariff codes linked to categories
-- Search: vendor, category, tags, notes, venue, status, custom fields, words printed in photos (on-device OCR), photo descriptions
+- Search: vendor, category, tags, notes, venue, status, custom fields, words printed in photos (on-device OCR), photo descriptions; search by photo; Visually Similar products
+- RFQs: one link per sourcing request; vendors quote on a web form or Excel sheet with photos and price by quantity; your team logo on the form; accept items straight into Products
 - Filters and sorting by FOB, LDP, MOQ, status, show, teammate, category groups
-- Follow up: statuses (e.g. Sample Requested), vendor email templates
+- Follow up: statuses (e.g. Sample Requested), vendor email templates sent from Outlook or the Mail app, CC, one email per vendor for many products, an Email Queue
 - Teams: live sync, comments and @mentions, team statuses, Team Map at the show, export permissions
 - Export to Excel: products and vendors, photos in the cells, every field and custom field, live LDP formulas, emailed as a link (paid plans)
 - Custom fields (text, number, currency, toggle); Siri and Spotlight search
@@ -433,7 +445,7 @@ def llms_txt() -> str:
 - Data: JSON backup and export, sync across iPhone, iPad, Mac and the web portal; sign in with Apple or email
 - Mac and iPad: two-pane layout (list and details side by side), keyboard shortcuts
 - Numbers and prices in your region's format
-- In-app Help with search, and a What's New list
+- In-app Help with search that understands plain questions (EmbeddingGemma), and a What's New list
 
 ## Complete feature list
 

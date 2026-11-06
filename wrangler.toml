@@ -1,0 +1,9 @@
+# Cloudflare Pages config for showsourcing.app (added 2026-11-01 for the Help search).
+# deploy.sh stages the static site into site/ and copies this file and functions/ beside it,
+# so this file is never served. AI = Workers AI, for EmbeddingGemma in functions/api/help-search.js.
+name = "showsourcing-site"
+pages_build_output_dir = "site"
+compatibility_date = "2026-10-14"
+
+[ai]
+binding = "AI"

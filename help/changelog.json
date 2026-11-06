@@ -1,28 +1,74 @@
 {
-  "updated": "2026-10-20",
+  "updated": "2026-11-06T00:29",
   "appStore": {
-    "version": "1.1.2",
-    "build": "16"
+    "version": "1.1.6",
+    "build": "7"
   },
   "beta": {
-    "version": "1.1.3",
+    "version": "1.1.7",
     "build": "1"
   },
   "builds": [
     {
-      "version": "1.1.3",
+      "version": "1.1.7",
       "build": "1",
-      "date": "2026-10-19",
+      "date": "2026-11-03",
       "channel": "beta",
       "notes": [
-        "Smarter card scan: job titles, office and factory addresses, and English names first",
-        "Multiple cards: swipe between a vendor's cards, newest first",
-        "Select text: copy any text right off a card photo",
-        "Scan a stack of cards at once: cards from the same company are grouped into one vendor",
-        "Vendor notes: write down what you remember about each vendor",
-        "Price in RMB: see the USD amount as you type, and convert with one tap",
-        "Photo text: search the words printed on your product photos",
-        "Faster, more reliable sync, even offline"
+        "Test build for the next version. Same features as 1.1.6, which is in App Store review."
+      ]
+    },
+    {
+      "version": "1.1.6",
+      "build": "7",
+      "date": "2026-11-03",
+      "channel": "appStore",
+      "notes": [
+        "Ctnr Qty accepts only numbers or ?. Letters and other characters are refused.",
+        "Edit Product: clearing Ctnr Qty now saves ? (unknown) instead of 0."
+      ]
+    },
+    {
+      "version": "1.1.5",
+      "build": "7",
+      "date": "2026-10-31",
+      "channel": "appStore",
+      "notes": [
+        "Search by photo: tap the camera next to the search bar to find a product from a picture. Recent searches are one tap away.",
+        "Visually Similar: see look-alike products on every product page.",
+        "Email suppliers from Outlook or Gmail, with CC. Pick several products and each supplier gets one email, with the photos inline.",
+        "Supplier emails are checked: a red mark shows an address that cannot get mail, with a one-tap fix.",
+        "Venues are shared with your team. Rename one and everyone sees it.",
+        "Card scans read every card on a supplier, plus many fixes."
+      ]
+    },
+    {
+      "version": "1.1.4",
+      "build": "12",
+      "date": "2026-10-25",
+      "channel": "appStore",
+      "notes": [
+        "RFQs: send vendors one link. They quote on a web form or an Excel sheet, with photos and price by quantity. Compare landed cost and accept with one tap.",
+        "Your team logo on every RFQ form.",
+        "Invite teammates for free. You pay for a seat only when they join.",
+        "EU import duties: choose the US or the EU as your destination.",
+        "Settings search, Select All, Share as Excel or PDF, faster grids and many fixes."
+      ]
+    },
+    {
+      "version": "1.1.3",
+      "build": "6",
+      "date": "2026-10-20",
+      "channel": "appStore",
+      "notes": [
+        "Autofill: fill in a product from its photo text and voice note, and review every suggestion on one screen",
+        "Clearer tariff search: see each code's category path and duty rate",
+        "iPad: your product list and the product side by side, like Vendors",
+        "Adding seats now shows the exact price and asks you to confirm before charging",
+        "Seats removed within 24 hours of buying them are refunded",
+        "Only the team owner can invite new members",
+        "New privacy setting: Smart Card Reading, to keep card scanning fully on your device",
+        "Cards scanned offline are read again when you are back online"
       ]
     },
     {
