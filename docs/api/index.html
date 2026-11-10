@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/theme.css">
+    <title>Show Sourcing API &mdash; Show Sourcing</title>
+    <meta name="description" content="REST API and MCP server for Show Sourcing: read and add your team&#x27;s products and vendors from code, Claude, ChatGPT or Claude Code. One token, made in the app.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#060a18" data-dark="#060a18" data-light="#f6f7fb">
+    <link rel="canonical" href="https://showsourcing.app/docs/api/">
+    <link rel="alternate" type="text/markdown" href="/docs/api.md" title="This page as plain text">
+    <link rel="service-desc" type="application/json" href="/openapi.json" title="OpenAPI spec">
+    <meta property="og:title" content="Show Sourcing API">
+    <meta property="og:description" content="REST API and MCP server for Show Sourcing: read and add your team&#x27;s products and vendors from code, Claude, ChatGPT or Claude Code. One token, made in the app.">
+    <meta property="og:url" content="https://showsourcing.app/docs/api/">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Show Sourcing API",
+  "description": "REST API and MCP server for Show Sourcing: read and add your team's products and vendors from code, Claude, ChatGPT or Claude Code. One token, made in the app.",
+  "url": "https://showsourcing.app/docs/api/",
+  "author": {
+    "@type": "Organization",
+    "name": "DNZ",
+    "url": "https://showsourcing.app"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Show Sourcing",
+    "url": "https://showsourcing.app"
+  }
+}
+    </script>
+    <style>
+        :root {
+            --bg:      #060a18;
+            --accent:  #f97316;
+            --accent2: #38bdf8;
+            --text:    #f1f5f9;
+            --muted:   #64748b;
+            --dim:     #1e293b;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.65;
+            background-image:
+                radial-gradient(ellipse 80% 45% at 50% 0%, rgba(249,115,22,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 55% at 90% 100%, rgba(56,189,248,0.05) 0%, transparent 60%);
+            background-attachment: fixed;
+        }
+
+        header#site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px clamp(16px, 3vw, 40px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        header#site-header .logo {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+        header#site-header .header-links {
+            display: flex;
+            gap: clamp(12px, 2vw, 24px);
+            align-items: center;
+        }
+        header#site-header .header-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        header#site-header .header-links a:hover { color: var(--text); }
+        header#site-header .header-links a.active { color: var(--text); }
+
+        .live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 5px 13px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            text-decoration: none;
+        }
+        .pulse-dot {
+            width: 7px; height: 7px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.3; } }
+
+        article {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem) 3rem;
+        }
+
+        .article-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        article h1 {
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+        }
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.25rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 2.25rem;
+        }
+        .article-meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
+        .article-meta .dot { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
+
+        article p {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin-bottom: 1.25rem;
+        }
+        article h2 {
+            font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+            font-weight: 700;
+            color: var(--text);
+            margin: 2.5rem 0 1rem;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+        }
+        article h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.75rem 0 0.75rem;
+        }
+        article ul, article ol {
+            margin: 0 0 1.5rem 1.25rem;
+            color: #cbd5e1;
+        }
+        article ul li, article ol li {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+        article a { color: var(--accent2); text-decoration: none; border-bottom: 1px solid rgba(56,189,248,0.35); }
+        article a:hover { border-bottom-color: var(--accent2); }
+        article strong { color: var(--text); font-weight: 700; }
+        article code {
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            background: rgba(56,189,248,0.08);
+            border: 1px solid rgba(56,189,248,0.15);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #bae6fd;
+        }
+        article figure {
+            margin: 1.75rem 0;
+            padding: 1.25rem 1.5rem;
+            background: rgba(30, 41, 59, 0.55);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+        }
+        article figure code, article figure pre {
+            display: block;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 0.95rem;
+            color: #fbbf24;
+            background: none;
+            border: none;
+            padding: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        article figcaption {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+        article blockquote {
+            margin: 1.75rem 0;
+            padding: 1rem 1.25rem;
+            border-left: 3px solid var(--accent);
+            background: rgba(249,115,22,0.05);
+            border-radius: 0 8px 8px 0;
+            color: #e2e8f0;
+            font-size: 1.05rem;
+        }
+        article blockquote p:last-child { margin-bottom: 0; }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .cost-table th, .cost-table td {
+            padding: 0.65rem 0.9rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .cost-table th {
+            background: rgba(255,255,255,0.03);
+            font-weight: 700;
+            color: var(--text);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .cost-table td { color: #cbd5e1; }
+        .cost-table tr:last-child td { border-bottom: none; }
+        .cost-table td.num { font-family: 'JetBrains Mono', ui-monospace, monospace; text-align: right; color: #fbbf24; }
+        .table-wrap { overflow-x: auto; }
+
+        aside.cta {
+            margin: 3rem 0 0;
+            padding: 1.75rem;
+            background: linear-gradient(135deg, rgba(249,115,22,0.09), rgba(56,189,248,0.05));
+            border: 1px solid rgba(249,115,22,0.22);
+            border-radius: 16px;
+        }
+        aside.cta h3 {
+            margin-top: 0;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+        aside.cta p {
+            font-size: 0.98rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+        aside.cta a.button {
+            display: inline-block;
+            padding: 0.65rem 1.15rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: none;
+            transition: transform 0.2s, background 0.2s;
+        }
+        aside.cta a.button:hover { transform: translateY(-1px); background: #fb923c; }
+
+        footer#site-footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem clamp(1.25rem, 4vw, 3rem);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+        footer#site-footer nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        footer#site-footer a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+        footer#site-footer a:hover { color: var(--text); }
+            /* header fit with the theme toggle */
+        header#site-header .logo, header#site-header .live-pill { white-space: nowrap; }
+        @media (max-width: 600px) {
+            header#site-header .header-links { gap: 10px; }
+            header#site-header .live-pill { padding: 5px 10px; }
+            header#site-header .pill-long { display: none; }
+        }
+        /* ---- light mode (html.light is set by /theme.js) ---- */
+        html.light {
+            --bg:      #f6f7fb;
+            --accent2: #0369a1;
+            --text:    #0f172a;
+            --muted:   #556070;
+            --dim:     #e2e8f0;
+        }
+        html.light body {
+            background-image:
+                radial-gradient(ellipse 80% 45% at 50% 0%, rgba(249,115,22,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 55% at 90% 100%, rgba(56,189,248,0.08) 0%, transparent 60%);
+        }
+        html.light header#site-header,
+        html.light footer#site-footer { border-color: rgba(15,23,42,0.08); }
+        html.light .live-pill { background: #fff; border-color: rgba(15,23,42,0.10); color: #475569; }
+        html.light .page-head .eyebrow,
+        html.light .article-eyebrow,
+        html.light .post-card .read-more { color: #c2410c; }
+        html.light .page-head h1 .grad { background: linear-gradient(135deg, #ea580c 20%, #d97706 80%); -webkit-background-clip: text; background-clip: text; }
+        html.light .page-head p.lede { color: #475569; }
+        html.light .post-card {
+            background: #fff;
+            border-color: rgba(15,23,42,0.08);
+            box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.05);
+        }
+        html.light .post-card:hover { background: #fff; border-color: rgba(234,88,12,0.40); }
+        html.light .post-card p { color: #475569; }
+        html.light .article-meta { border-bottom-color: rgba(15,23,42,0.10); }
+        html.light article p,
+        html.light article ul,
+        html.light article ol { color: #334155; }
+        html.light article a { border-bottom-color: rgba(3,105,161,0.35); }
+        html.light article code { background: rgba(3,105,161,0.07); border-color: rgba(3,105,161,0.18); color: #075985; }
+        html.light article figure { background: #fff; border-color: rgba(15,23,42,0.08); }
+        html.light article figure pre,
+        html.light article figure code { color: #b45309; background: none; border: none; }
+        html.light article blockquote { background: #fff7ed; color: #1e293b; }
+        html.light .cost-table { background: #fff; border-color: rgba(15,23,42,0.10); }
+        html.light .cost-table th, html.light .cost-table td { border-bottom-color: rgba(15,23,42,0.08); }
+        html.light .cost-table th { background: #f1f5f9; }
+        html.light .cost-table td { color: #334155; }
+        html.light .cost-table td.num { color: #b45309; }
+        html.light .card-example { background: rgba(3,105,161,0.05); border-color: rgba(3,105,161,0.20); color: #1e293b; }
+        html.light aside.cta { background: linear-gradient(135deg, rgba(249,115,22,0.10), rgba(56,189,248,0.08)); border-color: rgba(234,88,12,0.28); }
+        html.light aside.cta p { color: #334155; }
+    
+        .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        article h3 { margin-top: 1.6em; }
+        article pre { overflow-x: auto; padding: 14px 16px; border-radius: 12px; margin: 1em 0;
+            background: rgba(127,127,127,0.12); font: 13px/1.5 'JetBrains Mono', ui-monospace, monospace; }
+        article pre code { background: none; padding: 0; white-space: pre; }
+        .doc-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 1em 0 2em; }
+        .doc-links a { padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(127,127,127,0.35); text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header id="site-header">
+    <a class="logo" href="/">Show Sourcing</a>
+    <nav class="header-links">
+        <a href="/blog/"><svg class="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:5px"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg>Blog</a>
+        <a href="/#faq"><svg class="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:5px"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>FAQ</a>
+        <a href="https://apps.apple.com/us/app/show-sourcing-manager/id6758863749" class="live-pill">
+            <span class="pulse-dot"></span><span class="pill-long">Now on the&nbsp;</span>App Store
+        </a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark mode" title="Switch between light and dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    </nav>
+</header>
+
+<article>
+    <span class="article-eyebrow">Developers</span>
+    <h1>Show Sourcing API</h1>
+    <div class="doc-links"><a href="/docs/api.md">Plain text for AI agents</a><a href="/openapi.json">OpenAPI spec</a></div>
+
+    <p>Show Sourcing has two ways for your own code and AI tools to reach your team's products and vendors:</p>
+
+    <ol><li><strong>REST API (v1)</strong>: plain JSON over HTTPS. Use it from any language, script or no-code tool.</li><li><strong>MCP server</strong>: for Claude, ChatGPT, Claude Code and other MCP apps. See <a href="#mcp-server">MCP server</a> below.</li></ol>
+
+    <p>Both use the same token. Machine-readable spec: <a href="https://showsourcing.app/openapi.json">https://showsourcing.app/openapi.json</a>. This page as plain text: <a href="https://showsourcing.app/docs/api.md">https://showsourcing.app/docs/api.md</a>.</p>
+
+    <h2 id="rest-api-v1">REST API (v1)</h2>
+
+    <p>Base URL: <code>https://api.showsourcing.app/functions/v1/api</code></p>
+
+    <p>All routes sit under <code>/v1</code>. Every request and response is JSON.</p>
+
+    <h3 id="auth">Auth</h3>
+
+    <p>The API uses the same token as the AI Connection. One token works for both.</p>
+
+    <ol><li>In the app (iPhone, iPad, Mac or Android), open Settings &gt; AI Connection &amp; API.</li><li>Tap Create token. To add data, turn on "Can add products and vendors". The app shows the token once.</li><li>Send it in a header on every request:</li></ol>
+
+    <pre><code>Authorization: Bearer ss_xxxxxxxx</code></pre>
+
+    <p><code>X-API-Key: ss_xxxxxxxx</code> also works.</p>
+
+    <p>A token is tied to one team. It can only see that team's data. A token is read-only unless you made it with write access. Revoke a token in the app and it stops working at once.</p>
+
+    <p>A token stops working when its owner leaves the team. Make a new one.</p>
+
+    <h3 id="plans">Plans</h3>
+
+    <ul><li>With a paid plan, you see everything.</li><li>On a free trial or with no plan, reads show only your first 10 products and first 5 vendors. The response has a <code>plan_limit</code> note.</li><li>Adding data (POST) needs a paid plan or a free trial. With no plan, POST returns 402.</li></ul>
+
+    <h3 id="routes">Routes</h3>
+
+    <div class="table-wrap"><table class="cost-table"><thead><tr><th>Route</th><th>What it does</th></tr></thead><tbody><tr><td><code>GET /v1/products</code></td><td>List and search products</td></tr><tr><td><code>GET /v1/products/{id}</code></td><td>One product, with photo links</td></tr><tr><td><code>POST /v1/products</code></td><td>Add a product (write token)</td></tr><tr><td><code>GET /v1/vendors</code></td><td>List and search vendors</td></tr><tr><td><code>GET /v1/vendors/{id}</code></td><td>One vendor</td></tr><tr><td><code>POST /v1/vendors</code></td><td>Add a vendor (write token)</td></tr></tbody></table></div>
+
+    <p>There is no update or delete in v1.</p>
+
+    <h3 id="list-products">List products</h3>
+
+    <p><code>GET /v1/products?q=&amp;limit=&amp;offset=&amp;updated_since=</code></p>
+
+    <div class="table-wrap"><table class="cost-table"><thead><tr><th>Parameter</th><th>Meaning</th></tr></thead><tbody><tr><td><code>q</code></td><td>Search text (max 200 characters). Matches vendor, category, notes, venue and the photo description.</td></tr><tr><td><code>limit</code></td><td>Rows to return. Default 50, maximum 200.</td></tr><tr><td><code>offset</code></td><td>Rows to skip. Default 0.</td></tr><tr><td><code>updated_since</code></td><td>ISO 8601 date. Only products changed at or after it. These come oldest change first, so you can page through changes.</td></tr></tbody></table></div>
+
+    <p>Without <code>updated_since</code>, newest products come first.</p>
+
+    <pre><code>curl -H &quot;Authorization: Bearer $SS_TOKEN&quot; \
+  &quot;https://api.showsourcing.app/functions/v1/api/v1/products?q=lamp&amp;limit=2&quot;</code></pre>
+
+    <pre><code>{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;6f1c0a52-8d54-4a4b-9a43-0d7a1f3c9e10&quot;,
+      &quot;vendor&quot;: &quot;Shenzhen ABC&quot;,
+      &quot;vendor_id&quot;: &quot;95d5aa80-5433-487f-bbc1-29c3f2434d41&quot;,
+      &quot;category&quot;: &quot;Lamps&quot;,
+      &quot;fob&quot;: 4.2,
+      &quot;currency&quot;: &quot;USD&quot;,
+      &quot;price_term&quot;: &quot;FOB&quot;,
+      &quot;moq&quot;: 500,
+      &quot;container_qty&quot;: 4000,
+      &quot;package_cbm&quot;: null,
+      &quot;country_of_origin&quot;: [&quot;China&quot;],
+      &quot;tariff_override&quot;: null,
+      &quot;tags&quot;: [&quot;led&quot;, &quot;desk&quot;],
+      &quot;specs&quot;: &quot;USB powered, 3 brightness levels&quot;,
+      &quot;venue&quot;: &quot;Canton Fair&quot;,
+      &quot;status&quot;: null,
+      &quot;photo_count&quot;: 3,
+      &quot;photo_description&quot;: &quot;a white desk lamp on a table&quot;,
+      &quot;created_at&quot;: &quot;2026-11-01T10:00:00+00:00&quot;,
+      &quot;updated_at&quot;: &quot;2026-11-02T09:30:00+00:00&quot;,
+      &quot;thumbnail&quot;: &quot;https://api.showsourcing.app/storage/v1/object/sign/Media/...&quot;
+    }
+  ],
+  &quot;count&quot;: 1,
+  &quot;total&quot;: 1,
+  &quot;limit&quot;: 2,
+  &quot;offset&quot;: 0,
+  &quot;has_more&quot;: false
+}</code></pre>
+
+    <p><code>thumbnail</code> is a link to the first photo. It is set for the first 30 rows of a page. It expires after 7 days. <code>photo_description</code> is written by a machine. It is often wrong. Do not treat it as fact.</p>
+
+    <h3 id="get-one-product">Get one product</h3>
+
+    <pre><code>curl -H &quot;Authorization: Bearer $SS_TOKEN&quot; \
+  &quot;https://api.showsourcing.app/functions/v1/api/v1/products/6f1c0a52-8d54-4a4b-9a43-0d7a1f3c9e10&quot;</code></pre>
+
+    <p>It returns the same fields as the list, plus <code>photos</code>: up to 8 photo links (images only, no videos). The links expire after 7 days.</p>
+
+    <h3 id="add-a-product">Add a product</h3>
+
+    <p><code>POST /v1/products</code> with a write token.</p>
+
+    <pre><code>curl -X POST -H &quot;Authorization: Bearer $SS_TOKEN&quot; -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;vendor&quot;:&quot;Shenzhen ABC&quot;,&quot;name&quot;:&quot;LED desk lamp&quot;,&quot;category&quot;:&quot;Lamps&quot;,&quot;fob&quot;:4.2,&quot;currency&quot;:&quot;USD&quot;,&quot;moq&quot;:500,&quot;notes&quot;:&quot;USB powered&quot;,&quot;tags&quot;:[&quot;led&quot;,&quot;desk&quot;]}&#x27; \
+  &quot;https://api.showsourcing.app/functions/v1/api/v1/products&quot;</code></pre>
+
+    <p>It returns <code>201</code> and the new product. The product shows up on the team's phones through normal sync.</p>
+
+    <div class="table-wrap"><table class="cost-table"><thead><tr><th>Field</th><th>Type</th><th>Notes</th></tr></thead><tbody><tr><td><code>vendor</code></td><td>string, max 200</td><td>Vendor name. If the team has a vendor with this name (case ignored), the product links to it. If not, a new vendor with this name is created.</td></tr><tr><td><code>vendor_id</code></td><td>UUID</td><td>Link to an existing vendor. Use this or <code>vendor</code>.</td></tr><tr><td><code>name</code></td><td>string, max 200</td><td>Product name. The app has no name field, so it is saved as the first line of the notes.</td></tr><tr><td><code>category</code></td><td>string, max 100</td><td></td></tr><tr><td><code>fob</code></td><td>number, 0 to 1,000,000,000</td><td>FOB price per unit.</td></tr><tr><td><code>currency</code></td><td>string</td><td>3-letter code. Default <code>USD</code>.</td></tr><tr><td><code>price_term</code></td><td>string</td><td><code>FOB</code>, <code>CIF</code>, <code>EXW</code> or <code>DDP</code>.</td></tr><tr><td><code>moq</code></td><td>whole number</td><td>Minimum order quantity.</td></tr><tr><td><code>container_qty</code></td><td>whole number</td><td>Units per container.</td></tr><tr><td><code>specs</code> or <code>notes</code></td><td>string, max 5000</td><td>Notes (the app calls this field Notes). If you send both, they are joined.</td></tr><tr><td><code>tags</code></td><td>array of strings, or one comma list</td><td>Max 30 tags, 50 characters each.</td></tr><tr><td><code>country_of_origin</code></td><td>array of strings, or one comma list</td><td>Max 10.</td></tr><tr><td><code>venue</code></td><td>string, max 200</td><td>Show or place.</td></tr></tbody></table></div>
+
+    <p>Send at least one of <code>vendor</code>, <code>vendor_id</code>, <code>name</code>, <code>category</code>, <code>fob</code>, <code>specs</code>, <code>notes</code>. Other fields return 400 <code>unknown_field</code>. Photos are not part of v1. Add photos in the app.</p>
+
+    <h3 id="list-vendors">List vendors</h3>
+
+    <p><code>GET /v1/vendors?q=&amp;limit=&amp;offset=</code></p>
+
+    <p><code>q</code> matches the vendor name. Rows come sorted by name. <code>limit</code> and <code>offset</code> work as for products.</p>
+
+    <pre><code>curl -H &quot;Authorization: Bearer $SS_TOKEN&quot; \
+  &quot;https://api.showsourcing.app/functions/v1/api/v1/vendors?q=shenzhen&quot;</code></pre>
+
+    <pre><code>{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;95d5aa80-5433-487f-bbc1-29c3f2434d41&quot;,
+      &quot;name&quot;: &quot;Shenzhen ABC&quot;,
+      &quot;contacts&quot;: [{ &quot;name&quot;: &quot;Cindy Liu&quot;, &quot;title&quot;: &quot;Sales&quot; }],
+      &quot;emails&quot;: [&quot;cindy@abc.example&quot;],
+      &quot;phones&quot;: [{ &quot;type&quot;: &quot;office&quot;, &quot;number&quot;: &quot;+86 755 0000 0000&quot; }],
+      &quot;websites&quot;: [&quot;https://abc.example&quot;],
+      &quot;wechats&quot;: [],
+      &quot;addresses&quot;: [&quot;12 Example Road, Shenzhen, Guangdong, China&quot;],
+      &quot;notes&quot;: null,
+      &quot;product_count&quot;: 4,
+      &quot;created_at&quot;: &quot;2026-10-20T08:00:00+00:00&quot;,
+      &quot;updated_at&quot;: &quot;2026-10-20T08:00:00+00:00&quot;
+    }
+  ],
+  &quot;count&quot;: 1, &quot;total&quot;: 1, &quot;limit&quot;: 50, &quot;offset&quot;: 0, &quot;has_more&quot;: false
+}</code></pre>
+
+    <h3 id="get-one-vendor">Get one vendor</h3>
+
+    <p><code>GET /v1/vendors/{id}</code> returns the same fields, plus <code>photos</code>: up to 4 photo links (business card photos).</p>
+
+    <h3 id="add-a-vendor">Add a vendor</h3>
+
+    <p><code>POST /v1/vendors</code> with a write token.</p>
+
+    <pre><code>curl -X POST -H &quot;Authorization: Bearer $SS_TOKEN&quot; -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;name&quot;:&quot;Shenzhen ABC&quot;,&quot;contact&quot;:&quot;Cindy Liu&quot;,&quot;email&quot;:&quot;cindy@abc.example&quot;,&quot;phone&quot;:&quot;+86 755 0000 0000&quot;,&quot;website&quot;:&quot;https://abc.example&quot;,&quot;address&quot;:{&quot;street&quot;:&quot;12 Example Road&quot;,&quot;city&quot;:&quot;Shenzhen&quot;,&quot;country&quot;:&quot;China&quot;}}&#x27; \
+  &quot;https://api.showsourcing.app/functions/v1/api/v1/vendors&quot;</code></pre>
+
+    <p>It returns <code>201</code> and the new vendor.</p>
+
+    <div class="table-wrap"><table class="cost-table"><thead><tr><th>Field</th><th>Type</th><th>Notes</th></tr></thead><tbody><tr><td><code>name</code></td><td>string, max 200</td><td>Required.</td></tr><tr><td><code>contact</code> / <code>contacts</code></td><td>name string, or <code>{name, title}</code>; or an array of them</td><td>Max 20.</td></tr><tr><td><code>email</code> / <code>emails</code></td><td>string, or array of strings</td><td>Must look like an email address. Max 20.</td></tr><tr><td><code>phone</code> / <code>phones</code></td><td>number string, or <code>{number, type}</code>; or an array</td><td><code>type</code> is <code>mobile</code>, <code>office</code>, <code>fax</code> or <code>other</code>. A plain string gets <code>office</code>. Max 20.</td></tr><tr><td><code>website</code> / <code>websites</code></td><td>string, or array of strings</td><td>Max 10.</td></tr><tr><td><code>wechat</code> / <code>wechats</code></td><td>string, or array of strings</td><td>WeChat IDs. Max 10.</td></tr><tr><td><code>address</code> / <code>addresses</code></td><td>string, or <code>{street, city, state, postal_code, country}</code>; or an array</td><td>Saved as one line. Max 10.</td></tr><tr><td><code>notes</code></td><td>string, max 5000</td><td></td></tr></tbody></table></div>
+
+    <p>If the team already has a vendor with the same name (case ignored), the API returns 409 <code>already_exists</code> with the existing id. Other fields return 400 <code>unknown_field</code>.</p>
+
+    <h3 id="errors">Errors</h3>
+
+    <p>Every error has this shape:</p>
+
+    <pre><code>{ &quot;error&quot;: { &quot;code&quot;: &quot;invalid_token&quot;, &quot;message&quot;: &quot;This token is not valid. It may be revoked.&quot; } }</code></pre>
+
+    <div class="table-wrap"><table class="cost-table"><thead><tr><th>Status</th><th>Code</th><th>When</th></tr></thead><tbody><tr><td>400</td><td><code>invalid_request</code>, <code>invalid_json</code>, <code>invalid_id</code>, <code>unknown_field</code>, <code>vendor_not_found</code>, <code>vendor_not_linked</code></td><td>Bad input. The message says which field.</td></tr><tr><td>401</td><td><code>missing_token</code>, <code>invalid_token</code></td><td>No token, an unknown token, or a revoked token.</td></tr><tr><td>402</td><td><code>plan_required</code></td><td>POST with no plan and no trial.</td></tr><tr><td>403</td><td><code>read_only_token</code></td><td>POST with a token that has no write access.</td></tr><tr><td>403</td><td><code>no_team</code>, <code>team_changed</code></td><td>The token has no team, or its owner left the team.</td></tr><tr><td>404</td><td><code>not_found</code></td><td>No such route, or no such row in your team.</td></tr><tr><td>405</td><td><code>method_not_allowed</code></td><td>For example DELETE. The <code>Allow</code> header lists what works.</td></tr><tr><td>409</td><td><code>already_exists</code></td><td>A vendor with this name exists.</td></tr><tr><td>429</td><td><code>rate_limited</code></td><td>Too many requests. The <code>Retry-After</code> header gives seconds.</td></tr><tr><td>500</td><td><code>internal_error</code></td><td>Our side. Try again.</td></tr></tbody></table></div>
+
+    <h3 id="limits">Limits</h3>
+
+    <ul><li>120 requests per minute per token. Every response has <code>X-RateLimit-Limit</code> and <code>X-RateLimit-Remaining</code>.</li><li>Request body: 100 KB.</li><li>Photo links expire after 7 days. Ask again for new links.</li></ul>
+
+    <h2 id="mcp-server">MCP server</h2>
+
+    <p>The MCP server lets an AI app search your catalog in plain words ("which vendors had LED desk lamps under $5?"). You use your own AI account. We never see your AI key.</p>
+
+    <ul><li>Server URL: <code>https://api.showsourcing.app/functions/v1/mcp</code></li><li>Transport: Streamable HTTP (not STDIO).</li><li>Auth: the same token, as <code>Authorization: Bearer ss_xxxxxxxx</code>. Apps that cannot send headers can put it in the URL instead: <code>https://api.showsourcing.app/functions/v1/mcp?key=ss_xxxxxxxx</code> (treat that URL like a password).</li><li>Read only. The MCP server never adds, edits or deletes.</li></ul>
+
+    <h3 id="tools">Tools</h3>
+
+    <div class="table-wrap"><table class="cost-table"><thead><tr><th>Tool</th><th>What it does</th></tr></thead><tbody><tr><td><code>search_products</code></td><td>Search the team's products by vendor, category, specs, tags or photo description. Returns id, vendor, category, FOB price, MOQ and photo count.</td></tr><tr><td><code>get_product</code></td><td>The full record of one product, including LDP (landed duty paid, USD) and photos.</td></tr><tr><td><code>show_products</code></td><td>Shows up to 12 products as one photo grid (photo, vendor, price, MOQ).</td></tr><tr><td><code>vendor_for_email</code></td><td>Finds the vendor an email address belongs to (exact address first, then the company domain) and lists its products.</td></tr><tr><td><code>list_vendors</code></td><td>The team's vendors, with how many products each has. Optional name filter.</td></tr></tbody></table></div>
+
+    <h3 id="connect">Connect</h3>
+
+    <ul><li><strong>Claude</strong>: Settings &gt; Connectors &gt; Add custom connector. Name: Show Sourcing. URL: the server URL with <code>?key=&lt;your token&gt;</code>. Leave the OAuth fields empty.</li><li><strong>ChatGPT</strong> (Mac app): Settings &gt; Apps &gt; Connect to a custom MCP. Type: Streamable HTTP. URL: the server URL. Under Headers add <code>Authorization</code> = <code>Bearer &lt;your token&gt;</code>.</li><li><strong>Claude Code</strong>:</li></ul>
+
+    <pre><code>claude mcp add --transport http show-sourcing https://api.showsourcing.app/functions/v1/mcp --header &quot;Authorization: Bearer $SS_TOKEN&quot;</code></pre>
+
+    <p>The app shows these steps with your real token filled in, under Settings &gt; AI Connection &amp; API.</p>
+
+    <h2 id="help">Help</h2>
+
+    <p>Questions or a missing endpoint: support@showsourcing.app.</p>
+</article>
+
+<footer id="site-footer">
+    <div>&copy; 2026 DNZ. All rights reserved.</div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+    </nav>
+</footer>
+
+</body>
+</html>

@@ -189,6 +189,15 @@ Generated from the app's own Help, one line per topic. Details: https://showsour
 - How do I contact support? Settings > Support > Email Support. The app attaches its log, which helps us find the problem.
 - How do I try new features first? Join the beta on TestFlight. Use the Join the Beta button on showsourcing.app/help.
 
+## API for developers and AI agents
+
+- REST API (JSON): read and add your team's products and vendors. Base URL https://api.showsourcing.app/functions/v1/api , routes GET/POST /v1/products, GET /v1/products/{id}, GET/POST /v1/vendors, GET /v1/vendors/{id}. No edit or delete in v1.
+- MCP server for Claude, ChatGPT and Claude Code: https://api.showsourcing.app/functions/v1/mcp (Streamable HTTP, read only; tools search_products, get_product, show_products, vendor_for_email, list_vendors)
+- Auth: one token per team, made in the app under Settings > AI Connection & API; send `Authorization: Bearer <token>`
+- Docs as plain text: https://showsourcing.app/docs/api.md
+- OpenAPI spec: https://showsourcing.app/openapi.json
+- Docs page: https://showsourcing.app/docs/api/
+
 ## Pricing
 
 - Per seat (one seat per person); 7-day free trial on every plan
@@ -198,7 +207,7 @@ Generated from the app's own Help, one line per topic. Details: https://showsour
 
 ## Platforms
 
-- iPhone, iPad and Mac (App Store), plus a web portal at app.showsourcing.app
+- iPhone, iPad and Mac (App Store), Android (Google Play), plus a web portal at app.showsourcing.app
 
 ## Links
 
@@ -209,7 +218,10 @@ Generated from the app's own Help, one line per topic. Details: https://showsour
 - Pricing: https://showsourcing.app/pricing
 - Help and FAQ: https://showsourcing.app/help
 - Full FAQ as text: https://showsourcing.app/llms-full.txt
+- API docs (plain text): https://showsourcing.app/docs/api.md
+- OpenAPI spec: https://showsourcing.app/openapi.json
 - App Store: https://apps.apple.com/us/app/show-sourcing-manager/id6758863749
+- Google Play: https://play.google.com/store/apps/details?id=com.DNZ.showsourcing
 - Beta (TestFlight): https://testflight.apple.com/join/Sy1eYzcp
 - Support: general@showsourcing.app
 

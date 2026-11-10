@@ -1,0 +1,1308 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "Show Sourcing API",
+  "version": "1.0.0",
+  "description": "Read and add your team's products and vendors in Show Sourcing. One token per team, made in the app under Settings > AI Connection & API. Read tokens can only read; write tokens can also add (never edit or delete). On a free trial or with no plan, reads show only the first 10 products and 5 vendors, and adding with no plan returns 402. Limits: 120 requests per minute per token, 100 KB body. Docs: https://showsourcing.app/docs/api/ . Same token works for the MCP server at https://api.showsourcing.app/functions/v1/mcp .",
+  "contact": {
+   "email": "support@showsourcing.app",
+   "url": "https://showsourcing.app/docs/api"
+  },
+  "termsOfService": "https://showsourcing.app/terms"
+ },
+ "externalDocs": {
+  "description": "Docs (plain text for agents)",
+  "url": "https://showsourcing.app/docs/api.md"
+ },
+ "servers": [
+  {
+   "url": "https://api.showsourcing.app/functions/v1/api"
+  }
+ ],
+ "security": [
+  {
+   "bearer": []
+  },
+  {
+   "apiKey": []
+  }
+ ],
+ "paths": {
+  "/v1/products": {
+   "get": {
+    "operationId": "listProducts",
+    "summary": "List and search products",
+    "description": "Newest first. With updated_since, oldest change first (to page through changes).",
+    "parameters": [
+     {
+      "name": "q",
+      "in": "query",
+      "schema": {
+       "type": "string",
+       "maxLength": 200
+      },
+      "description": "Matches vendor, category, notes, venue and photo description."
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "schema": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 200,
+       "default": 50
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "schema": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 100000,
+       "default": 0
+      }
+     },
+     {
+      "name": "updated_since",
+      "in": "query",
+      "schema": {
+       "type": "string",
+       "format": "date-time"
+      },
+      "description": "Only products changed at or after this time."
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "A page of products.",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "required": [
+          "data",
+          "count",
+          "total",
+          "limit",
+          "offset",
+          "has_more"
+         ],
+         "properties": {
+          "data": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/Product"
+           }
+          },
+          "count": {
+           "type": "integer",
+           "description": "Rows in this page."
+          },
+          "total": {
+           "type": "integer",
+           "description": "Rows that match, all pages."
+          },
+          "limit": {
+           "type": "integer"
+          },
+          "offset": {
+           "type": "integer"
+          },
+          "has_more": {
+           "type": "boolean"
+          },
+          "plan_limit": {
+           "type": "string",
+           "description": "Set on a free trial or with no plan: reads show only the first 10 products / 5 vendors."
+          }
+         }
+        }
+       }
+      }
+     },
+     "400": {
+      "$ref": "#/components/responses/Error"
+     },
+     "401": {
+      "$ref": "#/components/responses/Error"
+     },
+     "403": {
+      "$ref": "#/components/responses/Error"
+     },
+     "404": {
+      "$ref": "#/components/responses/Error"
+     },
+     "429": {
+      "$ref": "#/components/responses/Error"
+     },
+     "500": {
+      "$ref": "#/components/responses/Error"
+     }
+    }
+   },
+   "post": {
+    "operationId": "createProduct",
+    "summary": "Add a product (write token)",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/NewProduct"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "The new product.",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProductFull"
+        }
+       }
+      }
+     },
+     "400": {
+      "$ref": "#/components/responses/Error"
+     },
+     "401": {
+      "$ref": "#/components/responses/Error"
+     },
+     "403": {
+      "$ref": "#/components/responses/Error"
+     },
+     "404": {
+      "$ref": "#/components/responses/Error"
+     },
+     "429": {
+      "$ref": "#/components/responses/Error"
+     },
+     "500": {
+      "$ref": "#/components/responses/Error"
+     },
+     "402": {
+      "$ref": "#/components/responses/Error"
+     }
+    }
+   }
+  },
+  "/v1/products/{id}": {
+   "get": {
+    "operationId": "getProduct",
+    "summary": "One product, with photo links",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "The product.",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProductFull"
+        }
+       }
+      }
+     },
+     "400": {
+      "$ref": "#/components/responses/Error"
+     },
+     "401": {
+      "$ref": "#/components/responses/Error"
+     },
+     "403": {
+      "$ref": "#/components/responses/Error"
+     },
+     "404": {
+      "$ref": "#/components/responses/Error"
+     },
+     "429": {
+      "$ref": "#/components/responses/Error"
+     },
+     "500": {
+      "$ref": "#/components/responses/Error"
+     }
+    }
+   }
+  },
+  "/v1/vendors": {
+   "get": {
+    "operationId": "listVendors",
+    "summary": "List and search vendors",
+    "description": "Sorted by name.",
+    "parameters": [
+     {
+      "name": "q",
+      "in": "query",
+      "schema": {
+       "type": "string",
+       "maxLength": 200
+      },
+      "description": "Matches the vendor name."
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "schema": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 200,
+       "default": 50
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "schema": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 100000,
+       "default": 0
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "A page of vendors.",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "required": [
+          "data",
+          "count",
+          "total",
+          "limit",
+          "offset",
+          "has_more"
+         ],
+         "properties": {
+          "data": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/Vendor"
+           }
+          },
+          "count": {
+           "type": "integer",
+           "description": "Rows in this page."
+          },
+          "total": {
+           "type": "integer",
+           "description": "Rows that match, all pages."
+          },
+          "limit": {
+           "type": "integer"
+          },
+          "offset": {
+           "type": "integer"
+          },
+          "has_more": {
+           "type": "boolean"
+          },
+          "plan_limit": {
+           "type": "string",
+           "description": "Set on a free trial or with no plan: reads show only the first 10 products / 5 vendors."
+          }
+         }
+        }
+       }
+      }
+     },
+     "400": {
+      "$ref": "#/components/responses/Error"
+     },
+     "401": {
+      "$ref": "#/components/responses/Error"
+     },
+     "403": {
+      "$ref": "#/components/responses/Error"
+     },
+     "404": {
+      "$ref": "#/components/responses/Error"
+     },
+     "429": {
+      "$ref": "#/components/responses/Error"
+     },
+     "500": {
+      "$ref": "#/components/responses/Error"
+     }
+    }
+   },
+   "post": {
+    "operationId": "createVendor",
+    "summary": "Add a vendor (write token)",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/NewVendor"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "The new vendor.",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/VendorFull"
+        }
+       }
+      }
+     },
+     "400": {
+      "$ref": "#/components/responses/Error"
+     },
+     "401": {
+      "$ref": "#/components/responses/Error"
+     },
+     "403": {
+      "$ref": "#/components/responses/Error"
+     },
+     "404": {
+      "$ref": "#/components/responses/Error"
+     },
+     "429": {
+      "$ref": "#/components/responses/Error"
+     },
+     "500": {
+      "$ref": "#/components/responses/Error"
+     },
+     "402": {
+      "$ref": "#/components/responses/Error"
+     },
+     "409": {
+      "$ref": "#/components/responses/Error"
+     }
+    }
+   }
+  },
+  "/v1/vendors/{id}": {
+   "get": {
+    "operationId": "getVendor",
+    "summary": "One vendor, with card photo links",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "The vendor.",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/VendorFull"
+        }
+       }
+      }
+     },
+     "400": {
+      "$ref": "#/components/responses/Error"
+     },
+     "401": {
+      "$ref": "#/components/responses/Error"
+     },
+     "403": {
+      "$ref": "#/components/responses/Error"
+     },
+     "404": {
+      "$ref": "#/components/responses/Error"
+     },
+     "429": {
+      "$ref": "#/components/responses/Error"
+     },
+     "500": {
+      "$ref": "#/components/responses/Error"
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "securitySchemes": {
+   "bearer": {
+    "type": "http",
+    "scheme": "bearer",
+    "description": "Authorization: Bearer ss_xxxxxxxx"
+   },
+   "apiKey": {
+    "type": "apiKey",
+    "in": "header",
+    "name": "X-API-Key"
+   }
+  },
+  "schemas": {
+   "Product": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "vendor": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "vendor_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "format": "uuid"
+     },
+     "category": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "fob": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": "Price per unit in `currency`."
+     },
+     "currency": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "price_term": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "enum": [
+       "FOB",
+       "CIF",
+       "EXW",
+       "DDP",
+       null
+      ]
+     },
+     "moq": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "container_qty": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "package_cbm": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "country_of_origin": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "tariff_override": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": "Duty rate as a fraction (0.25 = 25%), when set by hand."
+     },
+     "tags": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "specs": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Notes (the app calls this field Notes)."
+     },
+     "venue": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Show or place."
+     },
+     "status": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "photo_count": {
+      "type": "integer"
+     },
+     "photo_description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Machine-written photo description. Often wrong; not a fact."
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "thumbnail": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "First photo link, set for the first 30 rows of a page. Expires after 7 days."
+     }
+    }
+   },
+   "ProductFull": {
+    "allOf": [
+     {
+      "$ref": "#/components/schemas/Product"
+     },
+     {
+      "type": "object",
+      "properties": {
+       "photos": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        },
+        "description": "Up to 8 photo links (images only). Expire after 7 days."
+       }
+      }
+     }
+    ]
+   },
+   "NewProduct": {
+    "type": "object",
+    "additionalProperties": false,
+    "minProperties": 1,
+    "properties": {
+     "vendor": {
+      "type": "string",
+      "description": "Vendor name. Links to the team's vendor with this name (case ignored), or creates one.",
+      "maxLength": 200
+     },
+     "vendor_id": {
+      "type": "string",
+      "description": "Existing vendor. Use this or `vendor`.",
+      "format": "uuid"
+     },
+     "name": {
+      "type": "string",
+      "description": "Product name. Saved as the first line of the notes (the app has no name field).",
+      "maxLength": 200
+     },
+     "category": {
+      "type": "string",
+      "maxLength": 100
+     },
+     "fob": {
+      "type": "number",
+      "description": "FOB price per unit.",
+      "minimum": 0,
+      "maximum": 1000000000
+     },
+     "currency": {
+      "type": "string",
+      "description": "3-letter code.",
+      "default": "USD",
+      "minLength": 3,
+      "maxLength": 3
+     },
+     "price_term": {
+      "type": "string",
+      "enum": [
+       "FOB",
+       "CIF",
+       "EXW",
+       "DDP"
+      ]
+     },
+     "moq": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "container_qty": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "specs": {
+      "type": "string",
+      "description": "Notes. Joined with `notes` if both are sent.",
+      "maxLength": 5000
+     },
+     "notes": {
+      "type": "string",
+      "maxLength": 5000
+     },
+     "tags": {
+      "oneOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      ],
+      "description": "Array or one comma list. Max 30 tags, 50 characters each."
+     },
+     "country_of_origin": {
+      "oneOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      ],
+      "description": "Array or one comma list. Max 10."
+     },
+     "venue": {
+      "type": "string",
+      "maxLength": 200
+     }
+    },
+    "description": "Send at least one of vendor, vendor_id, name, category, fob, specs, notes. Other fields return 400 unknown_field. Photos are not part of v1."
+   },
+   "Vendor": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "name": {
+      "type": "string"
+     },
+     "contacts": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string"
+        },
+        "title": {
+         "type": [
+          "string",
+          "null"
+         ]
+        }
+       }
+      }
+     },
+     "emails": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "phones": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "type": {
+         "type": "string",
+         "enum": [
+          "mobile",
+          "office",
+          "fax",
+          "other"
+         ]
+        },
+        "number": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "websites": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "wechats": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "addresses": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "notes": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "product_count": {
+      "type": "integer"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   },
+   "VendorFull": {
+    "allOf": [
+     {
+      "$ref": "#/components/schemas/Vendor"
+     },
+     {
+      "type": "object",
+      "properties": {
+       "photos": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        },
+        "description": "Up to 4 business card photo links. Expire after 7 days."
+       }
+      }
+     }
+    ]
+   },
+   "NewVendor": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "name"
+    ],
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 200
+     },
+     "contact": {
+      "oneOf": [
+       {
+        "oneOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "object",
+          "properties": {
+           "name": {
+            "type": "string"
+           },
+           "title": {
+            "type": "string"
+           }
+          }
+         }
+        ]
+       },
+       {
+        "type": "array",
+        "items": {
+         "oneOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "object",
+           "properties": {
+            "name": {
+             "type": "string"
+            },
+            "title": {
+             "type": "string"
+            }
+           }
+          }
+         ]
+        }
+       }
+      ],
+      "description": "Max 20."
+     },
+     "contacts": {
+      "oneOf": [
+       {
+        "oneOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "object",
+          "properties": {
+           "name": {
+            "type": "string"
+           },
+           "title": {
+            "type": "string"
+           }
+          }
+         }
+        ]
+       },
+       {
+        "type": "array",
+        "items": {
+         "oneOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "object",
+           "properties": {
+            "name": {
+             "type": "string"
+            },
+            "title": {
+             "type": "string"
+            }
+           }
+          }
+         ]
+        }
+       }
+      ],
+      "description": "Max 20."
+     },
+     "email": {
+      "oneOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      ],
+      "description": "Max 20."
+     },
+     "emails": {
+      "oneOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      ],
+      "description": "Max 20."
+     },
+     "phone": {
+      "oneOf": [
+       {
+        "oneOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "object",
+          "properties": {
+           "number": {
+            "type": "string"
+           },
+           "type": {
+            "type": "string",
+            "enum": [
+             "mobile",
+             "office",
+             "fax",
+             "other"
+            ]
+           }
+          }
+         }
+        ]
+       },
+       {
+        "type": "array",
+        "items": {
+         "oneOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "object",
+           "properties": {
+            "number": {
+             "type": "string"
+            },
+            "type": {
+             "type": "string",
+             "enum": [
+              "mobile",
+              "office",
+              "fax",
+              "other"
+             ]
+            }
+           }
+          }
+         ]
+        }
+       }
+      ],
+      "description": "A plain string gets type office. Max 20."
+     },
+     "phones": {
+      "oneOf": [
+       {
+        "oneOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "object",
+          "properties": {
+           "number": {
+            "type": "string"
+           },
+           "type": {
+            "type": "string",
+            "enum": [
+             "mobile",
+             "office",
+             "fax",
+             "other"
+            ]
+           }
+          }
+         }
+        ]
+       },
+       {
+        "type": "array",
+        "items": {
+         "oneOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "object",
+           "properties": {
+            "number": {
+             "type": "string"
+            },
+            "type": {
+             "type": "string",
+             "enum": [
+              "mobile",
+              "office",
+              "fax",
+              "other"
+             ]
+            }
+           }
+          }
+         ]
+        }
+       }
+      ],
+      "description": "Max 20."
+     },
+     "website": {
+      "oneOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      ],
+      "description": "Max 10."
+     },
+     "websites": {
+      "oneOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      ],
+      "description": "Max 10."
+     },
+     "wechat": {
+      "oneOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      ],
+      "description": "WeChat IDs. Max 10."
+     },
+     "wechats": {
+      "oneOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      ],
+      "description": "Max 10."
+     },
+     "address": {
+      "oneOf": [
+       {
+        "oneOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "object",
+          "properties": {
+           "street": {
+            "type": "string"
+           },
+           "city": {
+            "type": "string"
+           },
+           "state": {
+            "type": "string"
+           },
+           "postal_code": {
+            "type": "string"
+           },
+           "country": {
+            "type": "string"
+           }
+          }
+         }
+        ]
+       },
+       {
+        "type": "array",
+        "items": {
+         "oneOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "object",
+           "properties": {
+            "street": {
+             "type": "string"
+            },
+            "city": {
+             "type": "string"
+            },
+            "state": {
+             "type": "string"
+            },
+            "postal_code": {
+             "type": "string"
+            },
+            "country": {
+             "type": "string"
+            }
+           }
+          }
+         ]
+        }
+       }
+      ],
+      "description": "Saved as one line. Max 10."
+     },
+     "addresses": {
+      "oneOf": [
+       {
+        "oneOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "object",
+          "properties": {
+           "street": {
+            "type": "string"
+           },
+           "city": {
+            "type": "string"
+           },
+           "state": {
+            "type": "string"
+           },
+           "postal_code": {
+            "type": "string"
+           },
+           "country": {
+            "type": "string"
+           }
+          }
+         }
+        ]
+       },
+       {
+        "type": "array",
+        "items": {
+         "oneOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "object",
+           "properties": {
+            "street": {
+             "type": "string"
+            },
+            "city": {
+             "type": "string"
+            },
+            "state": {
+             "type": "string"
+            },
+            "postal_code": {
+             "type": "string"
+            },
+            "country": {
+             "type": "string"
+            }
+           }
+          }
+         ]
+        }
+       }
+      ],
+      "description": "Max 10."
+     },
+     "notes": {
+      "type": "string",
+      "maxLength": 5000
+     }
+    },
+    "description": "Other fields return 400 unknown_field. A vendor with the same name (case ignored) returns 409 already_exists with the existing id."
+   },
+   "Error": {
+    "type": "object",
+    "required": [
+     "error"
+    ],
+    "properties": {
+     "error": {
+      "type": "object",
+      "required": [
+       "code",
+       "message"
+      ],
+      "properties": {
+       "code": {
+        "type": "string",
+        "enum": [
+         "invalid_request",
+         "invalid_json",
+         "invalid_id",
+         "unknown_field",
+         "vendor_not_found",
+         "vendor_not_linked",
+         "missing_token",
+         "invalid_token",
+         "plan_required",
+         "read_only_token",
+         "no_team",
+         "team_changed",
+         "not_found",
+         "method_not_allowed",
+         "already_exists",
+         "rate_limited",
+         "internal_error"
+        ]
+       },
+       "message": {
+        "type": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "responses": {
+   "Error": {
+    "description": "Error. See error.code.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/Error"
+      }
+     }
+    },
+    "headers": {
+     "Retry-After": {
+      "description": "Seconds to wait (429).",
+      "schema": {
+       "type": "integer"
+      }
+     }
+    }
+   }
+  }
+ }
+}

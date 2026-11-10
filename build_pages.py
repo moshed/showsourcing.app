@@ -15,6 +15,7 @@ user counts or testimonials. No competitor names on THIS page (Moshe, 2026-10-17
 """
 import html
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -453,6 +454,15 @@ Generated from the app's own Help, one line per topic. Details: {SITE}/llms-full
 
 {FEATURES}
 
+## API for developers and AI agents
+
+- REST API (JSON): read and add your team's products and vendors. Base URL https://api.showsourcing.app/functions/v1/api , routes GET/POST /v1/products, GET /v1/products/{{id}}, GET/POST /v1/vendors, GET /v1/vendors/{{id}}. No edit or delete in v1.
+- MCP server for Claude, ChatGPT and Claude Code: https://api.showsourcing.app/functions/v1/mcp (Streamable HTTP, read only; tools search_products, get_product, show_products, vendor_for_email, list_vendors)
+- Auth: one token per team, made in the app under Settings > AI Connection & API; send `Authorization: Bearer <token>`
+- Docs as plain text: {SITE}/docs/api.md
+- OpenAPI spec: {SITE}/openapi.json
+- Docs page: {SITE}/docs/api/
+
 ## Pricing
 
 - Per seat (one seat per person); 7-day free trial on every plan
@@ -462,7 +472,7 @@ Generated from the app's own Help, one line per topic. Details: {SITE}/llms-full
 
 ## Platforms
 
-- iPhone, iPad and Mac (App Store), plus a web portal at app.showsourcing.app
+- iPhone, iPad and Mac (App Store), Android (Google Play), plus a web portal at app.showsourcing.app
 
 ## Links
 
@@ -473,7 +483,10 @@ Generated from the app's own Help, one line per topic. Details: {SITE}/llms-full
 - Pricing: {SITE}/pricing
 - Help and FAQ: {SITE}/help
 - Full FAQ as text: {SITE}/llms-full.txt
+- API docs (plain text): {SITE}/docs/api.md
+- OpenAPI spec: {SITE}/openapi.json
 - App Store: {APPSTORE}
+- Google Play: https://play.google.com/store/apps/details?id=com.DNZ.showsourcing
 - Beta (TestFlight): {BETA}
 - Support: general@showsourcing.app
 """
@@ -489,6 +502,9 @@ def llms_full() -> str:
             out.append(f"### {e['question']}")
             out.append(e["answer"])
             out.append("")
+    # The whole API doc, so one file answers agents (2026-11-10). Source: docs/api.md.
+    api = (ROOT / "docs" / "api.md").read_text().replace("# Show Sourcing API", "## API (REST and MCP)", 1)
+    out.append(re.sub(r"^(#{2,3}) ", lambda m: "#" + m.group(1) + " ", api, flags=re.M).replace("### API (REST and MCP)", "## API (REST and MCP)", 1))
     return "\n".join(out)
 
 

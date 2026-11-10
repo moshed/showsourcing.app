@@ -10,3 +10,17 @@
 /q/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+
+# Search engines: hide the pages.dev copy (2026-11-09).
+https://showsourcing-site.pages.dev/*
+  X-Robots-Tag: noindex
+https://:version.showsourcing-site.pages.dev/*
+  X-Robots-Tag: noindex
+
+# API docs for agents and tools (2026-11-10).
+/docs/api.md
+  Content-Type: text/markdown; charset=utf-8
+  Access-Control-Allow-Origin: *
+/openapi.json
+  Content-Type: application/json; charset=utf-8
+  Access-Control-Allow-Origin: *
