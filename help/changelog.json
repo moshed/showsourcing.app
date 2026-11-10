@@ -1,21 +1,36 @@
 {
-  "updated": "2026-11-06T00:29",
+  "updated": "2026-11-10T11:46",
   "appStore": {
-    "version": "1.1.6",
-    "build": "7"
+    "version": "1.1.7",
+    "build": "2"
   },
   "beta": {
-    "version": "1.1.7",
+    "version": "1.1.8",
     "build": "1"
   },
   "builds": [
     {
-      "version": "1.1.7",
+      "version": "1.1.8",
       "build": "1",
-      "date": "2026-11-03",
+      "date": "2026-11-07",
       "channel": "beta",
       "notes": [
-        "Test build for the next version. Same features as 1.1.6, which is in App Store review."
+        "Test build for the next version. Same features as 1.1.7, which is in App Store review."
+      ]
+    },
+    {
+      "version": "1.1.7",
+      "build": "2",
+      "date": "2026-11-07",
+      "channel": "appStore",
+      "notes": [
+        "Fix: the Feature Tour no longer closes the app on the product page slide.",
+        "Reply to a comment right from the notification, with the keyboard.",
+        "Notification photos are sharper.",
+        "Deleting many products or vendors at once is smoother, and vendors ask before deleting.",
+        "Faster Products list with large catalogs.",
+        "Change Password in Profile.",
+        "Email templates for each status, and vendors with the same name stay separate."
       ]
     },
     {

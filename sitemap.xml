@@ -2,54 +2,60 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://showsourcing.app/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://showsourcing.app/blog/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://showsourcing.app/blog/landed-cost-fob-to-ldp/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://showsourcing.app/blog/canton-fair-buyer-prep-checklist/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://showsourcing.app/blog/business-card-ocr-trade-show/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://showsourcing.app/privacy.html</loc>
-    <lastmod>2026-08-04</lastmod>
+    <loc>https://showsourcing.app/privacy</loc>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://showsourcing.app/terms.html</loc>
-    <lastmod>2026-08-04</lastmod>
+    <loc>https://showsourcing.app/terms</loc>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url><loc>https://showsourcing.app/pricing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url>
-    <loc>https://showsourcing.app/help</loc>
+    <loc>https://showsourcing.app/help/</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url><loc>https://showsourcing.app/trade-show-sourcing-app/</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://showsourcing.app/vendor-price-tracking/</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://showsourcing.app/compare/</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://showsourcing.app/docs/api/</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
   <!-- AUTO:content -->
   <url><loc>https://showsourcing.app/blog/sourcing-trade-show-calendar-2027/</loc><lastmod>2026-10-27</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://showsourcing.app/blog/ces-sourcing-guide/</loc><lastmod>2026-10-27</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>

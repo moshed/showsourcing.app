@@ -1384,7 +1384,7 @@
         {
           "id": "email-many",
           "question": "Can I email many vendors at once?",
-          "answer": "Yes. Select products, tap Share, then Email Vendors. After you confirm, the app sends one email to each vendor with that vendor's products and photos inline. This works with Outlook or Gmail in Settings > Email Template > Send With.",
+          "answer": "Yes. Select products, tap Share, then Email Vendors. After you confirm, the app sends one email to each vendor with that vendor's products and photos inline. This works with Outlook in Settings > Email Template > Send With (Gmail is coming soon).",
           "keywords": [
             "bulk email",
             "email vendors",
