@@ -1,14 +1,25 @@
 {
-  "updated": "2026-11-16T10:19",
+  "updated": "2026-11-16T13:03",
   "appStore": {
     "version": "1.1.7",
     "build": "2"
   },
   "beta": {
     "version": "1.1.8",
-    "build": "4"
+    "build": "5"
   },
   "builds": [
+    {
+      "version": "1.1.8",
+      "build": "5",
+      "date": "2026-11-16",
+      "channel": "beta",
+      "notes": [
+        "First-visit tips: the first time you open Products, Create, Vendors or RFQs, a short guide points out the main buttons. Settings > Help & FAQ > Show Tips Again brings them back.",
+        "Status flag: with no statuses yet, the flag shows a short demo of how to make them and a button that opens Settings > Status.",
+        "Filters: \"Make groups in Settings > Category Groups\" is now a link that opens that screen."
+      ]
+    },
     {
       "version": "1.1.8",
       "build": "4",
@@ -88,10 +99,10 @@
       "notes": [
         "Search by photo: tap the camera next to the search bar to find a product from a picture. Recent searches are one tap away.",
         "Visually Similar: see look-alike products on every product page.",
-        "Email suppliers from Outlook or Gmail, with CC. Pick several products and each supplier gets one email, with the photos inline.",
-        "Supplier emails are checked: a red mark shows an address that cannot get mail, with a one-tap fix.",
+        "Email vendors from Outlook or Gmail, with CC. Pick several products and each vendor gets one email, with the photos inline.",
+        "Vendor emails are checked: a red mark shows an address that cannot get mail, with a one-tap fix.",
         "Venues are shared with your team. Rename one and everyone sees it.",
-        "Card scans read every card on a supplier, plus many fixes."
+        "Card scans read every card on a vendor, plus many fixes."
       ]
     },
     {

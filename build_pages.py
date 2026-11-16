@@ -230,7 +230,7 @@ def cta() -> str:
         <a class="btn" href="/pricing">See pricing</a>
         <a class="btn" href="/help/">Help &amp; FAQ</a>
     </div>
-    <p class="fine">iPhone, iPad and Mac. Web portal at app.showsourcing.app.</p>
+    <p class="fine">iPhone, iPad, Mac and Android. Web app at app.showsourcing.app for Windows.</p>
 </section>"""
 
 
@@ -284,7 +284,7 @@ def page_trade_show() -> str:
 """
     return shell("trade-show-sourcing-app",
                  "Trade show sourcing app: record vendors, products and prices | Show Sourcing",
-                 "An iPhone, iPad and Mac app for buyers at trade shows: photograph products, scan vendor business cards, record FOB prices and price breaks, and see landed cost with US tariffs. 7-day free trial.",
+                 "An iPhone, iPad, Mac and Android app for buyers at trade shows: photograph products, scan vendor business cards, record FOB prices and price breaks, and see landed cost with US tariffs. 7-day free trial.",
                  body, faq)
 
 
@@ -320,7 +320,7 @@ def page_price_tracking() -> str:
 """
     return shell("vendor-price-tracking",
                  "Track supplier quotes, MOQ and price breaks | Show Sourcing",
-                 "Record supplier quotes from trade shows with price terms, currency, price breaks and MOQ, and compare them by landed cost (LDP) with US tariffs. iPhone, iPad and Mac.",
+                 "Record supplier quotes from trade shows with price terms, currency, price breaks and MOQ, and compare them by landed cost (LDP) with US tariffs. iPhone, iPad, Mac and Android.",
                  body, faq)
 
 
@@ -394,7 +394,7 @@ def llms_txt() -> str:
     FEATURES = complete_features()
     return f"""# Show Sourcing
 
-> Show Sourcing is a CRM for buyers who source products at trade shows. On iPhone, iPad and Mac, buyers photograph products, add vendors from business cards, record FOB prices, price breaks and MOQ, and see landed cost (LDP) with US tariffs. Teams share every product live. Free for up to 10 products and 5 vendors; every paid plan starts with a 7-day free trial.
+> Show Sourcing is a CRM for buyers who source products at trade shows. On iPhone, iPad, Mac and Android, and in a web app for Windows, buyers photograph products, add vendors from business cards, record FOB prices, price breaks and MOQ, and see landed cost (LDP) with US tariffs. Teams share every product live. Free for up to 10 products and 5 vendors; every paid plan starts with a 7-day free trial.
 
 ## Who it is for
 
@@ -412,6 +412,9 @@ def llms_txt() -> str:
 - Import duties for the EU as well as the US
 - Free plan (10 products, 5 vendors); invite teammates for free and pay for a seat only when they join
 - Help that understands plain questions (EmbeddingGemma search)
+- Android app on Google Play, with the same account and team as the iPhone; sign in with email or Apple
+- Web app at app.showsourcing.app for Windows or any computer; install it from Chrome or Edge to open it like an app
+- First-visit tips: each screen points out its main buttons the first time you open it
 
 ## New in version 1.1
 

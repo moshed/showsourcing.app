@@ -27,7 +27,7 @@
         {
           "id": "devices",
           "question": "Which devices can I use?",
-          "answer": "iPhone, iPad and Mac (the same app from the App Store). You can also sign in to the web portal at app.showsourcing.app to see your team's products and vendors in a browser.",
+          "answer": "iPhone, iPad and Mac (the same app from the App Store), and Android (Google Play), all with the same account and team. On Windows or any computer, sign in to the web app at app.showsourcing.app; in Chrome or Edge you can install it so it opens like an app.",
           "keywords": [
             "ipad",
             "mac",

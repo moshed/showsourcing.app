@@ -8,7 +8,7 @@
 Show Sourcing records the products you find at trade shows. You take photos, add the vendor and the price, and the app calculates the landed cost. Your team sees every product on their own phones.
 
 ### Which devices can I use?
-iPhone, iPad and Mac (the same app from the App Store). You can also sign in to the web portal at app.showsourcing.app to see your team's products and vendors in a browser.
+iPhone, iPad and Mac (the same app from the App Store), and Android (Google Play), all with the same account and team. On Windows or any computer, sign in to the web app at app.showsourcing.app; in Chrome or Edge you can install it so it opens like an app.
 
 ### How do I make an account?
 Open the app and tap Get Started. Enter your name, email and a password. If you mistype a common email domain (for example gmial.com), the app shows a suggestion. It never blocks a company domain.

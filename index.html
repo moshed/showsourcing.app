@@ -753,7 +753,7 @@
         /* ==============================================
            PLATFORMS ROW
         =============================================== */
-        .platforms { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+        .platforms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
         .platform {
             display: flex; flex-direction: column; gap: 6px;
             padding: 14px; border-radius: 14px;
@@ -958,6 +958,7 @@
         <div class="phone" data-title="Fields that fit each product" data-sub="A speaker gets battery and color. A camera gets megapixels"><div class="scr"><img src="/images/as-03-speaker.webp" width="600" height="1304" alt="Custom fields: battery, waterproof and color for a speaker" draggable="false"></div></div>
         <div class="phone" data-title="Snap a card. The vendor fills in" data-sub="Then select and copy any text right off the card"><div class="scr"><img src="/images/as-04-vendor_text.webp" width="600" height="1304" alt="Vendor filled in from a scanned business card" draggable="false"></div></div>
         <div class="phone" data-title="Landed cost on the spot" data-sub="Duty and freight included, at every quantity"><div class="scr"><img src="/images/as-05-product.webp" width="600" height="1304" alt="Product page with FOB, tariff and landed cost" draggable="false"></div></div>
+        <div class="phone" data-title="Get quotes with one link" data-sub="Vendors quote on a web form. Accept with one tap"><div class="scr"><img src="/images/as-12-rfq-quote.webp" width="600" height="1304" alt="A vendor's quote with price by quantity and landed cost, with Accept and Decline" draggable="false"></div></div>
         <div class="phone" data-title="Comment, flag, tag" data-sub="Mark what needs a sample"><div class="scr"><img src="/images/as-06-status.webp" width="600" height="1304" alt="Team statuses: sample requested, quoted, approved" draggable="false"></div></div>
         <div class="phone" data-title="Loop in a teammate" data-sub="Comments and @mentions on every product"><div class="scr"><img src="/images/as-07-mention.webp" width="600" height="1304" alt="Comments with @mentions on a product" draggable="false"></div></div>
         <div class="phone" data-title="Know every vendor" data-sub="Contacts, cards and US shipping records"><div class="scr"><img src="/images/as-08-vendor_1.webp" width="600" height="1304" alt="Vendor page with products and US shipping records" draggable="false"></div></div>
@@ -973,24 +974,24 @@
 <!-- NEW IN 1.1 -->
 <section class="whatsnew" id="new" aria-labelledby="new-title">
     <div class="whatsnew-in">
-        <p class="eyebrow rv">New in version 1.1</p>
-        <h2 id="new-title" class="rv d1">The biggest update yet</h2>
-        <p class="sub rv d2">Track exactly what your team needs, price every quantity, and take the whole catalog to Excel or to your desk.</p>
+        <p class="eyebrow rv">What's new</p>
+        <h2 id="new-title" class="rv d1">More than a catalog now</h2>
+        <p class="sub rv d2">Get quotes from vendors, find products by photo, email from your own Outlook, and work from iPhone, Android, Mac or Windows.</p>
         <div class="new-grid">
-            <div class="new-card rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><h3>Custom fields</h3><p>Add the fields your team tracks, like finish, certification or sample size. They show on every product and work in search and filters.</p></div>
-            <div class="new-card rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V6M16 20v-8M22 20H2"/></svg><h3>Price breaks</h3><p>Log a price ladder: 1,000 pcs at one price, 5,000 at another. The smallest quantity's price is the FOB.</p></div>
-            <div class="new-card rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg><h3>FOB, CIF, EXW or DDP</h3><p>Pick the price term per product. Landed cost follows the term you chose.</p></div>
-            <div class="new-card rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg><h3>Excel export with photos</h3><p>Products and vendors in a spreadsheet, photos in the cells, every field included, landed cost as live formulas. Paid plans.</p></div>
-            <div class="new-card rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M9 4v14M8 21h8"/></svg><h3>Built for Mac and iPad</h3><p>List and details side by side, a bigger tab bar and keyboard shortcuts.</p></div>
+            <div class="new-card rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg><h3>RFQs</h3><p>Send vendors one link. They quote on a web form or an Excel sheet, with photos and price by quantity. Compare landed cost and accept with one tap.</p></div>
+            <div class="new-card rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3.2"/></svg><h3>Search by photo</h3><p>Take a picture to find the product in your catalog. Every product page shows its look-alikes.</p></div>
+            <div class="new-card rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><h3>Email from Outlook</h3><p>Send from your own Outlook inbox (Gmail is coming soon). Pick several products and each vendor gets one email, photos inline. Addresses that cannot get mail are marked, with a one-tap fix.</p></div>
+            <div class="new-card rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><h3>US or EU duties</h3><p>Choose the US or the EU as your destination. Landed cost uses that region's import duties.</p></div>
+            <div class="new-card rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><h3>Android</h3><p>On Google Play, with the same account and team as the iPhone. Sign in with email or Apple.</p></div>
+            <div class="new-card rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg><h3>Windows and any browser</h3><p>Use the web app at app.showsourcing.app, or install it from Chrome or Edge so it opens like an app.</p></div>
+            <div class="new-card rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a2 2 0 0 1 4 0v5m0-1a2 2 0 0 1 4 0v3a6 6 0 0 1-6 6h-.5a5 5 0 0 1-4.2-2.3L4 15.5a1.6 1.6 0 0 1 2.6-1.9L9 16"/></svg><h3>Tips as you go</h3><p>The first time you open a screen, a short guide points out the main buttons.</p></div>
             <div class="new-card rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg><h3>AI Connection</h3><p>Connect Claude or ChatGPT to your catalog and ask about your products and vendors in plain words.</p></div>
-            <div class="new-card rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg><h3>US shipping records</h3><p>See a vendor's US import history and which US companies already buy from them.</p></div>
-            <div class="new-card rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5h.01"/></svg><h3>Help &amp; FAQ</h3><p>Searchable help inside the app, plus What's New for every update.</p></div>
         </div>
-        <p class="new-more rv d3">Also new: a redesigned Team Map, team statuses on every product, AI photo descriptions, a faster camera, and prices and numbers in your region's format.</p>
+        <p class="new-more rv d3">Also in 1.1: custom fields, price breaks, FOB, CIF, EXW or DDP, Excel export with photos, US shipping records, AI photo descriptions, Team Map, and Help &amp; FAQ in the app.</p>
     </div>
 </section>
 
-<nav class="jump" id="jump" aria-label="Jump to a section"><div class="jump-in"><a href="#capture">Capture</a><a href="#vendors">Card scan</a><a href="#landed-cost">Landed cost</a><a href="#know-vendors">Vendors</a><a href="#team">Team</a><a href="#catalog">Search</a><a href="#filters">Filters</a><a href="#fields">Custom fields</a><a href="#photo-descriptions">Photo AI</a><a href="#export-ai">Export &amp; AI</a><a href="#ai-demo">ChatGPT &amp; Claude</a><a href="#follow-up">Follow-up</a><a href="#from-the-floor">Reviews</a><a href="#faq">FAQ</a></div></nav>
+<nav class="jump" id="jump" aria-label="Jump to a section"><div class="jump-in"><a href="#capture">Capture</a><a href="#vendors">Card scan</a><a href="#landed-cost">Landed cost</a><a href="#rfqs">RFQs</a><a href="#know-vendors">Vendors</a><a href="#team">Team</a><a href="#catalog">Search</a><a href="#filters">Filters</a><a href="#fields">Custom fields</a><a href="#photo-descriptions">Photo AI</a><a href="#export-ai">Export &amp; AI</a><a href="#ai-demo">ChatGPT &amp; Claude</a><a href="#follow-up">Follow-up</a><a href="#from-the-floor">Reviews</a><a href="#faq">FAQ</a></div></nav>
 <!-- 1. CAPTURE -->
 <section class="feature" id="capture">
     <div class="wrap feature-grid">
@@ -1134,8 +1135,35 @@
     </div>
 </section>
 
+<!-- 3b. RFQS -->
+<section class="feature flip" id="rfqs">
+    <div class="wrap feature-grid">
+        <div class="feature-copy">
+            <span class="eyebrow rv">RFQs</span>
+            <h2 class="rv d2">Get quotes with one link<a class="hash" href="#rfqs" aria-label="Link to this section">#</a></h2>
+            <p class="lede rv d2">Make a request for quotes and send vendors its link. They answer on a web form or an Excel sheet, with no account and no app.</p>
+            <ul class="points rv d3">
+                <li><span>Vendors add <strong>photos and a price for each quantity</strong>. Your team logo is on every form.</span></li>
+                <li><span>Each quote shows its <strong>landed cost</strong> next to the price, so you compare like with like.</span></li>
+                <li><span><strong>Accept</strong> adds the item to Products with the vendor filled in. <strong>Decline</strong> sets it aside.</span></li>
+                <li><span>Ask only for the fields you need, and keep a link open for the whole show.</span></li>
+            </ul>
+        </div>
+        <div class="shots rv d2">
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-12-rfq-inbox.webp" width="600" height="1304" loading="lazy" alt="RFQs: three vendor quotes waiting for review, with photos and FOB prices"></div></div>
+                <figcaption>Quotes come in with photos</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><div class="scr"><img src="/images/as-12-rfq-quote.webp" width="600" height="1304" loading="lazy" alt="A quote with price and landed cost at 1,000, 5,000 and 10,000 units, with Accept and Decline"></div></div>
+                <figcaption>Price by quantity, landed</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
 <!-- 4. KNOW EVERY VENDOR -->
-<section class="feature flip" id="know-vendors">
+<section class="feature" id="know-vendors">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Vendors</span>
@@ -1162,7 +1190,7 @@
 </section>
 
 <!-- 5. TEAM -->
-<section class="feature" id="team">
+<section class="feature flip" id="team">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Team</span>
@@ -1204,7 +1232,7 @@
 </div>
 
 <!-- 6. CATALOG + SEARCH -->
-<section class="feature flip" id="catalog">
+<section class="feature" id="catalog">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Catalog &amp; search</span>
@@ -1212,6 +1240,7 @@
             <p class="lede rv d2">Every find in one place: photos, prices and status from the show floor. Search your notes, tags, specs, and even the words printed on the box.</p>
             <ul class="points rv d3">
                 <li><span><strong>Search</strong> by vendor, category, tags, notes and the text in your photos.</span></li>
+                <li><span><strong>Search by photo:</strong> take a picture and find the product. Every product page shows its look-alikes.</span></li>
                 <li><span><strong>Filter</strong> by category, vendor, venue, tags, status, teammate, date, price and your custom fields.</span></li>
                 <li><span>Switch between a <strong>photo grid</strong> and a detailed list. LDP and status show on every tile.</span></li>
             </ul>
@@ -1230,7 +1259,7 @@
 </section>
 
 <!-- 7. FILTERS -->
-<section class="feature" id="filters">
+<section class="feature flip" id="filters">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Filters</span>
@@ -1259,7 +1288,7 @@
 </section>
 
 <!-- 8. CUSTOM FIELDS -->
-<section class="feature flip" id="fields">
+<section class="feature" id="fields">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Custom fields</span>
@@ -1286,7 +1315,7 @@
 </section>
 
 <!-- 9. PHOTO DESCRIPTIONS -->
-<section class="feature" id="photo-descriptions">
+<section class="feature flip" id="photo-descriptions">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Describe Photos</span>
@@ -1319,7 +1348,7 @@
 </section>
 
 <!-- 10. EXPORT + AI -->
-<section class="feature flip" id="export-ai">
+<section class="feature" id="export-ai">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Export &amp; AI</span>
@@ -1375,21 +1404,24 @@
 </section>
 
 <!-- 11. FOLLOW-UP + EVERYWHERE -->
-<section class="feature" id="follow-up">
+<section class="feature flip" id="follow-up">
     <div class="wrap feature-grid">
         <div class="feature-copy">
             <span class="eyebrow rv">Follow-up</span>
             <h2 class="rv d2">Follow up fast, from any device<a class="hash" href="#follow-up" aria-label="Link to this section">#</a></h2>
             <p class="lede rv d2">Write your email template once, with fields like vendor, FOB price, MOQ and photos. Then email any vendor from the product page: the template fills itself in and attaches the photos.</p>
             <ul class="points rv d3">
-                <li><span>Send with <strong>Apple Mail</strong>, your default mail app, or <strong>directly from the app</strong>.</span></li>
-                <li><span>Back at the office, review the catalog on a big screen. On <strong>Mac and iPad</strong>, list and details sit side by side, with keyboard shortcuts.</span></li>
+                <li><span>Send from your own <strong>Outlook</strong> inbox, with CC, or with Apple Mail. Gmail is coming soon. Pick several products and each vendor gets one email, photos inline.</span></li>
+                <li><span><strong>Email check:</strong> an address that cannot get mail is marked red, with a one-tap fix.</span></li>
+                <li><span>Back at the office, review the catalog on a big screen. On <strong>Mac and iPad</strong>, list and details sit side by side, with keyboard shortcuts. On <strong>Windows</strong>, use the web app.</span></li>
             </ul>
             <div class="platforms rv d3">
                 <div class="platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><strong>iPhone</strong><span>On the show floor</span></div>
+                <div class="platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><strong>Android</strong><span><a href="https://play.google.com/store/apps/details?id=com.DNZ.showsourcing" target="_blank" rel="noopener" style="color:inherit;">Google Play</a></span></div>
                 <div class="platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2.5"/><path d="M11 18h2"/></svg><strong>iPad</strong><span>Review with buyers</span></div>
                 <div class="platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg><strong>Mac</strong><span>At your desk</span></div>
                 <div class="platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><strong>Web app</strong><span><a href="https://app.showsourcing.app/login" style="color:inherit;">app.showsourcing.app</a></span></div>
+                <div class="platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg><strong>Windows</strong><span>The web app, installed</span></div>
             </div>
         </div>
         <div class="shots rv d2">
@@ -1466,7 +1498,7 @@
             <li>
                 <details class="faq-item">
                     <summary>Is Show Sourcing for iPhone or iPad?</summary>
-                    <p>Both, and Mac too. It is built for one-handed iPhone use on the trade show floor, and works on iPad and Mac for reviewing your catalog. Your team can also sign in to the web app at app.showsourcing.app. iOS 18.0 or later.</p>
+                    <p>Both, and Mac too. It is built for one-handed iPhone use on the trade show floor, and works on iPad and Mac for reviewing your catalog. It is also on Android, and your team can sign in to the web app at app.showsourcing.app from Windows or any computer. iOS 18.0 or later.</p>
                 </details>
             </li>
             <li>
@@ -1514,7 +1546,11 @@
             <li>
                 <details class="faq-item">
                     <summary>Is there an Android version?</summary>
-                    <p>Yes. <a href="https://play.google.com/store/apps/details?id=com.DNZ.showsourcing" target="_blank" rel="noopener">Get Show Sourcing on Google Play</a>. Phones without Google Play, like Huawei, can <a href="/android/download">download the APK</a>.</p>
+                    <p>Yes. <a href="https://play.google.com/store/apps/details?id=com.DNZ.showsourcing" target="_blank" rel="noopener">Get Show Sourcing on Google Play</a>. Phones without Google Play, like Huawei, can <a href="/android/download">download the APK</a>. It uses the same account and team as the iPhone, so everyone sees the same products. Sign in with email or with Apple.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Does it work on Windows?</summary>
+                    <p>Yes, through the web app. Sign in at <a href="https://app.showsourcing.app/login">app.showsourcing.app</a> in Chrome or Edge. To open it like an app, choose Install in the browser's menu.</p>
                 </details>
             </li>
         </ul>
@@ -1526,7 +1562,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Is Show Sourcing for iPhone or iPad?", "acceptedAnswer": {"@type": "Answer", "text": "Both, and Mac too. It is built for one-handed iPhone use on the trade show floor, and works on iPad and Mac for reviewing your catalog. Your team can also sign in to the web app at app.showsourcing.app. iOS 18.0 or later."}},
+    {"@type": "Question", "name": "Is Show Sourcing for iPhone or iPad?", "acceptedAnswer": {"@type": "Answer", "text": "Both, and Mac too. It is built for one-handed iPhone use on the trade show floor, and works on iPad and Mac for reviewing your catalog. It is also on Android, and your team can sign in to the web app at app.showsourcing.app from Windows or any computer. iOS 18.0 or later."}},
     {"@type": "Question", "name": "Does Show Sourcing work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Capture products, scan cards, take notes, and manage vendors offline — everything syncs when you're back on WiFi or cellular. Ideal for factory visits and expo halls with spotty signal."}},
     {"@type": "Question", "name": "What trade shows is Show Sourcing built for?", "acceptedAnswer": {"@type": "Answer", "text": "Canton Fair, Global Sources, ASD, IHA, Hong Kong Electronics Fair, HKTDC, Ambiente, IFA, CES — any expo where you're scanning vendors and cataloging products at speed. Also for factory visits in Shenzhen, Yiwu, Guangzhou, Vietnam, and India."}},
     {"@type": "Question", "name": "How does the business card scanner work?", "acceptedAnswer": {"@type": "Answer", "text": "Point your camera at a card, tap capture. AI extracts the company name, contact person, email, phone, WeChat ID, and physical address in about half a second. Multi-card imports supported — scan a stack, get all the vendors back at once."}},
@@ -1534,7 +1570,8 @@
     {"@type": "Question", "name": "How does landed cost calculation work?", "acceptedAnswer": {"@type": "Answer", "text": "Enter FOB, packaging cost, and container quantity. Show Sourcing applies country-specific tariff rules (auto-linked to the product's category and country of origin) plus your container cost, and gives you the LDP — the true per-unit landed cost you can use to price the item."}},
     {"@type": "Question", "name": "What does Show Sourcing cost?", "acceptedAnswer": {"@type": "Answer", "text": "$60 per seat per 6 months, or $102 per seat per year (15% annual discount). Volume discounts kick in at 10+ seats. Billed through the App Store."}},
     {"@type": "Question", "name": "How is my data stored?", "acceptedAnswer": {"@type": "Answer", "text": "Your catalog syncs to a private cloud backend (Supabase, hosted in Singapore for global reach). Team data stays within your team. See the Privacy Policy for details."}},
-    {"@type": "Question", "name": "Is there an Android version of Show Sourcing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Get it on Google Play at https://play.google.com/store/apps/details?id=com.DNZ.showsourcing. Phones without Google Play, like Huawei, can download the APK at https://showsourcing.app/android/download."}}
+    {"@type": "Question", "name": "Is there an Android version of Show Sourcing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Get it on Google Play at https://play.google.com/store/apps/details?id=com.DNZ.showsourcing. Phones without Google Play, like Huawei, can download the APK at https://showsourcing.app/android/download. It uses the same account and team as the iPhone. Sign in with email or with Apple."}},
+    {"@type": "Question", "name": "Does Show Sourcing work on Windows?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, through the web app. Sign in at https://app.showsourcing.app/login in Chrome or Edge. To open it like an app, choose Install in the browser's menu."}}
   ]
 }
 </script>

@@ -7,7 +7,7 @@ order: 6
 eyebrow: Guide
 card: Planning, walking the floor, what to record at every booth, comparing quotes and following up. Everything a buyer needs for a productive show, in one place.
 cta_title: Record every booth in under a minute
-cta_text: Show Sourcing keeps the photo, the vendor's card, the FOB price, MOQ and landed cost together for every product, and shares it with your team live. iPhone, iPad and Mac. Free for 7 days.
+cta_text: Show Sourcing keeps the photo, the vendor's card, the FOB price, MOQ and landed cost together for every product, and shares it with your team live. iPhone, iPad, Mac and Android. Free for up to 10 products.
 ---
 A trade show is the fastest way to see hundreds of suppliers, handle real samples and get prices in one trip. It is also the fastest way to come home with 400 business cards, 2,000 photos and no idea which price belonged to which product.
 

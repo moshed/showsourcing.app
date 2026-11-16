@@ -1,6 +1,6 @@
 # Show Sourcing
 
-> Show Sourcing is a CRM for buyers who source products at trade shows. On iPhone, iPad and Mac, buyers photograph products, add vendors from business cards, record FOB prices, price breaks and MOQ, and see landed cost (LDP) with US tariffs. Teams share every product live. Free for up to 10 products and 5 vendors; every paid plan starts with a 7-day free trial.
+> Show Sourcing is a CRM for buyers who source products at trade shows. On iPhone, iPad, Mac and Android, and in a web app for Windows, buyers photograph products, add vendors from business cards, record FOB prices, price breaks and MOQ, and see landed cost (LDP) with US tariffs. Teams share every product live. Free for up to 10 products and 5 vendors; every paid plan starts with a 7-day free trial.
 
 ## Who it is for
 
@@ -18,6 +18,9 @@
 - Import duties for the EU as well as the US
 - Free plan (10 products, 5 vendors); invite teammates for free and pay for a seat only when they join
 - Help that understands plain questions (EmbeddingGemma search)
+- Android app on Google Play, with the same account and team as the iPhone; sign in with email or Apple
+- Web app at app.showsourcing.app for Windows or any computer; install it from Chrome or Edge to open it like an app
+- First-visit tips: each screen points out its main buttons the first time you open it
 
 ## New in version 1.1
 
@@ -60,7 +63,7 @@ Generated from the app's own Help, one line per topic. Details: https://showsour
 
 ### Getting Started
 - What is Show Sourcing? Show Sourcing records the products you find at trade shows.
-- Which devices can I use? iPhone, iPad and Mac (the same app from the App Store).
+- Which devices can I use? iPhone, iPad and Mac (the same app from the App Store), and Android (Google Play), all with the same account and team.
 - How do I make an account? Open the app and tap Get Started. Enter your name, email and a password.
 - Does the app work without internet? Yes. You can create and edit products offline.
 - Why does the app ask me to update? Some versions have a problem that an update fixes.
