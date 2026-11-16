@@ -1,14 +1,51 @@
 {
-  "updated": "2026-11-10T11:46",
+  "updated": "2026-11-16T10:19",
   "appStore": {
     "version": "1.1.7",
     "build": "2"
   },
   "beta": {
     "version": "1.1.8",
-    "build": "1"
+    "build": "4"
   },
   "builds": [
+    {
+      "version": "1.1.8",
+      "build": "4",
+      "date": "2026-11-14",
+      "channel": "beta",
+      "notes": [
+        "RFQs: the RFQ screen now shows how many live RFQs you have. Tap it to open your RFQs and history."
+      ]
+    },
+    {
+      "version": "1.1.8",
+      "build": "3",
+      "date": "2026-11-13",
+      "channel": "beta",
+      "notes": [
+        "Product photos open faster, with a picture of the product while the full photo loads.",
+        "Photos in the grid show a placeholder while they load, so tiles never look stuck.",
+        "Small vibrations for key moments: saving, status changes, accepting quotes, merging and deleting.",
+        "Password reset links now show which account they are for before they sign you in.",
+        "Mac: the X in the search bar clears the search, and you can double-click to select search text.",
+        "Security improvements."
+      ]
+    },
+    {
+      "version": "1.1.8",
+      "build": "2",
+      "date": "2026-11-11",
+      "channel": "beta",
+      "notes": [
+        "Larger text sizes now work across the app, with a size limit so screens stay usable.",
+        "Settings values line up on the right.",
+        "Hold a product to start selecting many products.",
+        "A progress message shows while emails send.",
+        "Mac: Filters opens as a popover.",
+        "Fixes when you switch accounts: settings and vendor uploads stay with the right account."
+      ]
+    },
     {
       "version": "1.1.8",
       "build": "1",
@@ -218,5 +255,33 @@
         "First release of Show Sourcing."
       ]
     }
-  ]
+  ],
+  "android": {
+    "latest": {
+      "version": "1.0",
+      "build": "8"
+    },
+    "builds": [
+      {
+        "version": "1.0",
+        "build": "8",
+        "notes": [
+          "Sign in with Apple: accounts made on the iPhone with Apple now work on Android.",
+          "A welcome tour for new users, with a note from the founder.",
+          "Draw on product photos, erase and crop. Drawings made on the iPhone now show on Android.",
+          "Share a photo with its drawings.",
+          "Slide a list row left to delete it (Products list, Vendors, Team).",
+          "Photo descriptions and text from the photos show on the product page, and search finds them.",
+          "A map under the vendor's address, the card's text with Copy, and phone types (Mobile, Office, Fax).",
+          "Filter products by who is tagged in the comments.",
+          "Vendor sort by date added; tap the same sort again to flip it.",
+          "Pictures in alerts, and reply to a comment right from the alert.",
+          "App Tint and Tab Order in Settings.",
+          "Paste a photo to search or to add it to a product.",
+          "Hold the app icon for New Product, Scan Cards and Search.",
+          "The app syncs in the background, so it opens up to date."
+        ]
+      }
+    ]
+  }
 }
