@@ -192,7 +192,7 @@ def shell(slug: str, title: str, description: str, body: str, faq_ids: list[str]
     <nav>
         <a href="/trade-show-sourcing-app/" class="hide-sm{' active' if slug != 'compare' else ''}">Use cases</a>
         <a href="/pricing">Pricing</a>
-        <a href="/help">Help</a>
+        <a href="/help/">Help</a>
         <a href="/blog/" class="hide-sm">Blog</a>
         {THEME_BTN}
     </nav>
@@ -207,10 +207,10 @@ def shell(slug: str, title: str, description: str, body: str, faq_ids: list[str]
         <nav>
             {footer_links}
             <a href="/pricing">Pricing</a>
-            <a href="/help">Help &amp; FAQ</a>
+            <a href="/help/">Help &amp; FAQ</a>
             <a href="/blog/">Blog</a>
-            <a href="/privacy.html">Privacy Policy</a>
-            <a href="/terms.html">Terms of Service</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
             <a href="mailto:general@showsourcing.app">Support</a>
             <a href="https://x.com/ShowSourcingApp" target="_blank" rel="noopener">X @ShowSourcingApp</a>
         </nav>
@@ -228,7 +228,7 @@ def cta() -> str:
     <div class="actions">
         <a class="btn primary" href="{APPSTORE}" target="_blank" rel="noopener">Download on the App Store</a>
         <a class="btn" href="/pricing">See pricing</a>
-        <a class="btn" href="/help">Help &amp; FAQ</a>
+        <a class="btn" href="/help/">Help &amp; FAQ</a>
     </div>
     <p class="fine">iPhone, iPad and Mac. Web portal at app.showsourcing.app.</p>
 </section>"""
@@ -237,7 +237,7 @@ def cta() -> str:
 def faq_block(ids: list[str]) -> str:
     items = "\n".join(
         f'<details><summary>{esc(FAQ[i]["question"])}</summary><p>{esc(FAQ[i]["answer"])}</p></details>' for i in ids)
-    return f'<h2>Questions</h2>\n{items}\n<p class="fine">More answers in <a href="/help">Help &amp; FAQ</a>.</p>'
+    return f'<h2>Questions</h2>\n{items}\n<p class="fine">More answers in <a href="/help/">Help &amp; FAQ</a>.</p>'
 
 
 def shots(names: list[tuple[str, str]]) -> str:
@@ -255,7 +255,7 @@ def page_trade_show() -> str:
 <div class="bar"></div>
 <div class="actions">
     <a class="btn primary" href="{APPSTORE}" target="_blank" rel="noopener">Start the 7-day free trial</a>
-    <a class="btn" href="/help">How it works</a>
+    <a class="btn" href="/help/">How it works</a>
 </div>
 
 <h2>At the booth, in under a minute</h2>
